@@ -1,0 +1,26 @@
+{
+  "name": "tslint-eslint-rules",
+  "version": "1.0.0",
+  "description": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tslint-eslint-rules.git"
+  },
+  "keywords": [
+    "eslint",
+    "tslint",
+    "custom-rules",
+    "rules",
+    "stylish",
+    "lint",
+    "linting",
+    "linter",
+    "tslint-plugin"
+  ],
+  "author": "Vitor Buzinaro",
+  "license": "MIT"
+}
