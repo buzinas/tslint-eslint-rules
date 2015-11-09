@@ -44,12 +44,7 @@ The following rules point out areas where you might have made mistakes.
   * Usage
 
     ```json
-    "no-cond-assign": [
-        true,
-        {
-          
-        }
-      ]
+    "no-conditional-assignment": true
     ```
 *   [no-console](http:/eslint.org/docs/rules/no-console) => 
   * Description: disallow use of `console` in the node environment (recommended)
