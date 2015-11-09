@@ -2296,7 +2296,9 @@ These rules existed in a previous version of ESLint but have since been replaced
 
 ## Contributing
 
-Lorem ipsum
+Bugs, rules requests, doubts etc., open a Github Issue.
+
+If you wanna contribute by creating an ESLint custom rule for TSLint, fork this repo and open a pull request.
 
 ---
 
