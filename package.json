@@ -1,7 +1,7 @@
 {
   "name": "tslint-eslint-rules",
-  "version": "1.0.0",
-  "description": "0.0.1",
+  "version": "0.0.1",
+  "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
   "scripts": {
     "test": "gulp test"
