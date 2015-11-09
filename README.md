@@ -6,7 +6,6 @@ You want to code in TypeScript but miss all the rules available in ESLint?
 
 Now you can combine both worlds by using this TSLint plugin.
 
----
 
 ## Usage
 
@@ -18,7 +17,6 @@ npm install --save-dev tsling-eslint-rules
 
 In your `tslint.json` file, insert the rules as described below.
 
----
 
 ## Rules (copied from [ESLint website](http://eslint.org/docs/rules/))
 
@@ -2499,7 +2497,6 @@ These rules existed in a previous version of ESLint but have since been replaced
       ]
     ```
 
----
 
 ## Contributing
 
@@ -2507,7 +2504,6 @@ Bugs, rules requests, doubts etc., open a Github Issue.
 
 If you wanna contribute by creating an ESLint custom rule for TSLint, fork this repo and open a pull request.
 
----
 
 ## LICENSE
 
