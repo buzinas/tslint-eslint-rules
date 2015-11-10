@@ -83,6 +83,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-debugger](http://eslint.org/docs/rules/no-debugger) => no-debugger (native)
   * Description: disallow use of `debugger` (recommended)
   * Usage
@@ -90,6 +91,7 @@ The following rules point out areas where you might have made mistakes.
     ```json
     "no-debugger": true
     ```
+
 * [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => TODO (tslint-eslint-rules) (Analyse: no-duplicate-variable)
   * Description: disallow duplicate arguments in functions (recommended)
   * Usage
@@ -102,6 +104,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => no-duplicate-key (native)
   * Description: disallow duplicate keys when creating object literals (recommended)
   * Usage
@@ -109,6 +112,7 @@ The following rules point out areas where you might have made mistakes.
     ```json
     "no-duplicate-key": true
     ```
+
 * [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => TODO (tslint-eslint-rules)
   * Description: disallow a duplicate case label. (recommended)
   * Usage
@@ -121,6 +125,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => TODO (tslint-eslint-rules)
   * Description: disallow the use of empty character classes in regular expressions (recommended)
   * Usage
@@ -133,6 +138,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-empty](http://eslint.org/docs/rules/no-empty) => no-empty (native)
   * Description: disallow empty statements (recommended)
   * Usage
@@ -140,6 +146,7 @@ The following rules point out areas where you might have made mistakes.
     ```json
     "no-empty": true
     ```
+
 * [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => TODO (tslint-eslint-rules)
   * Description: disallow assigning to the exception in a `catch` block (recommended)
   * Usage
@@ -152,6 +159,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => TODO (tslint-eslint-rules)
   * Description: disallow double-negation boolean casts in a boolean context (recommended)
   * Usage
@@ -164,6 +172,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => TODO (tslint-eslint-rules)
   * Description: disallow unnecessary parentheses
   * Usage
@@ -176,6 +185,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => TODO (tslint-eslint-rules) (Analyse => semicolon)
   * Description: disallow unnecessary semicolons (recommended) (fixable)
   * Usage
@@ -188,6 +198,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => Not Applicable to TypeScript
   * Description: disallow overwriting functions written as function declarations (recommended)
   
@@ -203,6 +214,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => TODO (tslint-eslint-rules)
   * Description: disallow invalid regular expression strings in the `RegExp` constructor (recommended)
   * Usage
@@ -215,6 +227,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => TODO (tslint-eslint-rules)
   * Description: disallow irregular whitespace outside of strings and comments (recommended)
   * Usage
@@ -227,7 +240,8 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => 
+
+* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => TODO (tslint-eslint-rules)
   * Description: disallow negation of the left operand of an `in` expression (recommended)
   * Usage
 
@@ -239,7 +253,8 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => 
+
+* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => Not Applicable to TypeScript
   * Description: disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)
   * Usage
 
@@ -251,7 +266,8 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => 
+
+* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => TODO (tslint-eslint-rules)
   * Description: disallow multiple spaces in a regular expression literal (recommended)
   * Usage
 
@@ -263,7 +279,8 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => 
+
+* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => TODO (tslint-eslint-rules)
   * Description: disallow sparse arrays (recommended)
   * Usage
 
@@ -275,6 +292,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => 
   * Description: Avoid code that looks like two expressions but is actually one
   * Usage
@@ -287,19 +305,16 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-unreachable](http://eslint.org/docs/rules/no-unreachable) => 
+
+* [no-unreachable](http://eslint.org/docs/rules/no-unreachable) => no-unreachable (native)
   * Description: disallow unreachable statements after a return, throw, continue, or break statement (recommended)
   * Usage
 
     ```json
-    "no-unreachable": [
-      true,
-      {
-        
-      }
-    ]
+    "no-unreachable": true
     ```
-* [use-isnan](http://eslint.org/docs/rules/use-isnan) => 
+
+* [use-isnan](http://eslint.org/docs/rules/use-isnan) => TODO (tslint-eslint-rules)
   * Description: disallow comparisons with the value `NaN` (recommended)
   * Usage
 
@@ -311,6 +326,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
+
 * [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc) => 
   * Description: Ensure JSDoc comments are valid
   * Usage
@@ -323,7 +339,8 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => 
+
+* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => TODO (tslint-eslint-rules)
   * Description: Ensure that the results of typeof are compared against a valid string (recommended)
   * Usage
 
