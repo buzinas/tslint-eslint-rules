@@ -7,7 +7,7 @@ You want to code in TypeScript but miss all the rules available in ESLint?
 Now you can combine both worlds by using this TSLint plugin.
 
 
-## Usage
+## Usage (it will be available only in v0.2.x)
 
 Install from NPM to your Dev Dependencies
 
@@ -2474,7 +2474,17 @@ These rules existed in a previous version of ESLint but have since been replaced
 
 Bugs, rules requests, doubts etc., open a Github Issue.
 
-You can also create an ESLint custom rule for TSLint, by forking this repo and opening a pull request.
+If you didn't find the rule, you can also create an ESLint custom rule for TSLint:
+
+- Forking this repo
+- Run `npm isntall`
+- Run `gulp` to run the tests and watch for file changes
+- Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convetion:
+  - Name: rule-name (hyphenated)
+  - File: ruleNameRule.ts (camelCased and with the `Rule` suffix)
+  - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix)
+- Check if all the tests are passing
+- Commit the changes to your repo and open a Pull Request
 
 
 ## LICENSE
