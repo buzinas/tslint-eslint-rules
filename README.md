@@ -26,344 +26,345 @@ The list below shows all the existing ESLint rules and the similar rules availab
 
 The following rules point out areas where you might have made mistakes.
 
-*   [comma-dangle](http://eslint.org/docs/rules/comma-dangle) => trailing-comma (native)
+* [comma-dangle](http://eslint.org/docs/rules/comma-dangle) => trailing-comma (native)
   * Description: disallow or enforce trailing commas (recommended)
   * Usage
   
     ```json
     "trailing-comma": [
-        true,
-        {
-          "multiline": "always",
-          "singleline": "never"
-        }
-      ]
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ]
     ```
-*   [no-cond-assign](http://eslint.org/docs/rules/no-cond-assign) => 
+    
+* [no-cond-assign](http://eslint.org/docs/rules/no-cond-assign) => no-conditional-assignment (native)
   * Description: disallow assignment in conditional expressions (recommended)
   * Usage
 
     ```json
     "no-conditional-assignment": true
     ```
-*   [no-console](http:/eslint.org/docs/rules/no-console) => 
+    
+* [no-console](http:/eslint.org/docs/rules/no-console) => no-console (native)
   * Description: disallow use of `console` in the node environment (recommended)
   * Usage
 
     ```json
     "no-console": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ]
     ```
-*   [no-constant-condition](http://eslint.org/docs/rules/no-constant-condition) => 
+    
+* [no-constant-condition](http://eslint.org/docs/rules/no-constant-condition) => no-constant-condition (tslint-eslint-rules)
   * Description: disallow use of constant expressions in conditions (recommended)
   * Usage
 
     ```json
-    "no-constant-condition": [
-        true,
-        {
-          
-        }
-      ]
+    "no-constant-condition": true
     ```
-*   [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => 
+    
+* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => ???
   * Description: disallow control characters in regular expressions (recommended)
   * Usage
 
     ```json
     "no-control-regex": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-debugger](http://eslint.org/docs/rules/no-debugger) => 
+* [no-debugger](http://eslint.org/docs/rules/no-debugger) => 
   * Description: disallow use of `debugger` (recommended)
   * Usage
 
     ```json
     "no-debugger": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => 
+* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => 
   * Description: disallow duplicate arguments in functions (recommended)
   * Usage
 
     ```json
     "no-dupe-args": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => 
+* [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => 
   * Description: disallow duplicate keys when creating object literals (recommended)
   * Usage
 
     ```json
     "no-dupe-keys": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => 
+* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => 
   * Description: disallow a duplicate case label. (recommended)
   * Usage
 
     ```json
     "no-duplicate-case": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => 
+* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => 
   * Description: disallow the use of empty character classes in regular expressions (recommended)
   * Usage
 
     ```json
     "no-empty-character-class": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-empty](http://eslint.org/docs/rules/no-empty) => 
+* [no-empty](http://eslint.org/docs/rules/no-empty) => 
   * Description: disallow empty statements (recommended)
   * Usage
 
     ```json
     "no-empty": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => 
+* [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => 
   * Description: disallow assigning to the exception in a `catch` block (recommended)
   * Usage
 
     ```json
     "no-ex-assign": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => 
+* [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => 
   * Description: disallow double-negation boolean casts in a boolean context (recommended)
   * Usage
 
     ```json
     "no-extra-boolean-cast": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => 
+* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => 
   * Description: disallow unnecessary parentheses
   * Usage
 
     ```json
     "no-extra-parens": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => 
+* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => 
   * Description: disallow unnecessary semicolons (recommended) (fixable)
   * Usage
 
     ```json
     "no-extra-semi": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => 
+* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => 
   * Description: disallow overwriting functions written as function declarations (recommended)
   * Usage
 
     ```json
     "no-func-assign": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => 
+* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => 
   * Description: disallow function or variable declarations in nested blocks (recommended)
   * Usage
 
     ```json
     "no-inner-declarations": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => 
+* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => 
   * Description: disallow invalid regular expression strings in the `RegExp` constructor (recommended)
   * Usage
 
     ```json
     "no-invalid-regexp": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => 
+* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => 
   * Description: disallow irregular whitespace outside of strings and comments (recommended)
   * Usage
 
     ```json
     "no-irregular-whitespace": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => 
+* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => 
   * Description: disallow negation of the left operand of an `in` expression (recommended)
   * Usage
 
     ```json
     "no-negated-in-lhs": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => 
+* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => 
   * Description: disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)
   * Usage
 
     ```json
     "no-obj-calls": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => 
+* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => 
   * Description: disallow multiple spaces in a regular expression literal (recommended)
   * Usage
 
     ```json
     "no-regex-spaces": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => 
+* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => 
   * Description: disallow sparse arrays (recommended)
   * Usage
 
     ```json
     "no-sparse-arrays": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => 
+* [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => 
   * Description: Avoid code that looks like two expressions but is actually one
   * Usage
 
     ```json
     "no-unexpected-multiline": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [no-unreachable](http://eslint.org/docs/rules/no-unreachable) => 
+* [no-unreachable](http://eslint.org/docs/rules/no-unreachable) => 
   * Description: disallow unreachable statements after a return, throw, continue, or break statement (recommended)
   * Usage
 
     ```json
     "no-unreachable": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [use-isnan](http://eslint.org/docs/rules/use-isnan) => 
+* [use-isnan](http://eslint.org/docs/rules/use-isnan) => 
   * Description: disallow comparisons with the value `NaN` (recommended)
   * Usage
 
     ```json
     "use-isnan": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc) => 
+* [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc) => 
   * Description: Ensure JSDoc comments are valid
   * Usage
 
     ```json
     "valid-jsdoc": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
-*   [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => 
+* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => 
   * Description: Ensure that the results of typeof are compared against a valid string (recommended)
   * Usage
 
     ```json
     "valid-typeof": [
-        true,
-        {
-          
-        }
-      ]
+      true,
+      {
+        
+      }
+    ]
     ```
 
 ### Best Practices
 
 These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.
 
-*   [accessor-pairs](accessor-pairs) => 
+* [accessor-pairs](accessor-pairs) => 
   * Description: Enforces getter/setter pairs in objects
   * Usage
 
@@ -375,7 +376,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [block-scoped-var](block-scoped-var) => 
+* [block-scoped-var](block-scoped-var) => 
   * Description: treat `var` statements as if they were block scoped
   * Usage
 
@@ -387,7 +388,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [complexity](complexity) => 
+* [complexity](complexity) => 
   * Description: specify the maximum cyclomatic complexity allowed in a program
   * Usage
 
@@ -399,7 +400,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [consistent-return](consistent-return) => 
+* [consistent-return](consistent-return) => 
   * Description: require `return` statements to either always or never specify values
   * Usage
 
@@ -411,7 +412,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [curly](curly) => 
+* [curly](curly) => 
   * Description: specify curly brace conventions for all control statements
   * Usage
 
@@ -423,7 +424,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [default-case](default-case) => 
+* [default-case](default-case) => 
   * Description: require `default` case in `switch` statements
   * Usage
 
@@ -435,7 +436,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [dot-location](dot-location) => 
+* [dot-location](dot-location) => 
   * Description: enforces consistent newlines before or after dots
   * Usage
 
@@ -447,7 +448,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [dot-notation](dot-notation) => 
+* [dot-notation](dot-notation) => 
   * Description: encourages use of dot notation whenever possible
   * Usage
 
@@ -459,7 +460,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [eqeqeq](eqeqeq) => 
+* [eqeqeq](eqeqeq) => 
   * Description: require the use of `===` and `!==` (fixable)
   * Usage
 
@@ -471,7 +472,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [guard-for-in](guard-for-in) => 
+* [guard-for-in](guard-for-in) => 
   * Description: make sure `for-in` loops have an `if` statement
   * Usage
 
@@ -483,7 +484,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-alert](no-alert) => 
+* [no-alert](no-alert) => 
   * Description: disallow the use of `alert`, `confirm`, and `prompt`
   * Usage
 
@@ -495,7 +496,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-caller](no-caller) => 
+* [no-caller](no-caller) => 
   * Description: disallow use of `arguments.caller` or `arguments.callee`
   * Usage
 
@@ -507,7 +508,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-case-declarations](no-case-declarations) => 
+* [no-case-declarations](no-case-declarations) => 
   * Description: disallow lexical declarations in case clauses
   * Usage
 
@@ -519,7 +520,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-div-regex](no-div-regex) => 
+* [no-div-regex](no-div-regex) => 
   * Description: disallow division operators explicitly at beginning of regular expression
   * Usage
 
@@ -531,7 +532,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-else-return](no-else-return) => 
+* [no-else-return](no-else-return) => 
   * Description: disallow `else` after a `return` in an `if`
   * Usage
 
@@ -543,7 +544,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-empty-label](no-empty-label) => 
+* [no-empty-label](no-empty-label) => 
   * Description: disallow use of labels for anything other than loops and switches
   * Usage
 
@@ -555,7 +556,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-empty-pattern](no-empty-pattern) => 
+* [no-empty-pattern](no-empty-pattern) => 
   * Description: disallow use of empty destructuring patterns
   * Usage
 
@@ -567,7 +568,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-eq-null](no-eq-null) => 
+* [no-eq-null](no-eq-null) => 
   * Description: disallow comparisons to null without a type-checking operator
   * Usage
 
@@ -579,7 +580,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-eval](no-eval) => 
+* [no-eval](no-eval) => 
   * Description: disallow use of `eval()`
   * Usage
 
@@ -591,7 +592,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-extend-native](no-extend-native) => 
+* [no-extend-native](no-extend-native) => 
   * Description: disallow adding to native types
   * Usage
 
@@ -603,7 +604,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-extra-bind](no-extra-bind) => 
+* [no-extra-bind](no-extra-bind) => 
   * Description: disallow unnecessary function binding
   * Usage
 
@@ -615,7 +616,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-fallthrough](no-fallthrough) => 
+* [no-fallthrough](no-fallthrough) => 
   * Description: disallow fallthrough of `case` statements (recommended)
   * Usage
 
@@ -627,7 +628,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-floating-decimal](no-floating-decimal) => 
+* [no-floating-decimal](no-floating-decimal) => 
   * Description: disallow the use of leading or trailing decimal points in numeric literals
   * Usage
 
@@ -639,7 +640,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-implicit-coercion](no-implicit-coercion) => 
+* [no-implicit-coercion](no-implicit-coercion) => 
   * Description: disallow the type conversions with shorter notations
   * Usage
 
@@ -651,7 +652,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-implied-eval](no-implied-eval) => 
+* [no-implied-eval](no-implied-eval) => 
   * Description: disallow use of `eval()`-like methods
   * Usage
 
@@ -663,7 +664,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-invalid-this](no-invalid-this) => 
+* [no-invalid-this](no-invalid-this) => 
   * Description: disallow `this` keywords outside of classes or class-like objects
   * Usage
 
@@ -675,7 +676,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-iterator](no-iterator) => 
+* [no-iterator](no-iterator) => 
   * Description: disallow Usage
  of `__iterator__` property
   * Usage
@@ -688,7 +689,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-labels](no-labels) => 
+* [no-labels](no-labels) => 
   * Description: disallow use of labeled statements
   * Usage
 
@@ -700,7 +701,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-lone-blocks](no-lone-blocks) => 
+* [no-lone-blocks](no-lone-blocks) => 
   * Description: disallow unnecessary nested blocks
   * Usage
 
@@ -712,7 +713,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-loop-func](no-loop-func) => 
+* [no-loop-func](no-loop-func) => 
   * Description: disallow creation of functions within loops
   * Usage
 
@@ -724,7 +725,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-magic-numbers](no-magic-numbers) => 
+* [no-magic-numbers](no-magic-numbers) => 
   * Description: disallow the use of magic numbers
   * Usage
 
@@ -736,7 +737,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-multi-spaces](no-multi-spaces) => 
+* [no-multi-spaces](no-multi-spaces) => 
   * Description: disallow use of multiple spaces (fixable)
   * Usage
 
@@ -748,7 +749,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-multi-str](no-multi-str) => 
+* [no-multi-str](no-multi-str) => 
   * Description: disallow use of multiline strings
   * Usage
 
@@ -760,7 +761,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-native-reassign](no-native-reassign) => 
+* [no-native-reassign](no-native-reassign) => 
   * Description: disallow reassignments of native objects
   * Usage
 
@@ -772,7 +773,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-new-func](no-new-func) => 
+* [no-new-func](no-new-func) => 
   * Description: disallow use of new operator for `Function` object
   * Usage
 
@@ -784,7 +785,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-new-wrappers](no-new-wrappers) => 
+* [no-new-wrappers](no-new-wrappers) => 
   * Description: disallows creating new instances of `String`,`Number`, and `Boolean`
   * Usage
 
@@ -796,7 +797,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-new](no-new) => 
+* [no-new](no-new) => 
   * Description: disallow use of the `new` operator when not part of an assignment or comparison
   * Usage
 
@@ -808,7 +809,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-octal-escape](no-octal-escape) => 
+* [no-octal-escape](no-octal-escape) => 
   * Description: disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`
   * Usage
 
@@ -820,7 +821,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-octal](no-octal) => 
+* [no-octal](no-octal) => 
   * Description: disallow use of octal literals (recommended)
   * Usage
 
@@ -832,7 +833,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-param-reassign](no-param-reassign) => 
+* [no-param-reassign](no-param-reassign) => 
   * Description: disallow reassignment of function parameters
   * Usage
 
@@ -844,7 +845,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-process-env](no-process-env) => 
+* [no-process-env](no-process-env) => 
   * Description: disallow use of `process.env`
   * Usage
 
@@ -856,7 +857,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-proto](no-proto) => 
+* [no-proto](no-proto) => 
   * Description: disallow Usage
  of `__proto__` property
   * Usage
@@ -869,7 +870,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-redeclare](no-redeclare) => 
+* [no-redeclare](no-redeclare) => 
   * Description: disallow declaring the same variable more than once (recommended)
   * Usage
 
@@ -881,7 +882,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-return-assign](no-return-assign) => 
+* [no-return-assign](no-return-assign) => 
   * Description: disallow use of assignment in `return` statement
   * Usage
 
@@ -893,7 +894,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-script-url](no-script-url) => 
+* [no-script-url](no-script-url) => 
   * Description: disallow use of `javascript:` urls.
   * Usage
 
@@ -905,7 +906,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-self-compare](no-self-compare) => 
+* [no-self-compare](no-self-compare) => 
   * Description: disallow comparisons where both sides are exactly the same
   * Usage
 
@@ -917,7 +918,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-sequences](no-sequences) => 
+* [no-sequences](no-sequences) => 
   * Description: disallow use of the comma operator
   * Usage
 
@@ -929,7 +930,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-throw-literal](no-throw-literal) => 
+* [no-throw-literal](no-throw-literal) => 
   * Description: restrict what can be thrown as an exception
   * Usage
 
@@ -941,7 +942,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-unused-expressions](no-unused-expressions) => 
+* [no-unused-expressions](no-unused-expressions) => 
   * Description: disallow Usage
  of expressions in statement position
   * Usage
@@ -954,7 +955,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-useless-call](no-useless-call) => 
+* [no-useless-call](no-useless-call) => 
   * Description: disallow unnecessary `.call()` and `.apply()`
   * Usage
 
@@ -966,7 +967,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-useless-concat](no-useless-concat) => 
+* [no-useless-concat](no-useless-concat) => 
   * Description: disallow unnecessary concatenation of literals or template literals
   * Usage
 
@@ -978,7 +979,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-void](no-void) => 
+* [no-void](no-void) => 
   * Description: disallow use of the `void` operator
   * Usage
 
@@ -990,7 +991,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-warning-comments](no-warning-comments) - disallow Usage
+* [no-warning-comments](no-warning-comments) - disallow Usage
  of configurable warning terms in comments => 
   * Description: e.g. `TODO` or `FIXME`
   * Usage
@@ -1003,7 +1004,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [no-with](no-with) => 
+* [no-with](no-with) => 
   * Description: disallow use of the `with` statement
   * Usage
 
@@ -1015,7 +1016,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [radix](radix) => 
+* [radix](radix) => 
   * Description: require use of the second argument for `parseInt()`
   * Usage
 
@@ -1027,7 +1028,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [vars-on-top](vars-on-top) => 
+* [vars-on-top](vars-on-top) => 
   * Description: require declaration of all vars at the top of their containing scope
   * Usage
 
@@ -1039,7 +1040,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [wrap-iife](wrap-iife) => 
+* [wrap-iife](wrap-iife) => 
   * Description: require immediate function invocation to be wrapped in parentheses
   * Usage
 
@@ -1051,7 +1052,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-*   [yoda](yoda) => 
+* [yoda](yoda) => 
   * Description: require or disallow Yoda conditions
   * Usage
 
@@ -1068,7 +1069,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
 
 These rules relate to using strict mode.
 
-*   [strict](strict) => 
+* [strict](strict) => 
   * Description: controls location of Use Strict Directives
   * Usage
 
@@ -1085,7 +1086,7 @@ These rules relate to using strict mode.
 
 These rules have to do with variable declarations.
 
-*   [init-declarations](init-declarations) => 
+* [init-declarations](init-declarations) => 
   * Description: enforce or disallow variable initializations at definition
   * Usage
 
@@ -1097,7 +1098,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-catch-shadow](no-catch-shadow) => 
+* [no-catch-shadow](no-catch-shadow) => 
   * Description: disallow the catch clause parameter name being the same as a variable in the outer scope
   * Usage
 
@@ -1109,7 +1110,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-delete-var](no-delete-var) => 
+* [no-delete-var](no-delete-var) => 
   * Description: disallow deletion of variables (recommended)
   * Usage
 
@@ -1121,7 +1122,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-label-var](no-label-var) => 
+* [no-label-var](no-label-var) => 
   * Description: disallow labels that share a name with a variable
   * Usage
 
@@ -1133,7 +1134,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-shadow-restricted-names](no-shadow-restricted-names) => 
+* [no-shadow-restricted-names](no-shadow-restricted-names) => 
   * Description: disallow shadowing of names such as `arguments`
   * Usage
 
@@ -1145,7 +1146,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-shadow](no-shadow) => 
+* [no-shadow](no-shadow) => 
   * Description: disallow declaration of variables already declared in the outer scope
   * Usage
 
@@ -1157,7 +1158,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-undef-init](no-undef-init) => 
+* [no-undef-init](no-undef-init) => 
   * Description: disallow use of undefined when initializing variables
   * Usage
 
@@ -1169,7 +1170,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-undef](no-undef) => 
+* [no-undef](no-undef) => 
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
   * Usage
 
@@ -1181,7 +1182,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-undefined](no-undefined) => 
+* [no-undefined](no-undefined) => 
   * Description: disallow use of `undefined` variable
   * Usage
 
@@ -1193,7 +1194,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-unused-vars](no-unused-vars) => 
+* [no-unused-vars](no-unused-vars) => 
   * Description: disallow declaration of variables that are not used in the code (recommended)
   * Usage
 
@@ -1205,7 +1206,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-*   [no-use-before-define](no-use-before-define) => 
+* [no-use-before-define](no-use-before-define) => 
   * Description: disallow use of variables before they are defined
   * Usage
 
@@ -1222,7 +1223,7 @@ These rules have to do with variable declarations.
 
 These rules are specific to JavaScript running on Node.js or using CommonJS in the browser.
 
-*   [callback-return](callback-return) => 
+* [callback-return](callback-return) => 
   * Description: enforce `return` after a callback
   * Usage
 
@@ -1234,7 +1235,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [global-require](global-require) => 
+* [global-require](global-require) => 
   * Description: enforce `require()` on top-level module scope
   * Usage
 
@@ -1246,7 +1247,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [handle-callback-err](handle-callback-err) => 
+* [handle-callback-err](handle-callback-err) => 
   * Description: enforce error handling in callbacks
   * Usage
 
@@ -1258,7 +1259,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [no-mixed-requires](no-mixed-requires) => 
+* [no-mixed-requires](no-mixed-requires) => 
   * Description: disallow mixing regular variable and require declarations
   * Usage
 
@@ -1270,7 +1271,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [no-new-require](no-new-require) => 
+* [no-new-require](no-new-require) => 
   * Description: disallow use of `new` operator with the `require` function
   * Usage
 
@@ -1282,7 +1283,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [no-path-concat](no-path-concat) => 
+* [no-path-concat](no-path-concat) => 
   * Description: disallow string concatenation with `__dirname` and `__filename`
   * Usage
 
@@ -1294,7 +1295,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [no-process-exit](no-process-exit) => 
+* [no-process-exit](no-process-exit) => 
   * Description: disallow `process.exit()`
   * Usage
 
@@ -1306,7 +1307,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [no-restricted-modules](no-restricted-modules) => 
+* [no-restricted-modules](no-restricted-modules) => 
   * Description: restrict Usage
  of specified node modules
   * Usage
@@ -1319,7 +1320,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-*   [no-sync](no-sync) => 
+* [no-sync](no-sync) => 
   * Description: disallow use of synchronous methods
   * Usage
 
@@ -1336,7 +1337,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
 
 These rules are purely matters of style and are quite subjective.
 
-*   [array-bracket-spacing](array-bracket-spacing) => 
+* [array-bracket-spacing](array-bracket-spacing) => 
   * Description: enforce spacing inside array brackets (fixable)
   * Usage
 
@@ -1348,7 +1349,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [block-spacing](block-spacing) => 
+* [block-spacing](block-spacing) => 
   * Description: disallow or enforce spaces inside of single line blocks (fixable)
   * Usage
 
@@ -1360,7 +1361,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [brace-style](brace-style) => 
+* [brace-style](brace-style) => 
   * Description: enforce one true brace style
   * Usage
 
@@ -1372,7 +1373,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [camelcase](camelcase) => 
+* [camelcase](camelcase) => 
   * Description: require camel case names
   * Usage
 
@@ -1384,7 +1385,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [comma-spacing](comma-spacing) => 
+* [comma-spacing](comma-spacing) => 
   * Description: enforce spacing before and after comma (fixable)
   * Usage
 
@@ -1396,7 +1397,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [comma-style](comma-style) => 
+* [comma-style](comma-style) => 
   * Description: enforce one true comma style
   * Usage
 
@@ -1408,7 +1409,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [computed-property-spacing](computed-property-spacing) => 
+* [computed-property-spacing](computed-property-spacing) => 
   * Description: require or disallow padding inside computed properties (fixable)
   * Usage
 
@@ -1420,7 +1421,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [consistent-this](consistent-this) => 
+* [consistent-this](consistent-this) => 
   * Description: enforce consistent naming when capturing the current execution context
   * Usage
 
@@ -1432,7 +1433,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [eol-last](eol-last) => 
+* [eol-last](eol-last) => 
   * Description: enforce newline at the end of file, with no multiple empty lines (fixable)
   * Usage
 
@@ -1444,7 +1445,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [func-names](func-names) => 
+* [func-names](func-names) => 
   * Description: require function expressions to have a name
   * Usage
 
@@ -1456,7 +1457,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [func-style](func-style) => 
+* [func-style](func-style) => 
   * Description: enforce use of function declarations or expressions
   * Usage
 
@@ -1468,7 +1469,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [id-length](id-length) => 
+* [id-length](id-length) => 
   * Description: this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
   * Usage
 
@@ -1480,7 +1481,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [id-match](id-match) => 
+* [id-match](id-match) => 
   * Description: require identifiers to match the provided regular expression
   * Usage
 
@@ -1492,7 +1493,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [indent](indent) => 
+* [indent](indent) => 
   * Description: specify tab or space width for your code (fixable)
   * Usage
 
@@ -1504,7 +1505,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [jsx-quotes](jsx-quotes) => 
+* [jsx-quotes](jsx-quotes) => 
   * Description: specify whether double or single quotes should be used in JSX attributes
   * Usage
 
@@ -1516,7 +1517,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [key-spacing](key-spacing) => 
+* [key-spacing](key-spacing) => 
   * Description: enforce spacing between keys and values in object literal properties
   * Usage
 
@@ -1528,7 +1529,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [linebreak-style](linebreak-style) => 
+* [linebreak-style](linebreak-style) => 
   * Description: disallow mixed 'LF' and 'CRLF' as linebreaks
   * Usage
 
@@ -1540,7 +1541,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [lines-around-comment](lines-around-comment) => 
+* [lines-around-comment](lines-around-comment) => 
   * Description: enforce empty lines around comments
   * Usage
 
@@ -1552,7 +1553,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [max-nested-callbacks](max-nested-callbacks) => 
+* [max-nested-callbacks](max-nested-callbacks) => 
   * Description: specify the maximum depth callbacks can be nested
   * Usage
 
@@ -1564,7 +1565,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [new-cap](new-cap) => 
+* [new-cap](new-cap) => 
   * Description: require a capital letter for constructors
   * Usage
 
@@ -1576,7 +1577,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [new-parens](new-parens) => 
+* [new-parens](new-parens) => 
   * Description: disallow the omission of parentheses when invoking a constructor with no arguments
   * Usage
 
@@ -1588,7 +1589,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [newline-after-var](newline-after-var) => 
+* [newline-after-var](newline-after-var) => 
   * Description: require or disallow an empty newline after variable declarations
   * Usage
 
@@ -1600,7 +1601,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-array-constructor](no-array-constructor) => 
+* [no-array-constructor](no-array-constructor) => 
   * Description: disallow use of the `Array` constructor
   * Usage
 
@@ -1612,7 +1613,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-continue](no-continue) => 
+* [no-continue](no-continue) => 
   * Description: disallow use of the `continue` statement
   * Usage
 
@@ -1624,7 +1625,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-inline-comments](no-inline-comments) => 
+* [no-inline-comments](no-inline-comments) => 
   * Description: disallow comments inline after code
   * Usage
 
@@ -1636,7 +1637,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-lonely-if](no-lonely-if) => 
+* [no-lonely-if](no-lonely-if) => 
   * Description: disallow `if` as the only statement in an `else` block
   * Usage
 
@@ -1648,7 +1649,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-mixed-spaces-and-tabs](no-mixed-spaces-and-tabs) => 
+* [no-mixed-spaces-and-tabs](no-mixed-spaces-and-tabs) => 
   * Description: disallow mixed spaces and tabs for indentation (recommended)
   * Usage
 
@@ -1660,7 +1661,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-multiple-empty-lines](no-multiple-empty-lines) => 
+* [no-multiple-empty-lines](no-multiple-empty-lines) => 
   * Description: disallow multiple empty lines
   * Usage
 
@@ -1672,7 +1673,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-negated-condition](no-negated-condition) => 
+* [no-negated-condition](no-negated-condition) => 
   * Description: disallow negated conditions
   * Usage
 
@@ -1684,7 +1685,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-nested-ternary](no-nested-ternary) => 
+* [no-nested-ternary](no-nested-ternary) => 
   * Description: disallow nested ternary expressions
   * Usage
 
@@ -1696,7 +1697,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-new-object](no-new-object) => 
+* [no-new-object](no-new-object) => 
   * Description: disallow the use of the `Object` constructor
   * Usage
 
@@ -1708,7 +1709,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-restricted-syntax](no-restricted-syntax) => 
+* [no-restricted-syntax](no-restricted-syntax) => 
   * Description: disallow use of certain syntax in code
   * Usage
 
@@ -1720,7 +1721,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-spaced-func](no-spaced-func) => 
+* [no-spaced-func](no-spaced-func) => 
   * Description: disallow space between function identifier and application (fixable)
   * Usage
 
@@ -1732,7 +1733,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-ternary](no-ternary) => 
+* [no-ternary](no-ternary) => 
   * Description: disallow the use of ternary operators
   * Usage
 
@@ -1744,7 +1745,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-trailing-spaces](no-trailing-spaces) => 
+* [no-trailing-spaces](no-trailing-spaces) => 
   * Description: disallow trailing whitespace at the end of lines (fixable)
   * Usage
 
@@ -1756,7 +1757,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-underscore-dangle](no-underscore-dangle) => 
+* [no-underscore-dangle](no-underscore-dangle) => 
   * Description: disallow dangling underscores in identifiers
   * Usage
 
@@ -1768,7 +1769,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [no-unneeded-ternary](no-unneeded-ternary) => 
+* [no-unneeded-ternary](no-unneeded-ternary) => 
   * Description: disallow the use of ternary operators when a simpler alternative exists
   * Usage
 
@@ -1780,7 +1781,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [object-curly-spacing](object-curly-spacing) => 
+* [object-curly-spacing](object-curly-spacing) => 
   * Description: require or disallow padding inside curly braces (fixable)
   * Usage
 
@@ -1792,7 +1793,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [one-var](one-var) => 
+* [one-var](one-var) => 
   * Description: require or disallow one variable declaration per function
   * Usage
 
@@ -1804,7 +1805,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [operator-assignment](operator-assignment) => 
+* [operator-assignment](operator-assignment) => 
   * Description: require assignment operator shorthand where possible or prohibit it entirely
   * Usage
 
@@ -1816,7 +1817,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [operator-linebreak](operator-linebreak) => 
+* [operator-linebreak](operator-linebreak) => 
   * Description: enforce operators to be placed before or after line breaks
   * Usage
 
@@ -1828,7 +1829,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [padded-blocks](padded-blocks) => 
+* [padded-blocks](padded-blocks) => 
   * Description: enforce padding within blocks
   * Usage
 
@@ -1840,7 +1841,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [quote-props](quote-props) => 
+* [quote-props](quote-props) => 
   * Description: require quotes around object literal property names
   * Usage
 
@@ -1852,7 +1853,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [quotes](quotes) => 
+* [quotes](quotes) => 
   * Description: specify whether backticks, double or single quotes should be used (fixable)
   * Usage
 
@@ -1864,7 +1865,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [require-jsdoc](require-jsdoc) => 
+* [require-jsdoc](require-jsdoc) => 
   * Description: Require JSDoc comment
   * Usage
 
@@ -1876,7 +1877,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [semi-spacing](semi-spacing) => 
+* [semi-spacing](semi-spacing) => 
   * Description: enforce spacing before and after semicolons
   * Usage
 
@@ -1888,7 +1889,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [semi](semi) => 
+* [semi](semi) => 
   * Description: require or disallow use of semicolons instead of ASI (fixable)
   * Usage
 
@@ -1900,7 +1901,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [sort-vars](sort-vars) => 
+* [sort-vars](sort-vars) => 
   * Description: sort variables within the same declaration block
   * Usage
 
@@ -1912,7 +1913,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-after-keywords](space-after-keywords) => 
+* [space-after-keywords](space-after-keywords) => 
   * Description: require a space after certain keywords (fixable)
   * Usage
 
@@ -1924,7 +1925,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-before-blocks](space-before-blocks) => 
+* [space-before-blocks](space-before-blocks) => 
   * Description: require or disallow a space before blocks (fixable)
   * Usage
 
@@ -1936,7 +1937,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-before-function-paren](space-before-function-paren) => 
+* [space-before-function-paren](space-before-function-paren) => 
   * Description: require or disallow a space before function opening parenthesis (fixable)
   * Usage
 
@@ -1948,7 +1949,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-before-keywords](space-before-keywords) => 
+* [space-before-keywords](space-before-keywords) => 
   * Description: require a space before certain keywords (fixable)
   * Usage
 
@@ -1960,7 +1961,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-in-parens](space-in-parens) => 
+* [space-in-parens](space-in-parens) => 
   * Description: require or disallow spaces inside parentheses
   * Usage
 
@@ -1972,7 +1973,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-infix-ops](space-infix-ops) => 
+* [space-infix-ops](space-infix-ops) => 
   * Description: require spaces around operators (fixable)
   * Usage
 
@@ -1984,7 +1985,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-return-throw-case](space-return-throw-case) => 
+* [space-return-throw-case](space-return-throw-case) => 
   * Description: require a space after `return`, `throw`, and `case` (fixable)
   * Usage
 
@@ -1996,7 +1997,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [space-unary-ops](space-unary-ops) => 
+* [space-unary-ops](space-unary-ops) => 
   * Description: require or disallow spaces before/after unary operators (fixable)
   * Usage
 
@@ -2008,7 +2009,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [spaced-comment](spaced-comment) => 
+* [spaced-comment](spaced-comment) => 
   * Description: require or disallow a space immediately following the `//` or `/*` in a comment
   * Usage
 
@@ -2020,7 +2021,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-*   [wrap-regex](wrap-regex) => 
+* [wrap-regex](wrap-regex) => 
   * Description: require regex literals to be wrapped in parentheses
   * Usage
 
@@ -2037,7 +2038,7 @@ These rules are purely matters of style and are quite subjective.
 
 These rules are only relevant to ES6 environments.
 
-*   [arrow-body-style](arrow-body-style) => 
+* [arrow-body-style](arrow-body-style) => 
   * Description: require braces in arrow function body
   * Usage
 
@@ -2049,7 +2050,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [arrow-parens](arrow-parens) => 
+* [arrow-parens](arrow-parens) => 
   * Description: require parens in arrow function arguments
   * Usage
 
@@ -2061,7 +2062,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [arrow-spacing](arrow-spacing) => 
+* [arrow-spacing](arrow-spacing) => 
   * Description: require space before/after arrow function's arrow (fixable)
   * Usage
 
@@ -2073,7 +2074,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [constructor-super](constructor-super) => 
+* [constructor-super](constructor-super) => 
   * Description: verify calls of `super()` in constructors
   * Usage
 
@@ -2085,7 +2086,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [generator-star-spacing](generator-star-spacing) => 
+* [generator-star-spacing](generator-star-spacing) => 
   * Description: enforce spacing around the `*` in generator functions (fixable)
   * Usage
 
@@ -2097,7 +2098,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [no-arrow-condition](no-arrow-condition) => 
+* [no-arrow-condition](no-arrow-condition) => 
   * Description: disallow arrow functions where a condition is expected
   * Usage
 
@@ -2109,7 +2110,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [no-class-assign](no-class-assign) => 
+* [no-class-assign](no-class-assign) => 
   * Description: disallow modifying variables of class declarations
   * Usage
 
@@ -2121,7 +2122,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [no-const-assign](no-const-assign) => 
+* [no-const-assign](no-const-assign) => 
   * Description: disallow modifying variables that are declared using `const`
   * Usage
 
@@ -2133,7 +2134,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [no-dupe-class-members](no-dupe-class-members) => 
+* [no-dupe-class-members](no-dupe-class-members) => 
   * Description: disallow duplicate name in class members
   * Usage
 
@@ -2145,7 +2146,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [no-this-before-super](no-this-before-super) => 
+* [no-this-before-super](no-this-before-super) => 
   * Description: disallow use of `this`/`super` before calling `super()` in constructors.
   * Usage
 
@@ -2157,7 +2158,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [no-var](no-var) => 
+* [no-var](no-var) => 
   * Description: require `let` or `const` instead of `var`
   * Usage
 
@@ -2169,7 +2170,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [object-shorthand](object-shorthand) => 
+* [object-shorthand](object-shorthand) => 
   * Description: require method and property shorthand syntax for object literals
   * Usage
 
@@ -2181,7 +2182,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [prefer-arrow-callback](prefer-arrow-callback) => 
+* [prefer-arrow-callback](prefer-arrow-callback) => 
   * Description: suggest using arrow functions as callbacks
   * Usage
 
@@ -2193,7 +2194,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [prefer-const](prefer-const) => 
+* [prefer-const](prefer-const) => 
   * Description: suggest using `const` declaration for variables that are never modified after declared
   * Usage
 
@@ -2205,7 +2206,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [prefer-reflect](prefer-reflect) => 
+* [prefer-reflect](prefer-reflect) => 
   * Description: suggest using Reflect methods where applicable
   * Usage
 
@@ -2217,7 +2218,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [prefer-spread](prefer-spread) => 
+* [prefer-spread](prefer-spread) => 
   * Description: suggest using the spread operator instead of `.apply()`.
   * Usage
 
@@ -2229,7 +2230,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [prefer-template](prefer-template) => 
+* [prefer-template](prefer-template) => 
   * Description: suggest using template literals instead of strings concatenation
   * Usage
 
@@ -2241,7 +2242,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-*   [require-yield](require-yield) => 
+* [require-yield](require-yield) => 
   * Description: disallow generator functions that do not have `yield`
   * Usage
 
@@ -2258,7 +2259,7 @@ These rules are only relevant to ES6 environments.
 
 The following rules are included for compatibility with [JSHint](http://jshint.com/) and [JSLint](http://jslint.com/). While the names of the rules may not match up with the JSHint/JSLint counterpart, the functionality is the same.
 
-*   [max-depth](max-depth) => 
+* [max-depth](max-depth) => 
   * Description: specify the maximum depth that blocks can be nested
   * Usage
 
@@ -2270,7 +2271,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-*   [max-len](max-len) => 
+* [max-len](max-len) => 
   * Description: specify the maximum length of a line in your program
   * Usage
 
@@ -2282,7 +2283,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-*   [max-params](max-params) => 
+* [max-params](max-params) => 
   * Description: limits the number of parameters that can be used in the function declaration.
   * Usage
 
@@ -2294,7 +2295,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-*   [max-statements](max-statements) => 
+* [max-statements](max-statements) => 
   * Description: specify the maximum number of statement allowed in a function
   * Usage
 
@@ -2306,7 +2307,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-*   [no-bitwise](no-bitwise) => 
+* [no-bitwise](no-bitwise) => 
   * Description: disallow use of bitwise operators
   * Usage
 
@@ -2318,7 +2319,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-*   [no-plusplus](no-plusplus) => 
+* [no-plusplus](no-plusplus) => 
   * Description: disallow use of unary operators, `++` and `--`
   * Usage
 
@@ -2335,7 +2336,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
 
 These rules existed in a previous version of ESLint but have since been replaced by newer rules.
 
-*   [generator-star](generator-star) => 
+* [generator-star](generator-star) => 
   * Description: enforce the position of the `*` in generator functions (replaced by [generator-star-spacing](generator-star-spacing))
   * Usage
 
@@ -2347,7 +2348,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [global-strict](global-strict) => 
+* [global-strict](global-strict) => 
   * Description: require or disallow the `"use strict"` pragma in the global scope (replaced by [strict](strict))
   * Usage
 
@@ -2359,7 +2360,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [no-comma-dangle](no-comma-dangle) => 
+* [no-comma-dangle](no-comma-dangle) => 
   * Description: disallow trailing commas in object literals (replaced by [comma-dangle](comma-dangle))
   * Usage
 
@@ -2371,7 +2372,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [no-empty-class](no-empty-class) => 
+* [no-empty-class](no-empty-class) => 
   * Description: disallow the use of empty character classes in regular expressions (replaced by [no-empty-character-class](no-empty-character-class))
   * Usage
 
@@ -2383,7 +2384,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [no-extra-strict](no-extra-strict) => 
+* [no-extra-strict](no-extra-strict) => 
   * Description: disallow unnecessary use of `"use strict";` when already in strict mode (replaced by [strict](strict))
   * Usage
 
@@ -2395,7 +2396,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [no-reserved-keys](no-reserved-keys) => 
+* [no-reserved-keys](no-reserved-keys) => 
   * Description: disallow reserved words being used as object literal keys
   * Usage
 
@@ -2407,7 +2408,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [no-space-before-semi](no-space-before-semi) => 
+* [no-space-before-semi](no-space-before-semi) => 
   * Description: disallow space before semicolon (replaced by [semi-spacing](semi-spacing))
   * Usage
 
@@ -2419,7 +2420,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [no-wrap-func](no-wrap-func) => 
+* [no-wrap-func](no-wrap-func) => 
   * Description: disallow wrapping of non-IIFE statements in parens (replaced by [no-extra-parens](no-extra-parens))
   * Usage
 
@@ -2431,7 +2432,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [space-after-function-name](space-after-function-name) => 
+* [space-after-function-name](space-after-function-name) => 
   * Description: require a space after function names (replaced by [space-before-function-paren](space-before-function-paren))
   * Usage
 
@@ -2443,7 +2444,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [space-before-function-parentheses](space-before-function-parentheses) => 
+* [space-before-function-parentheses](space-before-function-parentheses) => 
   * Description: require or disallow space before function parentheses (replaced by [space-before-function-paren](space-before-function-paren))
   * Usage
 
@@ -2455,7 +2456,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [space-in-brackets](space-in-brackets) => 
+* [space-in-brackets](space-in-brackets) => 
   * Description: require or disallow spaces inside brackets (replaced by [object-curly-spacing](object-curly-spacing) and [array-bracket-spacing](array-bracket-spacing))
   * Usage
 
@@ -2467,7 +2468,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [space-unary-word-ops](space-unary-word-ops) => 
+* [space-unary-word-ops](space-unary-word-ops) => 
   * Description: require or disallow spaces before/after unary operators (replaced by [space-unary-ops](space-unary-ops))
   * Usage
 
@@ -2479,7 +2480,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-*   [spaced-line-comment](spaced-line-comment) => 
+* [spaced-line-comment](spaced-line-comment) => 
   * Description: require or disallow a space immediately following the `//` in a line comment (replaced by [spaced-comment](spaced-comment))
   * Usage
 
