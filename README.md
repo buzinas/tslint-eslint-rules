@@ -138,137 +138,97 @@ The following rules point out areas where you might have made mistakes.
     "no-extra-boolean-cast": true
     ```
 
-* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => TODO (tslint-eslint-rules)
+* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => no-extra-parens (tslint-eslint-rules) TODO (low priority)
   * Description: disallow unnecessary parentheses
   * Usage
 
     ```json
     "no-extra-parens": [
       true,
-      {
-        
-      }
+      "functions"
     ]
     ```
 
-* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => TODO (tslint-eslint-rules) (Analyse => semicolon)
-  * Description: disallow unnecessary semicolons (recommended) (fixable)
+    ```json
+    "no-extra-parens": [
+      true,
+      "all"
+    ]
+    ```
+
+* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => no-extra-semi (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/12)
+  * Description: disallow unnecessary semicolons (recommended)
   * Usage
 
     ```json
-    "no-extra-semi": [
-      true,
-      {
-        
-      }
-    ]
+    "no-extra-semi": true
     ```
 
 * [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => not applicable to TypeScript
   * Description: disallow overwriting functions written as function declarations (recommended)
   
-* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => TODO (tslint-eslint-rules)
+* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => no-inner-declarations (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/15)
   * Description: disallow function or variable declarations in nested blocks (recommended)
   * Usage
 
     ```json
     "no-inner-declarations": [
       true,
-      {
-        
-      }
+      "functions"
     ]
     ```
 
-* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => TODO (tslint-eslint-rules)
+    ```json
+    "no-inner-declarations": [
+      true,
+      "both"
+    ]
+    ```
+
+* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => no-invalid-regex (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/13)
   * Description: disallow invalid regular expression strings in the `RegExp` constructor (recommended)
   * Usage
 
     ```json
-    "no-invalid-regexp": [
-      true,
-      {
-        
-      }
-    ]
+    "no-invalid-regexp": true
     ```
 
-* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => TODO (tslint-eslint-rules)
+* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => no-irregular-whitespace (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/14)
   * Description: disallow irregular whitespace outside of strings and comments (recommended)
   * Usage
 
     ```json
-    "no-irregular-whitespace": [
-      true,
-      {
-        
-      }
-    ]
+    "no-irregular-whitespace": true
     ```
 
-* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => TODO (tslint-eslint-rules)
+* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => not applicable to TypeScript
   * Description: disallow negation of the left operand of an `in` expression (recommended)
-  * Usage
-
-    ```json
-    "no-negated-in-lhs": [
-      true,
-      {
-        
-      }
-    ]
-    ```
 
 * [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => not applicable to TypeScript
   * Description: disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)
-  * Usage
 
-    ```json
-    "no-obj-calls": [
-      true,
-      {
-        
-      }
-    ]
-    ```
-
-* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => TODO (tslint-eslint-rules)
+* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => no-regex-spaces (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/17)
   * Description: disallow multiple spaces in a regular expression literal (recommended)
   * Usage
 
     ```json
-    "no-regex-spaces": [
-      true,
-      {
-        
-      }
-    ]
+    "no-regex-spaces": true
     ```
 
-* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => TODO (tslint-eslint-rules)
+* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => no-sparse-arrays (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/18)
   * Description: disallow sparse arrays (recommended)
   * Usage
 
     ```json
-    "no-sparse-arrays": [
-      true,
-      {
-        
-      }
-    ]
+    "no-sparse-arrays": true
     ```
 
-* [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => 
+* [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => no-unexpected-multiline (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/19)
   * Description: Avoid code that looks like two expressions but is actually one
   * Usage
 
     ```json
-    "no-unexpected-multiline": [
-      true,
-      {
-        
-      }
-    ]
+    "no-unexpected-multiline": true
     ```
 
 * [no-unreachable](http://eslint.org/docs/rules/no-unreachable) => no-unreachable (native)
@@ -279,20 +239,15 @@ The following rules point out areas where you might have made mistakes.
     "no-unreachable": true
     ```
 
-* [use-isnan](http://eslint.org/docs/rules/use-isnan) => TODO (tslint-eslint-rules)
+* [use-isnan](http://eslint.org/docs/rules/use-isnan) => use-isnan (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/20)
   * Description: disallow comparisons with the value `NaN` (recommended)
   * Usage
 
     ```json
-    "use-isnan": [
-      true,
-      {
-        
-      }
-    ]
+    "use-isnan": true
     ```
 
-* [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc) => 
+* [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc) => valid-jsdoc (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/21)
   * Description: Ensure JSDoc comments are valid
   * Usage
 
@@ -300,22 +255,23 @@ The following rules point out areas where you might have made mistakes.
     "valid-jsdoc": [
       true,
       {
-        
+        "prefer": {
+          "return": "returns"
+        },
+        "requireReturn": false,
+        "requireParamDescription": true,
+        "requireReturnDescription": true,
+        "matchDescription": "^[A-Z][A-Za-z0-9\\s]*[.]$"
       }
     ]
     ```
 
-* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => TODO (tslint-eslint-rules)
+* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => valid-typeof (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/22)
   * Description: Ensure that the results of typeof are compared against a valid string (recommended)
   * Usage
 
     ```json
-    "valid-typeof": [
-      true,
-      {
-        
-      }
-    ]
+    "valid-typeof": true
     ```
 
 ### Best Practices
@@ -419,7 +375,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
       ]
     ```
 * [eqeqeq](http://eslint.org/docs/rules/eqeqeq) => 
-  * Description: require the use of `===` and `!==` (fixable)
+  * Description: require the use of `===` and `!==`
   * Usage
 
     ```json
@@ -696,7 +652,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
       ]
     ```
 * [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) => 
-  * Description: disallow use of multiple spaces (fixable)
+  * Description: disallow use of multiple spaces
   * Usage
 
     ```json
@@ -1296,7 +1252,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
 These rules are purely matters of style and are quite subjective.
 
 * [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing) => 
-  * Description: enforce spacing inside array brackets (fixable)
+  * Description: enforce spacing inside array brackets
   * Usage
 
     ```json
@@ -1308,7 +1264,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [block-spacing](http://eslint.org/docs/rules/block-spacing) => 
-  * Description: disallow or enforce spaces inside of single line blocks (fixable)
+  * Description: disallow or enforce spaces inside of single line blocks
   * Usage
 
     ```json
@@ -1344,7 +1300,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [comma-spacing](http://eslint.org/docs/rules/comma-spacing) => 
-  * Description: enforce spacing before and after comma (fixable)
+  * Description: enforce spacing before and after comma
   * Usage
 
     ```json
@@ -1368,7 +1324,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing) => 
-  * Description: require or disallow padding inside computed properties (fixable)
+  * Description: require or disallow padding inside computed properties
   * Usage
 
     ```json
@@ -1392,7 +1348,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [eol-last](http://eslint.org/docs/rules/eol-last) => 
-  * Description: enforce newline at the end of file, with no multiple empty lines (fixable)
+  * Description: enforce newline at the end of file, with no multiple empty lines
   * Usage
 
     ```json
@@ -1452,7 +1408,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [indent](http://eslint.org/docs/rules/indent) => 
-  * Description: specify tab or space width for your code (fixable)
+  * Description: specify tab or space width for your code
   * Usage
 
     ```json
@@ -1680,7 +1636,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [no-spaced-func](http://eslint.org/docs/rules/no-spaced-func) => 
-  * Description: disallow space between function identifier and application (fixable)
+  * Description: disallow space between function identifier and application
   * Usage
 
     ```json
@@ -1704,7 +1660,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [no-trailing-spaces](http://eslint.org/docs/rules/no-trailing-spaces) => 
-  * Description: disallow trailing whitespace at the end of lines (fixable)
+  * Description: disallow trailing whitespace at the end of lines
   * Usage
 
     ```json
@@ -1740,7 +1696,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) => 
-  * Description: require or disallow padding inside curly braces (fixable)
+  * Description: require or disallow padding inside curly braces
   * Usage
 
     ```json
@@ -1812,7 +1768,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [quotes](http://eslint.org/docs/rules/quotes) => 
-  * Description: specify whether backticks, double or single quotes should be used (fixable)
+  * Description: specify whether backticks, double or single quotes should be used
   * Usage
 
     ```json
@@ -1848,7 +1804,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [semi](http://eslint.org/docs/rules/semi) => 
-  * Description: require or disallow use of semicolons instead of ASI (fixable)
+  * Description: require or disallow use of semicolons instead of ASI
   * Usage
 
     ```json
@@ -1872,7 +1828,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-after-keywords](http://eslint.org/docs/rules/space-after-keywords) => 
-  * Description: require a space after certain keywords (fixable)
+  * Description: require a space after certain keywords
   * Usage
 
     ```json
@@ -1884,7 +1840,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-before-blocks](http://eslint.org/docs/rules/space-before-blocks) => 
-  * Description: require or disallow a space before blocks (fixable)
+  * Description: require or disallow a space before blocks
   * Usage
 
     ```json
@@ -1896,7 +1852,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren) => 
-  * Description: require or disallow a space before function opening parenthesis (fixable)
+  * Description: require or disallow a space before function opening parenthesis
   * Usage
 
     ```json
@@ -1908,7 +1864,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-before-keywords](http://eslint.org/docs/rules/space-before-keywords) => 
-  * Description: require a space before certain keywords (fixable)
+  * Description: require a space before certain keywords
   * Usage
 
     ```json
@@ -1932,7 +1888,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-infix-ops](http://eslint.org/docs/rules/space-infix-ops) => 
-  * Description: require spaces around operators (fixable)
+  * Description: require spaces around operators
   * Usage
 
     ```json
@@ -1944,7 +1900,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-return-throw-case](http://eslint.org/docs/rules/space-return-throw-case) => 
-  * Description: require a space after `return`, `throw`, and `case` (fixable)
+  * Description: require a space after `return`, `throw`, and `case`
   * Usage
 
     ```json
@@ -1956,7 +1912,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 * [space-unary-ops](http://eslint.org/docs/rules/space-unary-ops) => 
-  * Description: require or disallow spaces before/after unary operators (fixable)
+  * Description: require or disallow spaces before/after unary operators
   * Usage
 
     ```json
@@ -2021,7 +1977,7 @@ These rules are only relevant to ES6 environments.
       ]
     ```
 * [arrow-spacing](http://eslint.org/docs/rules/arrow-spacing) => 
-  * Description: require space before/after arrow function's arrow (fixable)
+  * Description: require space before/after arrow function's arrow
   * Usage
 
     ```json
@@ -2045,7 +2001,7 @@ These rules are only relevant to ES6 environments.
       ]
     ```
 * [generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing) => 
-  * Description: enforce spacing around the `*` in generator functions (fixable)
+  * Description: enforce spacing around the `*` in generator functions
   * Usage
 
     ```json
