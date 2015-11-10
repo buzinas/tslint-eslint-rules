@@ -4,10 +4,14 @@
 
 You want to code in TypeScript but miss all the rules available in ESLint?
 
-Now you can combine both worlds by using this TSLint plugin.
+Now you can combine both worlds by using this TSLint plugin!
+
+*WARN: this project is still under development.*
+
+*You can see what see what rules were already migrated migrated [in the eslint_tsling.json file](https://github.com/buzinas/tslint-eslint-rules/blob/master/eslint_tslint.json)*
 
 
-## Usage (it will be available only in v0.2.x)
+## Usage [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/23)
 
 Install from NPM to your Dev Dependencies
 
@@ -266,7 +270,7 @@ The following rules point out areas where you might have made mistakes.
     ]
     ```
 
-* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => valid-typeof (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/22)
+* [valid-typeof](http://eslint.org/docs/rules/valid-typeof) => valid-typeof (tslint-eslint-rules)
   * Description: Ensure that the results of typeof are compared against a valid string (recommended)
   * Usage
 
@@ -2239,167 +2243,6 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
 
     ```json
     "no-plusplus": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-
-### Removed
-
-These rules existed in a previous version of ESLint but have since been replaced by newer rules.
-
-* [generator-star](http://eslint.org/docs/rules/generator-star) => 
-  * Description: enforce the position of the `*` in generator functions (replaced by [generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing))
-  * Usage
-
-    ```json
-    "generator-star": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [global-strict](http://eslint.org/docs/rules/global-strict) => 
-  * Description: require or disallow the `"use strict"` pragma in the global scope (replaced by [strict](http://eslint.org/docs/rules/strict))
-  * Usage
-
-    ```json
-    "global-strict": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [no-comma-dangle](http://eslint.org/docs/rules/no-comma-dangle) => 
-  * Description: disallow trailing commas in object literals (replaced by [comma-dangle](http://eslint.org/docs/rules/comma-dangle))
-  * Usage
-
-    ```json
-    "no-comma-dangle": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [no-empty-class](http://eslint.org/docs/rules/no-empty-class) => 
-  * Description: disallow the use of empty character classes in regular expressions (replaced by [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class))
-  * Usage
-
-    ```json
-    "no-empty-class": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [no-extra-strict](http://eslint.org/docs/rules/no-extra-strict) => 
-  * Description: disallow unnecessary use of `"use strict";` when already in strict mode (replaced by [strict](http://eslint.org/docs/rules/strict))
-  * Usage
-
-    ```json
-    "no-extra-strict": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [no-reserved-keys](http://eslint.org/docs/rules/no-reserved-keys) => 
-  * Description: disallow reserved words being used as object literal keys
-  * Usage
-
-    ```json
-    "no-reserved-keys": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [no-space-before-semi](http://eslint.org/docs/rules/no-space-before-semi) => 
-  * Description: disallow space before semicolon (replaced by [semi-spacing](http://eslint.org/docs/rules/semi-spacing))
-  * Usage
-
-    ```json
-    "no-space-before-semi": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [no-wrap-func](http://eslint.org/docs/rules/no-wrap-func) => 
-  * Description: disallow wrapping of non-IIFE statements in parens (replaced by [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens))
-  * Usage
-
-    ```json
-    "no-wrap-func": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [space-after-function-name](http://eslint.org/docs/rules/space-after-function-name) => 
-  * Description: require a space after function names (replaced by [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren))
-  * Usage
-
-    ```json
-    "space-after-function-name": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [space-before-function-parentheses](http://eslint.org/docs/rules/space-before-function-parentheses) => 
-  * Description: require or disallow space before function parentheses (replaced by [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren))
-  * Usage
-
-    ```json
-    "space-before-function-parentheses": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [space-in-brackets](http://eslint.org/docs/rules/space-in-brackets) => 
-  * Description: require or disallow spaces inside brackets (replaced by [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) and [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing))
-  * Usage
-
-    ```json
-    "space-in-brackets": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [space-unary-word-ops](http://eslint.org/docs/rules/space-unary-word-ops) => 
-  * Description: require or disallow spaces before/after unary operators (replaced by [space-unary-ops](http://eslint.org/docs/rules/space-unary-ops))
-  * Usage
-
-    ```json
-    "space-unary-word-ops": [
-        true,
-        {
-          
-        }
-      ]
-    ```
-* [spaced-line-comment](http://eslint.org/docs/rules/spaced-line-comment) => 
-  * Description: require or disallow a space immediately following the `//` in a line comment (replaced by [spaced-comment](spaced-comment))
-  * Usage
-
-    ```json
-    "spaced-line-comment": [
         true,
         {
           

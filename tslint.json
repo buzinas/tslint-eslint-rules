@@ -1,6 +1,0 @@
-{
-  "rulesDirectory": "dist/rules",
-  "rules": {
-    "no-constant-condition": true
-  }
-}

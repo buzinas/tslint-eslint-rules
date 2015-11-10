@@ -2,7 +2,7 @@
 /// <reference path='../../node_modules/tslint/lib/tslint.d.ts' />
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static FAILURE_STRING = "Unexpected constant condition: ";
+  public static FAILURE_STRING = 'Unexpected constant condition: ';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new NoConstantConditionWalker(sourceFile, this.getOptions());
@@ -25,7 +25,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
 
   protected visitDoStatement(node: ts.DoStatement) {
     this.validateConditionalExpression(node.expression);
-    super.visitWhileStatement(node);
+    super.visitDoStatement(node);
   }
 
   protected visitForStatement(node: ts.ForStatement) {
@@ -42,49 +42,49 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
 
   private validateConditionalExpression(expression: ts.Expression) {
     this.isInConditional = true;
-    if (isConstant(expression)) {
+    if (this.isConstant(expression)) {
       this.addFailure(this.createFailure(expression.getStart(), expression.getWidth(), Rule.FAILURE_STRING));
     }
     // walk the children of the conditional expression for nested conditions
     this.walkChildren(expression);
     this.isInConditional = false;
   }
-}
-
-function isConstant(node: ts.Node) {
-  switch (node.kind) {
-    // ESLint Literal
-    case ts.SyntaxKind.StringLiteral:
-    case ts.SyntaxKind.NumericLiteral:
-    case ts.SyntaxKind.TrueKeyword:
-    case ts.SyntaxKind.FalseKeyword:
-    // ESLint ArrowFunctionExpression
-    case ts.SyntaxKind.ArrowFunction:
-    // ESLint FunctionExpression
-    case ts.SyntaxKind.FunctionExpression:
-    // ESLint ObjectExpression
-    case ts.SyntaxKind.ObjectLiteralExpression:
-    // ESLint ArrayExpression
-    case ts.SyntaxKind.ArrayLiteralExpression:
-      return true;
-    // ESLint UnaryExpression
-    case ts.SyntaxKind.PrefixUnaryExpression:
-    case ts.SyntaxKind.PostfixUnaryExpression:
-      return false; // TODO
-    // ESLint BinaryExpression / LogicalExpression
-    case ts.SyntaxKind.BinaryExpression:
-      // ESLint AssignmentExpression
-      if (isAssignmentToken((node as ts.BinaryExpression).operatorToken)) {
-        return isConstant(node.getLastToken());
-      }
-      return isConstant(node.getFirstToken()) && isConstant(node.getLastToken());
-    case ts.SyntaxKind.ConditionalExpression:
-      return isConstant((node as ts.ConditionalExpression).condition);
+  
+  private isConstant(node: ts.Node) {
+    switch (node.kind) {
+      // ESLint Literal
+      case ts.SyntaxKind.StringLiteral:
+      case ts.SyntaxKind.NumericLiteral:
+      case ts.SyntaxKind.TrueKeyword:
+      case ts.SyntaxKind.FalseKeyword:
+      // ESLint ArrowFunctionExpression
+      case ts.SyntaxKind.ArrowFunction:
+      // ESLint FunctionExpression
+      case ts.SyntaxKind.FunctionExpression:
+      // ESLint ObjectExpression
+      case ts.SyntaxKind.ObjectLiteralExpression:
+      // ESLint ArrayExpression
+      case ts.SyntaxKind.ArrayLiteralExpression:
+        return true;
+      // ESLint UnaryExpression
+      case ts.SyntaxKind.PrefixUnaryExpression:
+      case ts.SyntaxKind.PostfixUnaryExpression:
+        return false; // TODO
+      // ESLint BinaryExpression / LogicalExpression
+      case ts.SyntaxKind.BinaryExpression:
+        // ESLint AssignmentExpression
+        if (this.isAssignmentToken((node as ts.BinaryExpression).operatorToken)) {
+          return this.isConstant(node.getLastToken());
+        }
+        return this.isConstant(node.getFirstToken()) && this.isConstant(node.getLastToken());
+      case ts.SyntaxKind.ConditionalExpression:
+        return this.isConstant((node as ts.ConditionalExpression).condition);
+    }
+  
+    return false;
   }
-
-  return false;
-}
-
-function isAssignmentToken(token: ts.Node) {
-  return token.kind >= ts.SyntaxKind.FirstAssignment && token.kind <= ts.SyntaxKind.LastAssignment;
+  
+  private isAssignmentToken(token: ts.Node) {
+    return token.kind >= ts.SyntaxKind.FirstAssignment && token.kind <= ts.SyntaxKind.LastAssignment;
+  }
 }
