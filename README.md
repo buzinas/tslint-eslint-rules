@@ -71,17 +71,12 @@ The following rules point out areas where you might have made mistakes.
     "no-constant-condition": true
     ```
     
-* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => TODO (tslint-eslint-rules)
+* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => no-control-regex (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/5)
   * Description: disallow control characters in regular expressions (recommended)
   * Usage
 
     ```json
-    "no-control-regex": [
-      true,
-      {
-        
-      }
-    ]
+    "no-control-regex": true
     ```
 
 * [no-debugger](http://eslint.org/docs/rules/no-debugger) => no-debugger (native)
@@ -92,18 +87,8 @@ The following rules point out areas where you might have made mistakes.
     "no-debugger": true
     ```
 
-* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => TODO (tslint-eslint-rules) (Analyse: no-duplicate-variable)
+* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => not applicable to TypeScript
   * Description: disallow duplicate arguments in functions (recommended)
-  * Usage
-
-    ```json
-    "no-dupe-args": [
-      true,
-      {
-        
-      }
-    ]
-    ```
 
 * [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => no-duplicate-key (native)
   * Description: disallow duplicate keys when creating object literals (recommended)
@@ -113,30 +98,20 @@ The following rules point out areas where you might have made mistakes.
     "no-duplicate-key": true
     ```
 
-* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => TODO (tslint-eslint-rules)
+* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => no-duplicate-case (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/7)
   * Description: disallow a duplicate case label. (recommended)
   * Usage
 
     ```json
-    "no-duplicate-case": [
-      true,
-      {
-        
-      }
-    ]
+    "no-duplicate-case": true
     ```
 
-* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => TODO (tslint-eslint-rules)
+* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => no-empty-character-class (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/8)
   * Description: disallow the use of empty character classes in regular expressions (recommended)
   * Usage
 
     ```json
-    "no-empty-character-class": [
-      true,
-      {
-        
-      }
-    ]
+    "no-empty-character-class": true
     ```
 
 * [no-empty](http://eslint.org/docs/rules/no-empty) => no-empty (native)
@@ -147,30 +122,20 @@ The following rules point out areas where you might have made mistakes.
     "no-empty": true
     ```
 
-* [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => TODO (tslint-eslint-rules)
+* [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => no-ex-assign (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/10)
   * Description: disallow assigning to the exception in a `catch` block (recommended)
   * Usage
 
     ```json
-    "no-ex-assign": [
-      true,
-      {
-        
-      }
-    ]
+    "no-ex-assign": true
     ```
 
-* [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => TODO (tslint-eslint-rules)
+* [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => no-extra-boolean-cast (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/11)
   * Description: disallow double-negation boolean casts in a boolean context (recommended)
   * Usage
 
     ```json
-    "no-extra-boolean-cast": [
-      true,
-      {
-        
-      }
-    ]
+    "no-extra-boolean-cast": true
     ```
 
 * [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => TODO (tslint-eslint-rules)
@@ -199,7 +164,7 @@ The following rules point out areas where you might have made mistakes.
     ]
     ```
 
-* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => Not Applicable to TypeScript
+* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => not applicable to TypeScript
   * Description: disallow overwriting functions written as function declarations (recommended)
   
 * [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => TODO (tslint-eslint-rules)
@@ -254,7 +219,7 @@ The following rules point out areas where you might have made mistakes.
     ]
     ```
 
-* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => Not Applicable to TypeScript
+* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => not applicable to TypeScript
   * Description: disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)
   * Usage
 
