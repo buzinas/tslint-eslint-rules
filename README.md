@@ -7,7 +7,7 @@ You want to code in TypeScript but miss all the rules available in ESLint?
 Now you can combine both worlds by using this TSLint plugin.
 
 
-## Usage (it will be available only in v0.2.x)
+## Usage
 
 Install from NPM to your Dev Dependencies
 
@@ -71,7 +71,7 @@ The following rules point out areas where you might have made mistakes.
     "no-constant-condition": true
     ```
     
-* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => ???
+* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => TODO (tslint-eslint-rules)
   * Description: disallow control characters in regular expressions (recommended)
   * Usage
 
@@ -83,19 +83,14 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-debugger](http://eslint.org/docs/rules/no-debugger) => 
+* [no-debugger](http://eslint.org/docs/rules/no-debugger) => no-debugger (native)
   * Description: disallow use of `debugger` (recommended)
   * Usage
 
     ```json
-    "no-debugger": [
-      true,
-      {
-        
-      }
-    ]
+    "no-debugger": true
     ```
-* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => 
+* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => TODO (tslint-eslint-rules) (Analyse: no-duplicate-variable)
   * Description: disallow duplicate arguments in functions (recommended)
   * Usage
 
@@ -107,19 +102,14 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => 
+* [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => no-duplicate-key (native)
   * Description: disallow duplicate keys when creating object literals (recommended)
   * Usage
 
     ```json
-    "no-dupe-keys": [
-      true,
-      {
-        
-      }
-    ]
+    "no-duplicate-key": true
     ```
-* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => 
+* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => TODO (tslint-eslint-rules)
   * Description: disallow a duplicate case label. (recommended)
   * Usage
 
@@ -131,7 +121,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => 
+* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => TODO (tslint-eslint-rules)
   * Description: disallow the use of empty character classes in regular expressions (recommended)
   * Usage
 
@@ -143,19 +133,14 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-empty](http://eslint.org/docs/rules/no-empty) => 
+* [no-empty](http://eslint.org/docs/rules/no-empty) => no-empty (native)
   * Description: disallow empty statements (recommended)
   * Usage
 
     ```json
-    "no-empty": [
-      true,
-      {
-        
-      }
-    ]
+    "no-empty": true
     ```
-* [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => 
+* [no-ex-assign](http://eslint.org/docs/rules/no-ex-assign) => TODO (tslint-eslint-rules)
   * Description: disallow assigning to the exception in a `catch` block (recommended)
   * Usage
 
@@ -167,7 +152,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => 
+* [no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast) => TODO (tslint-eslint-rules)
   * Description: disallow double-negation boolean casts in a boolean context (recommended)
   * Usage
 
@@ -179,7 +164,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => 
+* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => TODO (tslint-eslint-rules)
   * Description: disallow unnecessary parentheses
   * Usage
 
@@ -191,7 +176,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => 
+* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => TODO (tslint-eslint-rules) (Analyse => semicolon)
   * Description: disallow unnecessary semicolons (recommended) (fixable)
   * Usage
 
@@ -203,19 +188,10 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => 
+* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => Not Applicable to TypeScript
   * Description: disallow overwriting functions written as function declarations (recommended)
-  * Usage
-
-    ```json
-    "no-func-assign": [
-      true,
-      {
-        
-      }
-    ]
-    ```
-* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => 
+  
+* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => TODO (tslint-eslint-rules)
   * Description: disallow function or variable declarations in nested blocks (recommended)
   * Usage
 
@@ -227,7 +203,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => 
+* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => TODO (tslint-eslint-rules)
   * Description: disallow invalid regular expression strings in the `RegExp` constructor (recommended)
   * Usage
 
@@ -239,7 +215,7 @@ The following rules point out areas where you might have made mistakes.
       }
     ]
     ```
-* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => 
+* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => TODO (tslint-eslint-rules)
   * Description: disallow irregular whitespace outside of strings and comments (recommended)
   * Usage
 
@@ -364,7 +340,7 @@ The following rules point out areas where you might have made mistakes.
 
 These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.
 
-* [accessor-pairs](accessor-pairs) => 
+* [accessor-pairs](http://eslint.org/docs/rules/accessor-pairs) => 
   * Description: Enforces getter/setter pairs in objects
   * Usage
 
@@ -376,7 +352,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [block-scoped-var](block-scoped-var) => 
+* [block-scoped-var](http://eslint.org/docs/rules/block-scoped-var) => 
   * Description: treat `var` statements as if they were block scoped
   * Usage
 
@@ -388,7 +364,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [complexity](complexity) => 
+* [complexity](http://eslint.org/docs/rules/complexity) => 
   * Description: specify the maximum cyclomatic complexity allowed in a program
   * Usage
 
@@ -400,7 +376,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [consistent-return](consistent-return) => 
+* [consistent-return](http://eslint.org/docs/rules/consistent-return) => 
   * Description: require `return` statements to either always or never specify values
   * Usage
 
@@ -412,7 +388,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [curly](curly) => 
+* [curly](http://eslint.org/docs/rules/curly) => 
   * Description: specify curly brace conventions for all control statements
   * Usage
 
@@ -424,7 +400,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [default-case](default-case) => 
+* [default-case](http://eslint.org/docs/rules/default-case) => 
   * Description: require `default` case in `switch` statements
   * Usage
 
@@ -436,7 +412,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [dot-location](dot-location) => 
+* [dot-location](http://eslint.org/docs/rules/dot-location) => 
   * Description: enforces consistent newlines before or after dots
   * Usage
 
@@ -448,7 +424,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [dot-notation](dot-notation) => 
+* [dot-notation](http://eslint.org/docs/rules/dot-notation) => 
   * Description: encourages use of dot notation whenever possible
   * Usage
 
@@ -460,7 +436,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [eqeqeq](eqeqeq) => 
+* [eqeqeq](http://eslint.org/docs/rules/eqeqeq) => 
   * Description: require the use of `===` and `!==` (fixable)
   * Usage
 
@@ -472,7 +448,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [guard-for-in](guard-for-in) => 
+* [guard-for-in](http://eslint.org/docs/rules/guard-for-in) => 
   * Description: make sure `for-in` loops have an `if` statement
   * Usage
 
@@ -484,7 +460,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-alert](no-alert) => 
+* [no-alert](http://eslint.org/docs/rules/no-alert) => 
   * Description: disallow the use of `alert`, `confirm`, and `prompt`
   * Usage
 
@@ -496,7 +472,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-caller](no-caller) => 
+* [no-caller](http://eslint.org/docs/rules/no-caller) => 
   * Description: disallow use of `arguments.caller` or `arguments.callee`
   * Usage
 
@@ -508,7 +484,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-case-declarations](no-case-declarations) => 
+* [no-case-declarations](http://eslint.org/docs/rules/no-case-declarations) => 
   * Description: disallow lexical declarations in case clauses
   * Usage
 
@@ -520,7 +496,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-div-regex](no-div-regex) => 
+* [no-div-regex](http://eslint.org/docs/rules/no-div-regex) => 
   * Description: disallow division operators explicitly at beginning of regular expression
   * Usage
 
@@ -532,7 +508,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-else-return](no-else-return) => 
+* [no-else-return](http://eslint.org/docs/rules/no-else-return) => 
   * Description: disallow `else` after a `return` in an `if`
   * Usage
 
@@ -544,7 +520,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-empty-label](no-empty-label) => 
+* [no-empty-label](http://eslint.org/docs/rules/no-empty-label) => 
   * Description: disallow use of labels for anything other than loops and switches
   * Usage
 
@@ -556,7 +532,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-empty-pattern](no-empty-pattern) => 
+* [no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern) => 
   * Description: disallow use of empty destructuring patterns
   * Usage
 
@@ -568,7 +544,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-eq-null](no-eq-null) => 
+* [no-eq-null](http://eslint.org/docs/rules/no-eq-null) => 
   * Description: disallow comparisons to null without a type-checking operator
   * Usage
 
@@ -580,7 +556,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-eval](no-eval) => 
+* [no-eval](http://eslint.org/docs/rules/no-eval) => 
   * Description: disallow use of `eval()`
   * Usage
 
@@ -592,7 +568,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-extend-native](no-extend-native) => 
+* [no-extend-native](http://eslint.org/docs/rules/no-extend-native) => 
   * Description: disallow adding to native types
   * Usage
 
@@ -604,7 +580,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-extra-bind](no-extra-bind) => 
+* [no-extra-bind](http://eslint.org/docs/rules/no-extra-bind) => 
   * Description: disallow unnecessary function binding
   * Usage
 
@@ -616,7 +592,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-fallthrough](no-fallthrough) => 
+* [no-fallthrough](http://eslint.org/docs/rules/no-fallthrough) => 
   * Description: disallow fallthrough of `case` statements (recommended)
   * Usage
 
@@ -628,7 +604,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-floating-decimal](no-floating-decimal) => 
+* [no-floating-decimal](http://eslint.org/docs/rules/no-floating-decimal) => 
   * Description: disallow the use of leading or trailing decimal points in numeric literals
   * Usage
 
@@ -640,7 +616,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-implicit-coercion](no-implicit-coercion) => 
+* [no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion) => 
   * Description: disallow the type conversions with shorter notations
   * Usage
 
@@ -652,7 +628,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-implied-eval](no-implied-eval) => 
+* [no-implied-eval](http://eslint.org/docs/rules/no-implied-eval) => 
   * Description: disallow use of `eval()`-like methods
   * Usage
 
@@ -664,7 +640,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-invalid-this](no-invalid-this) => 
+* [no-invalid-this](http://eslint.org/docs/rules/no-invalid-this) => 
   * Description: disallow `this` keywords outside of classes or class-like objects
   * Usage
 
@@ -676,7 +652,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-iterator](no-iterator) => 
+* [no-iterator](http://eslint.org/docs/rules/no-iterator) => 
   * Description: disallow Usage
  of `__iterator__` property
   * Usage
@@ -689,7 +665,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-labels](no-labels) => 
+* [no-labels](http://eslint.org/docs/rules/no-labels) => 
   * Description: disallow use of labeled statements
   * Usage
 
@@ -701,7 +677,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-lone-blocks](no-lone-blocks) => 
+* [no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks) => 
   * Description: disallow unnecessary nested blocks
   * Usage
 
@@ -713,7 +689,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-loop-func](no-loop-func) => 
+* [no-loop-func](http://eslint.org/docs/rules/no-loop-func) => 
   * Description: disallow creation of functions within loops
   * Usage
 
@@ -725,7 +701,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-magic-numbers](no-magic-numbers) => 
+* [no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers) => 
   * Description: disallow the use of magic numbers
   * Usage
 
@@ -737,7 +713,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-multi-spaces](no-multi-spaces) => 
+* [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) => 
   * Description: disallow use of multiple spaces (fixable)
   * Usage
 
@@ -749,7 +725,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-multi-str](no-multi-str) => 
+* [no-multi-str](http://eslint.org/docs/rules/no-multi-str) => 
   * Description: disallow use of multiline strings
   * Usage
 
@@ -761,7 +737,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-native-reassign](no-native-reassign) => 
+* [no-native-reassign](http://eslint.org/docs/rules/no-native-reassign) => 
   * Description: disallow reassignments of native objects
   * Usage
 
@@ -773,7 +749,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-new-func](no-new-func) => 
+* [no-new-func](http://eslint.org/docs/rules/no-new-func) => 
   * Description: disallow use of new operator for `Function` object
   * Usage
 
@@ -785,7 +761,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-new-wrappers](no-new-wrappers) => 
+* [no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers) => 
   * Description: disallows creating new instances of `String`,`Number`, and `Boolean`
   * Usage
 
@@ -797,7 +773,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-new](no-new) => 
+* [no-new](http://eslint.org/docs/rules/no-new) => 
   * Description: disallow use of the `new` operator when not part of an assignment or comparison
   * Usage
 
@@ -809,7 +785,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-octal-escape](no-octal-escape) => 
+* [no-octal-escape](http://eslint.org/docs/rules/no-octal-escape) => 
   * Description: disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`
   * Usage
 
@@ -821,7 +797,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-octal](no-octal) => 
+* [no-octal](http://eslint.org/docs/rules/no-octal) => 
   * Description: disallow use of octal literals (recommended)
   * Usage
 
@@ -833,7 +809,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-param-reassign](no-param-reassign) => 
+* [no-param-reassign](http://eslint.org/docs/rules/no-param-reassign) => 
   * Description: disallow reassignment of function parameters
   * Usage
 
@@ -845,7 +821,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-process-env](no-process-env) => 
+* [no-process-env](http://eslint.org/docs/rules/no-process-env) => 
   * Description: disallow use of `process.env`
   * Usage
 
@@ -857,7 +833,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-proto](no-proto) => 
+* [no-proto](http://eslint.org/docs/rules/no-proto) => 
   * Description: disallow Usage
  of `__proto__` property
   * Usage
@@ -870,8 +846,8 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-redeclare](no-redeclare) => 
-  * Description: disallow declaring the same variable more than once (recommended)
+* [no-redeclare](http://eslint.org/docs/rules/no-redeclare) => 
+  * Description: disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)
   * Usage
 
     ```json
@@ -882,7 +858,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-return-assign](no-return-assign) => 
+* [no-return-assign](http://eslint.org/docs/rules/no-return-assign) => 
   * Description: disallow use of assignment in `return` statement
   * Usage
 
@@ -894,7 +870,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-script-url](no-script-url) => 
+* [no-script-url](http://eslint.org/docs/rules/no-script-url) => 
   * Description: disallow use of `javascript:` urls.
   * Usage
 
@@ -906,7 +882,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-self-compare](no-self-compare) => 
+* [no-self-compare](http://eslint.org/docs/rules/no-self-compare) => 
   * Description: disallow comparisons where both sides are exactly the same
   * Usage
 
@@ -918,7 +894,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-sequences](no-sequences) => 
+* [no-sequences](http://eslint.org/docs/rules/no-sequences) => 
   * Description: disallow use of the comma operator
   * Usage
 
@@ -930,7 +906,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-throw-literal](no-throw-literal) => 
+* [no-throw-literal](http://eslint.org/docs/rules/no-throw-literal) => 
   * Description: restrict what can be thrown as an exception
   * Usage
 
@@ -942,7 +918,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-unused-expressions](no-unused-expressions) => 
+* [no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions) => 
   * Description: disallow Usage
  of expressions in statement position
   * Usage
@@ -955,7 +931,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-useless-call](no-useless-call) => 
+* [no-useless-call](http://eslint.org/docs/rules/no-useless-call) => 
   * Description: disallow unnecessary `.call()` and `.apply()`
   * Usage
 
@@ -967,7 +943,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-useless-concat](no-useless-concat) => 
+* [no-useless-concat](http://eslint.org/docs/rules/no-useless-concat) => 
   * Description: disallow unnecessary concatenation of literals or template literals
   * Usage
 
@@ -979,7 +955,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-void](no-void) => 
+* [no-void](http://eslint.org/docs/rules/no-void) => 
   * Description: disallow use of the `void` operator
   * Usage
 
@@ -991,7 +967,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-warning-comments](no-warning-comments) - disallow Usage
+* [no-warning-comments](http://eslint.org/docs/rules/no-warning-comments) - disallow Usage
  of configurable warning terms in comments => 
   * Description: e.g. `TODO` or `FIXME`
   * Usage
@@ -1004,7 +980,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [no-with](no-with) => 
+* [no-with](http://eslint.org/docs/rules/no-with) => 
   * Description: disallow use of the `with` statement
   * Usage
 
@@ -1016,7 +992,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [radix](radix) => 
+* [radix](http://eslint.org/docs/rules/radix) => 
   * Description: require use of the second argument for `parseInt()`
   * Usage
 
@@ -1028,7 +1004,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [vars-on-top](vars-on-top) => 
+* [vars-on-top](http://eslint.org/docs/rules/vars-on-top) => 
   * Description: require declaration of all vars at the top of their containing scope
   * Usage
 
@@ -1040,7 +1016,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [wrap-iife](wrap-iife) => 
+* [wrap-iife](http://eslint.org/docs/rules/wrap-iife) => 
   * Description: require immediate function invocation to be wrapped in parentheses
   * Usage
 
@@ -1052,7 +1028,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-* [yoda](yoda) => 
+* [yoda](http://eslint.org/docs/rules/yoda) => 
   * Description: require or disallow Yoda conditions
   * Usage
 
@@ -1069,7 +1045,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
 
 These rules relate to using strict mode.
 
-* [strict](strict) => 
+* [strict](http://eslint.org/docs/rules/strict) => 
   * Description: controls location of Use Strict Directives
   * Usage
 
@@ -1086,7 +1062,7 @@ These rules relate to using strict mode.
 
 These rules have to do with variable declarations.
 
-* [init-declarations](init-declarations) => 
+* [init-declarations](http://eslint.org/docs/rules/init-declarations) => 
   * Description: enforce or disallow variable initializations at definition
   * Usage
 
@@ -1098,7 +1074,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-catch-shadow](no-catch-shadow) => 
+* [no-catch-shadow](http://eslint.org/docs/rules/no-catch-shadow) => 
   * Description: disallow the catch clause parameter name being the same as a variable in the outer scope
   * Usage
 
@@ -1110,7 +1086,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-delete-var](no-delete-var) => 
+* [no-delete-var](http://eslint.org/docs/rules/no-delete-var) => 
   * Description: disallow deletion of variables (recommended)
   * Usage
 
@@ -1122,7 +1098,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-label-var](no-label-var) => 
+* [no-label-var](http://eslint.org/docs/rules/no-label-var) => 
   * Description: disallow labels that share a name with a variable
   * Usage
 
@@ -1134,7 +1110,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-shadow-restricted-names](no-shadow-restricted-names) => 
+* [no-shadow-restricted-names](http://eslint.org/docs/rules/no-shadow-restricted-names) => 
   * Description: disallow shadowing of names such as `arguments`
   * Usage
 
@@ -1146,7 +1122,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-shadow](no-shadow) => 
+* [no-shadow](http://eslint.org/docs/rules/no-shadow) => 
   * Description: disallow declaration of variables already declared in the outer scope
   * Usage
 
@@ -1158,7 +1134,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-undef-init](no-undef-init) => 
+* [no-undef-init](http://eslint.org/docs/rules/no-undef-init) => 
   * Description: disallow use of undefined when initializing variables
   * Usage
 
@@ -1170,7 +1146,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-undef](no-undef) => 
+* [no-undef](http://eslint.org/docs/rules/no-undef) => 
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
   * Usage
 
@@ -1182,7 +1158,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-undefined](no-undefined) => 
+* [no-undefined](http://eslint.org/docs/rules/no-undefined) => 
   * Description: disallow use of `undefined` variable
   * Usage
 
@@ -1194,7 +1170,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-unused-vars](no-unused-vars) => 
+* [no-unused-vars](http://eslint.org/docs/rules/no-unused-vars) => 
   * Description: disallow declaration of variables that are not used in the code (recommended)
   * Usage
 
@@ -1206,7 +1182,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-* [no-use-before-define](no-use-before-define) => 
+* [no-use-before-define](http://eslint.org/docs/rules/no-use-before-define) => 
   * Description: disallow use of variables before they are defined
   * Usage
 
@@ -1223,7 +1199,7 @@ These rules have to do with variable declarations.
 
 These rules are specific to JavaScript running on Node.js or using CommonJS in the browser.
 
-* [callback-return](callback-return) => 
+* [callback-return](http://eslint.org/docs/rules/callback-return) => 
   * Description: enforce `return` after a callback
   * Usage
 
@@ -1235,7 +1211,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [global-require](global-require) => 
+* [global-require](http://eslint.org/docs/rules/global-require) => 
   * Description: enforce `require()` on top-level module scope
   * Usage
 
@@ -1247,7 +1223,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [handle-callback-err](handle-callback-err) => 
+* [handle-callback-err](http://eslint.org/docs/rules/handle-callback-err) => 
   * Description: enforce error handling in callbacks
   * Usage
 
@@ -1259,7 +1235,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [no-mixed-requires](no-mixed-requires) => 
+* [no-mixed-requires](http://eslint.org/docs/rules/no-mixed-requires) => 
   * Description: disallow mixing regular variable and require declarations
   * Usage
 
@@ -1271,7 +1247,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [no-new-require](no-new-require) => 
+* [no-new-require](http://eslint.org/docs/rules/no-new-require) => 
   * Description: disallow use of `new` operator with the `require` function
   * Usage
 
@@ -1283,7 +1259,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [no-path-concat](no-path-concat) => 
+* [no-path-concat](http://eslint.org/docs/rules/no-path-concat) => 
   * Description: disallow string concatenation with `__dirname` and `__filename`
   * Usage
 
@@ -1295,7 +1271,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [no-process-exit](no-process-exit) => 
+* [no-process-exit](http://eslint.org/docs/rules/no-process-exit) => 
   * Description: disallow `process.exit()`
   * Usage
 
@@ -1307,7 +1283,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [no-restricted-modules](no-restricted-modules) => 
+* [no-restricted-modules](http://eslint.org/docs/rules/no-restricted-modules) => 
   * Description: restrict Usage
  of specified node modules
   * Usage
@@ -1320,7 +1296,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
         }
       ]
     ```
-* [no-sync](no-sync) => 
+* [no-sync](http://eslint.org/docs/rules/no-sync) => 
   * Description: disallow use of synchronous methods
   * Usage
 
@@ -1337,7 +1313,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
 
 These rules are purely matters of style and are quite subjective.
 
-* [array-bracket-spacing](array-bracket-spacing) => 
+* [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing) => 
   * Description: enforce spacing inside array brackets (fixable)
   * Usage
 
@@ -1349,7 +1325,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [block-spacing](block-spacing) => 
+* [block-spacing](http://eslint.org/docs/rules/block-spacing) => 
   * Description: disallow or enforce spaces inside of single line blocks (fixable)
   * Usage
 
@@ -1361,7 +1337,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [brace-style](brace-style) => 
+* [brace-style](http://eslint.org/docs/rules/brace-style) => 
   * Description: enforce one true brace style
   * Usage
 
@@ -1373,7 +1349,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [camelcase](camelcase) => 
+* [camelcase](http://eslint.org/docs/rules/camelcase) => 
   * Description: require camel case names
   * Usage
 
@@ -1385,7 +1361,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [comma-spacing](comma-spacing) => 
+* [comma-spacing](http://eslint.org/docs/rules/comma-spacing) => 
   * Description: enforce spacing before and after comma (fixable)
   * Usage
 
@@ -1397,7 +1373,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [comma-style](comma-style) => 
+* [comma-style](http://eslint.org/docs/rules/comma-style) => 
   * Description: enforce one true comma style
   * Usage
 
@@ -1409,7 +1385,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [computed-property-spacing](computed-property-spacing) => 
+* [computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing) => 
   * Description: require or disallow padding inside computed properties (fixable)
   * Usage
 
@@ -1421,7 +1397,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [consistent-this](consistent-this) => 
+* [consistent-this](http://eslint.org/docs/rules/consistent-this) => 
   * Description: enforce consistent naming when capturing the current execution context
   * Usage
 
@@ -1433,7 +1409,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [eol-last](eol-last) => 
+* [eol-last](http://eslint.org/docs/rules/eol-last) => 
   * Description: enforce newline at the end of file, with no multiple empty lines (fixable)
   * Usage
 
@@ -1445,7 +1421,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [func-names](func-names) => 
+* [func-names](http://eslint.org/docs/rules/func-names) => 
   * Description: require function expressions to have a name
   * Usage
 
@@ -1457,7 +1433,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [func-style](func-style) => 
+* [func-style](http://eslint.org/docs/rules/func-style) => 
   * Description: enforce use of function declarations or expressions
   * Usage
 
@@ -1469,7 +1445,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [id-length](id-length) => 
+* [id-length](http://eslint.org/docs/rules/id-length) => 
   * Description: this option enforces minimum and maximum identifier lengths (variable names, property names etc.)
   * Usage
 
@@ -1481,7 +1457,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [id-match](id-match) => 
+* [id-match](http://eslint.org/docs/rules/id-match) => 
   * Description: require identifiers to match the provided regular expression
   * Usage
 
@@ -1493,7 +1469,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [indent](indent) => 
+* [indent](http://eslint.org/docs/rules/indent) => 
   * Description: specify tab or space width for your code (fixable)
   * Usage
 
@@ -1505,7 +1481,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [jsx-quotes](jsx-quotes) => 
+* [jsx-quotes](http://eslint.org/docs/rules/jsx-quotes) => 
   * Description: specify whether double or single quotes should be used in JSX attributes
   * Usage
 
@@ -1517,7 +1493,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [key-spacing](key-spacing) => 
+* [key-spacing](http://eslint.org/docs/rules/key-spacing) => 
   * Description: enforce spacing between keys and values in object literal properties
   * Usage
 
@@ -1529,7 +1505,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [linebreak-style](linebreak-style) => 
+* [linebreak-style](http://eslint.org/docs/rules/linebreak-style) => 
   * Description: disallow mixed 'LF' and 'CRLF' as linebreaks
   * Usage
 
@@ -1541,7 +1517,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [lines-around-comment](lines-around-comment) => 
+* [lines-around-comment](http://eslint.org/docs/rules/lines-around-comment) => 
   * Description: enforce empty lines around comments
   * Usage
 
@@ -1553,7 +1529,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [max-nested-callbacks](max-nested-callbacks) => 
+* [max-nested-callbacks](http://eslint.org/docs/rules/max-nested-callbacks) => 
   * Description: specify the maximum depth callbacks can be nested
   * Usage
 
@@ -1565,7 +1541,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [new-cap](new-cap) => 
+* [new-cap](http://eslint.org/docs/rules/new-cap) => 
   * Description: require a capital letter for constructors
   * Usage
 
@@ -1577,7 +1553,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [new-parens](new-parens) => 
+* [new-parens](http://eslint.org/docs/rules/new-parens) => 
   * Description: disallow the omission of parentheses when invoking a constructor with no arguments
   * Usage
 
@@ -1589,7 +1565,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [newline-after-var](newline-after-var) => 
+* [newline-after-var](http://eslint.org/docs/rules/newline-after-var) => 
   * Description: require or disallow an empty newline after variable declarations
   * Usage
 
@@ -1601,7 +1577,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-array-constructor](no-array-constructor) => 
+* [no-array-constructor](http://eslint.org/docs/rules/no-array-constructor) => 
   * Description: disallow use of the `Array` constructor
   * Usage
 
@@ -1613,7 +1589,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-continue](no-continue) => 
+* [no-continue](http://eslint.org/docs/rules/no-continue) => 
   * Description: disallow use of the `continue` statement
   * Usage
 
@@ -1625,7 +1601,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-inline-comments](no-inline-comments) => 
+* [no-inline-comments](http://eslint.org/docs/rules/no-inline-comments) => 
   * Description: disallow comments inline after code
   * Usage
 
@@ -1637,7 +1613,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-lonely-if](no-lonely-if) => 
+* [no-lonely-if](http://eslint.org/docs/rules/no-lonely-if) => 
   * Description: disallow `if` as the only statement in an `else` block
   * Usage
 
@@ -1649,7 +1625,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-mixed-spaces-and-tabs](no-mixed-spaces-and-tabs) => 
+* [no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs) => 
   * Description: disallow mixed spaces and tabs for indentation (recommended)
   * Usage
 
@@ -1661,7 +1637,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-multiple-empty-lines](no-multiple-empty-lines) => 
+* [no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines) => 
   * Description: disallow multiple empty lines
   * Usage
 
@@ -1673,7 +1649,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-negated-condition](no-negated-condition) => 
+* [no-negated-condition](http://eslint.org/docs/rules/no-negated-condition) => 
   * Description: disallow negated conditions
   * Usage
 
@@ -1685,7 +1661,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-nested-ternary](no-nested-ternary) => 
+* [no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary) => 
   * Description: disallow nested ternary expressions
   * Usage
 
@@ -1697,7 +1673,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-new-object](no-new-object) => 
+* [no-new-object](http://eslint.org/docs/rules/no-new-object) => 
   * Description: disallow the use of the `Object` constructor
   * Usage
 
@@ -1709,7 +1685,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-restricted-syntax](no-restricted-syntax) => 
+* [no-restricted-syntax](http://eslint.org/docs/rules/no-restricted-syntax) => 
   * Description: disallow use of certain syntax in code
   * Usage
 
@@ -1721,7 +1697,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-spaced-func](no-spaced-func) => 
+* [no-spaced-func](http://eslint.org/docs/rules/no-spaced-func) => 
   * Description: disallow space between function identifier and application (fixable)
   * Usage
 
@@ -1733,7 +1709,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-ternary](no-ternary) => 
+* [no-ternary](http://eslint.org/docs/rules/no-ternary) => 
   * Description: disallow the use of ternary operators
   * Usage
 
@@ -1745,7 +1721,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-trailing-spaces](no-trailing-spaces) => 
+* [no-trailing-spaces](http://eslint.org/docs/rules/no-trailing-spaces) => 
   * Description: disallow trailing whitespace at the end of lines (fixable)
   * Usage
 
@@ -1757,7 +1733,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-underscore-dangle](no-underscore-dangle) => 
+* [no-underscore-dangle](http://eslint.org/docs/rules/no-underscore-dangle) => 
   * Description: disallow dangling underscores in identifiers
   * Usage
 
@@ -1769,7 +1745,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [no-unneeded-ternary](no-unneeded-ternary) => 
+* [no-unneeded-ternary](http://eslint.org/docs/rules/no-unneeded-ternary) => 
   * Description: disallow the use of ternary operators when a simpler alternative exists
   * Usage
 
@@ -1781,7 +1757,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [object-curly-spacing](object-curly-spacing) => 
+* [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) => 
   * Description: require or disallow padding inside curly braces (fixable)
   * Usage
 
@@ -1793,7 +1769,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [one-var](one-var) => 
+* [one-var](http://eslint.org/docs/rules/one-var) => 
   * Description: require or disallow one variable declaration per function
   * Usage
 
@@ -1805,7 +1781,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [operator-assignment](operator-assignment) => 
+* [operator-assignment](http://eslint.org/docs/rules/operator-assignment) => 
   * Description: require assignment operator shorthand where possible or prohibit it entirely
   * Usage
 
@@ -1817,7 +1793,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [operator-linebreak](operator-linebreak) => 
+* [operator-linebreak](http://eslint.org/docs/rules/operator-linebreak) => 
   * Description: enforce operators to be placed before or after line breaks
   * Usage
 
@@ -1829,7 +1805,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [padded-blocks](padded-blocks) => 
+* [padded-blocks](http://eslint.org/docs/rules/padded-blocks) => 
   * Description: enforce padding within blocks
   * Usage
 
@@ -1841,7 +1817,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [quote-props](quote-props) => 
+* [quote-props](http://eslint.org/docs/rules/quote-props) => 
   * Description: require quotes around object literal property names
   * Usage
 
@@ -1853,7 +1829,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [quotes](quotes) => 
+* [quotes](http://eslint.org/docs/rules/quotes) => 
   * Description: specify whether backticks, double or single quotes should be used (fixable)
   * Usage
 
@@ -1865,7 +1841,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [require-jsdoc](require-jsdoc) => 
+* [require-jsdoc](http://eslint.org/docs/rules/require-jsdoc) => 
   * Description: Require JSDoc comment
   * Usage
 
@@ -1877,7 +1853,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [semi-spacing](semi-spacing) => 
+* [semi-spacing](http://eslint.org/docs/rules/semi-spacing) => 
   * Description: enforce spacing before and after semicolons
   * Usage
 
@@ -1889,7 +1865,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [semi](semi) => 
+* [semi](http://eslint.org/docs/rules/semi) => 
   * Description: require or disallow use of semicolons instead of ASI (fixable)
   * Usage
 
@@ -1901,7 +1877,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [sort-vars](sort-vars) => 
+* [sort-vars](http://eslint.org/docs/rules/sort-vars) => 
   * Description: sort variables within the same declaration block
   * Usage
 
@@ -1913,7 +1889,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-after-keywords](space-after-keywords) => 
+* [space-after-keywords](http://eslint.org/docs/rules/space-after-keywords) => 
   * Description: require a space after certain keywords (fixable)
   * Usage
 
@@ -1925,7 +1901,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-before-blocks](space-before-blocks) => 
+* [space-before-blocks](http://eslint.org/docs/rules/space-before-blocks) => 
   * Description: require or disallow a space before blocks (fixable)
   * Usage
 
@@ -1937,7 +1913,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-before-function-paren](space-before-function-paren) => 
+* [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren) => 
   * Description: require or disallow a space before function opening parenthesis (fixable)
   * Usage
 
@@ -1949,7 +1925,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-before-keywords](space-before-keywords) => 
+* [space-before-keywords](http://eslint.org/docs/rules/space-before-keywords) => 
   * Description: require a space before certain keywords (fixable)
   * Usage
 
@@ -1961,7 +1937,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-in-parens](space-in-parens) => 
+* [space-in-parens](http://eslint.org/docs/rules/space-in-parens) => 
   * Description: require or disallow spaces inside parentheses
   * Usage
 
@@ -1973,7 +1949,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-infix-ops](space-infix-ops) => 
+* [space-infix-ops](http://eslint.org/docs/rules/space-infix-ops) => 
   * Description: require spaces around operators (fixable)
   * Usage
 
@@ -1985,7 +1961,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-return-throw-case](space-return-throw-case) => 
+* [space-return-throw-case](http://eslint.org/docs/rules/space-return-throw-case) => 
   * Description: require a space after `return`, `throw`, and `case` (fixable)
   * Usage
 
@@ -1997,7 +1973,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [space-unary-ops](space-unary-ops) => 
+* [space-unary-ops](http://eslint.org/docs/rules/space-unary-ops) => 
   * Description: require or disallow spaces before/after unary operators (fixable)
   * Usage
 
@@ -2009,7 +1985,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [spaced-comment](spaced-comment) => 
+* [spaced-comment](http://eslint.org/docs/rules/spaced-comment) => 
   * Description: require or disallow a space immediately following the `//` or `/*` in a comment
   * Usage
 
@@ -2021,7 +1997,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-* [wrap-regex](wrap-regex) => 
+* [wrap-regex](http://eslint.org/docs/rules/wrap-regex) => 
   * Description: require regex literals to be wrapped in parentheses
   * Usage
 
@@ -2038,7 +2014,7 @@ These rules are purely matters of style and are quite subjective.
 
 These rules are only relevant to ES6 environments.
 
-* [arrow-body-style](arrow-body-style) => 
+* [arrow-body-style](http://eslint.org/docs/rules/arrow-body-style) => 
   * Description: require braces in arrow function body
   * Usage
 
@@ -2050,7 +2026,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [arrow-parens](arrow-parens) => 
+* [arrow-parens](http://eslint.org/docs/rules/arrow-parens) => 
   * Description: require parens in arrow function arguments
   * Usage
 
@@ -2062,7 +2038,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [arrow-spacing](arrow-spacing) => 
+* [arrow-spacing](http://eslint.org/docs/rules/arrow-spacing) => 
   * Description: require space before/after arrow function's arrow (fixable)
   * Usage
 
@@ -2074,7 +2050,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [constructor-super](constructor-super) => 
+* [constructor-super](http://eslint.org/docs/rules/constructor-super) => 
   * Description: verify calls of `super()` in constructors
   * Usage
 
@@ -2086,7 +2062,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [generator-star-spacing](generator-star-spacing) => 
+* [generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing) => 
   * Description: enforce spacing around the `*` in generator functions (fixable)
   * Usage
 
@@ -2098,7 +2074,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [no-arrow-condition](no-arrow-condition) => 
+* [no-arrow-condition](http://eslint.org/docs/rules/no-arrow-condition) => 
   * Description: disallow arrow functions where a condition is expected
   * Usage
 
@@ -2110,7 +2086,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [no-class-assign](no-class-assign) => 
+* [no-class-assign](http://eslint.org/docs/rules/no-class-assign) => 
   * Description: disallow modifying variables of class declarations
   * Usage
 
@@ -2122,7 +2098,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [no-const-assign](no-const-assign) => 
+* [no-const-assign](http://eslint.org/docs/rules/no-const-assign) => 
   * Description: disallow modifying variables that are declared using `const`
   * Usage
 
@@ -2134,7 +2110,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [no-dupe-class-members](no-dupe-class-members) => 
+* [no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members) => 
   * Description: disallow duplicate name in class members
   * Usage
 
@@ -2146,7 +2122,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [no-this-before-super](no-this-before-super) => 
+* [no-this-before-super](http://eslint.org/docs/rules/no-this-before-super) => 
   * Description: disallow use of `this`/`super` before calling `super()` in constructors.
   * Usage
 
@@ -2158,7 +2134,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [no-var](no-var) => 
+* [no-var](http://eslint.org/docs/rules/no-var) => 
   * Description: require `let` or `const` instead of `var`
   * Usage
 
@@ -2170,7 +2146,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [object-shorthand](object-shorthand) => 
+* [object-shorthand](http://eslint.org/docs/rules/object-shorthand) => 
   * Description: require method and property shorthand syntax for object literals
   * Usage
 
@@ -2182,7 +2158,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [prefer-arrow-callback](prefer-arrow-callback) => 
+* [prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback) => 
   * Description: suggest using arrow functions as callbacks
   * Usage
 
@@ -2194,7 +2170,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [prefer-const](prefer-const) => 
+* [prefer-const](http://eslint.org/docs/rules/prefer-const) => 
   * Description: suggest using `const` declaration for variables that are never modified after declared
   * Usage
 
@@ -2206,7 +2182,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [prefer-reflect](prefer-reflect) => 
+* [prefer-reflect](http://eslint.org/docs/rules/prefer-reflect) => 
   * Description: suggest using Reflect methods where applicable
   * Usage
 
@@ -2218,7 +2194,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [prefer-spread](prefer-spread) => 
+* [prefer-spread](http://eslint.org/docs/rules/prefer-spread) => 
   * Description: suggest using the spread operator instead of `.apply()`.
   * Usage
 
@@ -2230,7 +2206,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [prefer-template](prefer-template) => 
+* [prefer-template](http://eslint.org/docs/rules/prefer-template) => 
   * Description: suggest using template literals instead of strings concatenation
   * Usage
 
@@ -2242,7 +2218,7 @@ These rules are only relevant to ES6 environments.
         }
       ]
     ```
-* [require-yield](require-yield) => 
+* [require-yield](http://eslint.org/docs/rules/require-yield) => 
   * Description: disallow generator functions that do not have `yield`
   * Usage
 
@@ -2259,7 +2235,7 @@ These rules are only relevant to ES6 environments.
 
 The following rules are included for compatibility with [JSHint](http://jshint.com/) and [JSLint](http://jslint.com/). While the names of the rules may not match up with the JSHint/JSLint counterpart, the functionality is the same.
 
-* [max-depth](max-depth) => 
+* [max-depth](http://eslint.org/docs/rules/max-depth) => 
   * Description: specify the maximum depth that blocks can be nested
   * Usage
 
@@ -2271,7 +2247,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-* [max-len](max-len) => 
+* [max-len](http://eslint.org/docs/rules/max-len) => 
   * Description: specify the maximum length of a line in your program
   * Usage
 
@@ -2283,7 +2259,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-* [max-params](max-params) => 
+* [max-params](http://eslint.org/docs/rules/max-params) => 
   * Description: limits the number of parameters that can be used in the function declaration.
   * Usage
 
@@ -2295,7 +2271,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-* [max-statements](max-statements) => 
+* [max-statements](http://eslint.org/docs/rules/max-statements) => 
   * Description: specify the maximum number of statement allowed in a function
   * Usage
 
@@ -2307,7 +2283,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-* [no-bitwise](no-bitwise) => 
+* [no-bitwise](http://eslint.org/docs/rules/no-bitwise) => 
   * Description: disallow use of bitwise operators
   * Usage
 
@@ -2319,7 +2295,7 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
         }
       ]
     ```
-* [no-plusplus](no-plusplus) => 
+* [no-plusplus](http://eslint.org/docs/rules/no-plusplus) => 
   * Description: disallow use of unary operators, `++` and `--`
   * Usage
 
@@ -2336,8 +2312,8 @@ The following rules are included for compatibility with [JSHint](http://jshint.c
 
 These rules existed in a previous version of ESLint but have since been replaced by newer rules.
 
-* [generator-star](generator-star) => 
-  * Description: enforce the position of the `*` in generator functions (replaced by [generator-star-spacing](generator-star-spacing))
+* [generator-star](http://eslint.org/docs/rules/generator-star) => 
+  * Description: enforce the position of the `*` in generator functions (replaced by [generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing))
   * Usage
 
     ```json
@@ -2348,8 +2324,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [global-strict](global-strict) => 
-  * Description: require or disallow the `"use strict"` pragma in the global scope (replaced by [strict](strict))
+* [global-strict](http://eslint.org/docs/rules/global-strict) => 
+  * Description: require or disallow the `"use strict"` pragma in the global scope (replaced by [strict](http://eslint.org/docs/rules/strict))
   * Usage
 
     ```json
@@ -2360,8 +2336,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [no-comma-dangle](no-comma-dangle) => 
-  * Description: disallow trailing commas in object literals (replaced by [comma-dangle](comma-dangle))
+* [no-comma-dangle](http://eslint.org/docs/rules/no-comma-dangle) => 
+  * Description: disallow trailing commas in object literals (replaced by [comma-dangle](http://eslint.org/docs/rules/comma-dangle))
   * Usage
 
     ```json
@@ -2372,8 +2348,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [no-empty-class](no-empty-class) => 
-  * Description: disallow the use of empty character classes in regular expressions (replaced by [no-empty-character-class](no-empty-character-class))
+* [no-empty-class](http://eslint.org/docs/rules/no-empty-class) => 
+  * Description: disallow the use of empty character classes in regular expressions (replaced by [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class))
   * Usage
 
     ```json
@@ -2384,8 +2360,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [no-extra-strict](no-extra-strict) => 
-  * Description: disallow unnecessary use of `"use strict";` when already in strict mode (replaced by [strict](strict))
+* [no-extra-strict](http://eslint.org/docs/rules/no-extra-strict) => 
+  * Description: disallow unnecessary use of `"use strict";` when already in strict mode (replaced by [strict](http://eslint.org/docs/rules/strict))
   * Usage
 
     ```json
@@ -2396,7 +2372,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [no-reserved-keys](no-reserved-keys) => 
+* [no-reserved-keys](http://eslint.org/docs/rules/no-reserved-keys) => 
   * Description: disallow reserved words being used as object literal keys
   * Usage
 
@@ -2408,8 +2384,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [no-space-before-semi](no-space-before-semi) => 
-  * Description: disallow space before semicolon (replaced by [semi-spacing](semi-spacing))
+* [no-space-before-semi](http://eslint.org/docs/rules/no-space-before-semi) => 
+  * Description: disallow space before semicolon (replaced by [semi-spacing](http://eslint.org/docs/rules/semi-spacing))
   * Usage
 
     ```json
@@ -2420,8 +2396,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [no-wrap-func](no-wrap-func) => 
-  * Description: disallow wrapping of non-IIFE statements in parens (replaced by [no-extra-parens](no-extra-parens))
+* [no-wrap-func](http://eslint.org/docs/rules/no-wrap-func) => 
+  * Description: disallow wrapping of non-IIFE statements in parens (replaced by [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens))
   * Usage
 
     ```json
@@ -2432,8 +2408,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [space-after-function-name](space-after-function-name) => 
-  * Description: require a space after function names (replaced by [space-before-function-paren](space-before-function-paren))
+* [space-after-function-name](http://eslint.org/docs/rules/space-after-function-name) => 
+  * Description: require a space after function names (replaced by [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren))
   * Usage
 
     ```json
@@ -2444,8 +2420,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [space-before-function-parentheses](space-before-function-parentheses) => 
-  * Description: require or disallow space before function parentheses (replaced by [space-before-function-paren](space-before-function-paren))
+* [space-before-function-parentheses](http://eslint.org/docs/rules/space-before-function-parentheses) => 
+  * Description: require or disallow space before function parentheses (replaced by [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren))
   * Usage
 
     ```json
@@ -2456,8 +2432,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [space-in-brackets](space-in-brackets) => 
-  * Description: require or disallow spaces inside brackets (replaced by [object-curly-spacing](object-curly-spacing) and [array-bracket-spacing](array-bracket-spacing))
+* [space-in-brackets](http://eslint.org/docs/rules/space-in-brackets) => 
+  * Description: require or disallow spaces inside brackets (replaced by [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) and [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing))
   * Usage
 
     ```json
@@ -2468,8 +2444,8 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [space-unary-word-ops](space-unary-word-ops) => 
-  * Description: require or disallow spaces before/after unary operators (replaced by [space-unary-ops](space-unary-ops))
+* [space-unary-word-ops](http://eslint.org/docs/rules/space-unary-word-ops) => 
+  * Description: require or disallow spaces before/after unary operators (replaced by [space-unary-ops](http://eslint.org/docs/rules/space-unary-ops))
   * Usage
 
     ```json
@@ -2480,7 +2456,7 @@ These rules existed in a previous version of ESLint but have since been replaced
         }
       ]
     ```
-* [spaced-line-comment](spaced-line-comment) => 
+* [spaced-line-comment](http://eslint.org/docs/rules/spaced-line-comment) => 
   * Description: require or disallow a space immediately following the `//` in a line comment (replaced by [spaced-comment](spaced-comment))
   * Usage
 
@@ -2498,17 +2474,7 @@ These rules existed in a previous version of ESLint but have since been replaced
 
 Bugs, rules requests, doubts etc., open a Github Issue.
 
-If you didn't find the rule, you can also create an ESLint custom rule for TSLint:
-
-- Forking this repo
-- Run `npm isntall`
-- Run `gulp` to run the tests and watch for file changes
-- Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convetion:
-  - Name: rule-name (hyphenated)
-  - File: ruleNameRule.ts (camelCased and with the `Rule` suffix)
-  - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix)
-- Check if all the tests are passing
-- Commit the changes to your repo and open a Pull Request
+You can also create an ESLint custom rule for TSLint, by forking this repo and opening a pull request.
 
 
 ## LICENSE
