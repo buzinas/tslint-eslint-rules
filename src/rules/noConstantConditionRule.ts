@@ -70,14 +70,13 @@ function isConstant(node: ts.Node) {
     // ESLint UnaryExpression
     case ts.SyntaxKind.PrefixUnaryExpression:
     case ts.SyntaxKind.PostfixUnaryExpression:
-      return false; // TODO discover how to validate unary expression
+      return false; // TODO
     // ESLint BinaryExpression / LogicalExpression
     case ts.SyntaxKind.BinaryExpression:
       // ESLint AssignmentExpression
       if (isAssignmentToken((node as ts.BinaryExpression).operatorToken)) {
         return isConstant(node.getLastToken());
       }
-
       return isConstant(node.getFirstToken()) && isConstant(node.getLastToken());
     case ts.SyntaxKind.ConditionalExpression:
       return isConstant((node as ts.ConditionalExpression).condition);

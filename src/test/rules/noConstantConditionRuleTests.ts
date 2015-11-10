@@ -43,7 +43,8 @@ const scripts = {
 
   whileVars: `while (y === x) {}
               while (x > 0) {}
-              while (100 > x) {}`,
+              while (100 > x) {}
+              while (foo) {}`,
 
   whileLiterals: `while (true) {}
                   while (false) {}
@@ -54,7 +55,8 @@ const scripts = {
 
   doWhileVars: `do {} while (y === x);
                 do {} while (x > 0);
-                do {} while (100 > x);`,
+                do {} while (100 > x);
+                do {} while (foo);`,
 
   doWhileLiterals: `do {} while (true);
                     do {} while (false);
@@ -65,7 +67,8 @@ const scripts = {
 
   forVars: `for (;y === x;) {}
             for (;x > 0;) {}
-            fpr (;100 > x;) {}`,
+            for (;100 > x;) {}
+            for (;foo;) {}`,
 
   forLiterals: `for (;true;) {}
                 for (;false;) {}
