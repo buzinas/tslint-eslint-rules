@@ -20,11 +20,11 @@ const scripts = {
 describe(rule, function test() {
   it('should pass when using valid strings or variables', function testValid() {
     const res = testScript(rule, scripts.valid);
-    expect(res).to.be.true;
+    expect(res).to.equal(0);
   });
   
   it('should fail when using invalid strings', function testInvalid() {
     const res = testScript(rule, scripts.invalid);
-    expect(res).to.be.false;
+    expect(res).to.equal(4);
   });
 });

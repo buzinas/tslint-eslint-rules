@@ -1,7 +1,7 @@
 import * as ts from "tslint/node_modules/typescript";
 import * as Lint from "tslint/lib/lint";
 
-export function testScript(rule: string, scriptText: string) {
+export function testScript(rule: string, scriptText: string) : number {
   const config = {
     rules: {
       [rule]: true
@@ -20,5 +20,5 @@ export function testScript(rule: string, scriptText: string) {
   
   const failures = JSON.parse(result.output);
   
-  return failures.length === 0;
+  return failures.length;
 }

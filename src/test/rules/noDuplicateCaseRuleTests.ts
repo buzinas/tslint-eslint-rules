@@ -85,21 +85,21 @@ const scripts = {
 describe(rule, function test() {
   it('should pass when there is no duplicate cases', function testNoDupes() {
     const res = testScript(rule, scripts.noDupes);
-    expect(res).to.be.true;
+    expect(res).to.equal(0);
   });
   
   it('should fail when there is duplicate numbers', function testDupNumbers() {
     const res = testScript(rule, scripts.duplicateNumbers);
-    expect(res).to.be.false;
+    expect(res).to.equal(1);
   });
   
   it('should fail when there is duplicate strings', function testDupStrings() {
     const res = testScript(rule, scripts.duplicateStrings);
-    expect(res).to.be.false;
+    expect(res).to.equal(1);
   });
   
   it('should fail when there is duplicate variables', function testDupVariables() {
     const res = testScript(rule, scripts.duplicateVariables);
-    expect(res).to.be.false;
+    expect(res).to.equal(1);
   });
 });
