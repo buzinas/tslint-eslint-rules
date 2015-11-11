@@ -219,7 +219,7 @@ The following rules point out areas where you might have made mistakes.
     "no-regex-spaces": true
     ```
 
-* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => no-sparse-arrays (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/18)
+* [no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays) => no-sparse-arrays (tslint-eslint-rules)
   * Description: disallow sparse arrays (recommended)
   * Usage
 

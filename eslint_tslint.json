@@ -4,6 +4,7 @@
     "no-constant-condition": true,
     "valid-typeof": true,
     "use-isnan": true,
-    "no-duplicate-case": true
+    "no-duplicate-case": true,
+    "no-sparse-array": true
   }
 }
