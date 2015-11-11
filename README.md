@@ -102,7 +102,7 @@ The following rules point out areas where you might have made mistakes.
     "no-duplicate-key": true
     ```
 
-* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => no-duplicate-case (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/7)
+* [no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case) => no-duplicate-case (tslint-eslint-rules)
   * Description: disallow a duplicate case label. (recommended)
   * Usage
 
