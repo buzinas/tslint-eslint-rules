@@ -1,5 +1,5 @@
-/// <reference path='../../node_modules/tslint/typings/typescriptServices.d.ts' />
-/// <reference path='../../node_modules/tslint/lib/tslint.d.ts' />
+import * as ts from "tslint/node_modules/typescript";
+import * as Lint from "tslint/lib/lint";
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = 'Unexpected constant condition: ';

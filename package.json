@@ -29,7 +29,7 @@
     "gulp-spawn-mocha": "^2.2.1",
     "gulp-typescript": "^2.9.2",
     "mocha": "^2.3.3",
-    "tslint": "^2.5.1",
+    "tslint": "^3.0.0-dev.2",
     "typescript": "^1.6.2"
   }
 }

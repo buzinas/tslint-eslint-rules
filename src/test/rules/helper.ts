@@ -1,8 +1,5 @@
-/// <reference path='../../../node_modules/tslint/typings/typescriptServices.d.ts' />
-/// <reference path='../../../node_modules/tslint/lib/tslint.d.ts' />
-/// <reference path='../../../typings/node/node.d.ts' />
-const tslint = require('tslint');
-Lint.Linter = tslint;
+import * as ts from "tslint/node_modules/typescript";
+import * as Lint from "tslint/lib/lint";
 
 export function testScript(rule: string, scriptText: string) {
   const config = {

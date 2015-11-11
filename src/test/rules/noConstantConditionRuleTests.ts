@@ -78,7 +78,7 @@ const scripts = {
                 for (;[];) {}`
 };
   
-describe('no-constant-condition', function test() {
+describe(rule, function test() {
   // if-tests
   it('should pass when using variables', function testVariables() {
     const res = testScript(rule, scripts.variables);

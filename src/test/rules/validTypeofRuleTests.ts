@@ -17,7 +17,7 @@ const scripts = {
             if (typeof bar !== "fucntion") {}`
 };
   
-describe('valid-oftype', function test() {
+describe(rule, function test() {
   it('should pass when using valid strings or variables', function testValid() {
     const res = testScript(rule, scripts.valid);
     expect(res).to.be.true;

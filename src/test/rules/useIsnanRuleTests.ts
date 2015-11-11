@@ -23,7 +23,7 @@ const scripts = {
             if (NaN !== NaN) {}`,
 };
   
-describe('use-isnan', function test() {
+describe(rule, function test() {
   it('should pass when using isNaN', function testValid() {
     const res = testScript(rule, scripts.valid);
     expect(res).to.be.true;
