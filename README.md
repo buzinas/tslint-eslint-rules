@@ -243,7 +243,7 @@ The following rules point out areas where you might have made mistakes.
     "no-unreachable": true
     ```
 
-* [use-isnan](http://eslint.org/docs/rules/use-isnan) => use-isnan (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/20)
+* [use-isnan](http://eslint.org/docs/rules/use-isnan) => use-isnan (tslint-eslint-rules)
   * Description: disallow comparisons with the value `NaN` (recommended)
   * Usage
 
