@@ -3,6 +3,7 @@
   "rules": {
     "no-constant-condition": true,
     "valid-typeof": true,
-    "use-isnan": true
+    "use-isnan": true,
+    "no-duplicate-case": true
   }
 }
