@@ -1,36 +1,34 @@
-/// <reference path='../../../typings/chai/chai.d.ts' />
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-
-import {testScript} from './helper';
-import {expect} from 'chai';
+import {makeTest} from './helper';
 
 const rule = 'use-isnan';
 const scripts = {
-  valid: `if (isNaN(foo)) {}
-          if (isNaN(NaN)) {}`,
-
-  invalid: `if (foo == NaN) {}
-            if (foo === NaN) {}
-            if (foo != NaN) {}
-            if (foo !== NaN) {}
-            if (NaN == foo) {}
-            if (NaN === foo) {}
-            if (NaN != foo) {}
-            if (NaN !== foo) {}
-            if (NaN == NaN) {}
-            if (NaN === NaN) {}
-            if (NaN != NaN) {}
-            if (NaN !== NaN) {}`,
+  valid: [
+    'if (isNaN(foo)) {}',
+    'if (isNaN(NaN)) {}'
+  ],
+  invalid: [
+    'if (foo == NaN) {}',
+    'if (foo === NaN) {}',
+    'if (foo != NaN) {}',
+    'if (foo !== NaN) {}',
+    'if (NaN == foo) {}',
+    'if (NaN === foo) {}',
+    'if (NaN != foo) {}',
+    'if (NaN !== foo) {}',
+    'if (NaN == NaN) {}',
+    'if (NaN === NaN) {}',
+    'if (NaN != NaN) {}',
+    'if (NaN !== NaN) {}'
+  ]
 };
   
 describe(rule, function test() {
   it('should pass when using isNaN', function testValid() {
-    const res = testScript(rule, scripts.valid);
-    expect(res).to.equal(0);
+    makeTest(rule, scripts.valid, true);
   });
   
   it('should fail when comparing to NaN', function testInvalid() {
-    const res = testScript(rule, scripts.invalid);
-    expect(res).to.equal(12);
+    makeTest(rule, scripts.invalid, false);
   });
 });
