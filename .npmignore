@@ -1,0 +1,16 @@
+.vscode
+.idea
+.vs
+dist/test
+node_modules
+src
+typings
+.editorconfig
+.gitignore
+.npmignore
+.travis.yml
+eslint_tslint.json
+gulpfile.js
+jsconfig.json
+tsconfig.json
+tslint.json

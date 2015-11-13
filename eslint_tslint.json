@@ -1,5 +1,4 @@
 {
-  "rulesDirectory": "dist/rules",
   "rules": {
     "no-constant-condition": true,
     "valid-typeof": true,

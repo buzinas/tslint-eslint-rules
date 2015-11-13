@@ -1,8 +1,8 @@
-import * as ts from "tslint/node_modules/typescript";
-import * as Lint from "tslint/lib/lint";
+/// <reference path='helper.d.ts' />
+// import {ts, Lint} from './helper';
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static FAILURE_STRING = 'Invalid typeof comparison value: ';
+  public static FAILURE_STRING = 'invalid typeof comparison value';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new ValidTypeofWalker(sourceFile, this.getOptions());

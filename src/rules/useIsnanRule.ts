@@ -1,8 +1,8 @@
-import * as ts from "tslint/node_modules/typescript";
-import * as Lint from "tslint/lib/lint";
+/// <reference path='helper.d.ts' />
+// import {ts, Lint} from './helper';
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static FAILURE_STRING = 'Use the isNaN function to compare with NaN: ';
+  public static FAILURE_STRING = 'use the isNaN function to compare with NaN';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new UseIsnanWalker(sourceFile, this.getOptions());

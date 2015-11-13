@@ -1,6 +1,6 @@
 {
   "name": "tslint-eslint-rules",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,9 @@
     "gulp-spawn-mocha": "^2.2.1",
     "gulp-typescript": "^2.9.2",
     "mocha": "^2.3.3",
-    "tslint": "^3.0.0-dev.2",
     "typescript": "^1.6.2"
+  },
+  "dependencies": {
+    "tslint": "^2.5.1"
   }
 }

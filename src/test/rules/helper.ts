@@ -1,7 +1,10 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
+/// <reference path='../../rules/helper.d.ts' />
+
 import {expect} from 'chai';
-import * as ts from "tslint/node_modules/typescript";
-import * as Lint from "tslint/lib/lint";
+// import {Lint} from '../../rules/helper';
+const tslint = require('tslint');
+Lint.Linter = tslint;
 
 export function testScript(rule: string, scriptText: string) : boolean {
   const config = {

@@ -8,13 +8,13 @@ const mocha = require('gulp-spawn-mocha');
 
 const SRC_FOLDER = 'src/**/*.ts';
 const DEF_FOLDER = 'typings/**/*.ts'
-const project = ts.createProject('tsconfig.json');
+const TS_CONFIG = ts.createProject('tsconfig.json');
 
 gulp.task('build', function build() {
   return gulp
     .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es6.d.ts'])
     .pipe(sourcemaps.init())
-    .pipe(ts(project))
+    .pipe(ts(TS_CONFIG))
     .pipe(sourcemaps.write({
       includeContent: false,
       sourceRoot: path.join(__dirname, '/src')
@@ -33,3 +33,10 @@ gulp.task('watch', function watch() {
 });
 
 gulp.task('default', ['build', 'test', 'watch']);
+
+gulp.task('publish', function build() {
+  return gulp
+    .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es6.d.ts'])
+    .pipe(ts(TS_CONFIG))
+    .pipe(gulp.dest('dist'));
+});

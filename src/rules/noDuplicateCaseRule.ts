@@ -1,8 +1,8 @@
-import * as ts from "tslint/node_modules/typescript";
-import * as Lint from "tslint/lib/lint";
+/// <reference path='helper.d.ts' />
+// import {ts, Lint} from './helper';
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static FAILURE_STRING = 'Duplicate case label: ';
+  public static FAILURE_STRING = 'duplicate case label';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new NoDuplicateCaseWalker(sourceFile, this.getOptions());
