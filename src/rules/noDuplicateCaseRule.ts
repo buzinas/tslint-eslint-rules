@@ -17,17 +17,16 @@ class NoDuplicateCaseWalker extends Lint.RuleWalker {
   }
   
   private validateNoDupeCase(node: ts.SwitchStatement) {
-    const mapping = {};
-    let defaultCases = 0;
+    const cases = new Map<string, ts.CaseClause>();
     
     node.caseBlock.clauses.forEach((clause) => {
       if (clause.kind == ts.SyntaxKind.CaseClause) {
         const key = clause.getText();
-        if (mapping[key]) {
+        if (cases.has(key)) {
           this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
         }
         else {
-          mapping[key] = clause;
+          cases.set(key, clause);
         }
       }
     });

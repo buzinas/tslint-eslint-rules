@@ -5,6 +5,7 @@
     "valid-typeof": true,
     "use-isnan": true,
     "no-duplicate-case": true,
-    "no-sparse-array": true
+    "no-sparse-array": true,
+    "no-extra-semi": true
   }
 }

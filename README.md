@@ -160,7 +160,7 @@ The following rules point out areas where you might have made mistakes.
     ]
     ```
 
-* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => no-extra-semi (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/12)
+* [no-extra-semi](http://eslint.org/docs/rules/no-extra-semi) => no-extra-semi (tslint-eslint-rules)
   * Description: disallow unnecessary semicolons (recommended)
   * Usage
 
