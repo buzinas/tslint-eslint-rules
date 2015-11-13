@@ -1,0 +1,20 @@
+{
+	"version": "0.1.0",
+	"configurations": [
+		{
+			"name": "test",
+			"type": "node",
+			"program": "node_modules/mocha/bin/_mocha",
+			"stopOnEntry": false,
+			"args": ["dist/test/**/*.js"],
+			"cwd": ".",
+			"runtimeExecutable": null,
+      "preLaunchTask": "build",
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"sourceMaps": true,
+			"outDir": "src"
+		}
+	]
+}
