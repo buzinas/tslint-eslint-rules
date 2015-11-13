@@ -1,3 +1,11 @@
+[![Build Status](https://travis-ci.org/buzinas/tslint-eslint-rules.svg)](https://travis-ci.org/buzinas/tslint-eslint-rules)
+[![Total Downloads](https://img.shields.io/npm/dt/tslint-eslint-rules.svg)](https://www.npmjs.com/package/tslint-eslint-rules)
+[![Downloads per Month](https://img.shields.io/npm/dm/tslint-eslint-rules.svg)](https://www.npmjs.com/package/tslint-eslint-rules)
+[![NPM Version](https://img.shields.io/npm/v/tslint-eslint-rules.svg)](https://www.npmjs.com/package/tslint-eslint-rules)
+[![License](https://img.shields.io/npm/l/tslint-eslint-rules.svg)](LICENSE)
+[![Shields.io](https://img.shields.io/badge/badges%20by-shields.io-ff69b4.svg)](https://shields.io/)
+
+
 # ESLint rules for TSLint
 
 ## Improve your TSLint with the missing ESLint Rules

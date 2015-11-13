@@ -1,6 +1,6 @@
 {
   "name": "tslint-eslint-rules",
-  "version": "0.1.8",
+  "version": "0.2.1",
   "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "linter",
     "tslint-plugin"
   ],
-  "author": "Vitor Buzinaro",
+  "author": "Vitor Buzinaro <buzinas@buzinas.com>",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.1",
