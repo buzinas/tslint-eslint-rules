@@ -69,9 +69,9 @@ npm install --save-dev tslint-eslint-rules
 
 - #### Atom (`linter-tslint`)
 
-  It's not possible to use custom rules using the `linter-tslint` plugin at this moment.
+  We contributed to the `linter-tslint` Atom's plugin, by adding the "Custom rules directory" feature.
   
-  We already [created an issue for them](https://github.com/AtomLinter/linter-tslint/issues/36), but unfortunately, the codebase is in CoffeeScript, and we can't help with a pull request.
+  ![Atom configuration](src/docs/img/tslint-eslint-rules_atom.png)
 
 - ### Sublime Text (`SublimeLinter-contrib-tslint`)
 
@@ -112,7 +112,7 @@ The following rules point out areas where you might have made mistakes.
     "trailing-comma": [
       true,
       {
-        "multiline": "always",
+        "multiline": "never",
         "singleline": "never"
       }
     ]
