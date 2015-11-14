@@ -14,33 +14,33 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
   private isInConditional = false;
 
   protected visitIfStatement(node: ts.IfStatement) {
-    this.validateConditionalExpression(node.expression);
+    this.validateCondition(node.expression);
     super.visitIfStatement(node);
   }
 
   protected visitWhileStatement(node: ts.WhileStatement) {
-    this.validateConditionalExpression(node.expression);
+    this.validateCondition(node.expression);
     super.visitWhileStatement(node);
   }
 
   protected visitDoStatement(node: ts.DoStatement) {
-    this.validateConditionalExpression(node.expression);
+    this.validateCondition(node.expression);
     super.visitDoStatement(node);
   }
 
   protected visitForStatement(node: ts.ForStatement) {
     if (node.condition != null) {
-      this.validateConditionalExpression(node.condition);
+      this.validateCondition(node.condition);
     }
     super.visitForStatement(node);
   }
 
   protected visitConditionalExpression(node: ts.ConditionalExpression): void {
-    this.validateConditionalExpression(node.condition);
+    this.validateCondition(node.condition);
     super.visitConditionalExpression(node);
   }
 
-  private validateConditionalExpression(expression: ts.Expression) {
+  private validateCondition(expression: ts.Expression) {
     this.isInConditional = true;
     if (this.isConstant(expression)) {
       this.addFailure(this.createFailure(expression.getStart(), expression.getWidth(), Rule.FAILURE_STRING));
@@ -49,7 +49,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
     this.walkChildren(expression);
     this.isInConditional = false;
   }
-  
+
   private isConstant(node: ts.Node) {
     switch (node.kind) {
       // ESLint Literal
@@ -80,10 +80,10 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
       case ts.SyntaxKind.ConditionalExpression:
         return this.isConstant((node as ts.ConditionalExpression).condition);
     }
-  
+
     return false;
   }
-  
+
   private isAssignmentToken(token: ts.Node) {
     return token.kind >= ts.SyntaxKind.FirstAssignment && token.kind <= ts.SyntaxKind.LastAssignment;
   }

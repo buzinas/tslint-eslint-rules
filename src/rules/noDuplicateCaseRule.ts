@@ -12,13 +12,13 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class NoDuplicateCaseWalker extends Lint.RuleWalker {
   protected visitSwitchStatement(node: ts.SwitchStatement) {
-    this.validateNoDupeCase(node);    
+    this.validateNoDupeCase(node);
     super.visitSwitchStatement(node);
   }
-  
+
   private validateNoDupeCase(node: ts.SwitchStatement) {
     const cases = new Map<string, ts.CaseClause>();
-    
+
     node.caseBlock.clauses.forEach((clause) => {
       if (clause.kind == ts.SyntaxKind.CaseClause) {
         const key = clause.getText();
