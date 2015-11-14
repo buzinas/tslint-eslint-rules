@@ -301,7 +301,7 @@ The following rules point out areas where you might have made mistakes.
     "no-sparse-arrays": true
     ```
 
-* [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => no-unexpected-multiline (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/19)
+* [no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline) => no-unexpected-multiline (tslint-eslint-rules)
   * Description: Avoid code that looks like two expressions but is actually one
   * Usage
 

@@ -13,10 +13,11 @@ export class Rule extends Lint.Rules.AbstractRule {
 class NoExAssignWalker extends Lint.RuleWalker {
   isInCatchClause = false;
   currentIdentifier: ts.Identifier = null;
-  
+
   protected visitCatchClause(node: ts.CatchClause) {
     this.isInCatchClause = true;
-    super.visitCatchClause(node);this.currentIdentifier = null;
+    super.visitCatchClause(node);
+    this.currentIdentifier = null;
     this.isInCatchClause = false;
   }
 
