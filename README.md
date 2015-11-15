@@ -2373,12 +2373,13 @@ If you didn't find the rule, you can also create an ESLint custom rule for TSLin
   - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix, e.g: noIfUsageRuleTests.ts)
 - Check if all the tests are passing
 - Commit the changes to your repo with the following convention:
-  - Example: `[feat] added use-isnan rule (ref #20)`
+  - Example: `[feat] added use-isnan rule (closes #20)`
 - Finally, open a Pull Request
 
-You can also contribute with PRs for fixing bugs, or improving performance. The commit convention for these are, respectively:
-- Example: `[bug] fixed no-constant-condition rule (ref #9)`
-- Example: `[perf] improved valid-typeof rule (ref #48)`
+You can also contribute with PRs for fixing bugs, or improving documentation, performance. The commit convention for these are, respectively:
+- Example: `[bug] fixed no-constant-condition rule (closes #9)`
+- Example: `[docs] improved README.md file (closes #32)`
+- Example: `[perf] improved valid-typeof rule (closes #48)`
 
 
 ## LICENSE
