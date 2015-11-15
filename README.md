@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/buzinas/tslint-eslint-rules.svg)](https://travis-ci.org/buzinas/tslint-eslint-rules)
-[![Total Downloads](https://img.shields.io/npm/dt/tslint-eslint-rules.svg)](https://www.npmjs.com/package/tslint-eslint-rules)
 [![Downloads per Month](https://img.shields.io/npm/dm/tslint-eslint-rules.svg)](https://www.npmjs.com/package/tslint-eslint-rules)
 [![NPM Version](https://img.shields.io/npm/v/tslint-eslint-rules.svg)](https://www.npmjs.com/package/tslint-eslint-rules)
-[![License](https://img.shields.io/npm/l/tslint-eslint-rules.svg)](LICENSE)
+[![ZenHub](https://img.shields.io/badge/supercharged%20by-ZenHub.io-3F4D9C.svg)](https://zenhub.io/)
 [![Shields.io](https://img.shields.io/badge/badges%20by-shields.io-ff69b4.svg)](https://shields.io/)
+[![License](https://img.shields.io/npm/l/tslint-eslint-rules.svg)](LICENSE)
 
 
 # ESLint rules for TSLint
@@ -28,10 +28,41 @@ npm install --save-dev tslint-eslint-rules
 ```
 
 ### Configure TSLint to use `tslint-eslint-rules` folder:
+- #### TSLint configuration file (tsconfig.json) - **RECOMMENDED**
+
+  We contributed to the `palantir/tslint` repository, by adding the option of using the `rulesDirectory` property inside your `tsconfig.json` file, e.g:
+
+  ```json
+  {
+    "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
+    "rules": {
+      "no-constant-condition": true
+    }
+  }
+  ```
+
+  You can also pass an array of strings to the `rulesDirectory` property to combine this plugin with other community custom rules.
+
+  The options below, you should only use when not using this one.
+
 - #### TSLint CLI
 
   ```console
   tslint [file] -r node_modules/tslint-eslint-rules/dist/rules
+  ```
+
+- #### TSLint Library ([read more](https://github.com/palantir/tslint#library-1))
+
+  ```javascript
+  const options = {
+    formatter: "json",
+    configuration: configuration,
+    rulesDirectory: 'node_modules/tslint-eslint-rules/dist/rules'
+    formattersDirectory: ''
+  };
+
+  let linter = new Linter(fileName, contents, options);
+  let result = linter.lint();
   ```
 
 - #### Gulp (`gulp-tslint`)
@@ -2331,15 +2362,23 @@ Bugs, rules requests, doubts etc., open a Github Issue.
 
 If you didn't find the rule, you can also create an ESLint custom rule for TSLint:
 
-- Forking this repo
-- Run `npm isntall`
+- Open an issue asking for the rule
+- Fork this repository
+- Create a branch with the rule name, e.g: no-if-usage
+- Run `npm install`
 - Run `gulp` to run the tests and watch for file changes
 - Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convetion:
-  - Name: rule-name (hyphenated)
-  - File: ruleNameRule.ts (camelCased and with the `Rule` suffix)
-  - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix)
+  - Name: rule-name (hyphenated, e.g: no-if-usage)
+  - File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: noIfUsageRule.ts)
+  - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix, e.g: noIfUsageRuleTests.ts)
 - Check if all the tests are passing
-- Commit the changes to your repo and open a Pull Request
+- Commit the changes to your repo with the following convention:
+  - Example: `[feat] added use-isnan rule (ref #20)`
+- Finally, open a Pull Request
+
+You can also contribute with PRs for fixing bugs, or improving performance. The commit convention for these are, respectively:
+- Example: `[bug] fixed no-constant-condition rule (ref #9)`
+- Example: `[perf] improved valid-typeof rule (ref #48)`
 
 
 ## LICENSE
