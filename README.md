@@ -180,7 +180,7 @@ The following rules point out areas where you might have made mistakes.
     "no-constant-condition": true
     ```
 
-* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => no-control-regex (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/5)
+* [no-control-regex](http://eslint.org/docs/rules/no-control-regex) => no-control-regex (tslint-eslint-rules)
   * Description: disallow control characters in regular expressions (recommended)
   * Usage
 

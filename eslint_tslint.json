@@ -12,6 +12,7 @@
     "no-invalid-regexp": true,
     "no-inner-declarations": [true, "both"],
     "no-regex-spaces": true,
-    "no-empty-character-class": true
+    "no-empty-character-class": true,
+    "no-control-regex": true
   }
 }

@@ -30,7 +30,7 @@ class NoInvalidRegexpWalker extends Lint.RuleWalker {
           const regex = new RegExp(expr, flags);
         }
         catch(e) {
-          this.addFailure(this.createFailure(node.getStart(), node.getWidth(), e.message.slice(0, 1).toLowerCase() + e.message.slice(1)));
+          this.addFailure(this.createFailure(node.getStart(), node.getWidth(), e.message));
         }
       }
     }

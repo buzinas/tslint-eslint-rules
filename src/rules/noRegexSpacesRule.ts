@@ -15,7 +15,7 @@ class NoRegexSpacesWalker extends Lint.RuleWalker {
   }
 
   private validateMultipleSpaces(node: ts.LiteralExpression) {
-    const res = /( {2,})+?/.exec(node.getText());
+    const res = /( {2,})+?/.exec(node.text);
     if (res) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), `spaces are hard to count - use {${res[0].length}}`));
     }
