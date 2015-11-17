@@ -1,5 +1,18 @@
 ## Change Log
 
+### v0.2.6 (2015/11/17 12:07 +00:00)
+- [#35](https://github.com/buzinas/tslint-eslint-rules/pull/35) Merge pull request #35 from buzinas/regex-rules (@buzinas)
+- [17c66cf](https://github.com/buzinas/tslint-eslint-rules/commit/17c66cf8bf0590d1a138326ef54c0c10a8cbd71d) [feat] added no-control-regex rule, improved other regexes (closes #5) (@buzinas)
+- [1eb3425](https://github.com/buzinas/tslint-eslint-rules/commit/1eb34253bc16ceb05c061fa5de0dd5d2d8f9054b) [feat] added no-empty-character-class rule (closes #8) (@buzinas)
+- [c92f89e](https://github.com/buzinas/tslint-eslint-rules/commit/c92f89e31a10eb97660fd2310ec6718fcab3b3b4) [feat] added no-regex-spaces rule (closes #17) (@buzinas)
+
+### v0.2.5 (2015/11/17 11:11 +00:00)
+- [8aed7e3](https://github.com/buzinas/tslint-eslint-rules/commit/8aed7e39d0490a1af1272e1733d5a8ba4cdc2a2e) [feat] added no-inner-declarations rule (closes #15) (@buzinas)
+- [#34](https://github.com/buzinas/tslint-eslint-rules/pull/34) Merge pull request #34 from buzinas/no-inner-declarations-rule (@buzinas)
+- [9528cf8](https://github.com/buzinas/tslint-eslint-rules/commit/9528cf8979dd1a4fa0bc8d3cd870ce4ce0b8a0c9) [feat] added no-inner-declarations rule (closes #15) (@buzinas)
+- [2840c26](https://github.com/buzinas/tslint-eslint-rules/commit/2840c26da237d194e3636e37828c94a759585179) Merge branch 'refs/heads/no-invalid-regexp-rule' (@buzinas)
+- [b2ff581](https://github.com/buzinas/tslint-eslint-rules/commit/b2ff581f29eb1edd53ca1daa961c2ccc4694b8c8) [docs] updated CHANGELOG for v0.2.4 (@buzinas)
+
 ### v0.2.4 (2015/11/17 01:01 +00:00)
 - [#33](https://github.com/buzinas/tslint-eslint-rules/pull/33) Merge pull request #33 from buzinas/no-invalid-regexp-rule (@buzinas)
 - [7c2f010](https://github.com/buzinas/tslint-eslint-rules/commit/7c2f0104696f85b03ead14f771406c4845cec819) [feat] added no-invalid-regexp rule (closes #13) (@buzinas)
