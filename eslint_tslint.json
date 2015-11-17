@@ -10,6 +10,9 @@
     "no-ex-assign": true,
     "no-unexpected-multiline": true,
     "no-invalid-regexp": true,
-    "no-inner-declarations": [true, "both"]
+    "no-inner-declarations": [true, "both"],
+    "no-regex-spaces": true,
+    "no-empty-character-class": true,
+    "no-control-regex": true
   }
 }
