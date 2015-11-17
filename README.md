@@ -276,7 +276,7 @@ The following rules point out areas where you might have made mistakes.
 * [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => not applicable to TypeScript
   * Description: disallow overwriting functions written as function declarations (recommended)
 
-* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => no-inner-declarations (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/15)
+* [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => no-inner-declarations (tslint-eslint-rules)
   * Description: disallow function or variable declarations in nested blocks (recommended)
   * Usage
 
