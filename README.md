@@ -294,7 +294,7 @@ The following rules point out areas where you might have made mistakes.
     ]
     ```
 
-* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => no-invalid-regex (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/13)
+* [no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp) => no-invalid-regex (tslint-eslint-rules)
   * Description: disallow invalid regular expression strings in the `RegExp` constructor (recommended)
   * Usage
 

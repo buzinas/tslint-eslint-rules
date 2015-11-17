@@ -8,6 +8,7 @@
     "no-extra-semi": true,
     "no-extra-boolean-cast": true,
     "no-ex-assign": true,
-    "no-unexpected-multiline": true
+    "no-unexpected-multiline": true,
+    "no-invalid-regexp": true
   }
 }
