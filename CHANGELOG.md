@@ -1,5 +1,11 @@
 ## Change Log
 
+### v0.2.4 (2015/11/17 01:01 +00:00)
+- [#33](https://github.com/buzinas/tslint-eslint-rules/pull/33) Merge pull request #33 from buzinas/no-invalid-regexp-rule (@buzinas)
+- [7c2f010](https://github.com/buzinas/tslint-eslint-rules/commit/7c2f0104696f85b03ead14f771406c4845cec819) [feat] added no-invalid-regexp rule (closes #13) (@buzinas)
+- [63b0536](https://github.com/buzinas/tslint-eslint-rules/commit/63b053653c2234b531ee233185fdb07d3bd04545) [docs] improved README with commit conventions (closes #32) (@buzinas)
+- [719bfe0](https://github.com/buzinas/tslint-eslint-rules/commit/719bfe091c6608ec284d7a3e3b9ec21d2a47a5ad) [docs] added CHANGELOG and improved README (ref #32) (@buzinas)
+
 ### v0.2.3 (2015/11/14 15:02 +00:00)
 - [2ad0d8b](https://github.com/buzinas/tslint-eslint-rules/commit/2ad0d8b0c464d23ed4d2a0735368341df0def496) Fixed #19 - added no-unexpected-multiline rule (@buzinas)
 - [9292423](https://github.com/buzinas/tslint-eslint-rules/commit/9292423a033abb75ddcd5ade48f5026861273e05) Fixed #10 - added no-ex-assign rule (and improved other rules) (@buzinas)
