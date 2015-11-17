@@ -19,7 +19,6 @@ class NoInnerDeclarationsWalker extends Lint.RuleWalker {
 
   protected visitVariableStatement(node: ts.VariableStatement) {
     if (this.hasOption('both') && node.declarationList.getFirstToken().kind === ts.SyntaxKind.VarKeyword) {
-      debugger;
       this.validateInnerDeclaration(node);
     }
     super.visitVariableStatement(node);

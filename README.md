@@ -316,7 +316,7 @@ The following rules point out areas where you might have made mistakes.
 * [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => not applicable to TypeScript
   * Description: disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)
 
-* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => no-regex-spaces (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/17)
+* [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => no-regex-spaces (tslint-eslint-rules)
   * Description: disallow multiple spaces in a regular expression literal (recommended)
   * Usage
 
