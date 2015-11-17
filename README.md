@@ -215,7 +215,7 @@ The following rules point out areas where you might have made mistakes.
     "no-duplicate-case": true
     ```
 
-* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => no-empty-character-class (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/8)
+* [no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class) => no-empty-character-class (tslint-eslint-rules)
   * Description: disallow the use of empty character classes in regular expressions (recommended)
   * Usage
 
