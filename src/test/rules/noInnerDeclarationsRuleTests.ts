@@ -41,7 +41,7 @@ const scripts = {
 };
 
 describe(rule, function test() {
-  it('should pass when not using inner declaration functions', function testValid() {
+  it('should pass when not using inner declaration functions', function testValidFunctions() {
     makeTest(rule, scripts.validFunctions, true, {
       rules: {
         [rule]: [true, 'functions']
@@ -49,7 +49,7 @@ describe(rule, function test() {
     });
   });
 
-  it('should pass when not using inner declaration functions and variables', function testValid() {
+  it('should pass when not using inner declaration functions and variables', function testValidFunctionsAndVariables() {
     makeTest(rule, scripts.validBoth, true, {
       rules: {
         [rule]: [true, 'both']
@@ -57,7 +57,7 @@ describe(rule, function test() {
     });
   });
 
-  it('should fail when using inner declaration functions', function testInvalid() {
+  it('should fail when using inner declaration functions', function testInvalidFunctions() {
     makeTest(rule, scripts.invalidFunctions, false, {
       rules: {
         [rule]: [true, 'functions']
@@ -65,7 +65,7 @@ describe(rule, function test() {
     });
   });
 
-  it('should fail when using inner declaration functions or variables', function testInvalid() {
+  it('should fail when using inner declaration functions or variables', function testInvalidFunctionsAndVariables() {
     makeTest(rule, scripts.invalidBoth, false, {
       rules: {
         [rule]: [true, 'both']
