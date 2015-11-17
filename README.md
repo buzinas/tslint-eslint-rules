@@ -302,7 +302,7 @@ The following rules point out areas where you might have made mistakes.
     "no-invalid-regexp": true
     ```
 
-* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => no-irregular-whitespace (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/14)
+* [no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace) => no-irregular-whitespace (tslint-eslint-rules)
   * Description: disallow irregular whitespace outside of strings and comments (recommended)
   * Usage
 
