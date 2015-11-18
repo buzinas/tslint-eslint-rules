@@ -14,7 +14,6 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoUnexpectedMultilineWalker extends Lint.RuleWalker {
-
   protected visitNode(node: ts.Node) {
     this.validateMultiline(node);
     super.visitNode(node);

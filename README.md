@@ -841,7 +841,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```
 * [no-octal](http://eslint.org/docs/rules/no-octal) => not applicable to TypeScript
   * Description: disallow use of octal literals (recommended)
- 
+
 * [no-param-reassign](http://eslint.org/docs/rules/no-param-reassign) =>
   * Description: disallow reassignment of function parameters
   * Usage
@@ -887,7 +887,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-duplicate-variable": true
     "no-redeclare-builtin-globals": true // For the option `builtinGlobals: true`
     ```
-    
+
 * [no-return-assign](http://eslint.org/docs/rules/no-return-assign) =>
   * Description: disallow use of assignment in `return` statement
   * Usage
@@ -1118,7 +1118,7 @@ These rules have to do with variable declarations.
     ```
 * [no-delete-var](http://eslint.org/docs/rules/no-delete-var) => not applicable to TypeScript
   * Description: disallow deletion of variables (recommended)
-    
+
 * [no-label-var](http://eslint.org/docs/rules/no-label-var) =>
   * Description: disallow labels that share a name with a variable
   * Usage
@@ -1169,7 +1169,7 @@ These rules have to do with variable declarations.
     ```
 * [no-undef](http://eslint.org/docs/rules/no-undef) => not applicable to TypeScript
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
- 
+
 * [no-undefined](http://eslint.org/docs/rules/no-undefined) =>
   * Description: disallow use of `undefined` variable
   * Usage
@@ -1182,7 +1182,7 @@ These rules have to do with variable declarations.
         }
       ]
     ```
-    
+
 * [no-unused-vars](http://eslint.org/docs/rules/no-unused-vars) => no-unused-variable (native)
   * Description: disallow declaration of variables that are not used in the code (recommended)
   * Usage
@@ -1190,7 +1190,7 @@ These rules have to do with variable declarations.
     ```json
     "no-unused-variable": true
     ```
-    
+
 * [no-use-before-define](http://eslint.org/docs/rules/no-use-before-define) =>
   * Description: disallow use of variables before they are defined
   * Usage
@@ -1634,15 +1634,23 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-    
-* [no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs) => no-mixed-spaces-and-tabs (tslint-eslint-rules) [TODO](https://github.com/buzinas/tslint-eslint-rules/issues/38)
+
+* [no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs) => ident (native)
   * Description: disallow mixed spaces and tabs for indentation (recommended)
   * Usage
 
     ```json
-    "no-mixed-spaces-and-tabs": true
+    "ident": "spaces"
     ```
-    
+
+    or
+
+    ```json
+    "ident": "tabs"
+    ```
+
+    Note: When using TSLint `ident` rule, it will enforce the consistent use of the chosen identation. The ESLint rule allows an option for Smart Tabs, but there are some open issues, and we're not going to support this.
+
 * [no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines) =>
   * Description: disallow multiple empty lines
   * Usage
@@ -1655,7 +1663,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
-    
+
 * [no-negated-condition](http://eslint.org/docs/rules/no-negated-condition) =>
   * Description: disallow negated conditions
   * Usage
