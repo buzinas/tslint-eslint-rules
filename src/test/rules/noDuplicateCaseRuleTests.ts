@@ -84,20 +84,20 @@ const scripts = {
      }`
   ]
 };
-  
-describe(rule, function test() {  
+
+describe(rule, function test() {
   it('should pass when there is no duplicate cases', function testNoDupes() {
     makeTest(rule, scripts.noDupes, true);
   });
-  
+
   it('should fail when there is duplicate numbers', function testDupNumbers() {
     makeTest(rule, scripts.duplicateNumbers, false);
   });
-  
+
   it('should fail when there is duplicate strings', function testDupStrings() {
     makeTest(rule, scripts.duplicateStrings, false);
   });
-  
+
   it('should fail when there is duplicate variables', function testDupVariables() {
     makeTest(rule, scripts.duplicateVariables, false);
   });

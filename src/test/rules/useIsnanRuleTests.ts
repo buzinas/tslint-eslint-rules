@@ -22,12 +22,12 @@ const scripts = {
     'if (NaN !== NaN) {}'
   ]
 };
-  
+
 describe(rule, function test() {
   it('should pass when using isNaN', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
-  
+
   it('should fail when comparing to NaN', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });

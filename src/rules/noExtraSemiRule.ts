@@ -11,31 +11,37 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoExtraSemiWalker extends Lint.RuleWalker {
-  ALLOWED_PARENT_TYPES = [ts.SyntaxKind.ForStatement, ts.SyntaxKind.ForInStatement, ts.SyntaxKind.ForOfStatement, ts.SyntaxKind.WhileStatement, ts.SyntaxKind.DoStatement];
-  
+  private ALLOWED_PARENT_TYPES = [
+    ts.SyntaxKind.ForStatement,
+    ts.SyntaxKind.ForInStatement,
+    ts.SyntaxKind.ForOfStatement,
+    ts.SyntaxKind.WhileStatement,
+    ts.SyntaxKind.DoStatement
+  ];
+
   protected visitNode(node: ts.Node) {
     if (node.kind === ts.SyntaxKind.EmptyStatement) {
       this.visitEmptyStatement(node as ts.Statement);
     }
     super.visitNode(node);
   }
-  
+
   protected visitClassDeclaration(node: ts.ClassDeclaration) {
     this.checkClass(node);
     super.visitClassDeclaration(node);
   }
-  
+
   private visitEmptyStatement(node: ts.Statement) {
     if (this.ALLOWED_PARENT_TYPES.indexOf(node.parent.kind) === -1) {
       this.validateNoExtraSemi(node);
     }
   }
-  
+
   private checkClass(node: ts.ClassDeclaration) {
     const children = node.getChildren().slice(node.getChildren().indexOf(node.getChildren().find(child => child.kind === ts.SyntaxKind.FirstPunctuation)));
     this.checkClassChildren(children);
   }
-  
+
   private checkClassChildren(children: Array<ts.Node>) {
     for (let child of children) {
       if ((child.kind === ts.SyntaxKind.SyntaxList || child.kind === ts.SyntaxKind.SemicolonClassElement) && child.getText() === ';') {
@@ -46,7 +52,7 @@ class NoExtraSemiWalker extends Lint.RuleWalker {
       }
     }
   }
-  
+
   private validateNoExtraSemi(node: ts.Node) {
     this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
   }

@@ -3,10 +3,10 @@
 
 import {expect} from 'chai';
 // import {Lint} from '../../rules/helper';
-const tslint = require('tslint');
+import tslint = require('tslint');
 Lint.Linter = tslint;
 
-export function testScript(rule: string, scriptText: string, config: Object) : boolean {
+export function testScript(rule: string, scriptText: string, config: Object): boolean {
   const options: Lint.ILinterOptions = {
     formatter: 'json',
     configuration: config,

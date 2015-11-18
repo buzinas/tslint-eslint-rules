@@ -90,61 +90,61 @@ const scripts = {
     'for (;[];) {}'
   ]
 };
-  
+
 describe(rule, function test() {
   // if-tests
   it('should pass when using variables', function testVariables() {
     makeTest(rule, scripts.variables, true);
   });
-  
+
   it('should fail with literal booleans', function testBooleans() {
     makeTest(rule, scripts.booleans, false);
   });
-  
+
   it('should fail with literal numbers', function testNumbers() {
     makeTest(rule, scripts.numbers, false);
   });
-  
+
   it('should fail with literal objects', function testObjects() {
     makeTest(rule, scripts.objects, false);
   });
-  
+
   it('should fail with literal arrays', function testArrays() {
     makeTest(rule, scripts.arrays, false);
   });
-  
+
   it('should fail with literal on both sides of a binary expression', function testBinary() {
     makeTest(rule, scripts.binary, false);
   });
-  
+
   // ternary tests
   it('should fail on ternary literals (booleans / numbers)', function testTernary() {
     makeTest(rule, scripts.ternary, false);
   });
-  
+
   // while-tests
   it('should pass on while variables', function testWhileVariables() {
     makeTest(rule, scripts.whileVars, true);
   });
-  
+
   it('should fail on while literals', function testWhileLiterals() {
     makeTest(rule, scripts.whileLiterals, false);
   });
-  
+
   // do-while-tests
   it('should pass on do-while variables', function testDoWhileVariables() {
     makeTest(rule, scripts.doWhileVars, true);
   });
-  
+
   it('should fail on do-while literals', function testDoWhileLiterals() {
     makeTest(rule, scripts.doWhileLiterals, false);
   });
-  
+
   // for-tests
   it('should pass on for variables', function testForVariables() {
     makeTest(rule, scripts.forVars, true);
   });
-  
+
   it('should fail on for literals', function testForLiterals() {
     makeTest(rule, scripts.forLiterals, false);
   });

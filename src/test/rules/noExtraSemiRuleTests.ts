@@ -46,55 +46,55 @@ const scripts = {
     `
       class A {
         ; a() {
-          
+
         }
       }
     `,
     `
       class A {
         a() {
-          
+
         };
       }
     `,
     `
       class A {
         a() {
-          
+
         };
         b() {
-          
+
         }
       }
     `,
     `
       class A {
         ; a() {
-          
+
         };
         b() {
-          
+
         };
       }
     `,
     `
       class A {
         a() {
-          
+
         };
         get b() {
-          
+
         }
       }
     `
   ]
 };
-  
+
 describe(rule, function test() {
   it('should pass when no extra-semi colons exist', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
-  
+
   it('should fail when there are extra semi-colons', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });

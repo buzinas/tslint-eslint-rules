@@ -12,8 +12,8 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoIrregularWhitespaceWalker extends Lint.RuleWalker {
-  IRREGULAR_WHITESPACE = /[\u0085\u00A0\ufeff\f\v\u00a0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u202f\u205f\u3000]+/mg;
-  IRREGULAR_LINE_TERMINATORS = /[\u2028\u2029]/mg;
+  private IRREGULAR_WHITESPACE = /[\u0085\u00A0\ufeff\f\v\u00a0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u202f\u205f\u3000]+/mg;
+  private IRREGULAR_LINE_TERMINATORS = /[\u2028\u2029]/mg;
 
   protected visitSourceFile(node: ts.SourceFile) {
     // validate all the errors once when starting

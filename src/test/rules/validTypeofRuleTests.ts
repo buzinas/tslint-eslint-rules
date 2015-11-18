@@ -17,12 +17,12 @@ const scripts = {
     'if (typeof bar !== "fucntion") {}'
   ]
 };
-  
-describe(rule, function test() {  
+
+describe(rule, function test() {
   it('should pass when using valid strings or variables', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
-  
+
   it('should fail when using invalid strings', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });
