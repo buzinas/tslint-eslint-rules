@@ -29,7 +29,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
   }
 
   protected visitForStatement(node: ts.ForStatement) {
-    if (node.condition != null) {
+    if (node.condition) {
       this.validateCondition(node.condition);
     }
     super.visitForStatement(node);

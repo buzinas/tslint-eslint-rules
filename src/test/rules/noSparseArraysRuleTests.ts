@@ -16,11 +16,11 @@ const scripts = {
   ]
 };
 
-describe(rule, function test() {  
+describe(rule, function test() {
   it('should pass when using valid arrays or trailing comma', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
-  
+
   it('should fail when using double comma in arrays', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });

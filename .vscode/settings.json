@@ -1,0 +1,6 @@
+{
+  "tslint.enable": true,
+  "tslint.options": {
+    "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
+  }
+}

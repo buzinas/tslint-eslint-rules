@@ -10,7 +10,13 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoInnerDeclarationsWalker extends Lint.RuleWalker {
-  VALID_PARENTS = [ts.SyntaxKind.SourceFile, ts.SyntaxKind.FunctionDeclaration, ts.SyntaxKind.FunctionExpression, ts.SyntaxKind.ArrowFunction, ts.SyntaxKind.MethodDeclaration];
+  private VALID_PARENT_TYPES = [
+    ts.SyntaxKind.SourceFile,
+    ts.SyntaxKind.FunctionDeclaration,
+    ts.SyntaxKind.FunctionExpression,
+    ts.SyntaxKind.ArrowFunction,
+    ts.SyntaxKind.MethodDeclaration
+  ];
 
   protected visitFunctionDeclaration(node: ts.FunctionDeclaration) {
     this.validateInnerDeclaration(node);
@@ -40,7 +46,7 @@ class NoInnerDeclarationsWalker extends Lint.RuleWalker {
     let ancestor = node.parent;
     let generation = 1;
 
-    while (ancestor && this.VALID_PARENTS.indexOf(ancestor.kind) === -1) {
+    while (ancestor && this.VALID_PARENT_TYPES.indexOf(ancestor.kind) === -1) {
       generation++;
       ancestor = ancestor.parent;
     }

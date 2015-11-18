@@ -16,12 +16,12 @@ const scripts = {
     'try { } catch ({message}) { message = 10; }'
   ]
 };
-  
-describe(rule, function test() {  
+
+describe(rule, function test() {
   it('should pass when not assigning a value to exception', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
-  
+
   it('should fail when assigning a value to exception', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });

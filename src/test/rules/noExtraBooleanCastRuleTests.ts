@@ -22,12 +22,12 @@ const scripts = {
     'for (; !!foo; ) {}`'
   ]
 };
-  
+
 describe(rule, function test() {
   it('should pass when using valid boolean casts outside of a boolean context', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
-  
+
   it('should fail when using redundant boolean casts in a boolean context', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });
