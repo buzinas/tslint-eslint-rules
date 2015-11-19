@@ -14,6 +14,7 @@
     "no-regex-spaces": true,
     "no-empty-character-class": true,
     "no-control-regex": true,
-    "no-irregular-whitespace": true
+    "no-irregular-whitespace": true,
+    "valid-jsdoc": true
   }
 }

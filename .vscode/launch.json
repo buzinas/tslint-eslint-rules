@@ -14,7 +14,8 @@
 				"NODE_ENV": "development"
 			},
 			"sourceMaps": true,
-			"outDir": "src"
+			"outDir": "src",
+      "request": "launch"
 		}
 	]
 }
