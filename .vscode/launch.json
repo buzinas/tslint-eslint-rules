@@ -16,7 +16,7 @@
         "NODE_ENV": "development"
       },
       "sourceMaps": true,
-      "outDir": "src",
+      "outDir": "dist",
       "request": "launch"
     }
   ]
