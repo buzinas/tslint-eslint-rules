@@ -14,10 +14,6 @@ You want to code in TypeScript but miss all the rules available in ESLint?
 
 Now you can combine both worlds by using this TSLint plugin!
 
-*WARN: this project is still under development.*
-
-*You can see what rules were already migrated [in the eslint_tslint.json file](https://github.com/buzinas/tslint-eslint-rules/blob/master/eslint_tslint.json)*
-
 
 ## Usage
 
@@ -28,7 +24,7 @@ npm install --save-dev tslint-eslint-rules
 ```
 
 ### Configure TSLint to use `tslint-eslint-rules` folder:
-- #### TSLint configuration file (tsconfig.json) - **RECOMMENDED**
+- #### TSLint configuration file (tsconfig.json) - **RECOMMENDED ([Waiting for acceptance](https://github.com/palantir/tslint/pull/800))**
 
   We contributed to the `palantir/tslint` repository, by adding the option of using the `rulesDirectory` property inside your `tsconfig.json` file, e.g:
 
@@ -122,9 +118,22 @@ npm install --save-dev tslint-eslint-rules
   }
   ```
 
+- ### Visual Studio Code (`tslint`)
+
+  After installing the `tslint` plugin, you can go to your Workspace Settings and config it:
+
+  ```json
+  {
+    "tslint.enable": true,
+    "tslint.options": {
+      "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
+    }
+  }
+  ```
+
 ### Configure your rules
 
-Then, in your `tslint.json` file, insert the rules as described below.
+In your `tslint.json` file, insert the rules as described below (You can see an [example here](eslint_tslint.json)).
 
 
 ## Rules (copied from [ESLint website](http://eslint.org/docs/rules/))
