@@ -1,5 +1,21 @@
 ## Change Log
 
+### v0.3.0 (2015/11/19 14:47 +00:00)
+- [e913fbb](https://github.com/buzinas/tslint-eslint-rules/commit/e913fbbe9bd6b8977d2e13748a1a04c23a59f4aa) [bug] fixed json formatting (@buzinas)
+- [#43](https://github.com/buzinas/tslint-eslint-rules/pull/43) Merge pull request #43 from buzinas/valid-jsdoc-rule (@buzinas)
+- [3deb2a3](https://github.com/buzinas/tslint-eslint-rules/commit/3deb2a35789142ca58741c134b158d7ff66b4a20) [feat] added valid-jsdoc rule and small fixes (closes #21) (@buzinas)
+- [ec336cc](https://github.com/buzinas/tslint-eslint-rules/commit/ec336cc472c52cb92a62d36514f197113d413c69) [docs] fixed `no-mixed-spaces-and-tabs` docs and adjusted linting (closes #38) (@buzinas)
+- [#42](https://github.com/buzinas/tslint-eslint-rules/pull/42) Merge pull request #42 from buzinas/tslint-configuration (@buzinas)
+- [f549fd5](https://github.com/buzinas/tslint-eslint-rules/commit/f549fd5af1923c89712161cdd9486834ff1af4f7) [feat] added tslint configuration to the project (closes #27) (@buzinas)
+- [97f003b](https://github.com/buzinas/tslint-eslint-rules/commit/97f003b8d63d6457875be726c46949047fc1cf5c) [bug] fixed function names in no-inner-declaration tests (closes #41) (@buzinas)
+- [#40](https://github.com/buzinas/tslint-eslint-rules/pull/40) Merge pull request #40 from buzinas/docs-improved-readme.md (@buzinas)
+- [e054c99](https://github.com/buzinas/tslint-eslint-rules/commit/e054c990541c44a9b247e44f9be8bd527f6fa603) [docs] Update README.md to handle all the recommended rules (closes #39) (@Schiavi)
+
+### v0.2.7 (2015/11/17 14:00 +00:00)
+- [#36](https://github.com/buzinas/tslint-eslint-rules/pull/36) Merge pull request #36 from buzinas/no-irregular-whitespace-rule (@buzinas)
+- [15056f0](https://github.com/buzinas/tslint-eslint-rules/commit/15056f0722bee86c4fad44156622af4473261c47) [feat] added no-irregular-whitespace rule (closes #14) (@buzinas)
+- [e85c37b](https://github.com/buzinas/tslint-eslint-rules/commit/e85c37b6922df692dff1137edad9987acce7b3a0) [docs] updated CHANGELOG to v0.2.6 (@buzinas)
+
 ### v0.2.6 (2015/11/17 12:07 +00:00)
 - [#35](https://github.com/buzinas/tslint-eslint-rules/pull/35) Merge pull request #35 from buzinas/regex-rules (@buzinas)
 - [17c66cf](https://github.com/buzinas/tslint-eslint-rules/commit/17c66cf8bf0590d1a138326ef54c0c10a8cbd71d) [feat] added no-control-regex rule, improved other regexes (closes #5) (@buzinas)
