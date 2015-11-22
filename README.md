@@ -24,9 +24,9 @@ npm install --save-dev tslint-eslint-rules
 ```
 
 ### Configure TSLint to use `tslint-eslint-rules` folder:
-- #### TSLint configuration file (tsconfig.json) - **RECOMMENDED ([Waiting for acceptance](https://github.com/palantir/tslint/pull/800))**
+- #### TSLint configuration file (tslint.json) - **RECOMMENDED ([Waiting for acceptance](https://github.com/palantir/tslint/pull/800))**
 
-  We contributed to the `palantir/tslint` repository, by adding the option of using the `rulesDirectory` property inside your `tsconfig.json` file, e.g:
+  We contributed to the `palantir/tslint` repository, by adding the option of using the `rulesDirectory` property inside your `tslint.json` file, e.g:
 
   ```json
   {
