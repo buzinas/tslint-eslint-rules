@@ -125,15 +125,13 @@ npm install --save-dev tslint-eslint-rules
   ```json
   {
     "tslint.enable": true,
-    "tslint.options": {
-      "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
-    }
+    "tslint.rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
   }
   ```
 
 ### Configure your rules
 
-In your `tslint.json` file, insert the rules as described below (You can see an [example here](eslint_tslint.json)).
+Then, in your `tslint.json` file, insert the rules as described below.
 
 
 ## Rules (copied from [ESLint website](http://eslint.org/docs/rules/))
@@ -396,79 +394,64 @@ The following rules point out areas where you might have made mistakes.
 
 These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.
 
-* [accessor-pairs](http://eslint.org/docs/rules/accessor-pairs) =>
+* [accessor-pairs](http://eslint.org/docs/rules/accessor-pairs) => accessor-pairs (tslint-eslint-rules) [TODO]()
   * Description: Enforces getter/setter pairs in objects
   * Usage
 
     ```json
     "accessor-pairs": [
-        true,
-        {
-
-        }
-      ]
+      true, 
+      {
+        "getWithoutSet" : true,
+        "setWithoutGet" : true
+      }
+    ]
     ```
-* [block-scoped-var](http://eslint.org/docs/rules/block-scoped-var) =>
+    
+* [block-scoped-var](http://eslint.org/docs/rules/block-scoped-var) => accessor-pairs (tslint-eslint-rules) [TODO]()
   * Description: treat `var` statements as if they were block scoped
   * Usage
 
     ```json
-    "block-scoped-var": [
-        true,
-        {
-
-        }
-      ]
+    "block-scoped-var": true
     ```
-* [complexity](http://eslint.org/docs/rules/complexity) =>
+    
+* [complexity](http://eslint.org/docs/rules/complexity) => complexity (tslint-eslint-rules) [TODO]()
   * Description: specify the maximum cyclomatic complexity allowed in a program
   * Usage
 
     ```json
     "complexity": [
-        true,
-        {
-
-        }
-      ]
+      true, 
+      3
+    ]
     ```
-* [consistent-return](http://eslint.org/docs/rules/consistent-return) =>
+    
+* [consistent-return](http://eslint.org/docs/rules/consistent-return) => consistent-return (tslint-eslint-rules) [TODO]()
   * Description: require `return` statements to either always or never specify values
   * Usage
 
     ```json
-    "consistent-return": [
-        true,
-        {
-
-        }
-      ]
+    "consistent-return": true
     ```
-* [curly](http://eslint.org/docs/rules/curly) =>
+    
+* [curly](http://eslint.org/docs/rules/curly) => curly (native)
   * Description: specify curly brace conventions for all control statements
   * Usage
 
     ```json
-    "curly": [
-        true,
-        {
-
-        }
-      ]
+    "curly": true
     ```
-* [default-case](http://eslint.org/docs/rules/default-case) =>
+    
+* [default-case](http://eslint.org/docs/rules/default-case) => switch-default (native)
   * Description: require `default` case in `switch` statements
   * Usage
 
     ```json
-    "default-case": [
-        true,
-        {
-
-        }
-      ]
+    "default-case": true
     ```
-* [dot-location](http://eslint.org/docs/rules/dot-location) =>
+    
+* [dot-location](http://eslint.org/docs/rules/dot-location) => dot-location (tslint-eslint-rules) [TODO]()
   * Description: enforces consistent newlines before or after dots
   * Usage
 
@@ -476,11 +459,13 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "dot-location": [
         true,
         {
-
+          "object": true,
+          "property": false
         }
       ]
     ```
-* [dot-notation](http://eslint.org/docs/rules/dot-notation) =>
+    
+* [dot-notation](http://eslint.org/docs/rules/dot-notation) => dot-notation (tslint-eslint-rules) [TODO]()
   * Description: encourages use of dot notation whenever possible
   * Usage
 
@@ -488,143 +473,104 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "dot-notation": [
         true,
         {
-
+          "allowKeywords": true, 
+          "allowPattern": ""
         }
       ]
     ```
-* [eqeqeq](http://eslint.org/docs/rules/eqeqeq) =>
+    
+* [eqeqeq](http://eslint.org/docs/rules/eqeqeq) => triple-equals (native)
   * Description: require the use of `===` and `!==`
   * Usage
 
     ```json
     "eqeqeq": [
         true,
-        {
-
-        }
+        "allow-null-check"
       ]
     ```
-* [guard-for-in](http://eslint.org/docs/rules/guard-for-in) =>
+    
+* [guard-for-in](http://eslint.org/docs/rules/guard-for-in) => forin (native)
   * Description: make sure `for-in` loops have an `if` statement
   * Usage
 
     ```json
-    "guard-for-in": [
-        true,
-        {
-
-        }
-      ]
+    "forin": true
     ```
-* [no-alert](http://eslint.org/docs/rules/no-alert) =>
+    
+* [no-alert](http://eslint.org/docs/rules/no-alert) => no-alert (tslint-eslint-rules) [TODO]()
   * Description: disallow the use of `alert`, `confirm`, and `prompt`
   * Usage
 
     ```json
-    "no-alert": [
-        true,
-        {
-
-        }
-      ]
+    "no-alert": true
     ```
-* [no-caller](http://eslint.org/docs/rules/no-caller) =>
+    
+* [no-caller](http://eslint.org/docs/rules/no-caller) => no-arg (native)
   * Description: disallow use of `arguments.caller` or `arguments.callee`
   * Usage
 
     ```json
-    "no-caller": [
-        true,
-        {
-
-        }
-      ]
+    "no-arg": true
     ```
-* [no-case-declarations](http://eslint.org/docs/rules/no-case-declarations) =>
+    
+* [no-case-declarations](http://eslint.org/docs/rules/no-case-declarations) => no-case-declarations (tslint-eslint-rules) [TODO]()
   * Description: disallow lexical declarations in case clauses
   * Usage
 
     ```json
-    "no-case-declarations": [
-        true,
-        {
-
-        }
-      ]
+    "no-case-declarations": true
     ```
-* [no-div-regex](http://eslint.org/docs/rules/no-div-regex) =>
+    
+* [no-div-regex](http://eslint.org/docs/rules/no-div-regex) => no-div-regex (tslint-eslint-rules) [TODO]()
   * Description: disallow division operators explicitly at beginning of regular expression
   * Usage
 
     ```json
-    "no-div-regex": [
-        true,
-        {
-
-        }
-      ]
+    "no-div-regex": true
     ```
-* [no-else-return](http://eslint.org/docs/rules/no-else-return) =>
+    
+* [no-else-return](http://eslint.org/docs/rules/no-else-return) => no-else-return (tslint-eslint-rules) [TODO]()
   * Description: disallow `else` after a `return` in an `if`
   * Usage
 
     ```json
-    "no-else-return": [
-        true,
-        {
-
-        }
-      ]
+    "no-else-return": true
     ```
-* [no-empty-label](http://eslint.org/docs/rules/no-empty-label) =>
+    
+* [no-empty-label](http://eslint.org/docs/rules/no-empty-label) => no-empty-label (tslint-eslint-rules) [TODO]()
   * Description: disallow use of labels for anything other than loops and switches
   * Usage
 
     ```json
-    "no-empty-label": [
-        true,
-        {
-
-        }
-      ]
+    "no-empty-label": true
     ```
-* [no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern) =>
+    
+* [no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern) => no-empty-pattern (tslint-eslint-rules) [TODO]()
   * Description: disallow use of empty destructuring patterns
   * Usage
 
     ```json
-    "no-empty-pattern": [
-        true,
-        {
-
-        }
-      ]
+    "no-empty-pattern": true
     ```
-* [no-eq-null](http://eslint.org/docs/rules/no-eq-null) =>
+    
+* [no-eq-null](http://eslint.org/docs/rules/no-eq-null) => no-eq-null (tslint-eslint-rules) [TODO]()
   * Description: disallow comparisons to null without a type-checking operator
   * Usage
 
     ```json
-    "no-eq-null": [
-        true,
-        {
-
-        }
-      ]
+    "no-eq-null": true
     ```
-* [no-eval](http://eslint.org/docs/rules/no-eval) =>
+    
+* [no-eval](http://eslint.org/docs/rules/no-eval) => no-eval (native)
   * Description: disallow use of `eval()`
   * Usage
 
     ```json
-    "no-eval": [
-        true,
-        {
-
-        }
-      ]
+    "no-eval": true
     ```
-* [no-extend-native](http://eslint.org/docs/rules/no-extend-native) =>
+    
+* [no-extend-native](http://eslint.org/docs/rules/no-extend-native) => no-extend-native (tslint-eslint-rules) [TODO]()
   * Description: disallow adding to native types
   * Usage
 
@@ -632,42 +578,36 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-extend-native": [
         true,
         {
-
+          "exceptions": ["Object", "String"]
         }
       ]
     ```
-* [no-extra-bind](http://eslint.org/docs/rules/no-extra-bind) =>
+    
+* [no-extra-bind](http://eslint.org/docs/rules/no-extra-bind) => no-extra-bind (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary function binding
   * Usage
 
     ```json
-    "no-extra-bind": [
-        true,
-        {
-
-        }
-      ]
+    "no-extra-bind": true
     ```
+    
 * [no-fallthrough](http://eslint.org/docs/rules/no-fallthrough) => no-switch-case-fall-through (native)
   * Description: disallow fallthrough of `case` statements (recommended)
   * Usage
 
     ```json
-    "no-switch-case-fall-through": true
+    "no-fallthrough": true
     ```
-* [no-floating-decimal](http://eslint.org/docs/rules/no-floating-decimal) =>
+    
+* [no-floating-decimal](http://eslint.org/docs/rules/no-floating-decimal) => no-floating-decimal (tslint-eslint-rules) [TODO]()
   * Description: disallow the use of leading or trailing decimal points in numeric literals
   * Usage
 
     ```json
-    "no-floating-decimal": [
-        true,
-        {
-
-        }
-      ]
+    "no-floating-decimal": true
     ```
-* [no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion) =>
+    
+* [no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion) => no-implicit-coercion (tslint-eslint-rules) [TODO]()
   * Description: disallow the type conversions with shorter notations
   * Usage
 
@@ -675,84 +615,62 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-implicit-coercion": [
         true,
         {
-
+          "boolean": true,
+          "number": true,
+          "string": true
         }
       ]
     ```
-* [no-implied-eval](http://eslint.org/docs/rules/no-implied-eval) =>
+    
+* [no-implied-eval](http://eslint.org/docs/rules/no-implied-eval) => no-implied-eval (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `eval()`-like methods
   * Usage
 
     ```json
-    "no-implied-eval": [
-        true,
-        {
-
-        }
-      ]
+    "no-implied-eval": true
     ```
-* [no-invalid-this](http://eslint.org/docs/rules/no-invalid-this) =>
+    
+* [no-invalid-this](http://eslint.org/docs/rules/no-invalid-this) => no-invalid-this (tslint-eslint-rules) [TODO]()
   * Description: disallow `this` keywords outside of classes or class-like objects
   * Usage
 
     ```json
-    "no-invalid-this": [
-        true,
-        {
-
-        }
-      ]
+    "no-invalid-this": true
     ```
-* [no-iterator](http://eslint.org/docs/rules/no-iterator) =>
-  * Description: disallow Usage
- of `__iterator__` property
+    
+* [no-iterator](http://eslint.org/docs/rules/no-iterator) => no-iterator (tslint-eslint-rules) [TODO]()
+  * Description: disallow Usage of `__iterator__` property
   * Usage
 
     ```json
-    "no-iterator": [
-        true,
-        {
-
-        }
-      ]
+    "no-iterator": true
     ```
-* [no-labels](http://eslint.org/docs/rules/no-labels) =>
+    
+* [no-labels](http://eslint.org/docs/rules/no-labels) => no-labels (tslint-eslint-rules) [TODO]()
   * Description: disallow use of labeled statements
   * Usage
 
     ```json
-    "no-labels": [
-        true,
-        {
-
-        }
-      ]
+    "no-labels": true
     ```
-* [no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks) =>
+    
+* [no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks) => no-lone-blocks (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary nested blocks
   * Usage
 
     ```json
-    "no-lone-blocks": [
-        true,
-        {
-
-        }
-      ]
+    "no-lone-blocks": true
     ```
-* [no-loop-func](http://eslint.org/docs/rules/no-loop-func) =>
+    
+* [no-loop-func](http://eslint.org/docs/rules/no-loop-func) => no-loop-func (tslint-eslint-rules) [TODO]()
   * Description: disallow creation of functions within loops
   * Usage
 
     ```json
-    "no-loop-func": [
-        true,
-        {
-
-        }
-      ]
+    "no-loop-func": true
     ```
-* [no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers) =>
+    
+* [no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers) => no-magic-numbers (tslint-eslint-rules) [TODO]()
   * Description: disallow the use of magic numbers
   * Usage
 
@@ -760,11 +678,14 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-magic-numbers": [
         true,
         {
-
+          "ignore": [0, 1, 2],
+          "enforceConst": false,
+          "detectObjects": false
         }
       ]
     ```
-* [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) =>
+    
+* [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) => no-multi-spaces (tslint-eslint-rules) [TODO]()
   * Description: disallow use of multiple spaces
   * Usage
 
@@ -772,86 +693,58 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-multi-spaces": [
         true,
         {
-
+          "exceptions": [ { "ImportDeclation": true }, { "Property": false } ]
         }
       ]
     ```
-* [no-multi-str](http://eslint.org/docs/rules/no-multi-str) =>
+    
+* [no-multi-str](http://eslint.org/docs/rules/no-multi-str) => no-multi-str (tslint-eslint-rules) [TODO]()
   * Description: disallow use of multiline strings
   * Usage
 
     ```json
-    "no-multi-str": [
-        true,
-        {
-
-        }
-      ]
+    "no-multi-str": true
     ```
-* [no-native-reassign](http://eslint.org/docs/rules/no-native-reassign) =>
+    
+* [no-native-reassign](http://eslint.org/docs/rules/no-native-reassign) => Not applicable to TypeScript
   * Description: disallow reassignments of native objects
-  * Usage
-
-    ```json
-    "no-native-reassign": [
-        true,
-        {
-
-        }
-      ]
-    ```
-* [no-new-func](http://eslint.org/docs/rules/no-new-func) =>
+    
+* [no-new-func](http://eslint.org/docs/rules/no-new-func) => no-new-func (tslint-eslint-rules) [TODO]()
   * Description: disallow use of new operator for `Function` object
   * Usage
 
     ```json
-    "no-new-func": [
-        true,
-        {
-
-        }
-      ]
+    "no-new-func": true
     ```
-* [no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers) =>
+    
+* [no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers) => no-new-wrappers (tslint-eslint-rules) [TODO]() // ou no-construct
   * Description: disallows creating new instances of `String`,`Number`, and `Boolean`
   * Usage
 
     ```json
-    "no-new-wrappers": [
-        true,
-        {
-
-        }
-      ]
+    "no-new-wrappers": true
     ```
-* [no-new](http://eslint.org/docs/rules/no-new) =>
+    
+* [no-new](http://eslint.org/docs/rules/no-new) => no-new (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the `new` operator when not part of an assignment or comparison
   * Usage
 
     ```json
-    "no-new": [
-        true,
-        {
-
-        }
-      ]
+    "no-new": true
     ```
-* [no-octal-escape](http://eslint.org/docs/rules/no-octal-escape) =>
+    
+* [no-octal-escape](http://eslint.org/docs/rules/no-octal-escape) => no-octal-escape (tslint-eslint-rules) [TODO]()
   * Description: disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`
   * Usage
 
     ```json
-    "no-octal-escape": [
-        true,
-        {
-
-        }
-      ]
+    "no-octal-escape": true
     ```
-* [no-octal](http://eslint.org/docs/rules/no-octal) => not applicable to TypeScript
+    
+* [no-octal](http://eslint.org/docs/rules/no-octal) => Not applicable to TypeScript
   * Description: disallow use of octal literals (recommended)
-
-* [no-param-reassign](http://eslint.org/docs/rules/no-param-reassign) =>
+    
+* [no-param-reassign](http://eslint.org/docs/rules/no-param-reassign) => no-param-reassign (tslint-eslint-rules) [TODO]()
   * Description: disallow reassignment of function parameters
   * Usage
 
@@ -859,45 +752,36 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-param-reassign": [
         true,
         {
-
+          "props": false
         }
       ]
     ```
-* [no-process-env](http://eslint.org/docs/rules/no-process-env) =>
+    
+* [no-process-env](http://eslint.org/docs/rules/no-process-env) => no-process-env (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `process.env`
   * Usage
 
     ```json
-    "no-process-env": [
-        true,
-        {
-
-        }
-      ]
+    "no-process-env": true
     ```
-* [no-proto](http://eslint.org/docs/rules/no-proto) =>
-  * Description: disallow Usage
- of `__proto__` property
+    
+* [no-proto](http://eslint.org/docs/rules/no-proto) => no-proto (tslint-eslint-rules) [TODO]()
+  * Description: disallow Usage of `__proto__` property
   * Usage
 
     ```json
-    "no-proto": [
-        true,
-        {
-
-        }
-      ]
+    "no-proto": true
     ```
-* [no-redeclare](http://eslint.org/docs/rules/no-redeclare) => no-duplicate-variable (native) & no-redeclare-builtin-globals ([TODO](https://github.com/buzinas/tslint-eslint-rules/issues/37): tslint-eslint-rules)
+    
+* [no-redeclare](http://eslint.org/docs/rules/no-redeclare) => no-duplicate-variable (native)
   * Description: disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)
   * Usage
 
     ```json
     "no-duplicate-variable": true
-    "no-redeclare-builtin-globals": true // For the option `builtinGlobals: true`
     ```
-
-* [no-return-assign](http://eslint.org/docs/rules/no-return-assign) =>
+    
+* [no-return-assign](http://eslint.org/docs/rules/no-return-assign) => no-return-assign (tslint-eslint-rules) [TODO]()
   * Description: disallow use of assignment in `return` statement
   * Usage
 
@@ -905,178 +789,133 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-return-assign": [
         true,
         {
-
+          "except-parens": true,
+          "always": true
         }
       ]
     ```
-* [no-script-url](http://eslint.org/docs/rules/no-script-url) =>
+    
+* [no-script-url](http://eslint.org/docs/rules/no-script-url) => no-script-url (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `javascript:` urls.
   * Usage
 
     ```json
-    "no-script-url": [
-        true,
-        {
-
-        }
-      ]
+    "no-script-url": true
     ```
-* [no-self-compare](http://eslint.org/docs/rules/no-self-compare) =>
+    
+* [no-self-compare](http://eslint.org/docs/rules/no-self-compare) => no-self-compare (tslint-eslint-rules) [TODO]()
   * Description: disallow comparisons where both sides are exactly the same
   * Usage
 
     ```json
-    "no-self-compare": [
-        true,
-        {
-
-        }
-      ]
+    "no-self-compare": true
     ```
-* [no-sequences](http://eslint.org/docs/rules/no-sequences) =>
+    
+* [no-sequences](http://eslint.org/docs/rules/no-sequences) => no-sequences (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the comma operator
   * Usage
 
     ```json
-    "no-sequences": [
-        true,
-        {
-
-        }
-      ]
+    "no-sequences": true
     ```
-* [no-throw-literal](http://eslint.org/docs/rules/no-throw-literal) =>
+    
+* [no-throw-literal](http://eslint.org/docs/rules/no-throw-literal) => no-throw-literal (tslint-eslint-rules) [TODO]()
   * Description: restrict what can be thrown as an exception
   * Usage
 
     ```json
-    "no-throw-literal": [
-        true,
-        {
-
-        }
-      ]
+    "no-throw-literal": true
     ```
-* [no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions) =>
-  * Description: disallow Usage
- of expressions in statement position
+    
+* [no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions) => no-unused-expression (native) 
+  * Description: disallow Usage of expressions in statement position
   * Usage
 
     ```json
-    "no-unused-expressions": [
-        true,
-        {
-
-        }
-      ]
+    "no-unused-expressions": true
     ```
-* [no-useless-call](http://eslint.org/docs/rules/no-useless-call) =>
+    
+* [no-useless-call](http://eslint.org/docs/rules/no-useless-call) => no-useless-call (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary `.call()` and `.apply()`
   * Usage
 
     ```json
-    "no-useless-call": [
-        true,
-        {
-
-        }
-      ]
+    "no-useless-call": true
     ```
-* [no-useless-concat](http://eslint.org/docs/rules/no-useless-concat) =>
+    
+* [no-useless-concat](http://eslint.org/docs/rules/no-useless-concat) => no-useless-concat (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary concatenation of literals or template literals
   * Usage
 
     ```json
-    "no-useless-concat": [
-        true,
-        {
-
-        }
-      ]
+    "no-useless-concat": true
     ```
-* [no-void](http://eslint.org/docs/rules/no-void) =>
+    
+* [no-void](http://eslint.org/docs/rules/no-void) => no-void (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the `void` operator
   * Usage
 
     ```json
-    "no-void": [
-        true,
-        {
-
-        }
-      ]
+    "no-void":true
     ```
-* [no-warning-comments](http://eslint.org/docs/rules/no-warning-comments) - disallow Usage
- of configurable warning terms in comments =>
-  * Description: e.g. `TODO` or `FIXME`
+    
+* [no-warning-comments](http://eslint.org/docs/rules/no-warning-comments) => no-warning-comments (tslint-eslint-rules) [TODO]()
+  * Description: disallow Usage of configurable warning terms in comments e.g. `TODO` or `FIXME`
   * Usage
 
     ```json
     "no-warning-comments": [
         true,
         {
-
+          "terms": ["todo", "fixme", "xxx"], 
+          "location": "start"
         }
       ]
     ```
-* [no-with](http://eslint.org/docs/rules/no-with) =>
+    
+* [no-with](http://eslint.org/docs/rules/no-with) => no-with (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the `with` statement
   * Usage
 
     ```json
-    "no-with": [
-        true,
-        {
-
-        }
-      ]
+    "no-with": true
     ```
-* [radix](http://eslint.org/docs/rules/radix) =>
+    
+* [radix](http://eslint.org/docs/rules/radix) => radix (native)
   * Description: require use of the second argument for `parseInt()`
   * Usage
 
     ```json
-    "radix": [
-        true,
-        {
-
-        }
-      ]
+    "radix": true
     ```
-* [vars-on-top](http://eslint.org/docs/rules/vars-on-top) =>
+    
+* [vars-on-top](http://eslint.org/docs/rules/vars-on-top) => vars-on-top (tslint-eslint-rules) [TODO]()
   * Description: require declaration of all vars at the top of their containing scope
   * Usage
 
     ```json
-    "vars-on-top": [
-        true,
-        {
-
-        }
-      ]
+    "vars-on-top": true
     ```
-* [wrap-iife](http://eslint.org/docs/rules/wrap-iife) =>
+    
+* [wrap-iife](http://eslint.org/docs/rules/wrap-iife) => wrap-iife (tslint-eslint-rules) [TODO]()
   * Description: require immediate function invocation to be wrapped in parentheses
   * Usage
 
     ```json
     "wrap-iife": [
         true,
-        {
-
-        }
+        "inside"
       ]
     ```
-* [yoda](http://eslint.org/docs/rules/yoda) =>
+    
+* [yoda](http://eslint.org/docs/rules/yoda) => yoda (tslint-eslint-rules) [TODO]()
   * Description: require or disallow Yoda conditions
   * Usage
 
     ```json
     "yoda": [
         true,
-        {
-
-        }
+        "never"
       ]
     ```
 
@@ -1178,7 +1017,7 @@ These rules have to do with variable declarations.
     ```
 * [no-undef](http://eslint.org/docs/rules/no-undef) => not applicable to TypeScript
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
-
+  
 * [no-undefined](http://eslint.org/docs/rules/no-undefined) =>
   * Description: disallow use of `undefined` variable
   * Usage
