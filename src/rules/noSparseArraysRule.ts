@@ -11,16 +11,9 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoSparseArraysWalker extends Lint.RuleWalker {
-  protected visitNode(node: ts.Node) {
-    if (node.kind === ts.SyntaxKind.ArrayLiteralExpression) {
-      this.visitArrayLiteralExpression(node as ts.ArrayLiteralExpression);
-    }
-    super.visitNode(node);
-  }
-
   protected visitArrayLiteralExpression(node: ts.ArrayLiteralExpression) {
     this.validateNoSparseArray(node);
-    // super.visitArrayLiteralExpression(node);
+    super.visitArrayLiteralExpression(node);
   }
 
   private validateNoSparseArray(node: ts.ArrayLiteralExpression) {
