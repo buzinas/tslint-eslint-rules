@@ -400,14 +400,14 @@ These are rules designed to prevent you from making mistakes. They either prescr
 
     ```json
     "accessor-pairs": [
-      true, 
+      true,
       {
         "getWithoutSet" : true,
         "setWithoutGet" : true
       }
     ]
     ```
-    
+
 * [block-scoped-var](http://eslint.org/docs/rules/block-scoped-var) => accessor-pairs (tslint-eslint-rules) [TODO]()
   * Description: treat `var` statements as if they were block scoped
   * Usage
@@ -415,18 +415,18 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "block-scoped-var": true
     ```
-    
+
 * [complexity](http://eslint.org/docs/rules/complexity) => complexity (tslint-eslint-rules) [TODO]()
   * Description: specify the maximum cyclomatic complexity allowed in a program
   * Usage
 
     ```json
     "complexity": [
-      true, 
+      true,
       3
     ]
     ```
-    
+
 * [consistent-return](http://eslint.org/docs/rules/consistent-return) => consistent-return (tslint-eslint-rules) [TODO]()
   * Description: require `return` statements to either always or never specify values
   * Usage
@@ -434,7 +434,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "consistent-return": true
     ```
-    
+
 * [curly](http://eslint.org/docs/rules/curly) => curly (native)
   * Description: specify curly brace conventions for all control statements
   * Usage
@@ -442,7 +442,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "curly": true
     ```
-    
+
 * [default-case](http://eslint.org/docs/rules/default-case) => switch-default (native)
   * Description: require `default` case in `switch` statements
   * Usage
@@ -450,7 +450,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "default-case": true
     ```
-    
+
 * [dot-location](http://eslint.org/docs/rules/dot-location) => dot-location (tslint-eslint-rules) [TODO]()
   * Description: enforces consistent newlines before or after dots
   * Usage
@@ -464,7 +464,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [dot-notation](http://eslint.org/docs/rules/dot-notation) => dot-notation (tslint-eslint-rules) [TODO]()
   * Description: encourages use of dot notation whenever possible
   * Usage
@@ -473,12 +473,12 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "dot-notation": [
         true,
         {
-          "allowKeywords": true, 
+          "allowKeywords": true,
           "allowPattern": ""
         }
       ]
     ```
-    
+
 * [eqeqeq](http://eslint.org/docs/rules/eqeqeq) => triple-equals (native)
   * Description: require the use of `===` and `!==`
   * Usage
@@ -489,7 +489,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         "allow-null-check"
       ]
     ```
-    
+
 * [guard-for-in](http://eslint.org/docs/rules/guard-for-in) => forin (native)
   * Description: make sure `for-in` loops have an `if` statement
   * Usage
@@ -497,7 +497,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "forin": true
     ```
-    
+
 * [no-alert](http://eslint.org/docs/rules/no-alert) => no-alert (tslint-eslint-rules) [TODO]()
   * Description: disallow the use of `alert`, `confirm`, and `prompt`
   * Usage
@@ -505,7 +505,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-alert": true
     ```
-    
+
 * [no-caller](http://eslint.org/docs/rules/no-caller) => no-arg (native)
   * Description: disallow use of `arguments.caller` or `arguments.callee`
   * Usage
@@ -513,7 +513,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-arg": true
     ```
-    
+
 * [no-case-declarations](http://eslint.org/docs/rules/no-case-declarations) => no-case-declarations (tslint-eslint-rules) [TODO]()
   * Description: disallow lexical declarations in case clauses
   * Usage
@@ -521,7 +521,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-case-declarations": true
     ```
-    
+
 * [no-div-regex](http://eslint.org/docs/rules/no-div-regex) => no-div-regex (tslint-eslint-rules) [TODO]()
   * Description: disallow division operators explicitly at beginning of regular expression
   * Usage
@@ -529,7 +529,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-div-regex": true
     ```
-    
+
 * [no-else-return](http://eslint.org/docs/rules/no-else-return) => no-else-return (tslint-eslint-rules) [TODO]()
   * Description: disallow `else` after a `return` in an `if`
   * Usage
@@ -537,7 +537,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-else-return": true
     ```
-    
+
 * [no-empty-label](http://eslint.org/docs/rules/no-empty-label) => no-empty-label (tslint-eslint-rules) [TODO]()
   * Description: disallow use of labels for anything other than loops and switches
   * Usage
@@ -545,7 +545,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-empty-label": true
     ```
-    
+
 * [no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern) => no-empty-pattern (tslint-eslint-rules) [TODO]()
   * Description: disallow use of empty destructuring patterns
   * Usage
@@ -553,7 +553,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-empty-pattern": true
     ```
-    
+
 * [no-eq-null](http://eslint.org/docs/rules/no-eq-null) => no-eq-null (tslint-eslint-rules) [TODO]()
   * Description: disallow comparisons to null without a type-checking operator
   * Usage
@@ -561,7 +561,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-eq-null": true
     ```
-    
+
 * [no-eval](http://eslint.org/docs/rules/no-eval) => no-eval (native)
   * Description: disallow use of `eval()`
   * Usage
@@ -569,7 +569,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-eval": true
     ```
-    
+
 * [no-extend-native](http://eslint.org/docs/rules/no-extend-native) => no-extend-native (tslint-eslint-rules) [TODO]()
   * Description: disallow adding to native types
   * Usage
@@ -582,7 +582,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [no-extra-bind](http://eslint.org/docs/rules/no-extra-bind) => no-extra-bind (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary function binding
   * Usage
@@ -590,7 +590,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-extra-bind": true
     ```
-    
+
 * [no-fallthrough](http://eslint.org/docs/rules/no-fallthrough) => no-switch-case-fall-through (native)
   * Description: disallow fallthrough of `case` statements (recommended)
   * Usage
@@ -598,7 +598,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-fallthrough": true
     ```
-    
+
 * [no-floating-decimal](http://eslint.org/docs/rules/no-floating-decimal) => no-floating-decimal (tslint-eslint-rules) [TODO]()
   * Description: disallow the use of leading or trailing decimal points in numeric literals
   * Usage
@@ -606,7 +606,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-floating-decimal": true
     ```
-    
+
 * [no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion) => no-implicit-coercion (tslint-eslint-rules) [TODO]()
   * Description: disallow the type conversions with shorter notations
   * Usage
@@ -621,7 +621,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [no-implied-eval](http://eslint.org/docs/rules/no-implied-eval) => no-implied-eval (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `eval()`-like methods
   * Usage
@@ -629,7 +629,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-implied-eval": true
     ```
-    
+
 * [no-invalid-this](http://eslint.org/docs/rules/no-invalid-this) => no-invalid-this (tslint-eslint-rules) [TODO]()
   * Description: disallow `this` keywords outside of classes or class-like objects
   * Usage
@@ -637,7 +637,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-invalid-this": true
     ```
-    
+
 * [no-iterator](http://eslint.org/docs/rules/no-iterator) => no-iterator (tslint-eslint-rules) [TODO]()
   * Description: disallow Usage of `__iterator__` property
   * Usage
@@ -645,7 +645,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-iterator": true
     ```
-    
+
 * [no-labels](http://eslint.org/docs/rules/no-labels) => no-labels (tslint-eslint-rules) [TODO]()
   * Description: disallow use of labeled statements
   * Usage
@@ -653,7 +653,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-labels": true
     ```
-    
+
 * [no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks) => no-lone-blocks (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary nested blocks
   * Usage
@@ -661,7 +661,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-lone-blocks": true
     ```
-    
+
 * [no-loop-func](http://eslint.org/docs/rules/no-loop-func) => no-loop-func (tslint-eslint-rules) [TODO]()
   * Description: disallow creation of functions within loops
   * Usage
@@ -669,7 +669,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-loop-func": true
     ```
-    
+
 * [no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers) => no-magic-numbers (tslint-eslint-rules) [TODO]()
   * Description: disallow the use of magic numbers
   * Usage
@@ -684,7 +684,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) => no-multi-spaces (tslint-eslint-rules) [TODO]()
   * Description: disallow use of multiple spaces
   * Usage
@@ -697,7 +697,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [no-multi-str](http://eslint.org/docs/rules/no-multi-str) => no-multi-str (tslint-eslint-rules) [TODO]()
   * Description: disallow use of multiline strings
   * Usage
@@ -705,10 +705,10 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-multi-str": true
     ```
-    
+
 * [no-native-reassign](http://eslint.org/docs/rules/no-native-reassign) => Not applicable to TypeScript
   * Description: disallow reassignments of native objects
-    
+
 * [no-new-func](http://eslint.org/docs/rules/no-new-func) => no-new-func (tslint-eslint-rules) [TODO]()
   * Description: disallow use of new operator for `Function` object
   * Usage
@@ -716,7 +716,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-new-func": true
     ```
-    
+
 * [no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers) => no-new-wrappers (tslint-eslint-rules) [TODO]() // ou no-construct
   * Description: disallows creating new instances of `String`,`Number`, and `Boolean`
   * Usage
@@ -724,7 +724,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-new-wrappers": true
     ```
-    
+
 * [no-new](http://eslint.org/docs/rules/no-new) => no-new (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the `new` operator when not part of an assignment or comparison
   * Usage
@@ -732,7 +732,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-new": true
     ```
-    
+
 * [no-octal-escape](http://eslint.org/docs/rules/no-octal-escape) => no-octal-escape (tslint-eslint-rules) [TODO]()
   * Description: disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`
   * Usage
@@ -740,10 +740,10 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-octal-escape": true
     ```
-    
+
 * [no-octal](http://eslint.org/docs/rules/no-octal) => Not applicable to TypeScript
   * Description: disallow use of octal literals (recommended)
-    
+
 * [no-param-reassign](http://eslint.org/docs/rules/no-param-reassign) => no-param-reassign (tslint-eslint-rules) [TODO]()
   * Description: disallow reassignment of function parameters
   * Usage
@@ -756,7 +756,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [no-process-env](http://eslint.org/docs/rules/no-process-env) => no-process-env (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `process.env`
   * Usage
@@ -764,7 +764,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-process-env": true
     ```
-    
+
 * [no-proto](http://eslint.org/docs/rules/no-proto) => no-proto (tslint-eslint-rules) [TODO]()
   * Description: disallow Usage of `__proto__` property
   * Usage
@@ -772,7 +772,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-proto": true
     ```
-    
+
 * [no-redeclare](http://eslint.org/docs/rules/no-redeclare) => no-duplicate-variable (native)
   * Description: disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)
   * Usage
@@ -780,7 +780,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-duplicate-variable": true
     ```
-    
+
 * [no-return-assign](http://eslint.org/docs/rules/no-return-assign) => no-return-assign (tslint-eslint-rules) [TODO]()
   * Description: disallow use of assignment in `return` statement
   * Usage
@@ -794,7 +794,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         }
       ]
     ```
-    
+
 * [no-script-url](http://eslint.org/docs/rules/no-script-url) => no-script-url (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `javascript:` urls.
   * Usage
@@ -802,7 +802,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-script-url": true
     ```
-    
+
 * [no-self-compare](http://eslint.org/docs/rules/no-self-compare) => no-self-compare (tslint-eslint-rules) [TODO]()
   * Description: disallow comparisons where both sides are exactly the same
   * Usage
@@ -810,7 +810,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-self-compare": true
     ```
-    
+
 * [no-sequences](http://eslint.org/docs/rules/no-sequences) => no-sequences (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the comma operator
   * Usage
@@ -818,7 +818,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-sequences": true
     ```
-    
+
 * [no-throw-literal](http://eslint.org/docs/rules/no-throw-literal) => no-throw-literal (tslint-eslint-rules) [TODO]()
   * Description: restrict what can be thrown as an exception
   * Usage
@@ -826,15 +826,15 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-throw-literal": true
     ```
-    
-* [no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions) => no-unused-expression (native) 
+
+* [no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions) => no-unused-expression (native)
   * Description: disallow Usage of expressions in statement position
   * Usage
 
     ```json
     "no-unused-expressions": true
     ```
-    
+
 * [no-useless-call](http://eslint.org/docs/rules/no-useless-call) => no-useless-call (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary `.call()` and `.apply()`
   * Usage
@@ -842,7 +842,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-useless-call": true
     ```
-    
+
 * [no-useless-concat](http://eslint.org/docs/rules/no-useless-concat) => no-useless-concat (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary concatenation of literals or template literals
   * Usage
@@ -850,7 +850,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-useless-concat": true
     ```
-    
+
 * [no-void](http://eslint.org/docs/rules/no-void) => no-void (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the `void` operator
   * Usage
@@ -858,7 +858,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-void":true
     ```
-    
+
 * [no-warning-comments](http://eslint.org/docs/rules/no-warning-comments) => no-warning-comments (tslint-eslint-rules) [TODO]()
   * Description: disallow Usage of configurable warning terms in comments e.g. `TODO` or `FIXME`
   * Usage
@@ -867,12 +867,12 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-warning-comments": [
         true,
         {
-          "terms": ["todo", "fixme", "xxx"], 
+          "terms": ["todo", "fixme", "xxx"],
           "location": "start"
         }
       ]
     ```
-    
+
 * [no-with](http://eslint.org/docs/rules/no-with) => no-with (tslint-eslint-rules) [TODO]()
   * Description: disallow use of the `with` statement
   * Usage
@@ -880,7 +880,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "no-with": true
     ```
-    
+
 * [radix](http://eslint.org/docs/rules/radix) => radix (native)
   * Description: require use of the second argument for `parseInt()`
   * Usage
@@ -888,7 +888,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "radix": true
     ```
-    
+
 * [vars-on-top](http://eslint.org/docs/rules/vars-on-top) => vars-on-top (tslint-eslint-rules) [TODO]()
   * Description: require declaration of all vars at the top of their containing scope
   * Usage
@@ -896,7 +896,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     ```json
     "vars-on-top": true
     ```
-    
+
 * [wrap-iife](http://eslint.org/docs/rules/wrap-iife) => wrap-iife (tslint-eslint-rules) [TODO]()
   * Description: require immediate function invocation to be wrapped in parentheses
   * Usage
@@ -907,7 +907,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
         "inside"
       ]
     ```
-    
+
 * [yoda](http://eslint.org/docs/rules/yoda) => yoda (tslint-eslint-rules) [TODO]()
   * Description: require or disallow Yoda conditions
   * Usage
@@ -1017,7 +1017,7 @@ These rules have to do with variable declarations.
     ```
 * [no-undef](http://eslint.org/docs/rules/no-undef) => not applicable to TypeScript
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
-  
+
 * [no-undefined](http://eslint.org/docs/rules/no-undefined) =>
   * Description: disallow use of `undefined` variable
   * Usage

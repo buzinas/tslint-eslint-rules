@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "doctrine": "^0.7.1",
-    "tslint": "^2.5.1"
+    "tslint": "^3.0.0"
   }
 }

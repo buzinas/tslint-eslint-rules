@@ -1,5 +1,5 @@
-/// <reference path='helper.d.ts' />
-// import {ts, Lint} from './helper';
+import * as ts from 'typescript';
+import * as Lint from 'tslint/lib/lint';
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = `don't use empty classes in regular expressions`;

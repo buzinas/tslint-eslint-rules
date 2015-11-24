@@ -14,7 +14,9 @@ const TS_CONFIG = ts.createProject('tsconfig.json');
 gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
-    .pipe(tslint())
+    .pipe(tslint({
+      tslint: require('tslint')
+    }))
     .pipe(tslint.report('prose', {
       summarizeFailureOutput: false
     }));

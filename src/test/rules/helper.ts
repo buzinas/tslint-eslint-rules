@@ -1,17 +1,14 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
-/// <reference path='../../rules/helper.d.ts' />
 
 import {expect} from 'chai';
-// import {Lint} from '../../rules/helper';
-import tslint = require('tslint');
-Lint.Linter = tslint;
+import * as Lint from 'tslint/lib/lint';
 
 export function testScript(rule: string, scriptText: string, config: Object): boolean {
   const options: Lint.ILinterOptions = {
-    formatter: 'json',
     configuration: config,
-    rulesDirectory: 'dist/rules/',
-    formattersDirectory: 'dist/formatters/'
+    formatter: 'json',
+    formattersDirectory: 'dist/formatters/',
+    rulesDirectory: 'dist/rules/'
   };
 
   const linter = new Lint.Linter(`${rule}.ts`, scriptText, options);
