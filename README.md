@@ -923,7 +923,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
 
 These rules relate to using strict mode.
 
-* [strict](http://eslint.org/docs/rules/strict) =>
+* [strict](http://eslint.org/docs/rules/strict) => strict (tslint-eslint-rules) [TODO]()
   * Description: controls location of Use Strict Directives
   * Usage
 
@@ -931,7 +931,8 @@ These rules relate to using strict mode.
     "strict": [
         true,
         {
-
+          "function": true,
+          "global": false
         }
       ]
     ```
@@ -940,7 +941,7 @@ These rules relate to using strict mode.
 
 These rules have to do with variable declarations.
 
-* [init-declarations](http://eslint.org/docs/rules/init-declarations) =>
+* [init-declarations](http://eslint.org/docs/rules/init-declarations) => init-declarations (tslint-eslint-rules) [TODO]()
   * Description: enforce or disallow variable initializations at definition
   * Usage
 
@@ -948,87 +949,65 @@ These rules have to do with variable declarations.
     "init-declarations": [
         true,
         {
-
+          "always": true,
+          "never": false,
+          "ignoreForLoopInit": false
         }
       ]
     ```
-* [no-catch-shadow](http://eslint.org/docs/rules/no-catch-shadow) =>
+    
+* [no-catch-shadow](http://eslint.org/docs/rules/no-catch-shadow) => no-catch-shadow (tslint-eslint-rules) [TODO]()
   * Description: disallow the catch clause parameter name being the same as a variable in the outer scope
   * Usage
 
     ```json
-    "no-catch-shadow": [
-        true,
-        {
-
-        }
-      ]
+    "no-catch-shadow": true
     ```
+    
 * [no-delete-var](http://eslint.org/docs/rules/no-delete-var) => not applicable to TypeScript
   * Description: disallow deletion of variables (recommended)
 
-* [no-label-var](http://eslint.org/docs/rules/no-label-var) =>
+* [no-label-var](http://eslint.org/docs/rules/no-label-var) => no-label-var (tslint-eslint-rules) [TODO]()
   * Description: disallow labels that share a name with a variable
   * Usage
 
     ```json
-    "no-label-var": [
-        true,
-        {
-
-        }
-      ]
+    "no-label-var": true
     ```
-* [no-shadow-restricted-names](http://eslint.org/docs/rules/no-shadow-restricted-names) =>
+    
+* [no-shadow-restricted-names](http://eslint.org/docs/rules/no-shadow-restricted-names) => no-shadow-restricted-names (tslint-eslint-rules) [TODO]()
   * Description: disallow shadowing of names such as `arguments`
   * Usage
 
     ```json
-    "no-shadow-restricted-names": [
-        true,
-        {
-
-        }
-      ]
+    "no-shadow-restricted-names": true
     ```
-* [no-shadow](http://eslint.org/docs/rules/no-shadow) =>
+    
+* [no-shadow](http://eslint.org/docs/rules/no-shadow) => no-shadowed-variable (native)
   * Description: disallow declaration of variables already declared in the outer scope
   * Usage
 
     ```json
-    "no-shadow": [
-        true,
-        {
-
-        }
-      ]
+    "no-shadowed-variable": true
     ```
-* [no-undef-init](http://eslint.org/docs/rules/no-undef-init) =>
+    
+* [no-undef-init](http://eslint.org/docs/rules/no-undef-init) => no-undef-init (tslint-eslint-rules) [TODO]()
   * Description: disallow use of undefined when initializing variables
   * Usage
 
     ```json
-    "no-undef-init": [
-        true,
-        {
-
-        }
-      ]
+    "no-undef-init": true
     ```
+    
 * [no-undef](http://eslint.org/docs/rules/no-undef) => not applicable to TypeScript
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
   
-* [no-undefined](http://eslint.org/docs/rules/no-undefined) =>
+* [no-undefined](http://eslint.org/docs/rules/no-undefined) => no-undefined (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `undefined` variable
   * Usage
 
     ```json
-    "no-undefined": [
-        true,
-        {
-
-        }
-      ]
+    "no-undefined": true
     ```
 
 * [no-unused-vars](http://eslint.org/docs/rules/no-unused-vars) => no-unused-variable (native)
@@ -1039,17 +1018,12 @@ These rules have to do with variable declarations.
     "no-unused-variable": true
     ```
 
-* [no-use-before-define](http://eslint.org/docs/rules/no-use-before-define) =>
+* [no-use-before-define](http://eslint.org/docs/rules/no-use-before-define) => no-use-before-define (native)
   * Description: disallow use of variables before they are defined
   * Usage
 
     ```json
-    "no-use-before-define": [
-        true,
-        {
-
-        }
-      ]
+    "no-use-before-define": true
     ```
 
 ### Node.js and CommonJS
