@@ -1030,43 +1030,41 @@ These rules have to do with variable declarations.
 
 These rules are specific to JavaScript running on Node.js or using CommonJS in the browser.
 
-* [callback-return](http://eslint.org/docs/rules/callback-return) =>
+* [callback-return](http://eslint.org/docs/rules/callback-return) => callback-return (tslint-eslint-rules) [TODO]()
   * Description: enforce `return` after a callback
   * Usage
 
     ```json
     "callback-return": [
         true,
-        {
-
-        }
+        [
+          "callback",
+          "cb",
+          "next"
+        ]
       ]
     ```
-* [global-require](http://eslint.org/docs/rules/global-require) =>
+    
+* [global-require](http://eslint.org/docs/rules/global-require) => global-require (tslint-eslint-rules) [TODO]()
   * Description: enforce `require()` on top-level module scope
   * Usage
 
     ```json
-    "global-require": [
-        true,
-        {
-
-        }
-      ]
+    "global-require": true
     ```
-* [handle-callback-err](http://eslint.org/docs/rules/handle-callback-err) =>
+    
+* [handle-callback-err](http://eslint.org/docs/rules/handle-callback-err) => handle-callback-err (tslint-eslint-rules) [TODO]()
   * Description: enforce error handling in callbacks
   * Usage
 
     ```json
     "handle-callback-err": [
         true,
-        {
-
-        }
+        "^(err|error|anySpecificError)$"
       ]
     ```
-* [no-mixed-requires](http://eslint.org/docs/rules/no-mixed-requires) =>
+    
+* [no-mixed-requires](http://eslint.org/docs/rules/no-mixed-requires) => no-mixed-requires (tslint-eslint-rules) [TODO]()
   * Description: disallow mixing regular variable and require declarations
   * Usage
 
@@ -1074,70 +1072,56 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
     "no-mixed-requires": [
         true,
         {
-
+          "grouping": false
         }
       ]
     ```
-* [no-new-require](http://eslint.org/docs/rules/no-new-require) =>
+    
+* [no-new-require](http://eslint.org/docs/rules/no-new-require) => no-new-require (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `new` operator with the `require` function
   * Usage
 
     ```json
-    "no-new-require": [
-        true,
-        {
-
-        }
-      ]
+    "no-new-require": true
     ```
-* [no-path-concat](http://eslint.org/docs/rules/no-path-concat) =>
+    
+* [no-path-concat](http://eslint.org/docs/rules/no-path-concat) => no-path-concat (tslint-eslint-rules) [TODO]()
   * Description: disallow string concatenation with `__dirname` and `__filename`
   * Usage
 
     ```json
-    "no-path-concat": [
-        true,
-        {
-
-        }
-      ]
+    "no-path-concat": true
     ```
-* [no-process-exit](http://eslint.org/docs/rules/no-process-exit) =>
+    
+* [no-process-exit](http://eslint.org/docs/rules/no-process-exit) => no-process-exit (tslint-eslint-rules) [TODO]()
   * Description: disallow `process.exit()`
   * Usage
 
     ```json
-    "no-process-exit": [
-        true,
-        {
-
-        }
-      ]
+    "no-process-exit": true
     ```
-* [no-restricted-modules](http://eslint.org/docs/rules/no-restricted-modules) =>
-  * Description: restrict Usage
- of specified node modules
+    
+* [no-restricted-modules](http://eslint.org/docs/rules/no-restricted-modules) => no-restricted-modules (tslint-eslint-rules) [TODO]()
+  * Description: restrict Usage of specified node modules
   * Usage
 
     ```json
     "no-restricted-modules": [
         true,
-        {
-
-        }
+        [
+          "fs",
+          "cluster",
+          "moduleName"
+        ]
       ]
     ```
-* [no-sync](http://eslint.org/docs/rules/no-sync) =>
+    
+* [no-sync](http://eslint.org/docs/rules/no-sync) => no-sync (tslint-eslint-rules) [TODO]()
   * Description: disallow use of synchronous methods
   * Usage
 
     ```json
-    "no-sync": [
-        true,
-        {
-
-        }
-      ]
+    "no-sync": true
     ```
 
 ### Stylistic Issues
