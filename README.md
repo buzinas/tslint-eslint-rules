@@ -1482,6 +1482,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary) =>
   * Description: disallow nested ternary expressions
   * Usage
@@ -1494,6 +1495,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-new-object](http://eslint.org/docs/rules/no-new-object) =>
   * Description: disallow the use of the `Object` constructor
   * Usage
@@ -1506,6 +1508,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-restricted-syntax](http://eslint.org/docs/rules/no-restricted-syntax) =>
   * Description: disallow use of certain syntax in code
   * Usage
@@ -1518,6 +1521,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-spaced-func](http://eslint.org/docs/rules/no-spaced-func) =>
   * Description: disallow space between function identifier and application
   * Usage
@@ -1530,6 +1534,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-ternary](http://eslint.org/docs/rules/no-ternary) =>
   * Description: disallow the use of ternary operators
   * Usage
@@ -1542,6 +1547,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-trailing-spaces](http://eslint.org/docs/rules/no-trailing-spaces) =>
   * Description: disallow trailing whitespace at the end of lines
   * Usage
@@ -1554,6 +1560,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-underscore-dangle](http://eslint.org/docs/rules/no-underscore-dangle) =>
   * Description: disallow dangling underscores in identifiers
   * Usage
@@ -1566,6 +1573,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [no-unneeded-ternary](http://eslint.org/docs/rules/no-unneeded-ternary) =>
   * Description: disallow the use of ternary operators when a simpler alternative exists
   * Usage
@@ -1578,6 +1586,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) =>
   * Description: require or disallow padding inside curly braces
   * Usage
@@ -1590,6 +1599,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [one-var](http://eslint.org/docs/rules/one-var) =>
   * Description: require or disallow one variable declaration per function
   * Usage
@@ -1602,6 +1612,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [operator-assignment](http://eslint.org/docs/rules/operator-assignment) =>
   * Description: require assignment operator shorthand where possible or prohibit it entirely
   * Usage
@@ -1614,6 +1625,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [operator-linebreak](http://eslint.org/docs/rules/operator-linebreak) =>
   * Description: enforce operators to be placed before or after line breaks
   * Usage
@@ -1626,6 +1638,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [padded-blocks](http://eslint.org/docs/rules/padded-blocks) =>
   * Description: enforce padding within blocks
   * Usage
@@ -1638,6 +1651,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [quote-props](http://eslint.org/docs/rules/quote-props) =>
   * Description: require quotes around object literal property names
   * Usage
@@ -1650,6 +1664,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [quotes](http://eslint.org/docs/rules/quotes) =>
   * Description: specify whether backticks, double or single quotes should be used
   * Usage
@@ -1662,6 +1677,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [require-jsdoc](http://eslint.org/docs/rules/require-jsdoc) =>
   * Description: Require JSDoc comment
   * Usage
@@ -1674,6 +1690,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [semi-spacing](http://eslint.org/docs/rules/semi-spacing) =>
   * Description: enforce spacing before and after semicolons
   * Usage
@@ -1686,6 +1703,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [semi](http://eslint.org/docs/rules/semi) =>
   * Description: require or disallow use of semicolons instead of ASI
   * Usage
@@ -1698,6 +1716,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [sort-vars](http://eslint.org/docs/rules/sort-vars) =>
   * Description: sort variables within the same declaration block
   * Usage
@@ -1710,6 +1729,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-after-keywords](http://eslint.org/docs/rules/space-after-keywords) =>
   * Description: require a space after certain keywords
   * Usage
@@ -1722,6 +1742,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-before-blocks](http://eslint.org/docs/rules/space-before-blocks) =>
   * Description: require or disallow a space before blocks
   * Usage
@@ -1734,6 +1755,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren) =>
   * Description: require or disallow a space before function opening parenthesis
   * Usage
@@ -1746,6 +1768,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-before-keywords](http://eslint.org/docs/rules/space-before-keywords) =>
   * Description: require a space before certain keywords
   * Usage
@@ -1758,6 +1781,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-in-parens](http://eslint.org/docs/rules/space-in-parens) =>
   * Description: require or disallow spaces inside parentheses
   * Usage
@@ -1770,6 +1794,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-infix-ops](http://eslint.org/docs/rules/space-infix-ops) =>
   * Description: require spaces around operators
   * Usage
@@ -1782,6 +1807,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-return-throw-case](http://eslint.org/docs/rules/space-return-throw-case) =>
   * Description: require a space after `return`, `throw`, and `case`
   * Usage
@@ -1794,6 +1820,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [space-unary-ops](http://eslint.org/docs/rules/space-unary-ops) =>
   * Description: require or disallow spaces before/after unary operators
   * Usage
@@ -1806,6 +1833,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [spaced-comment](http://eslint.org/docs/rules/spaced-comment) =>
   * Description: require or disallow a space immediately following the `//` or `/*` in a comment
   * Usage
@@ -1818,6 +1846,7 @@ These rules are purely matters of style and are quite subjective.
         }
       ]
     ```
+    
 * [wrap-regex](http://eslint.org/docs/rules/wrap-regex) =>
   * Description: require regex literals to be wrapped in parentheses
   * Usage
@@ -1835,7 +1864,7 @@ These rules are purely matters of style and are quite subjective.
 
 These rules are only relevant to ES6 environments.
 
-* [arrow-body-style](http://eslint.org/docs/rules/arrow-body-style) =>
+* [arrow-body-style](http://eslint.org/docs/rules/arrow-body-style) => arrow-body-style (tslint-eslint-rules) [TODO]()
   * Description: require braces in arrow function body
   * Usage
 
@@ -1843,11 +1872,13 @@ These rules are only relevant to ES6 environments.
     "arrow-body-style": [
         true,
         {
-
+          "as-needed": true,
+          "always": false
         }
       ]
     ```
-* [arrow-parens](http://eslint.org/docs/rules/arrow-parens) =>
+    
+* [arrow-parens](http://eslint.org/docs/rules/arrow-parens) => arrow-parens (tslint-eslint-rules) [TODO]()
   * Description: require parens in arrow function arguments
   * Usage
 
@@ -1855,11 +1886,13 @@ These rules are only relevant to ES6 environments.
     "arrow-parens": [
         true,
         {
-
+          "as-needed": true,
+          "always": false
         }
       ]
     ```
-* [arrow-spacing](http://eslint.org/docs/rules/arrow-spacing) =>
+    
+* [arrow-spacing](http://eslint.org/docs/rules/arrow-spacing) => arrow-spacing (tslint-eslint-rules) [TODO]()
   * Description: require space before/after arrow function's arrow
   * Usage
 
@@ -1867,23 +1900,21 @@ These rules are only relevant to ES6 environments.
     "arrow-spacing": [
         true,
         {
-
+          "before": true,
+          "after": true
         }
       ]
     ```
-* [constructor-super](http://eslint.org/docs/rules/constructor-super) =>
+    
+* [constructor-super](http://eslint.org/docs/rules/constructor-super) => constructor-super (tslint-eslint-rules) [TODO]()
   * Description: verify calls of `super()` in constructors
   * Usage
 
     ```json
-    "constructor-super": [
-        true,
-        {
-
-        }
-      ]
+    "constructor-super": true
     ```
-* [generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing) =>
+    
+* [generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing) => generator-star-spacing (tslint-eslint-rules) [TODO]()
   * Description: enforce spacing around the `*` in generator functions
   * Usage
 
@@ -1891,83 +1922,56 @@ These rules are only relevant to ES6 environments.
     "generator-star-spacing": [
         true,
         {
-
+          "before": true,
+          "after": true
         }
       ]
     ```
-* [no-arrow-condition](http://eslint.org/docs/rules/no-arrow-condition) =>
+    
+* [no-arrow-condition](http://eslint.org/docs/rules/no-arrow-condition) => no-arrow-condition (tslint-eslint-rules) [TODO]()
   * Description: disallow arrow functions where a condition is expected
   * Usage
 
     ```json
-    "no-arrow-condition": [
-        true,
-        {
-
-        }
-      ]
+    "no-arrow-condition": true
     ```
-* [no-class-assign](http://eslint.org/docs/rules/no-class-assign) =>
+    
+* [no-class-assign](http://eslint.org/docs/rules/no-class-assign) => no-class-assign (tslint-eslint-rules) [TODO]()
   * Description: disallow modifying variables of class declarations
   * Usage
 
     ```json
-    "no-class-assign": [
-        true,
-        {
-
-        }
-      ]
+    "no-class-assign": true
     ```
-* [no-const-assign](http://eslint.org/docs/rules/no-const-assign) =>
+    
+* [no-const-assign](http://eslint.org/docs/rules/no-const-assign) => no-const-assign (tslint-eslint-rules) [TODO]()
   * Description: disallow modifying variables that are declared using `const`
   * Usage
 
     ```json
-    "no-const-assign": [
-        true,
-        {
-
-        }
-      ]
+    "no-const-assign": true
     ```
-* [no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members) =>
+    
+* [no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members) => Not applicable to TypeScript
   * Description: disallow duplicate name in class members
-  * Usage
-
-    ```json
-    "no-dupe-class-members": [
-        true,
-        {
-
-        }
-      ]
-    ```
-* [no-this-before-super](http://eslint.org/docs/rules/no-this-before-super) =>
+    
+* [no-this-before-super](http://eslint.org/docs/rules/no-this-before-super) => no-this-before-super (tslint-eslint-rules) [TODO]()
   * Description: disallow use of `this`/`super` before calling `super()` in constructors.
   * Usage
 
     ```json
-    "no-this-before-super": [
-        true,
-        {
-
-        }
-      ]
+    "no-this-before-super": true
     ```
-* [no-var](http://eslint.org/docs/rules/no-var) =>
+    
+* [no-var](http://eslint.org/docs/rules/no-var) => no-var-keyword (native)
   * Description: require `let` or `const` instead of `var`
   * Usage
 
     ```json
-    "no-var": [
-        true,
-        {
-
-        }
-      ]
+    "no-var-keyword": true
     ```
-* [object-shorthand](http://eslint.org/docs/rules/object-shorthand) =>
+    
+* [object-shorthand](http://eslint.org/docs/rules/object-shorthand) => object-shorthand (tslint-eslint-rules) [TODO]()
   * Description: require method and property shorthand syntax for object literals
   * Usage
 
@@ -1975,35 +1979,31 @@ These rules are only relevant to ES6 environments.
     "object-shorthand": [
         true,
         {
-
+          "always": true,
+          "methods": false,
+          "properties": false,
+          "never": false         
         }
       ]
     ```
-* [prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback) =>
+    
+* [prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback) => prefer-arrow-callback (tslint-eslint-rules) [TODO]()
   * Description: suggest using arrow functions as callbacks
   * Usage
 
     ```json
-    "prefer-arrow-callback": [
-        true,
-        {
-
-        }
-      ]
+    "prefer-arrow-callback": true
     ```
-* [prefer-const](http://eslint.org/docs/rules/prefer-const) =>
+    
+* [prefer-const](http://eslint.org/docs/rules/prefer-const) => prefer-const (tslint-eslint-rules) [TODO]()
   * Description: suggest using `const` declaration for variables that are never modified after declared
   * Usage
 
     ```json
-    "prefer-const": [
-        true,
-        {
-
-        }
-      ]
+    "prefer-const": true
     ```
-* [prefer-reflect](http://eslint.org/docs/rules/prefer-reflect) =>
+    
+* [prefer-reflect](http://eslint.org/docs/rules/prefer-reflect) => prefer-reflect (tslint-eslint-rules) [TODO]()
   * Description: suggest using Reflect methods where applicable
   * Usage
 
@@ -2011,45 +2011,33 @@ These rules are only relevant to ES6 environments.
     "prefer-reflect": [
         true,
         {
-
+          "exceptions": ["apply", "call", "defineProperty", "getOwnPropertyDescriptor", "getPrototypeOf", "setPrototypeOf", "isExtensible", "getOwnPropertyNames", "preventExtensions", "delete"]
         }
       ]
     ```
-* [prefer-spread](http://eslint.org/docs/rules/prefer-spread) =>
+    
+* [prefer-spread](http://eslint.org/docs/rules/prefer-spread) => prefer-spread (tslint-eslint-rules) [TODO]()
   * Description: suggest using the spread operator instead of `.apply()`.
   * Usage
 
     ```json
-    "prefer-spread": [
-        true,
-        {
-
-        }
-      ]
+    "prefer-spread": true
     ```
-* [prefer-template](http://eslint.org/docs/rules/prefer-template) =>
+    
+* [prefer-template](http://eslint.org/docs/rules/prefer-template) => prefer-template (tslint-eslint-rules) [TODO]()
   * Description: suggest using template literals instead of strings concatenation
   * Usage
 
     ```json
-    "prefer-template": [
-        true,
-        {
-
-        }
-      ]
+    "prefer-template": true
     ```
-* [require-yield](http://eslint.org/docs/rules/require-yield) =>
+    
+* [require-yield](http://eslint.org/docs/rules/require-yield) => require-yield (tslint-eslint-rules) [TODO]()
   * Description: disallow generator functions that do not have `yield`
   * Usage
 
     ```json
-    "require-yield": [
-        true,
-        {
-
-        }
-      ]
+    "require-yield": true
     ```
 
 ### Legacy
