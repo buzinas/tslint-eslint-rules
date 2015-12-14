@@ -1,5 +1,18 @@
 ## Change Log
 
+### v1.0.0 (2015/12/14 17:14 +00:00)
+- [8b19c81](https://github.com/buzinas/tslint-eslint-rules/commit/8b19c81bfbb06f0ad1f1787655fbebf2da4ed863) [feat] prepare 1.0.0 release (refs #50) (@buzinas)
+- [46074c2](https://github.com/buzinas/tslint-eslint-rules/commit/46074c2bad89f3017a59e7ce3f49933d27608c4c) [feat] prepare v1.0.0 release (refs #50) (@buzinas)
+- [3d7572c](https://github.com/buzinas/tslint-eslint-rules/commit/3d7572c6852da6b042502f72772acfd984c0fcda) [feat] updated rule to use new TSLint 3.0.0 method (refs #48) (@buzinas)
+- [3d8243d](https://github.com/buzinas/tslint-eslint-rules/commit/3d8243dd64783728eb52797db4fd9f641cbf2d05) [feat] updated TSLint dependency and fixed Unix end of lines (closes #48) (@buzinas)
+- [#47](https://github.com/buzinas/tslint-eslint-rules/pull/47) Merge pull request #47 from buzinas/best-practice-rules (@buzinas)
+- [b450c7a](https://github.com/buzinas/tslint-eslint-rules/commit/b450c7accd339cbab9a2111956d920b521a19387) [docs] added the Best Practices rules descriptions (refs #4) (@Schiavi)
+- [#44](https://github.com/buzinas/tslint-eslint-rules/pull/44) Merge pull request #44 from tkrotoff/patch-1 (@tkrotoff)
+- [796dc36](https://github.com/buzinas/tslint-eslint-rules/commit/796dc3667a72e0c78285d4517743fdf44cb49857) [docs] fixed README.md tsconfig.json => tslint.json (@tkrotoff)
+- [07f244d](https://github.com/buzinas/tslint-eslint-rules/commit/07f244db69d4796d21bd5e6befafe32527c8f1da) [bug] fixed debugging mocha tests (@buzinas)
+- [1bac57b](https://github.com/buzinas/tslint-eslint-rules/commit/1bac57bf938f4f6785ca7f4dfe907e0114d23067) [docs] finished all ESLint recommended rules (closes #37, closes #28) (@buzinas)
+- [7d43d7e](https://github.com/buzinas/tslint-eslint-rules/commit/7d43d7e807fa7fc72314c4e206143ea56cebd949) [docs] updated CHANGELOG to v0.3.0 (@buzinas)
+
 ### v0.3.0 (2015/11/19 14:47 +00:00)
 - [e913fbb](https://github.com/buzinas/tslint-eslint-rules/commit/e913fbbe9bd6b8977d2e13748a1a04c23a59f4aa) [bug] fixed json formatting (@buzinas)
 - [#43](https://github.com/buzinas/tslint-eslint-rules/pull/43) Merge pull request #43 from buzinas/valid-jsdoc-rule (@buzinas)
