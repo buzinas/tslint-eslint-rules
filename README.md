@@ -24,9 +24,8 @@ npm install --save-dev tslint-eslint-rules
 ```
 
 ### Configure TSLint to use `tslint-eslint-rules` folder:
-- #### TSLint configuration file (tslint.json) - **RECOMMENDED ([Waiting for acceptance](https://github.com/palantir/tslint/pull/800))**
 
-  We contributed to the `palantir/tslint` repository, by adding the option of using the `rulesDirectory` property inside your `tslint.json` file, e.g:
+In your `tslint.json` file, add the `rulesDirectory` property, e.g:
 
   ```json
   {
@@ -39,99 +38,10 @@ npm install --save-dev tslint-eslint-rules
 
   You can also pass an array of strings to the `rulesDirectory` property to combine this plugin with other community custom rules.
 
-  The options below, you should only use when not using this one.
-
-- #### TSLint CLI
-
-  ```console
-  tslint [file] -r node_modules/tslint-eslint-rules/dist/rules
-  ```
-
-- #### TSLint Library ([read more](https://github.com/palantir/tslint#library-1))
-
-  ```javascript
-  const options = {
-    formatter: "json",
-    configuration: configuration,
-    rulesDirectory: 'node_modules/tslint-eslint-rules/dist/rules'
-    formattersDirectory: ''
-  };
-
-  let linter = new Linter(fileName, contents, options);
-  let result = linter.lint();
-  ```
-
-- #### Gulp (`gulp-tslint`)
-
-  ```javascript
-  gulp
-    .src(/* [files] */)
-    .pipe(tslint({
-      rulesDirectory: 'node_modules/tslint-eslint-rules/dist/rules'
-    }));
-  ```
-
-- #### Grunt (`grunt-tslint`)
-
-  ```javascript
-  grunt.initConfig({
-    /* other configurations */
-    tslint: {
-      options: {
-        configuration: grunt.file.readJSON('tslint.json'),
-        rulesDirectory: 'node_modules/tslint-eslint-rules/dist/rules'
-      },
-      files: {
-        src: [/* [files] */]
-      }
-    }
-  })
-  ```
-
-- #### WebStorm
-
-  Open `File > Settings` and follow the example below:
-
-  ![WebStorm configuration](src/docs/img/tslint-eslint-rules_webstorm.png)
-
-- #### Atom (`linter-tslint`)
-
-  We contributed to the `linter-tslint` Atom's plugin, by adding the "Custom rules directory" feature.
-
-  ![Atom configuration](src/docs/img/tslint-eslint-rules_atom.png)
-
-- ### Sublime Text (`SublimeLinter-contrib-tslint`)
-
-  In your `Packages/User/SublimeLinter.sublime-settings` file, you can configure `tslint` options, similar to the example bellow:
-
-  ```json
-  {
-    "user": {
-      "linters": {
-        "tslint": {
-          "args": [
-             "--r=node_modules/tslint-eslint-rules/dist/rules"
-          ]
-        }
-      }
-    }
-  }
-  ```
-
-- ### Visual Studio Code (`tslint`)
-
-  After installing the `tslint` plugin, you can go to your Workspace Settings and config it:
-
-  ```json
-  {
-    "tslint.enable": true,
-    "tslint.rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
-  }
-  ```
 
 ### Configure your rules
 
-Then, in your `tslint.json` file, insert the rules as described below.
+In your `tslint.json` file, insert the rules as described below.
 
 
 ## Rules (copied from [ESLint website](http://eslint.org/docs/rules/))
