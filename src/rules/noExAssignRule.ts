@@ -2,7 +2,7 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static FAILURE_STRING = 'invalid typeof comparison value';
+  public static FAILURE_STRING = 'do not assign to the exception parameter.';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new NoExAssignWalker(sourceFile, this.getOptions());

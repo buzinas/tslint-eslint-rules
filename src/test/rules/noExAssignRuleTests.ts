@@ -6,7 +6,21 @@ const scripts = {
   valid: [
     'try { } catch (e) { three = 2 + 1; }',
     'try { } catch ({e}) { this.something = 2; }", ecmaFeatures: { destructuring: true } }',
-    'function foo() { try { } catch (e) { return false; } }'
+    'function foo() { try { } catch (e) { return false; } }',
+    `
+      export function bootstrapComponents(): void {
+        "use strict";
+
+        bootstrap((aurelia: Aurelia) => {
+          aurelia.use
+            .defaultBindingLanguage()
+            .defaultResources()
+            .developmentLogging();
+
+          aurelia.start().then(()  => aurelia.enhance({}, document.body));
+        });
+      }
+    `
   ],
   invalid: [
     'try { } catch (e) { e = 10; }',
