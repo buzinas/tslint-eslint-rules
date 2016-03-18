@@ -1,5 +1,12 @@
 ## Change Log
 
+### v1.1.0 (2016/03/18 17:05 +00:00)
+- [#56](https://github.com/buzinas/tslint-eslint-rules/pull/56) Merge pull request #56 from buzinas/npm-update (@buzinas)
+- [ccd5cdf](https://github.com/buzinas/tslint-eslint-rules/commit/ccd5cdfe5e0ac30ee09add8c5828cf7aefc90f6e) [feat] updated npm dependencies and fixed a typing bug (@buzinas)
+- [9da7ba8](https://github.com/buzinas/tslint-eslint-rules/commit/9da7ba8a45d172c5f5c04733da210a2b0a59d272) [fix] fixed no-ex-assign rule string and added test for false positive (closes #52, refs #54) (@buzinas)
+- [8599fb6](https://github.com/buzinas/tslint-eslint-rules/commit/8599fb6d6abc9a10eb6afea259d162ff11cd956a) [fix] minor fix for v1.0.0 publishing (refs #50) (@buzinas)
+- [5a70385](https://github.com/buzinas/tslint-eslint-rules/commit/5a703851e5633843f539339d882d4f56785bf3ad) [docs] updated for v1.0.0 (closes #50) (@buzinas)
+
 ### v1.0.0 (2015/12/14 17:14 +00:00)
 - [8b19c81](https://github.com/buzinas/tslint-eslint-rules/commit/8b19c81bfbb06f0ad1f1787655fbebf2da4ed863) [feat] prepare 1.0.0 release (refs #50) (@buzinas)
 - [46074c2](https://github.com/buzinas/tslint-eslint-rules/commit/46074c2bad89f3017a59e7ce3f49933d27608c4c) [feat] prepare v1.0.0 release (refs #50) (@buzinas)
