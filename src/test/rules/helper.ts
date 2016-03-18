@@ -19,13 +19,13 @@ export function testScript(rule: string, scriptText: string, config: Object): bo
   return failures.length === 0;
 }
 
-export function makeTest(rule: string, scripts: Array<string>, expected: boolean, config?: Object) {
+export function makeTest(rule: string, scripts: Array<string>, expected: boolean, config?: { rules: {} }) {
   if (!config) {
     config = {
-      rules: {
-        [rule]: true
-      }
+      rules: {}
     };
+
+    config.rules[rule] = true;
   }
 
   scripts.forEach(code => {

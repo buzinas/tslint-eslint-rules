@@ -14,3 +14,4 @@ gulpfile.js
 jsconfig.json
 tsconfig.json
 tslint.json
+generate-changelog.bat

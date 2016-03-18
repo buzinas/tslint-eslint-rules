@@ -26,7 +26,7 @@ class NoDuplicateCaseWalker extends Lint.RuleWalker {
           this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
         }
         else {
-          cases.set(key, clause);
+          cases.set(key, clause as ts.CaseClause);
         }
       }
     });
