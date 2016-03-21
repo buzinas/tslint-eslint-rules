@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.1.1 (2016/03/21 18:29 +00:00)
+- [cd376d0](https://github.com/buzinas/tslint-eslint-rules/commit/cd376d0877aaec62acc7a4dd4d17e66d0807c3a4) [feat] added index.js (@buzinas)
+- [#59](https://github.com/buzinas/tslint-eslint-rules/pull/59) Merge pull request #59 from JKillian/patch-1 (@JKillian)
+- [aa17d2e](https://github.com/buzinas/tslint-eslint-rules/commit/aa17d2e83a08a84b8635c9d205d77cf295a66492) Create index.js (@JKillian)
+- [50dcbcb](https://github.com/buzinas/tslint-eslint-rules/commit/50dcbcb7cd02849055301a6fef3d2f6d3debf829) [docs] updated for v1.1.0 (refs #55) (@buzinas)
+
 ### v1.1.0 (2016/03/18 17:05 +00:00)
 - [#56](https://github.com/buzinas/tslint-eslint-rules/pull/56) Merge pull request #56 from buzinas/npm-update (@buzinas)
 - [ccd5cdf](https://github.com/buzinas/tslint-eslint-rules/commit/ccd5cdfe5e0ac30ee09add8c5828cf7aefc90f6e) [feat] updated npm dependencies and fixed a typing bug (@buzinas)
