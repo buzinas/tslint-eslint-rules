@@ -67,18 +67,24 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
       case ts.SyntaxKind.ArrayLiteralExpression:
         return true;
       // ESLint UnaryExpression
-      case ts.SyntaxKind.PrefixUnaryExpression:
       case ts.SyntaxKind.PostfixUnaryExpression:
         return true;
       // ESLint BinaryExpression / LogicalExpression
       case ts.SyntaxKind.BinaryExpression:
         // ESLint AssignmentExpression
         if (this.isAssignmentToken((node as ts.BinaryExpression).operatorToken)) {
-          return this.isConstant(node.getLastToken());
+          return this.isConstant((node as ts.BinaryExpression).right);
         }
-        return this.isConstant(node.getFirstToken()) && this.isConstant(node.getLastToken());
+        return this.isConstant((node as ts.BinaryExpression).left) && this.isConstant((node as ts.BinaryExpression).right);
       case ts.SyntaxKind.ConditionalExpression:
         return this.isConstant((node as ts.ConditionalExpression).condition);
+      case ts.SyntaxKind.PrefixUnaryExpression:
+        if (node.getFirstToken().kind === ts.SyntaxKind.ExclamationToken) {
+          return this.isConstant((node as ts.PrefixUnaryExpression).operand);
+        }
+        return true;
+      case ts.SyntaxKind.ParenthesizedExpression:
+        return this.isConstant((node as ts.ParenthesizedExpression).expression);
     }
 
     return false;
