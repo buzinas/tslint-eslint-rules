@@ -12,7 +12,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class NoControlRegexWalker extends Lint.RuleWalker {
   protected visitRegularExpressionLiteral(node: ts.LiteralExpression) {
-    this.validateControlRegex(node);
+    this.validateControlRegex(node, true);
     super.visitRegularExpressionLiteral(node);
   }
 
@@ -32,12 +32,27 @@ class NoControlRegexWalker extends Lint.RuleWalker {
 
   private visitRegularExpressionFunction(node: ts.CallExpression) {
     if (node.arguments && node.arguments.length > 0 && node.arguments[0].kind === ts.SyntaxKind.StringLiteral) {
-      this.validateControlRegex(node.arguments[0] as ts.StringLiteral);
+      this.validateControlRegex(node.arguments[0] as ts.StringLiteral, false);
     }
   }
 
-  private validateControlRegex(node: ts.LiteralExpression) {
-    if (/[\x00-\x1f]/.test(node.text)) {
+  private validateControlRegex(node: ts.LiteralExpression, literal: boolean) {
+    let regexValue = node.text;
+
+    // if this is a regex literal, we need to evaluate the string
+    // representation of the regex in order to search for control characters
+    if (literal) {
+
+      // turn double backslashes (\\) into single backslashes (\).
+      // also remove any tags from the end of the regex string
+      let escapedLiteral = regexValue.replace(/\\\\/g, '\\').replace(/\/[g|i|m|y]+$/, '/');
+
+      /* tslint:disable */
+      regexValue = eval('"' + escapedLiteral + '"').toString();
+      /* tslint:enable */
+    }
+
+    if (/[\x00-\x1f]/.test(regexValue)) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
     }
   }
