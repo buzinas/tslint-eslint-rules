@@ -47,6 +47,20 @@ const scripts = {
       function a() {
 
       }
+    `,
+    `
+      if (a === 1
+        && (b === 2 || c === 3)) { }
+    `,
+    `
+      myArray
+        .map();
+    `,
+    `
+      tag \`hello world\`
+    `,
+    `
+      tag \`hello \${expression} world\`
     `
   ],
   invalid: [
@@ -73,16 +87,24 @@ const scripts = {
     `
       var a = b
         [a, b, c].forEach(doSomething)
+    `,
+    `
+      tag
+        \`hello world\`
+    `,
+    `
+      tag
+        \`hello \${expression} world\`
     `
   ]
 };
 
 describe(rule, function test() {
-  it('should pass when using expected parenthesis and brackets', function testValid() {
+  it('should pass when using expected parenthesis, brackets, or templates', function testValid() {
     makeTest(rule, scripts.valid, true);
   });
 
-  it('should fail when using unexpected parenthesis or brackets', function testInvalid() {
+  it('should fail when using unexpected parenthesis, brackets, or templates', function testInvalid() {
     makeTest(rule, scripts.invalid, false);
   });
 });
