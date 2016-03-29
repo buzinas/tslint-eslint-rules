@@ -5,89 +5,152 @@ const rule = 'no-constant-condition';
 const scripts = {
   variables: [
     'if (foo === true) {}',
+    'if (!foo === true) {}',
     'if (bar === false) {}',
+    'if (!bar === false) {}',
     'if (baz) {}',
+    'if (!baz) {}',
     'if (qux == true) {}',
+    'if (!(qux == true)) {}',
     'if (true == x) {}',
+    'if (!(true == x)) {}',
     'if (false === y) {}',
+    'if (!(false === y)) {}',
     'if (y === x) {}',
+    'if (!(y === x)) {}',
     'if (x > 0) {}',
+    'if (!(x > 0)) {}',
     'if (100 > x) {}',
-    'if (x === -y) {}'
+    'if (!(100 > x)) {}',
+    'if (x === -y) {}',
+    'if (!(x === -y)) {}'
   ],
   booleans: [
     'if (true) {}',
-    'if (false) {}'
+    'if (!true) {}',
+    'if (false) {}',
+    'if (!false) {}'
   ],
   numbers: [
     'if (0) {}',
+    'if (!0) {}',
     'if (1) {}',
+    'if (!1) {}',
     'if (100) {}',
+    'if (!100) {}',
     'if (30.33) {}',
+    'if (!30.33) {}',
     'if (-1) {}',
-    'if (x = 1) {}'
+    'if (!-1) {}',
+    'if (x = 1) {}',
+    'if (!(x = 1)) {}'
   ],
   objects: [
     'if ({}) {}',
-    'if ({ foo: "bar" }) {}'
+    'if (!{}) {}',
+    'if ({ foo: "bar" }) {}',
+    'if (!{ foo: "bar" }) {}'
   ],
   arrays: [
     'if ([]) {}',
-    'if ([1, 2, 3]) {}'
+    'if (![]) {}',
+    'if ([1, 2, 3]) {}',
+    'if (![1, 2, 3]) {}'
   ],
   binary: [
     'if (true === true) {}',
+    'if (!(true === true)) {}',
     'if (100 > -5) {}',
+    'if (!(100 > -5)) {}',
     'if (false != true) {}',
-    'if (false !== true && true === true) {}'
+    'if (!(false != true)) {}',
+    'if (false !== true && true === true) {}',
+    'if (!(false !== true && true === true)) {}',
+    'if (!(false !== true) && true === true) {}',
+    'if (false !== true && !(true === true)) {}',
+    'if (!(false !== true) && !(true === true)) {}'
   ],
   ternary: [
     'let foo = true ? 1 : 0;',
+    'let foo = !true ? 1 : 0;',
     'let bar = false ? "a" : "b";',
+    'let bar = !false ? "a" : "b";',
     'let baz = 100 ? "x" : "z";',
-    'let qux = true === true ? "p": "w";'
+    'let baz = !100 ? "x" : "z";',
+    'let qux = true === true ? "p": "w";',
+    'let qux = !(true === true) ? "p": "w";'
   ],
   whileVars: [
     'while (y === x) {}',
+    'while (!(y === x)) {}',
     'while (x > -5) {}',
+    'while (!(x > -5)) {}',
     'while (100 > x) {}',
-    'while (foo) {}'
+    'while (!(100 > x)) {}',
+    'while (foo) {}',
+    'while (!foo) {}'
   ],
   whileLiterals: [
     'while (true) {}',
+    'while (!true) {}',
     'while (false) {}',
+    'while (!false) {}',
     'while (-5) {}',
+    'while (!-5) {}',
     'while (1) {}',
+    'while (!1) {}',
     'while ({}) {}',
-    'while ([]) {}'
+    'while (!{}) {}',
+    'while ([]) {}',
+    'while (![]) {}'
   ],
   doWhileVars: [
     'do {} while (y === x);',
+    'do {} while (!(y === x);',
     'do {} while (x > -5);',
+    'do {} while (!(x > -5));',
     'do {} while (100 > x);',
-    'do {} while (foo);'
+    'do {} while (!(100 > x));',
+    'do {} while (foo);',
+    'do {} while (!foo);'
   ],
   doWhileLiterals: [
     'do {} while (true);',
+    'do {} while (!true);',
     'do {} while (false);',
+    'do {} while (!false);',
     'do {} while (-5);',
+    'do {} while (!-5);',
     'do {} while (1);',
+    'do {} while (!1);',
     'do {} while ({});',
-    'do {} while ([]);'
+    'do {} while (!{});',
+    'do {} while ([]);',
+    'do {} while (![]);'
   ],
   forVars: [
     'for (;y === x;) {}',
+    'for (;(!y === x);) {}',
     'for (;x > -5;) {}',
+    'for (;!(x > -5);) {}',
     'for (;100 > x;) {}',
-    'for (;foo;) {}'
+    'for (;!(100 > x);) {}',
+    'for (;foo;) {}',
+    'for (;!foo;) {}'
   ],
   forLiterals: [
     'for (;true;) {}',
+    'for (;!true;) {}',
     'for (;false;) {}',
+    'for (;!false;) {}',
     'for (;-5;) {}',
+    'for (;!-5;) {}',
     'for (;1;) {}',
+    'for (;!1;) {}',
     'for (;{};) {}',
-    'for (;[];) {}'
+    'for (;!{};) {}',
+    'for (;[];) {}',
+    'for (;![];) {}'
   ]
 };
 
