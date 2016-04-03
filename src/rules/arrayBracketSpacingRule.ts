@@ -19,14 +19,21 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class ArrayBracketSpacingWalker extends Lint.RuleWalker {
 
-  private always: boolean;
-  private never: boolean;
+  private spaced: boolean;
+  private singleValueException: boolean = false;
+  private objectsInArraysException: boolean = false;
+  private arraysInArraysException: boolean = false;
+
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
-    this.always = this.hasOption(OPTION_ALWAYS) || (this.getOptions() && this.getOptions().length === 0);
+    const ruleOptions = this.getOptions();
+    this.spaced = this.hasOption(OPTION_ALWAYS) || (ruleOptions && ruleOptions.length === 0);
 
-    // this redundant variable is for readability below
-    this.never = !this.always;
+    if (ruleOptions[1]) {
+      this.singleValueException = typeof ruleOptions[1].singleValue !== 'undefined' && ruleOptions[1].singleValue !== this.spaced;
+      this.objectsInArraysException = typeof ruleOptions[1].objectsInArrays !== 'undefined' && ruleOptions[1].objectsInArrays !== this.spaced;
+      this.arraysInArraysException = typeof ruleOptions[1].arraysInArrays !== 'undefined' && ruleOptions[1].arraysInArrays !== this.spaced;
+    }
   }
 
   protected visitNode(node: ts.Node): void {
@@ -41,37 +48,56 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     super.visitArrayLiteralExpression(node);
   }
 
-  // note: this function assumes that the node will always have at
-  // least two children: an opening bracket and a closing bracket
   private validateSquareBrackets(node: ts.Node): void {
     const children = node.getChildren();
-    const isEmptyArrayLiteral = !this.isSpaceBetween(node.getFirstToken(), node.getLastToken());
     const isSpaceAfterOpeningBracket = this.isSpaceBetween(children[0], children[1]);
     const isBreakAfterOpeningBracket = this.isLineBreakBetween(children[0], children[1]);
     const isSpaceBeforeClosingBracket = this.isSpaceBetween(children[children.length - 2], children[children.length - 1]);
     const isBreakBeforeClosingBracket = this.isLineBreakBetween(children[children.length - 2], children[children.length - 1]);
 
-    node.getChildren().forEach((child, index, parent) => {
-      if (child.kind === ts.SyntaxKind.OpenBracketToken) {
-        if (this.never && isSpaceAfterOpeningBracket && !isBreakAfterOpeningBracket) {
-          this.addFailure(this.createFailure(child.getStart(), child.getWidth(), Rule.FAILURE_STRING.noBeginningSpace));
-        }
-
-        if (this.always && !isSpaceAfterOpeningBracket && !isEmptyArrayLiteral) {
-          this.addFailure(this.createFailure(child.getStart(), child.getWidth(), Rule.FAILURE_STRING.requiredBeginningSpace));
-        }
-      }
-
-      if (child.kind === ts.SyntaxKind.CloseBracketToken) {
-        if (this.never && isSpaceBeforeClosingBracket && !isBreakBeforeClosingBracket) {
-          this.addFailure(this.createFailure(child.getStart(), child.getWidth(), Rule.FAILURE_STRING.noEndingSpace));
-        }
-
-        if (this.always && !isSpaceBeforeClosingBracket && !isEmptyArrayLiteral) {
-          this.addFailure(this.createFailure(child.getStart(), child.getWidth(), Rule.FAILURE_STRING.requiredEndingSpace));
-        }
-      }
+    const syntaxList = node.getChildren()[1];
+    const itemsInArrayPattern = syntaxList.getChildren().filter(child => {
+      return child.kind !== ts.SyntaxKind.CommaToken;
     });
+
+    if (this.spaced && itemsInArrayPattern.length === 0) {
+      return;
+    }
+
+    const openingBracketMustBeSpaced =
+      (this.singleValueException && itemsInArrayPattern.length === 1) ||
+        (this.arraysInArraysException && itemsInArrayPattern[0] && itemsInArrayPattern[0].kind === ts.SyntaxKind.ArrayLiteralExpression) ||
+        (this.objectsInArraysException && itemsInArrayPattern[0] && itemsInArrayPattern[0].kind === ts.SyntaxKind.ObjectLiteralExpression)
+        ? !this.spaced : this.spaced;
+
+    const closingBracketMustBeSpaced =
+      (this.singleValueException
+        && itemsInArrayPattern.length === 1) ||
+        (this.arraysInArraysException &&
+          itemsInArrayPattern[itemsInArrayPattern.length - 1] &&
+          itemsInArrayPattern[itemsInArrayPattern.length - 1].kind === ts.SyntaxKind.ArrayLiteralExpression) ||
+        (this.objectsInArraysException
+          && itemsInArrayPattern[itemsInArrayPattern.length - 1]
+          && itemsInArrayPattern[itemsInArrayPattern.length - 1].kind === ts.SyntaxKind.ObjectLiteralExpression)
+        ? !this.spaced : this.spaced;
+
+    if (!isBreakAfterOpeningBracket) {
+      if (openingBracketMustBeSpaced && !isSpaceAfterOpeningBracket) {
+        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.requiredBeginningSpace));
+      }
+      if (!openingBracketMustBeSpaced && isSpaceAfterOpeningBracket) {
+        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.noBeginningSpace));
+      }
+    }
+
+    if (!isBreakBeforeClosingBracket) {
+      if (closingBracketMustBeSpaced && !isSpaceBeforeClosingBracket) {
+        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.requiredEndingSpace));
+      }
+      if (!closingBracketMustBeSpaced && isSpaceBeforeClosingBracket) {
+        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.noEndingSpace));
+      }
+    }
   }
 
   // space/line break detection helpers
