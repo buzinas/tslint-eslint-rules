@@ -1142,7 +1142,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
 
 These rules are purely matters of style and are quite subjective.
 
-* [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing) => array-bracket-spacing (tslint-eslint-rules) [TODO]()
+* [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing) => array-bracket-spacing (tslint-eslint-rules)
   * Description: enforce spacing inside array brackets
   * Usage
 
@@ -1151,9 +1151,9 @@ These rules are purely matters of style and are quite subjective.
         true,
         "always",
         {
-          "singleValue": true,
-          "objectsInArrays": true,
-          "arraysInArrays": true
+          "singleValue": false,
+          "objectsInArrays": false,
+          "arraysInArrays": false
         }
       ]
     ```
@@ -1163,9 +1163,9 @@ These rules are purely matters of style and are quite subjective.
         true,
         "never",
         {
-          "singleValue": false,
-          "objectsInArrays": false,
-          "arraysInArrays": false
+          "singleValue": true,
+          "objectsInArrays": true,
+          "arraysInArrays": true
         }
       ]
     ```
