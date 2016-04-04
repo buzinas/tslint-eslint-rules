@@ -4,19 +4,19 @@
     {
       "name": "test",
       "type": "node",
-      "program": "node_modules/mocha/bin/_mocha",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "stopOnEntry": false,
       "args": [
         "dist/test/**/*.js"
       ],
-      "cwd": ".",
+      "cwd": "${workspaceRoot}/.",
       "runtimeExecutable": null,
       "preLaunchTask": "build",
       "env": {
         "NODE_ENV": "development"
       },
       "sourceMaps": true,
-      "outDir": "dist",
+      "outDir": "${workspaceRoot}/dist",
       "request": "launch"
     }
   ]

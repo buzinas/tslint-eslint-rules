@@ -1,5 +1,18 @@
 ## Change Log
 
+### v1.2.0 (2016/04/04 17:27 +00:00)
+- [#69](https://github.com/buzinas/tslint-eslint-rules/pull/69) Merge pull request #69 from nfriend/add-array-bracket-spacing (@nfriend)
+- [fe725c5](https://github.com/buzinas/tslint-eslint-rules/commit/fe725c5621474c434c4fcd424e97b22bacd8df2f) added rule exceptions to array-bracket-spacing
+- [2ed91e2](https://github.com/buzinas/tslint-eslint-rules/commit/2ed91e2d6c3691ada63ae855bdfb73d4315174de) [feat] added array-bracket-spacing rule (closes #57)
+- [#67](https://github.com/buzinas/tslint-eslint-rules/pull/67) Merge pull request #67 from nfriend/update-docs (@nfriend)
+- [e3bd1ba](https://github.com/buzinas/tslint-eslint-rules/commit/e3bd1ba978878f71eaa801ce38857b4c9bf7e4bd) [docs] updated README.md to match rules list on eslint.org
+- [#65](https://github.com/buzinas/tslint-eslint-rules/pull/65) Merge pull request #65 from nfriend/master (@nfriend)
+- [bdca78a](https://github.com/buzinas/tslint-eslint-rules/commit/bdca78ae91cca963e9b93c3bdcb18e661378f55a) Merge remote-tracking branch 'refs/remotes/buzinas/master'
+- [0296939](https://github.com/buzinas/tslint-eslint-rules/commit/0296939042e9fff33d54a7ced74831252e588d10) fix for #63
+- [#64](https://github.com/buzinas/tslint-eslint-rules/pull/64) Merge pull request #64 from nfriend/master (@nfriend)
+- [4904bec](https://github.com/buzinas/tslint-eslint-rules/commit/4904bec6846d96275901d2570a314f4441f937fe) fix for GitHub issue #61
+- [91a6fd6](https://github.com/buzinas/tslint-eslint-rules/commit/91a6fd612e6e1fb26d5e43a23ae896c19d4bcc1b) [docs] updated for v1.1.1 (@buzinas)
+
 ### v1.1.1 (2016/03/21 18:29 +00:00)
 - [cd376d0](https://github.com/buzinas/tslint-eslint-rules/commit/cd376d0877aaec62acc7a4dd4d17e66d0807c3a4) [feat] added index.js (@buzinas)
 - [#59](https://github.com/buzinas/tslint-eslint-rules/pull/59) Merge pull request #59 from JKillian/patch-1 (@JKillian)
