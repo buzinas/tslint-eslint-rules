@@ -1,8 +1,6 @@
 {
   "rules": {
     "no-constant-condition": true,
-    "valid-typeof": true,
-    "use-isnan": true,
     "no-duplicate-case": true,
     "no-sparse-array": true,
     "no-extra-semi": true,
@@ -15,6 +13,18 @@
     "no-empty-character-class": true,
     "no-control-regex": true,
     "no-irregular-whitespace": true,
-    "valid-jsdoc": true
+    "use-isnan": true,
+    "valid-jsdoc": true,
+    "valid-typeof": true,
+    
+    "array-bracket-spacing": [
+      true,
+      "never",
+      {
+        "singleValue": true,
+        "objectsInArrays": true,
+        "arraysInArrays": true
+      }
+    ]
   }
 }
