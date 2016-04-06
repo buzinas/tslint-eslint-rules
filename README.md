@@ -1170,7 +1170,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 
-* [block-spacing](http://eslint.org/docs/rules/block-spacing) => block-spacing (tslint-eslint-rules) [TODO]()
+* [block-spacing](http://eslint.org/docs/rules/block-spacing) => block-spacing (tslint-eslint-rules)
   * Description: disallow or enforce spaces inside of single line blocks
   * Usage
 
