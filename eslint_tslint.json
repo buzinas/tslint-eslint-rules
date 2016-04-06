@@ -25,6 +25,7 @@
         "objectsInArrays": true,
         "arraysInArrays": true
       }
-    ]
+    ],
+    "block-spacing": [true, "always"]
   }
 }
