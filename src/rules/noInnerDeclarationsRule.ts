@@ -32,11 +32,11 @@ class NoInnerDeclarationsWalker extends Lint.RuleWalker {
 
   private validateInnerDeclaration(node: ts.Node) {
     const body = this.nearestBody(node);
-    const isValid = (body.kind === ts.SyntaxKind.SourceFile && body.distance === 1) || body.distance === 2;
+    const isValid = (body.isSourceFile && body.distance === 1) || body.distance === 2;
 
     if (!isValid) {
       const decl = node.kind === ts.SyntaxKind.FunctionDeclaration ? 'function' : 'variable';
-      const root = body.kind === ts.SyntaxKind.SourceFile ? 'program' : 'function body';
+      const root = body.isSourceFile ? 'program' : 'function body';
 
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), `move ${decl} declaration to ${root} root`));
     }
@@ -52,7 +52,7 @@ class NoInnerDeclarationsWalker extends Lint.RuleWalker {
     }
 
     return {
-      kind: ancestor.kind,
+      isSourceFile: (ancestor && ancestor.kind === ts.SyntaxKind.SourceFile) || !ancestor,
       distance: generation
     };
   }
