@@ -26,6 +26,7 @@
         "arraysInArrays": true
       }
     ],
-    "block-spacing": [true, "always"]
+    "block-spacing": [true, "always"],
+    "brace-style": [true, "1tbs", { "allowSingleLine": true }]
   }
 }

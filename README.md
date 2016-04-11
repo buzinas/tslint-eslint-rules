@@ -1188,7 +1188,7 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 
-* [brace-style](http://eslint.org/docs/rules/brace-style) => brace-style (tslint-eslint-rules) [TODO]()
+* [brace-style](http://eslint.org/docs/rules/brace-style) => brace-style (tslint-eslint-rules)
   * Description: enforce one true brace style
   * Usage
 
