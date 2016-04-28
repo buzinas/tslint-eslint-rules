@@ -1,22 +1,5 @@
 {
   "rules": {
-    "no-constant-condition": true,
-    "no-duplicate-case": true,
-    "no-sparse-array": true,
-    "no-extra-semi": true,
-    "no-extra-boolean-cast": true,
-    "no-ex-assign": true,
-    "no-unexpected-multiline": true,
-    "no-invalid-regexp": true,
-    "no-inner-declarations": [true, "both"],
-    "no-regex-spaces": true,
-    "no-empty-character-class": true,
-    "no-control-regex": true,
-    "no-irregular-whitespace": true,
-    "use-isnan": true,
-    "valid-jsdoc": true,
-    "valid-typeof": true,
-    
     "array-bracket-spacing": [
       true,
       "never",
@@ -27,6 +10,23 @@
       }
     ],
     "block-spacing": [true, "always"],
-    "brace-style": [true, "1tbs", { "allowSingleLine": true }]
+    "brace-style": [true, "1tbs", { "allowSingleLine": true }],
+    "handle-callback-err": [true, "err"],
+    "no-constant-condition": true,
+    "no-control-regex": true,
+    "no-duplicate-case": true,
+    "no-empty-character-class": true,
+    "no-ex-assign": true,
+    "no-extra-boolean-cast": true,
+    "no-extra-semi": true,
+    "no-inner-declarations": [true, "both"],
+    "no-invalid-regexp": true,
+    "no-irregular-whitespace": true,
+    "no-regex-spaces": true,
+    "no-sparse-array": true,
+    "no-unexpected-multiline": true,
+    "use-isnan": true,
+    "valid-jsdoc": true,
+    "valid-typeof": true
   }
 }

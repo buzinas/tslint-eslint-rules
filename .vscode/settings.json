@@ -2,6 +2,7 @@
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "tslint.enable": true,
+  "files.eol": "\n",
   "tslint.options": {
     "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
   },
