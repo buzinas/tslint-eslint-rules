@@ -1,6 +1,22 @@
 ## Change Log
 
-### v1.2.0 (2016/04/04 17:27 +00:00)
+### v1.3.0 (2016/04/28 22:05 +00:00)
+- [d40b919](https://github.com/buzinas/tslint-eslint-rules/commit/d40b9190434491acd919f27e70f518eb1464d93b) [feat] added handleCallbackErr rule (refs #81) (@buzinas)
+- [9f57505](https://github.com/buzinas/tslint-eslint-rules/commit/9f5750567da35d43388280bfe4f1c3ef5270f0af) [fix] changed travis.yml while NodeJS 6.0.0 isn't stable yet (@buzinas)
+- [#82](https://github.com/buzinas/tslint-eslint-rules/pull/82) Merge pull request #82 from krzkaczor/handle-callback-err (@krzkaczor)
+- [8f6f4c3](https://github.com/buzinas/tslint-eslint-rules/commit/8f6f4c3bf147647ed66de5bf5baf37e96e7886f7) [feat] added handle-callback-err rule (closes #81) (@krzkaczor)
+- [#77](https://github.com/buzinas/tslint-eslint-rules/pull/77) Merge pull request #77 from nfriend/update-brace-style-docs (@nfriend)
+- [7d53918](https://github.com/buzinas/tslint-eslint-rules/commit/7d53918ca3e4b270d98bc2b35b79d5d522fcc98d) [docs] updated README and eslint_tslint.json for brace-style rule
+- [#76](https://github.com/buzinas/tslint-eslint-rules/pull/76) Merge pull request #76 from nfriend/add-brace-style (@nfriend)
+- [34b97dc](https://github.com/buzinas/tslint-eslint-rules/commit/34b97dc92f6fa9ff0d5115b8493322e0c90811ab) [feat] added brace-style rule (closes #73)
+- [49f410c](https://github.com/buzinas/tslint-eslint-rules/commit/49f410caefe92a34c81aba425712758a4ac723af) [bug] fixed no-inner-declarations rule (refs #75) (@buzinas)
+- [#72](https://github.com/buzinas/tslint-eslint-rules/pull/72) Merge pull request #72 from nfriend/add-block-spacing (@nfriend)
+- [d0de347](https://github.com/buzinas/tslint-eslint-rules/commit/d0de34796ac0953113f52eee32c74101efb2fb12) [feat] added block-spacing rule (closes #71)
+- [#70](https://github.com/buzinas/tslint-eslint-rules/pull/70) Merge pull request #70 from nfriend/update-docs-and-example (@nfriend)
+- [46998a3](https://github.com/buzinas/tslint-eslint-rules/commit/46998a3bbed4597279c8ef18737ec7fe74fc770a) updated README and eslint_tslint.json
+
+### v1.2.0 (2016/04/04 17:28 +00:00)
+- [8bfd9cb](https://github.com/buzinas/tslint-eslint-rules/commit/8bfd9cb217596a12bd015840c427e59deae94975) [feat] added v1.2.0 (@buzinas)
 - [#69](https://github.com/buzinas/tslint-eslint-rules/pull/69) Merge pull request #69 from nfriend/add-array-bracket-spacing (@nfriend)
 - [fe725c5](https://github.com/buzinas/tslint-eslint-rules/commit/fe725c5621474c434c4fcd424e97b22bacd8df2f) added rule exceptions to array-bracket-spacing
 - [2ed91e2](https://github.com/buzinas/tslint-eslint-rules/commit/2ed91e2d6c3691ada63ae855bdfb73d4315174de) [feat] added array-bracket-spacing rule (closes #57)
