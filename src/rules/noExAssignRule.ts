@@ -12,22 +12,27 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class NoExAssignWalker extends Lint.RuleWalker {
   private isInCatchClause = false;
-  private currentIdentifier: ts.Identifier = null;
+  private variableNode: ts.Identifier = null;
 
-  protected visitCatchClause(node: ts.CatchClause) {
+  protected visitCatchClause = function (node: ts.CatchClause) {
+    this.variableNode    = node.variableDeclaration;
     this.isInCatchClause = true;
-    super.visitCatchClause(node);
-    this.currentIdentifier = null;
-    this.isInCatchClause = false;
-  }
 
-  protected visitIdentifier(node: ts.Identifier) {
-    if (!this.currentIdentifier) {
-      this.currentIdentifier = node;
-    }
-    else if (this.currentIdentifier.text === node.text) {
+    super.visitCatchClause(node);
+
+    this.isInCatchClause = false;
+    this.variableNode    = null;
+  };
+
+  protected visitBinaryExpression = function (node: ts.CatchClause) {
+    if (
+      this.isInCatchClause &&
+      node.left.kind === ts.SyntaxKind.Identifier &&
+      this.variableNode.name.text === node.left.text
+    ) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
     }
+
     super.visitIdentifier(node);
   }
 }
