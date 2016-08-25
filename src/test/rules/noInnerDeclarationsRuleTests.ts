@@ -17,7 +17,8 @@ const scripts = {
     'if (test) { var foo; }',
     'function doSomething() { while (test) { var foo; } }',
     'foo(() => { function bar() { } });',
-    'namespace something { function decl(arg) { var foo; } }'
+    'namespace something { function decl(arg) { var foo; } }',
+    'class MyClass { constructor(arg) { function decl(x) { var foo; } } }'
   ],
   validBoth: [
     'if (test) { let x = 1; }',

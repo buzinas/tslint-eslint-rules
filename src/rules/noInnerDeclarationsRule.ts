@@ -16,7 +16,8 @@ class NoInnerDeclarationsWalker extends Lint.RuleWalker {
     ts.SyntaxKind.FunctionExpression,
     ts.SyntaxKind.ArrowFunction,
     ts.SyntaxKind.MethodDeclaration,
-    ts.SyntaxKind.ModuleDeclaration
+    ts.SyntaxKind.ModuleDeclaration,
+    ts.SyntaxKind.Constructor
   ];
 
   protected visitFunctionDeclaration(node: ts.FunctionDeclaration) {
