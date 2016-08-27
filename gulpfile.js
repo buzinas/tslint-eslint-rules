@@ -42,7 +42,7 @@ gulp.task('lint', function lint() {
     }));
 });
 
-gulp.task('build', ['lint'], function build() {
+gulp.task('build', argv.lint === false ? [] : ['lint'], function build() {
   return gulp
     .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es6.d.ts'])
     .pipe(sourcemaps.init())
