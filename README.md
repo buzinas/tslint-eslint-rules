@@ -1845,7 +1845,7 @@ These rules are purely matters of style and are quite subjective.
     "no-whitespace-before-property": true
     ```
 
-* [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) => object-curly-spacing (tslint-eslint-rules) [TODO]()
+* [object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing) => object-curly-spacing (tslint-eslint-rules)
   * Description: require or disallow padding inside curly braces
   * Usage
 
