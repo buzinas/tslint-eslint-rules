@@ -2586,7 +2586,8 @@ If you didn't find the rule, you can also create an ESLint custom rule for TSLin
   - Name: rule-name (hyphenated, e.g: no-if-usage)
   - File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: noIfUsageRule.ts)
   - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix, e.g: noIfUsageRuleTests.ts)
-- Check if all the tests are passing
+- Check if single rule is passing with `gulp test --single rule-name` (hyphenated, e.g no-inner-declarations)
+- Check if all the tests are passing with `gulp test`
 - Commit the changes to your repo with the following convention:
   - Example: `[feat] added use-isnan rule (closes #20)`
 - Finally, open a Pull Request

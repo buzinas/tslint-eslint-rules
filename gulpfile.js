@@ -1,5 +1,6 @@
 'use strict';
 
+const argv = require('yargs').argv;
 const path = require('path');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
@@ -7,7 +8,26 @@ const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
 const mocha = require('gulp-spawn-mocha');
 
-const SRC_FOLDER = 'src/**/*.ts';
+
+function toCamelCase(str){
+  const words = str.split('-').map(function(word){
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  words[0] = words[0].toLowerCase();
+  return words.join('');
+}
+
+function singleRule(name) {
+  return `src/**/?(${toCamelCase(name)}*|helper).ts`;
+}
+
+function singleTest(name) {
+  return `dist/test/rules/${toCamelCase(name)}RuleTests.js`;
+}
+
+
+const SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
+const TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 const DEF_FOLDER = 'typings/**/*.ts'
 const TS_CONFIG = ts.createProject('tsconfig.json');
 
@@ -36,7 +56,7 @@ gulp.task('build', ['lint'], function build() {
 
 gulp.task('test', ['build'], function test() {
   return gulp
-    .src('dist/test/**/*.js')
+    .src(TEST_FOLDER)
     .pipe(mocha());
 });
 
