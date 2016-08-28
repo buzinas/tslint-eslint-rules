@@ -16,12 +16,12 @@ export class Rule extends Lint.Rules.AbstractRule {
   };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-    const walker = new BlockSpacingWalker(sourceFile, this.getOptions());
+    const walker = new ObjectCurlySpacingWalker(sourceFile, this.getOptions());
     return this.applyWithWalker(walker);
   }
 }
 
-class BlockSpacingWalker extends Lint.RuleWalker {
+class ObjectCurlySpacingWalker extends Lint.RuleWalker {
 
   private always: boolean;
 
