@@ -31,6 +31,10 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
     [ts.SyntaxKind.PropertyAssignment]: 'PropertyAssignment',
     [ts.SyntaxKind.BinaryExpression]: 'BinaryExpression'
   };
+  private STRING_TYPES = [
+    ts.SyntaxKind.NoSubstitutionTemplateLiteral,
+    ts.SyntaxKind.StringLiteral
+  ];
   private exceptions: Object = {};
   private src: string;
   private targets: number[] = [];
@@ -117,7 +121,7 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
         const valid: ts.Node = this.targetNode[target];
         if (target === valid.getStart()) {
           this.warn(valid.getText(), target, valid);
-        } else if (target === valid.getEnd() - 1) {
+        } else if (target === valid.getEnd() - 1 && this.STRING_TYPES.indexOf(valid.kind) === -1) {
           const endChar = this.src.substring(target, valid.getEnd());
           this.warn(endChar, target, valid);
         } else {

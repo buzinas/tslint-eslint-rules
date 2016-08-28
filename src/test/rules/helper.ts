@@ -62,7 +62,7 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
     const msg = `Expected ${errors.length} error(s) in:
 
      -------
-      ${scriptText}
+     ${scriptText}
      -------
      
      Found ${failures.length} errors(s):
@@ -76,7 +76,7 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
     const msg = `Error mismatch in:
 
      -------
-      ${scriptText}
+     ${scriptText}
      -------
      
      Expected:
