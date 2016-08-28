@@ -11,6 +11,9 @@
       "arguments",
       "statements"
     ],
+    "no-multi-spaces": [
+      true
+    ],
     "ban": false,
     "class-name": true,
     "comment-format": [
