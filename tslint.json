@@ -12,7 +12,12 @@
       "statements"
     ],
     "no-multi-spaces": [
-      true
+      true,
+      {
+        "exceptions": {
+          "PropertyAssignment": false
+        }
+      }
     ],
     "ban": false,
     "class-name": true,

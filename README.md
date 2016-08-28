@@ -623,7 +623,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
       ]
     ```
 
-* [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) => no-multi-spaces (tslint-eslint-rules) [TODO]()
+* [no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces) => no-multi-spaces (tslint-eslint-rule)
   * Description: disallow use of multiple spaces
   * Usage
 
@@ -631,10 +631,16 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-multi-spaces": [
         true,
         {
-          "exceptions": [ { "ImportDeclation": true }, { "Property": false } ]
+          "exceptions": { "PropertyAssignment": false, "OtherException": boolean }
         }
       ]
     ```
+
+  * Exceptions available and their defaults
+
+      - `VariableDeclaration: false`
+      - `PropertyAssignment: true`
+      - `BinaryExpression: false`
 
 * [no-multi-str](http://eslint.org/docs/rules/no-multi-str) => no-multi-str (tslint-eslint-rules) [TODO]()
   * Description: disallow use of multiline strings
