@@ -631,7 +631,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-multi-spaces": [
         true,
         {
-          "exceptions": { "PropertyAssignment": false, "OtherException": boolean }
+          "exceptions": { "PropertyAssignment": false, "OtherException": "true|false" }
         }
       ]
     ```
