@@ -1,10 +1,5 @@
 {
-  "rulesDirectory": ["dist/rules/"],
   "rules": {
-    "object-curly-spacing": [
-      false,
-      "always"
-    ],
     "align": [
       true,
       "parameters",
