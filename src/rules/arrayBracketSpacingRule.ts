@@ -18,7 +18,6 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class ArrayBracketSpacingWalker extends Lint.RuleWalker {
-
   private spaced: boolean;
   private singleValueException: boolean = false;
   private objectsInArraysException: boolean = false;

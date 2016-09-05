@@ -15,7 +15,6 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoUnexpectedMultilineWalker extends Lint.RuleWalker {
-
   protected visitCallExpression(node: ts.CallExpression): void {
     const firstLeftParen = node.getChildren().filter(ch => ch.kind === ts.SyntaxKind.OpenParenToken)[0];
     if (this.isBreakBefore(firstLeftParen)) {
@@ -34,7 +33,7 @@ class NoUnexpectedMultilineWalker extends Lint.RuleWalker {
     super.visitElementAccessExpression(node);
   }
 
-  // it doesn't seem like there's a visitTaggedTemplateExpression() method, 
+  // it doesn't seem like there's a visitTaggedTemplateExpression() method,
   // so we'll looks for TaggedTemplateExpressions ourselves
   protected visitNode(node: ts.Node): void {
     if (node.kind === ts.SyntaxKind.TaggedTemplateExpression) {

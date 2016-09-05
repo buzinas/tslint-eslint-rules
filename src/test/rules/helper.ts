@@ -1,6 +1,5 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
-
-import {expect} from 'chai';
+import { expect } from 'chai';
 import * as Lint from 'tslint/lib/lint';
 
 export function testScript(rule: string, scriptText: string, config: Object): boolean {

@@ -1,45 +1,46 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
 import { makeTest } from './helper';
 
-const rule = 'block-spacing';
+const rule = 'object-curly-spacing';
 const scripts = {
   always: {
     valid: [
-      `function foo() { return true; }`,
-      `if (foo) { bar = 0; }`,
-      `switch (myVar) { case 1: return true; }`,
-      `function foo() {}`,
-      `function foo() { }`
+      `const obj = { foo: 'bar' };`,
+      `const obj = { foo: { zoo: 'bar' } };`,
+      `const { x, y } = y;`,
+      `import { foo } from 'bar';`,
+      `export { foo };`
     ],
     invalid: [
-      `function foo() {return true;}`,
-      `if (foo) { bar = 0;}`,
-      `switch (myVar) { case 1: return true;}`,
-      `switch (myVar) {case 1: return true; }`,
-      `switch (myVar) {case 1: return true;}`
+      `const obj = {foo: 'bar'};`,
+      `const obj = {foo: { zoo: 'bar' } };`,
+      `const {x, y} = y;`,
+      `import {foo } from 'bar';`,
+      `export { foo};`
     ]
   },
   never: {
     valid: [
-      `function foo() {return true;}`,
-      `if (foo) {bar = 0;}`,
-      `switch (myVar) {case 1: return true;}`,
-      `function foo() {}`,
-      `function foo() { }`
+      `const obj = {foo: 'bar'};`,
+      `const obj = {foo: {zoo: 'bar'}};`,
+      `const {x, y} = y;`,
+      `import {foo} from 'bar';`,
+      `export {foo};`
     ],
     invalid: [
-      `function foo() { return true; }`,
-      `if (foo) { bar = 0;}`,
-      `switch (myVar) { case 1: return true;}`,
-      `switch (myVar) {case 1: return true; }`,
-      `switch (myVar) { case 1: return true; }`
+      `const obj = { foo: 'bar' };`,
+      `const obj = { foo: { zoo: 'bar' } };`,
+      `const { x, y } = y;`,
+      `import {foo } from 'bar';`,
+      `export { foo};`
     ]
   }
 };
 
 describe(rule, function test() {
-  const alwaysConfig = { rules: { 'block-spacing': [true, 'always'] } };
-  const neverConfig = { rules: { 'block-spacing': [true, 'never'] } };
+
+  const alwaysConfig = { rules: { 'object-curly-spacing': [true, 'always'] } };
+  const neverConfig = { rules: { 'object-curly-spacing': [true, 'never'] } };
 
   it('should pass when "always" and there are spaces inside brackets', function testVariables() {
     makeTest(rule, scripts.always.valid, true, alwaysConfig);

@@ -1,5 +1,36 @@
 ## Change Log
 
+### v1.5.0 (2016/09/05 15:10 +00:00)
+- [#99](https://github.com/buzinas/tslint-eslint-rules/pull/99) Merge pull request #99 from jmlopez-rod/object-curly-spacing (@jmlopez-rod)
+- [68ad5a1](https://github.com/buzinas/tslint-eslint-rules/commit/68ad5a183007539344b45b2a2afff02bea4a6feb) [tslint] Removing rule from configuration (@jmlopez-rod)
+- [9dca874](https://github.com/buzinas/tslint-eslint-rules/commit/9dca8744cff0e4eff44378424bc3fa5645089a4c) Merge remote-tracking branch 'buzinas/master' into object-curly-spacing (@jmlopez-rod)
+
+### v1.4.0 (2016/09/05 13:47 +00:00)
+- [8477b21](https://github.com/buzinas/tslint-eslint-rules/commit/8477b2135c46b38dcfd3ab613d43d6c8194dcda6) [feat] updated dependencies and improved formatting (@buzinas)
+- [eee3dc3](https://github.com/buzinas/tslint-eslint-rules/commit/eee3dc3769cd019988c0772d089e541c49c8c31b) Update noInvalidRegexpRuleTests.ts (@buzinas)
+- [#104](https://github.com/buzinas/tslint-eslint-rules/pull/104) Merge pull request #104 from hadalin/brace-style (@hadalin)
+- [#98](https://github.com/buzinas/tslint-eslint-rules/pull/98) Merge pull request #98 from jigawot/no-inner-decl-ns (@jigawot)
+- [#91](https://github.com/buzinas/tslint-eslint-rules/pull/91) Merge pull request #91 from blakeembrey/patch-1 (@blakeembrey)
+- [#88](https://github.com/buzinas/tslint-eslint-rules/pull/88) Merge pull request #88 from rictic/patch-1 (@rictic)
+- [#84](https://github.com/buzinas/tslint-eslint-rules/pull/84) Merge pull request #84 from Fank/master (@Fank)
+- [b9dbf53](https://github.com/buzinas/tslint-eslint-rules/commit/b9dbf530da4cd3e7d6af94b73b79e9c142f2bcdd) Update .travis.yml (@buzinas)
+- [#101](https://github.com/buzinas/tslint-eslint-rules/pull/101) Merge pull request #101 from jmlopez-rod/valid-jsdoc-bug (@jmlopez-rod)
+- [874440f](https://github.com/buzinas/tslint-eslint-rules/commit/874440f99f2a37a3acf42939bdcd0212ec0dd148) [bug] fixed brace-style rule (closes #93) (@hadalin)
+- [28524f7](https://github.com/buzinas/tslint-eslint-rules/commit/28524f76c7c7484065707fde41009781e34b951a) [lint] Neglected to change the walker name (@jmlopez-rod)
+- [951a64c](https://github.com/buzinas/tslint-eslint-rules/commit/951a64cbb0c11070ab0fa26c2672cc0bed08e0e3) [bug] fixed valid-jsdoc rule (closes #100) (@jmlopez-rod)
+- [28c5727](https://github.com/buzinas/tslint-eslint-rules/commit/28c57275aeb62d83e5df7d6f75dfd9c52b05d2bc) [feat] added object-curly-spacing rule (@jmlopez-rod)
+- [cd64e4b](https://github.com/buzinas/tslint-eslint-rules/commit/cd64e4b3976ca3cb4e5cf814a8d88316a1d67c28) [lint] adding the rules from this project (@jmlopez-rod)
+- [9395db6](https://github.com/buzinas/tslint-eslint-rules/commit/9395db6bd86a7edad252476feb1edd512264b9f7) [perf] adding `--lint` and `--no-lint` option to gulp (@jmlopez-rod)
+- [fa1a5a5](https://github.com/buzinas/tslint-eslint-rules/commit/fa1a5a5ace62000f9df90158207983a0f3869165) [git] Ignoring auto generated files from IDE (@jmlopez-rod)
+- [5af7668](https://github.com/buzinas/tslint-eslint-rules/commit/5af76683978b2c213c59e5a76511e51e0e3b1889) [perf] improved testing by running only a single rule (@jmlopez-rod)
+- [a8830c4](https://github.com/buzinas/tslint-eslint-rules/commit/a8830c494be3a230ece30f5c9e21514b29bba44f) [fix] Add constructors as valid location for function declaration
+- [2c092be](https://github.com/buzinas/tslint-eslint-rules/commit/2c092be7495401d68acf19c9b4c877f75ec734f8) [fix] add namespaces as valid location for function declaration
+- [23af906](https://github.com/buzinas/tslint-eslint-rules/commit/23af9061b4551232a7483d50b2d7d420db74e736) Use `highlights` truthy test over `==` (@blakeembrey)
+- [b60b848](https://github.com/buzinas/tslint-eslint-rules/commit/b60b8486396194f966236b2cd681e37613dbaeef) Fix `validateReferenceForVariable` call (@blakeembrey)
+- [428480f](https://github.com/buzinas/tslint-eslint-rules/commit/428480fd213f262267de3eee69a90e257d02b187) Minor: Add missing quote mark to README.md (@rictic)
+- [2be950f](https://github.com/buzinas/tslint-eslint-rules/commit/2be950f19d081e254374a9a1c6089d4f749a62aa) Syntax fixes (@Fank)
+- [8ba8d47](https://github.com/buzinas/tslint-eslint-rules/commit/8ba8d47179f3cd1fd681395e83361865d14f39ce) [docs] updated changelog to v1.3.0 (@buzinas)
+
 ### v1.3.0 (2016/04/28 22:05 +00:00)
 - [d40b919](https://github.com/buzinas/tslint-eslint-rules/commit/d40b9190434491acd919f27e70f518eb1464d93b) [feat] added handleCallbackErr rule (refs #81) (@buzinas)
 - [9f57505](https://github.com/buzinas/tslint-eslint-rules/commit/9f5750567da35d43388280bfe4f1c3ef5270f0af) [fix] changed travis.yml while NodeJS 6.0.0 isn't stable yet (@buzinas)
