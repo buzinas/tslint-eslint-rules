@@ -12,7 +12,6 @@ enum BraceStyle {
 }
 
 export class Rule extends Lint.Rules.AbstractRule {
-
   public static FAILURE_STRING = {
     open: 'Opening curly brace does not appear on the same line as controlling statement.',
     openAllman: 'Opening curly brace appears on the same line as controlling statement.',
@@ -29,7 +28,6 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class BraceStyleWalker extends Lint.RuleWalker {
-
   private braceStyle: BraceStyle;
   private allowSingleLine: boolean = false;
 
@@ -49,22 +47,35 @@ class BraceStyleWalker extends Lint.RuleWalker {
     this.allowSingleLine = this.getOptions()[1] && this.getOptions()[1].allowSingleLine;
   }
 
-  // check that the "catch" keyword is on the correct line.
+  // check that the "catch" and "finally" keyword are on the correct line.
   // all other checks regarding try/catch statements will be covered in the "visitBlock" callback
   protected visitTryStatement(tryStatement: ts.TryStatement): void {
     super.visitTryStatement(tryStatement);
 
-    const catchClause = tryStatement.getChildren().filter(ch => ch.kind === ts.SyntaxKind.CatchClause).shift();
-    const previousNode = tryStatement.getChildren()[tryStatement.getChildren().indexOf(catchClause) - 1];
-    const openingBracketError = this.areOnSameLine(previousNode, catchClause) !== (this.braceStyle === BraceStyle.OneTBS);
+    const checkTryStatementError = (node: ts.Node): void => {
+      const previousNode = this.getPreviousNode(tryStatement.getChildren(), node);
+      const openingBracketError = this.areOnSameLine(previousNode, node) !== (this.braceStyle === BraceStyle.OneTBS);
 
-    if (this.allowSingleLine && this.getStartPosition(catchClause).line === this.getEndPosition(tryStatement).line) {
-      return;
+      if (this.allowSingleLine && this.getStartPosition(node).line === this.getEndPosition(tryStatement).line) {
+        return;
+      }
+
+      if (openingBracketError) {
+        const failureString = this.braceStyle === BraceStyle.OneTBS ? Rule.FAILURE_STRING.open : Rule.FAILURE_STRING.openAllman;
+        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), failureString));
+      }
+    };
+
+    // check catch
+    const catchClause = tryStatement.catchClause;
+    if (catchClause) {
+      checkTryStatementError(catchClause);
     }
 
-    if (openingBracketError) {
-      const failureString = this.braceStyle === BraceStyle.OneTBS ? Rule.FAILURE_STRING.open : Rule.FAILURE_STRING.openAllman;
-      this.addFailure(this.createFailure(catchClause.getStart(), catchClause.getWidth(), failureString));
+    // check finally
+    const finallyBlock = tryStatement.finallyBlock;
+    if (finallyBlock) {
+      checkTryStatementError(finallyBlock);
     }
   }
 
@@ -86,7 +97,7 @@ class BraceStyleWalker extends Lint.RuleWalker {
       return;
     }
 
-    // if the if statement doesn't have a "block" element, it means it has no braces, 
+    // if the if statement doesn't have a "block" element, it means it has no braces,
     // and when there are no braces, there are no problems
     if (!ifStatement.getChildren().some(ch => ch.kind === ts.SyntaxKind.Block)) {
       return;
@@ -147,5 +158,16 @@ class BraceStyleWalker extends Lint.RuleWalker {
 
   private getEndPosition(node: ts.Node) {
     return node.getSourceFile().getLineAndCharacterOfPosition(node.getEnd());
+  }
+
+  // returns previous node which is either block or catch clause (no keywords, etc).
+  private getPreviousNode(children: ts.Node[], node: ts.Node): ts.Node {
+    let position = children.indexOf(node) - 1;
+    while (position >= 0) { // is first child always block or catch clause?
+      if (children[position].kind === ts.SyntaxKind.Block || children[position].kind === ts.SyntaxKind.CatchClause) {
+        return children[position];
+      }
+      position -= 1;
+    }
   }
 }
