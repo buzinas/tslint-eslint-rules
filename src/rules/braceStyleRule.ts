@@ -12,7 +12,6 @@ enum BraceStyle {
 }
 
 export class Rule extends Lint.Rules.AbstractRule {
-
   public static FAILURE_STRING = {
     open: 'Opening curly brace does not appear on the same line as controlling statement.',
     openAllman: 'Opening curly brace appears on the same line as controlling statement.',
@@ -29,7 +28,6 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class BraceStyleWalker extends Lint.RuleWalker {
-
   private braceStyle: BraceStyle;
   private allowSingleLine: boolean = false;
 

@@ -2,7 +2,6 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
 
 export class Rule extends Lint.Rules.AbstractRule {
-
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new NoInnerDeclarationsWalker(sourceFile, this.getOptions());
     return this.applyWithWalker(walker);

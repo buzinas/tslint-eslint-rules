@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import {makeTest} from './helper';
+import { makeTest } from './helper';
 
 const rule = 'no-irregular-whitespace';
 const scripts = {
@@ -78,7 +78,7 @@ const scripts = {
   ]
 };
 
-describe (rule, function test() {
+describe(rule, function test() {
   it('should pass when not using irregular whitespaces', function testValid() {
     makeTest(rule, scripts.valid, true);
   });

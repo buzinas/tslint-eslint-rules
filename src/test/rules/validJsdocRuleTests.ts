@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import {makeTest} from './helper';
+import { makeTest } from './helper';
 
 const rule = 'valid-jsdoc';
 const scripts = {
