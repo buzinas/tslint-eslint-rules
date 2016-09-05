@@ -250,7 +250,7 @@ const rules = [
       "functions"
     ]
     ~~~
-    
+
     ~~~json
     "no-inner-declarations": [
       true,
@@ -390,7 +390,7 @@ const rules = [
         "requireReturn": false,
         "requireParamDescription": true,
         "requireReturnDescription": true,
-        "matchDescription": "^[A-Z][A-Za-z0-9\\s]*[.]$"
+        "matchDescription": "^[A-Z][A-Za-z0-9\\\\s]*[.]$"
       }
     ]
     ~~~`,
@@ -994,7 +994,7 @@ const rules = [
     eslintRule: 'no-octal-escape',
     tslintRule: 'no-octal-escape',
     category: 'Best Practices',
-    description: 'disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`',
+    description: 'disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \\251";`',
     eslintUrl: 'http://eslint.org/docs/rules/no-octal-escape',
     tslintUrl: 'http://palantir.github.io/tslint/rules/no-octal-escape',
     provider: 'tslint-eslint-rules',
@@ -2441,7 +2441,7 @@ const rules = [
     "ident": "tabs"
     ~~~`,
     note: `When using TSLint \`ident\` rule, it will enforce the consistent use of the chosen
-    iindentation The ESLint rule allows an option for Smart Tabs, but there are some open issues,
+    indentation. The ESLint rule allows an option for Smart Tabs, but there are some open issues,
     and we're not going to support this.`,
   },
   {

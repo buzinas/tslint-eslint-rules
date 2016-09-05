@@ -7,6 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
 const mocha = require('gulp-spawn-mocha');
+const readme = require('./readme');
 
 
 function toCamelCase(str){
@@ -30,6 +31,10 @@ const SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
 const TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 const DEF_FOLDER = 'typings/**/*.ts'
 const TS_CONFIG = ts.createProject('tsconfig.json');
+
+gulp.task('readme', () => {
+  readme.updateReadme();
+});
 
 gulp.task('lint', function lint() {
   return gulp

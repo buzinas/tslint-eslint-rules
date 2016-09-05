@@ -48,6 +48,7 @@ In your `tslint.json` file, insert the rules as described below.
 
 The list below shows all the existing ESLint rules and the similar rules available in TSLint.
 
+<!-- Start:AutoList:: Modify `rules.js` and run `gulp readme` to update this block -->
 ### Possible Errors
 
 The following rules point out areas where you might have made mistakes.
@@ -113,7 +114,7 @@ The following rules point out areas where you might have made mistakes.
     "no-debugger": true
     ```
 
-* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => not applicable to TypeScript
+* [no-dupe-args](http://eslint.org/docs/rules/no-dupe-args) => Not applicable to TypeScript
   * Description: disallow duplicate arguments in functions (recommended)
 
 * [no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys) => no-duplicate-key (native)
@@ -164,7 +165,7 @@ The following rules point out areas where you might have made mistakes.
     "no-extra-boolean-cast": true
     ```
 
-* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => no-extra-parens (tslint-eslint-rules) TODO (low priority)
+* [no-extra-parens](http://eslint.org/docs/rules/no-extra-parens) => no-extra-parens (tslint-eslint-rules) [TODO]()
   * Description: disallow unnecessary parentheses
   * Usage
 
@@ -190,7 +191,7 @@ The following rules point out areas where you might have made mistakes.
     "no-extra-semi": true
     ```
 
-* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => not applicable to TypeScript
+* [no-func-assign](http://eslint.org/docs/rules/no-func-assign) => Not applicable to TypeScript
   * Description: disallow overwriting functions written as function declarations (recommended)
 
 * [no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations) => no-inner-declarations (tslint-eslint-rules)
@@ -227,10 +228,10 @@ The following rules point out areas where you might have made mistakes.
     "no-irregular-whitespace": true
     ```
 
-* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => not applicable to TypeScript
+* [no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs) => Not applicable to TypeScript
   * Description: disallow negation of the left operand of an `in` expression (recommended)
 
-* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => not applicable to TypeScript
+* [no-obj-calls](http://eslint.org/docs/rules/no-obj-calls) => Not applicable to TypeScript
   * Description: disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)
 
 * [no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces) => no-regex-spaces (tslint-eslint-rules)
@@ -663,7 +664,7 @@ These are rules designed to prevent you from making mistakes. They either prescr
     "no-new-func": true
     ```
 
-* [no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers) => no-new-wrappers (tslint-eslint-rules) [TODO]() // ou no-construct
+* [no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers) => no-new-wrappers (tslint-eslint-rules) [TODO]()
   * Description: disallows creating new instances of `String`,`Number`, and `Boolean`
   * Usage
 
@@ -970,7 +971,7 @@ These rules have to do with variable declarations.
     "no-catch-shadow": true
     ```
 
-* [no-delete-var](http://eslint.org/docs/rules/no-delete-var) => not applicable to TypeScript
+* [no-delete-var](http://eslint.org/docs/rules/no-delete-var) => Not applicable to TypeScript
   * Description: disallow deletion of variables (recommended)
 
 * [no-label-var](http://eslint.org/docs/rules/no-label-var) => no-label-var (tslint-eslint-rules) [TODO]()
@@ -997,7 +998,7 @@ These rules have to do with variable declarations.
     "no-shadow-restricted-names": true
     ```
 
-* [no-undef](http://eslint.org/docs/rules/no-undef) => not applicable to TypeScript
+* [no-undef](http://eslint.org/docs/rules/no-undef) => Not applicable to TypeScript
   * Description: disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)
 
 * [no-undef-init](http://eslint.org/docs/rules/no-undef-init) => no-undef-init (tslint-eslint-rules) [TODO]()
@@ -1562,7 +1563,6 @@ These rules are purely matters of style and are quite subjective.
       ]
     ```
 
-
 * [max-nested-callbacks](http://eslint.org/docs/rules/max-nested-callbacks) => max-nested-callbacks (tslint-eslint-rules) [TODO]()
   * Description: specify the maximum depth callbacks can be nested
   * Usage
@@ -1573,7 +1573,6 @@ These rules are purely matters of style and are quite subjective.
         3
       ]
     ```
-
 
 * [max-params](http://eslint.org/docs/rules/max-params) => max-params (tslint-eslint-rules) [TODO]()
   * Description: specify the number of parameters that can be used in the function declaration
@@ -1734,8 +1733,9 @@ These rules are purely matters of style and are quite subjective.
     ```json
     "ident": "tabs"
     ```
-
-    Note: When using TSLint `ident` rule, it will enforce the consistent use of the chosen identation. The ESLint rule allows an option for Smart Tabs, but there are some open issues, and we're not going to support this.
+  * Note: When using TSLint `ident` rule, it will enforce the consistent use of the chosen
+    indentation. The ESLint rule allows an option for Smart Tabs, but there are some open issues,
+    and we're not going to support this.
 
 * [no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines) => no-multiple-empty-lines (tslint-eslint-rules) [TODO]()
   * Description: disallow multiple empty lines
@@ -2570,6 +2570,7 @@ These rules are only relevant to ES6 environments.
     ```json
     "yield-star-spacing": true
     ```
+<!-- End:AutoList -->
 
 ## Contributing
 
