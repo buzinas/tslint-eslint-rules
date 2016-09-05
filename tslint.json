@@ -6,14 +6,6 @@
       "arguments",
       "statements"
     ],
-    "no-multi-spaces": [
-      true,
-      {
-        "exceptions": {
-          "PropertyAssignment": false
-        }
-      }
-    ],
     "ban": false,
     "class-name": true,
     "comment-format": [
