@@ -26,16 +26,45 @@ function createRuleList() {
   return buffer.join('');
 }
 
+function createRuleTable() {
+  const buffer = [
+    '| Availability | Eslint | Tslint | Description |\n',
+    '| :---         | :---:  | :---:  | :---        |\n',
+  ];
+  ruleMod.rules.forEach((rule) => {
+    var available;
+    if (rule.available) {
+      available = rule.provider === 'native' ? ':ballot_box_with_check:' : ':white_check_mark:';
+    } else {
+      available = ':x:';
+    }
+    const tsRule = rule.tslintRule === 'Not applicable' ? 'Not applicable' : `[${rule.tslintRule}](${rule.tslintUrl})`
+    buffer.push('|');
+    buffer.push(`${available}|`);
+    buffer.push(`[${rule.eslintRule}](${rule.eslintUrl})|`);
+    buffer.push(`${tsRule}|`);
+    buffer.push(`${rule.description}|`);
+    buffer.push('\n');
+  });
+  return buffer.join('');
+}
+
 function updateReadme() {
   fs.readFile('README.md', 'utf8', (err, data) => {
     if (err) {
       return console.error(err);
     }
-    const content = data.replace(
+    var content = data.replace(
       /^<!-- Start:AutoList((.*?(\n))+.*?)End:AutoList -->$/gm,
       '<!-- Start:AutoList:: Modify `rules.js` and run `gulp readme` to update this block -->' +
       createRuleList() +
       '<!-- End:AutoList -->'
+    );
+    content = content.replace(
+      /^<!-- Start:AutoTable((.*?(\n))+.*?)End:AutoTable -->$/gm,
+      '<!-- Start:AutoTable:: Modify `rules.js` and run `gulp readme` to update this block -->\n' +
+      createRuleTable() +
+      '<!-- End:AutoTable -->'
     );
     fs.writeFile('README.md', content, 'utf8', (err) => {
       if (err) {
