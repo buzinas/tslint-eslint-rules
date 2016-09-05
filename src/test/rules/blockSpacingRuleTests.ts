@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import {makeTest} from './helper';
+import { makeTest } from './helper';
 
 const rule = 'block-spacing';
 const scripts = {
@@ -38,7 +38,6 @@ const scripts = {
 };
 
 describe(rule, function test() {
-
   const alwaysConfig = { rules: { 'block-spacing': [true, 'always'] } };
   const neverConfig = { rules: { 'block-spacing': [true, 'never'] } };
 

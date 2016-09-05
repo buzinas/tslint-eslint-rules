@@ -1,6 +1,5 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
-
-import {expect, assert} from 'chai';
+import { expect, assert } from 'chai';
 import * as Lint from 'tslint/lib/lint';
 
 export interface IScriptError {

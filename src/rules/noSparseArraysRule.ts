@@ -20,7 +20,7 @@ class NoSparseArraysWalker extends Lint.RuleWalker {
     const hasEmptySlot = node.elements.some(el => el.kind === ts.SyntaxKind.OmittedExpression);
 
     if (hasEmptySlot) {
-       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
+      this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
     }
   }
 }

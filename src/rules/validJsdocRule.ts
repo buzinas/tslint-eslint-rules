@@ -83,9 +83,9 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
     this.checkJSDoc(node);
   }
 
-  private visitClassExpression(node: ts.ClassExpression) {
+  protected visitClassExpression(node: ts.ClassExpression) {
     this.startFunction(node);
-    super.visitNode(node);
+    super.visitClassExpression(node);
     this.checkJSDoc(node);
   }
 

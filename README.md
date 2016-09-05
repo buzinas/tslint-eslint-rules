@@ -2116,7 +2116,7 @@ These rules are purely matters of style and are quite subjective.
         {
           "ignoreCase": false,
           "ignoreMemberSort": false,
-          "memberSyntaxSortOrder: [
+          "memberSyntaxSortOrder": [
             "none",
             "all",
             "multiple",

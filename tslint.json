@@ -1,10 +1,5 @@
 {
-  "rulesDirectory": ["dist/rules/"],
   "rules": {
-    "object-curly-spacing": [
-      false,
-      "always"
-    ],
     "align": [
       true,
       "parameters",
@@ -41,13 +36,17 @@
       180
     ],
     "member-access": true,
-    "member-ordering": [false],
+    "member-ordering": [
+      false
+    ],
     "no-any": false,
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,
     "no-consecutive-blank-lines": true,
-    "no-console": [false],
+    "no-console": [
+      false
+    ],
     "no-construct": false,
     "no-constructor-vars": true,
     "no-debugger": true,
@@ -89,8 +88,12 @@
         "singleline": "never"
       }
     ],
-    "triple-equals": [true],
-    "typedef": [false],
+    "triple-equals": [
+      true
+    ],
+    "typedef": [
+      false
+    ],
     "typedef-whitespace": [
       true,
       {
@@ -101,7 +104,9 @@
         "variable-declaration": "nospace"
       }
     ],
-    "use-strict": [false],
+    "use-strict": [
+      false
+    ],
     "variable-name": [
       true,
       "check-format",

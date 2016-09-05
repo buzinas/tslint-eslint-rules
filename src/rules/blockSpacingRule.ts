@@ -37,7 +37,7 @@ class BlockSpacingWalker extends Lint.RuleWalker {
     const openBraceLocation = this.getStartPosition(blockChildren[0]);
     const closeBraceLocation = this.getStartPosition(blockChildren[blockChildren.length - 1]);
 
-    if (syntaxList.getChildCount() > 0 && openBraceLocation.line === closeBraceLocation.line) {
+    if (syntaxList && syntaxList.getChildCount() > 0 && openBraceLocation.line === closeBraceLocation.line) {
       if (this.isSpaceBetween(blockChildren[0], blockChildren[1]) !== this.always
         || this.isSpaceBetween(blockChildren[blockChildren.length - 2], blockChildren[blockChildren.length - 1]) !== this.always) {
 

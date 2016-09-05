@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import {makeTest} from './helper';
+import { makeTest } from './helper';
 
 const rule = 'brace-style';
 const scripts = {
@@ -25,6 +25,28 @@ const scripts = {
         handleError();
       }`,
 
+      `try {
+        somethingRisky();
+      } catch(e) {
+        handleError();
+      } finally() {
+        doSomething();
+      }`,
+
+      `try {
+        somethingRisky();
+      } finally() {
+        doSomething();
+      } catch(e) {
+        handleError();
+      }`,
+
+      `try {
+        somethingRisky();
+      } finally() {
+        doSomething();
+      }`,
+
       // when there are no braces, there are no problems
       `if (foo) bar();
       else if (baz) boom();`
@@ -48,6 +70,26 @@ const scripts = {
         handleError();
       }`,
 
+      `try
+      {
+        somethingRisky();
+      } catch(e)
+      {
+        handleError();
+      }
+      } finally(e)
+      {
+        doSomething();
+      }`,
+
+      `try
+      {
+        somethingRisky();
+      } finally(e)
+      {
+        doSomething();
+      }`,
+
       `if (foo) {
         bar();
       }
@@ -56,7 +98,7 @@ const scripts = {
       }`,
 
       `if (foo) {
-        bar(); 
+        bar();
       } else { baz(); }`
     ]
   },
@@ -84,6 +126,24 @@ const scripts = {
         handleError();
       }`,
 
+      `try {
+        somethingRisky();
+      }
+      catch(e) {
+        handleError();
+      }
+      finally() {
+        doSomething();
+      }
+      `,
+
+      `try {
+        somethingRisky();
+      }
+      finally {
+        doSomething();
+      }`,
+
       // when there are no braces, there are no problems
       `if (foo) bar();
       else if (baz) boom();`
@@ -106,6 +166,27 @@ const scripts = {
       {
         handleError();
       }`,
+
+      `try
+      {
+        somethingRisky();
+      } catch(e)
+      {
+        handleError();
+      } finally()
+      {
+        doSomething();
+      }
+      `,
+
+      `try
+      {
+        somethingRisky();
+      } finally()
+      {
+        doSomething();
+      }
+      `,
 
       `if (foo) {
         bar();
@@ -144,6 +225,30 @@ const scripts = {
         handleError();
       }`,
 
+      `try
+      {
+        somethingRisky();
+      }
+      catch(e)
+      {
+        handleError();
+      }
+      finally()
+      {
+        doSomething();
+      }
+      `,
+
+      `try
+      {
+        somethingRisky();
+      }
+      finally()
+      {
+        doSomething();
+      }
+      `,
+
       // when there are no braces, there are no problems
       `if (foo) bar();
       else if (baz) boom();`
@@ -165,6 +270,25 @@ const scripts = {
         handleError();
       }`,
 
+      `try {
+        somethingRisky();
+      } catch(e)
+      {
+        handleError();
+      } finally()
+      {
+        doSomething();
+      }
+      `,
+
+      `try {
+        somethingRisky();
+      } finally()
+      {
+        doSomething();
+      }
+      `,
+
       `if (foo) {
         bar();
       } else {
@@ -183,13 +307,26 @@ const scripts = {
 
         `try { somethingRisky(); } catch(e) { handleError(); }`,
 
-        `if (foo) { 
-          bar();    
+        `try { somethingRisky(); } catch(e) { handleError(); } finally() { doSomething(); }`,
+
+        `try { somethingRisky(); } finally(e) { doSomething(); }`,
+
+        `if (foo) {
+          bar();
         } else { baz(); }`,
 
-        `try { 
+        `try {
           foo();
-        } catch(e) { bar(); }`
+        } catch(e) { bar(); }`,
+
+        `try {
+          foo();
+        } catch(e) { bar(); }
+        } finally() { doSomething(); }`,
+
+        `try {
+          foo();
+        } finally() { doSomething(); }`
       ]
     },
     stroustrup: {
@@ -204,15 +341,33 @@ const scripts = {
         `try { somethingRisky(); }
         catch(e) { handleError(); }`,
 
-        `if (foo) { 
+        `try { somethingRisky(); }
+        catch(e) { handleError(); }
+        finally() { doSomething(); }`,
+
+        `try { somethingRisky(); }
+        finally() { doSomething(); }`,
+
+        `if (foo) {
           bar();
-        } 
+        }
         else { baz(); }`,
 
-        `try { 
+        `try {
           foo();
-        } 
-        catch(e) { bar(); }`
+        }
+        catch(e) { bar(); }`,
+
+        `try {
+          foo();
+        }
+        catch(e) { bar(); }
+        finally() { doSomething(); }`,
+
+        `try {
+          foo();
+        }
+        finally() { doSomething(); }`
       ]
     },
     allman: {
@@ -227,16 +382,36 @@ const scripts = {
         `try { somethingRisky(); }
         catch(e) { handleError(); }`,
 
-        `if (foo) 
-        { 
+        `try { somethingRisky(); }
+        catch(e) { handleError(); },
+        finally() { doSomething(); }`,
+
+        `try { somethingRisky(); }
+        finally(e) { doSomething(); }`,
+
+        `if (foo)
+        {
           bar();
         } else { baz(); }`,
 
-        `try  
-        { 
+        `try
+        {
           foo();
-        } 
-        catch(e) { bar(); }`
+        }
+        catch(e) { bar(); }`,
+
+        `try
+        {
+          foo();
+        }
+        catch(e) { bar(); }
+        finally() { doSomething(); }`,
+
+        `try
+        {
+          foo();
+        }
+        finally() { doSomething(); }`
       ]
     }
   }
@@ -246,8 +421,8 @@ describe(rule, function test() {
   const onetbsConfig = { rules: { 'brace-style': [true, '1tbs'] } };
   const stroustrupConfig = { rules: { 'brace-style': [true, 'stroustrup'] } };
   const allmanConfig = { rules: { 'brace-style': [true, 'allman'] } };
-  const onetbsConfigWithException = { rules: { 'brace-style': [true, 'stroustrup', { allowSingleLine: true }] } };
-  const stroustrupConfigWithException = { rules: { 'brace-style': [true, '1tbs', { allowSingleLine: true }] } };
+  const onetbsConfigWithException = { rules: { 'brace-style': [true, '1tbs', { allowSingleLine: true }] } };
+  const stroustrupConfigWithException = { rules: { 'brace-style': [true, 'stroustrup', { allowSingleLine: true }] } };
   const allmanConfigWithException = { rules: { 'brace-style': [true, 'allman', { allowSingleLine: true }] } };
 
   it('should pass when "1tbs"', function testVariables() {
@@ -286,8 +461,8 @@ describe(rule, function test() {
     makeTest(rule, scripts.allowSingleLine.allman.valid, true, allmanConfigWithException);
   });
 
-  // all scripts in the "allowSingleLine" object should *only* pass if 
-  // allowSingleLine === true, so let's check to make sure they 
+  // all scripts in the "allowSingleLine" object should *only* pass if
+  // allowSingleLine === true, so let's check to make sure they
   // fail if allowSingleLine === false
   it('should fail when "1tbs"', function testVariables() {
     makeTest(rule, scripts.allowSingleLine.onetbs.valid, false, onetbsConfig);

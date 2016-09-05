@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import {makeTest} from './helper';
+import { makeTest } from './helper';
 
 const rule = 'handle-callback-err';
 const scripts = {
@@ -52,7 +52,6 @@ const scripts = {
 };
 
 describe(rule, function test() {
-
   const standardConfig = { rules: { 'handle-callback-err': [true] } };
   const customErrorNameConfig = { rules: { 'handle-callback-err': [true, 'errorMsg'] } };
   const customErrorRegexConfig = { rules: { 'handle-callback-err': [true, '^(err|error|errorMsg)$'] } };
