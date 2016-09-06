@@ -28,7 +28,7 @@ function createRuleList() {
 
 function createRuleTable() {
   const buffer = [
-    '| Availability | Eslint | Tslint | Description |\n',
+    '| :grey_question: | Eslint | Tslint | Description |\n',
     '| :---         | :---:  | :---:  | :---        |\n',
   ];
   ruleMod.rules.forEach((rule) => {

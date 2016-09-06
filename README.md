@@ -49,7 +49,7 @@ In your `tslint.json` file, insert the rules as described below.
 The table below shows all the existing ESLint rules and the similar rules available in TSLint.
 
 <!-- Start:AutoTable:: Modify `rules.js` and run `gulp readme` to update this block -->
-| Availability | Eslint | Tslint | Description |
+| :grey_question: | Eslint | Tslint | Description |
 | :---         | :---:  | :---:  | :---        |
 |:ballot_box_with_check:|[comma-dangle](http://eslint.org/docs/rules/comma-dangle)|[trailing-comma](http://palantir.github.io/tslint/rules/trailing-comma)|disallow or enforce trailing commas (recommended)|
 |:ballot_box_with_check:|[no-cond-assign](http://eslint.org/docs/rules/no-cond-assign)|[no-conditional-assignment](http://palantir.github.io/tslint/rules/no-conditional-assignment)|disallow assignment in conditional expressions (recommended)|
