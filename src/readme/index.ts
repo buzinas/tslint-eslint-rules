@@ -5,31 +5,10 @@ function formatUsage(usage) {
   return usage.replace(/~~~/g, '```').replace(/(^[ \t]*\n)/gm, '\n');
 }
 
-function createRuleList() {
-  const buffer = [];
-  let category = null;
-  ruleMod.rules.forEach((rule) => {
-    if (category !== rule.category) {
-      category = rule.category;
-      buffer.push(`\n### ${category}\n\n`);
-      buffer.push(`${ruleMod.categories[category]}\n`);
-    }
-    const todo = rule.available ? '' : ' [TODO]()';
-    const usage = rule.usage ? `\n  * Usage\n\n    ${formatUsage(rule.usage)}\n` : '\n';
-    const note = rule.note ? `  * Note: ${rule.note}\n` : '';
-    const tsRule = rule.tslintRule === 'Not applicable' ? 'Not applicable to TypeScript' : `${rule.tslintRule} (${rule.provider})${todo}`;
-    const msg = `
-* [${rule.eslintRule}](${rule.eslintUrl}) => ${tsRule}
-  * Description: ${rule.description}${usage}${note}`;
-    buffer.push(msg);
-  });
-  return buffer.join('');
-}
-
 function createRuleTable() {
   const buffer = [
     '| :grey_question: | Eslint | Tslint | Description |\n',
-    '| :---         | :---:  | :---:  | :---        |\n'
+    '| :---            | :---:  | :---:  | :---        |\n'
   ];
   ruleMod.rules.forEach((rule) => {
     let available;
@@ -55,12 +34,6 @@ function updateReadme() {
       return console.error(readErr);
     }
     let content = data.replace(
-      /^<!-- Start:AutoList((.*?(\n))+.*?)End:AutoList -->$/gm,
-      '<!-- Start:AutoList:: Modify `rules.js` and run `gulp readme` to update this block -->' +
-      createRuleList() +
-      '<!-- End:AutoList -->'
-    );
-    content = content.replace(
       /^<!-- Start:AutoTable((.*?(\n))+.*?)End:AutoTable -->$/gm,
       '<!-- Start:AutoTable:: Modify `rules.js` and run `gulp readme` to update this block -->\n' +
       createRuleTable() +
@@ -75,5 +48,6 @@ function updateReadme() {
 }
 
 export {
+  formatUsage,
   updateReadme,
 };
