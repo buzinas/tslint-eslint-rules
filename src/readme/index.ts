@@ -74,4 +74,6 @@ function updateReadme() {
   });
 }
 
-exports.updateReadme = updateReadme;
+export {
+  updateReadme,
+};

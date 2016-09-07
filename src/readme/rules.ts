@@ -5,7 +5,9 @@ const categories = {
   'Node.js and CommonJS': 'These rules are specific to JavaScript running on Node.js or using CommonJS in the browser.',
   'ECMAScript 6': 'These rules are only relevant to ES6 environments.',
   'Variables': 'These rules have to do with variable declarations.',
-  'Best Practices': 'These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.',
+  'Best Practices': `These are rules designed to prevent you from making mistakes. They either
+    prescribe a better way of doing something or help you avoid footguns.
+  `
 };
 const rules = [
   {
@@ -25,7 +27,7 @@ const rules = [
         "singleline": "never"
       }
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -38,7 +40,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-conditional-assignment": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -58,7 +60,7 @@ const rules = [
       "timeEnd",
       "trace"
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -71,7 +73,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-constant-condition": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -84,7 +86,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-control-regex": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -97,7 +99,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-debugger": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -108,7 +110,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-dupe-args',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: true,
@@ -121,7 +123,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-duplicate-key": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -134,7 +136,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-duplicate-case": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -147,7 +149,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-empty": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -160,7 +162,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-empty-character-class": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -173,7 +175,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-ex-assign": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -186,7 +188,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-extra-boolean-cast": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -209,7 +211,7 @@ const rules = [
       true,
       "all"
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -222,7 +224,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-extra-semi": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -233,7 +235,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-func-assign',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: true,
@@ -256,7 +258,7 @@ const rules = [
       true,
       "both"
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -269,7 +271,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-invalid-regexp": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -282,7 +284,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-irregular-whitespace": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -293,7 +295,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-negated-in-lhs',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -304,7 +306,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-obj-calls',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: true,
@@ -317,7 +319,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-regex-spaces": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -330,7 +332,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-sparse-arrays": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -343,7 +345,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-unexpected-multiline": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -356,7 +358,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-unreachable": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -369,7 +371,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "use-isnan": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -393,7 +395,7 @@ const rules = [
         "matchDescription": "^[A-Z][A-Za-z0-9\\\\s]*[.]$"
       }
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -406,7 +408,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "valid-typeof": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -425,7 +427,7 @@ const rules = [
         "setWithoutGet" : true
       }
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -438,7 +440,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "array-callback-return": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -451,7 +453,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "block-scoped-var": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -467,7 +469,7 @@ const rules = [
       true,
       3
     ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -480,7 +482,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "consistent-return": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -493,7 +495,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "curly": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -506,7 +508,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "default-case": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -529,7 +531,7 @@ const rules = [
         true,
         "property"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -548,7 +550,7 @@ const rules = [
           "allowPattern": ""
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -564,7 +566,7 @@ const rules = [
         true,
         "allow-null-check"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -577,7 +579,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "forin": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -590,7 +592,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-alert": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -603,7 +605,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-arg": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -616,7 +618,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-case-declarations": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -629,7 +631,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-div-regex": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -642,7 +644,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-else-return": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -655,7 +657,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-empty-function": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -668,7 +670,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-empty-pattern": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -681,7 +683,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-eq-null": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -694,7 +696,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-eval": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -712,7 +714,7 @@ const rules = [
           "exceptions": ["Object", "String"]
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -725,7 +727,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-extra-bind": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -738,7 +740,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-extra-label": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -751,7 +753,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-fallthrough": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -764,7 +766,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-floating-decimal": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -784,7 +786,7 @@ const rules = [
           "string": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -797,7 +799,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-implicit-coercion": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -810,7 +812,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-implied-eval": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -823,7 +825,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-invalid-this": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -836,7 +838,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-iterator": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -849,7 +851,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-labels": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -862,7 +864,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-lone-blocks": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -875,7 +877,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-loop-func": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -895,7 +897,7 @@ const rules = [
           "detectObjects": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -913,7 +915,7 @@ const rules = [
           "exceptions": [ { "ImportDeclation": true }, { "Property": false } ]
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -926,7 +928,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-multi-str": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -937,7 +939,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-native-reassign',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -950,7 +952,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -963,7 +965,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-func": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -976,7 +978,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-wrappers": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -987,7 +989,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-octal',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -1000,7 +1002,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-octal-escape": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1018,7 +1020,7 @@ const rules = [
           "props": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1031,7 +1033,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-proto": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1044,7 +1046,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-duplicate-variable": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1067,7 +1069,7 @@ const rules = [
         true,
         "always"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1080,7 +1082,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-script-url": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1093,7 +1095,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-self-compare": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1106,7 +1108,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-sequences": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1119,7 +1121,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-throw-literal": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1132,7 +1134,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-unmodified-loop-condition": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1145,7 +1147,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-unused-expressions": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1158,7 +1160,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-unused-labels": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1171,7 +1173,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-useless-call": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1184,7 +1186,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-useless-concat": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1197,7 +1199,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-useless-escape": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1210,7 +1212,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-void":true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1229,7 +1231,7 @@ const rules = [
           "location": "start"
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1242,7 +1244,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-with": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1255,7 +1257,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "radix": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1268,7 +1270,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "vars-on-top": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1298,7 +1300,7 @@ const rules = [
         true,
         "any"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1321,7 +1323,7 @@ const rules = [
         true,
         "always"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1358,7 +1360,7 @@ const rules = [
         true,
         "function"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1387,7 +1389,7 @@ const rules = [
           "ignoreForLoopInit": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1400,7 +1402,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-catch-shadow": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1411,7 +1413,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-delete-var',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -1424,7 +1426,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-label-var": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1437,7 +1439,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-shadowed-variable": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1450,7 +1452,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-shadow-restricted-names": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1461,7 +1463,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-undef',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -1474,7 +1476,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-undef-init": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1487,7 +1489,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-undefined": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1500,7 +1502,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-unused-variable": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1513,7 +1515,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-use-before-define": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1533,7 +1535,7 @@ const rules = [
           "next"
         ]
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1546,7 +1548,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "global-require": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1562,7 +1564,7 @@ const rules = [
         true,
         "^(err|error|anySpecificError)$"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1580,7 +1582,7 @@ const rules = [
           "grouping": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1593,7 +1595,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-require": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1606,7 +1608,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-path-concat": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1619,7 +1621,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-process-env": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1632,7 +1634,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-process-exit": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1652,7 +1654,7 @@ const rules = [
           "moduleName"
         ]
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1665,7 +1667,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-sync": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1698,7 +1700,7 @@ const rules = [
           "arraysInArrays": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1721,7 +1723,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1760,7 +1762,7 @@ const rules = [
           "allowSingleLine": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -1776,7 +1778,7 @@ const rules = [
         true,
         "check-format"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1795,7 +1797,7 @@ const rules = [
           "after": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1818,7 +1820,7 @@ const rules = [
         true,
         "last"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1841,7 +1843,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1857,7 +1859,7 @@ const rules = [
         true,
         "self"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1880,7 +1882,7 @@ const rules = [
         true,
         "windows"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1893,7 +1895,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "func-names": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1922,7 +1924,7 @@ const rules = [
           "allowArrowFunctions": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1938,7 +1940,7 @@ const rules = [
         true,
         ["error", "data", "err", "e", "cb", "callback"]
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1971,7 +1973,7 @@ const rules = [
           "exceptions": [ "x", "bolinha" ]
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -1990,7 +1992,7 @@ const rules = [
           "properties": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -2013,7 +2015,7 @@ const rules = [
         true,
         "tabs"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2036,7 +2038,7 @@ const rules = [
         true,
         "prefer-single"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2057,7 +2059,7 @@ const rules = [
           "mode": "minimum"
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2081,7 +2083,7 @@ const rules = [
           }
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2104,7 +2106,7 @@ const rules = [
         true,
         "windows"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2131,7 +2133,7 @@ const rules = [
           "allowArrayEnd": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2156,7 +2158,7 @@ const rules = [
           "maximum": 10
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2195,7 +2197,7 @@ const rules = [
           "ignorePattern": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2211,7 +2213,7 @@ const rules = [
         true,
         3
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2236,7 +2238,7 @@ const rules = [
           "maximum": 2
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2267,7 +2269,7 @@ const rules = [
           "ignoreTopLevelFunctions": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2292,7 +2294,7 @@ const rules = [
           "max": 1
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2303,7 +2305,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/new-cap',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -2316,7 +2318,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "new-parens": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2339,7 +2341,7 @@ const rules = [
         true,
         "always"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2352,7 +2354,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "newline-before-return": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2370,7 +2372,7 @@ const rules = [
           "ignoreChainWithDepth": 3
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2383,7 +2385,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-array-constructor": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2396,7 +2398,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-continue": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2409,7 +2411,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-inline-comments": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2422,7 +2424,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-lonely-if": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -2442,7 +2444,7 @@ const rules = [
     ~~~`,
     note: `When using TSLint \`ident\` rule, it will enforce the consistent use of the chosen
     indentation. The ESLint rule allows an option for Smart Tabs, but there are some open issues,
-    and we're not going to support this.`,
+    and we're not going to support this.`
   },
   {
     available: false,
@@ -2461,7 +2463,7 @@ const rules = [
           "maxEOF": 1
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2474,7 +2476,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-negated-condition": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2487,7 +2489,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-nested-ternary": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2500,7 +2502,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-object": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2517,7 +2519,7 @@ const rules = [
         "FunctionExpression",
         "WithStatement"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2530,7 +2532,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-spaced-func": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2543,7 +2545,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-ternary": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -2556,7 +2558,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-trailing-whitespace": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2574,7 +2576,7 @@ const rules = [
           "allow": ["foo_", "_bar"]
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2592,7 +2594,7 @@ const rules = [
           "defaultAssignment": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2605,7 +2607,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-whitespace-before-property": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -2628,7 +2630,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2651,7 +2653,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2674,7 +2676,7 @@ const rules = [
         true,
         "initializations"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2697,7 +2699,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2736,7 +2738,7 @@ const rules = [
           "overrides": { "?": "none", "+=": "none"}
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2759,7 +2761,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2796,7 +2798,7 @@ const rules = [
         true,
         "consistent-as-needed"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2850,7 +2852,7 @@ const rules = [
         "backtick",
         "avoid-escape"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2873,7 +2875,7 @@ const rules = [
           }
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2896,7 +2898,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2915,7 +2917,7 @@ const rules = [
           "after": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2940,7 +2942,7 @@ const rules = [
           ]
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2958,7 +2960,7 @@ const rules = [
           "ignoreCase": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -2991,7 +2993,7 @@ const rules = [
           "keywords": "always"
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3024,7 +3026,7 @@ const rules = [
           "named": "never"
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3047,7 +3049,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3065,7 +3067,7 @@ const rules = [
           "int32Hint": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3084,7 +3086,7 @@ const rules = [
           "nonwords": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3134,7 +3136,7 @@ const rules = [
           }
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3147,7 +3149,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "wrap-regex": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3170,7 +3172,7 @@ const rules = [
         true,
         "always"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3193,7 +3195,7 @@ const rules = [
         true,
         "always"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3212,7 +3214,7 @@ const rules = [
           "after": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3225,7 +3227,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "constructor-super": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3244,7 +3246,7 @@ const rules = [
           "after": true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3257,7 +3259,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-class-assign": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3275,7 +3277,7 @@ const rules = [
           "allowParens": false
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3288,7 +3290,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-const-assign": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3299,7 +3301,7 @@ const rules = [
     eslintUrl: 'http://eslint.org/docs/rules/no-dupe-class-members',
     tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
     provider: 'Not applicable',
-    usage: ``,
+    usage: ``
   },
   {
     available: false,
@@ -3317,7 +3319,7 @@ const rules = [
           includeExports: true
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3330,7 +3332,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-symbol": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3347,7 +3349,7 @@ const rules = [
         "import1",
         "import2"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3360,7 +3362,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-this-before-super": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3373,7 +3375,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-useless-constructor": true
-    ~~~`,
+    ~~~`
   },
   {
     available: true,
@@ -3386,7 +3388,7 @@ const rules = [
     provider: 'native',
     usage: `~~~json
     "no-var-keyword": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3423,7 +3425,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3436,7 +3438,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-arrow-callback": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3449,7 +3451,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-const": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3464,10 +3466,21 @@ const rules = [
     "prefer-reflect": [
         true,
         {
-          "exceptions": ["apply", "call", "defineProperty", "getOwnPropertyDescriptor", "getPrototypeOf", "setPrototypeOf", "isExtensible", "getOwnPropertyNames", "preventExtensions", "delete"]
+          "exceptions": [
+            "apply",
+            "call",
+            "defineProperty",
+            "getOwnPropertyDescriptor",
+            "getPrototypeOf",
+            "setPrototypeOf",
+            "isExtensible",
+            "getOwnPropertyNames",
+            "preventExtensions",
+            "delete"
+          ]
         }
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3480,7 +3493,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-rest-params": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3493,7 +3506,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-spread": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3506,7 +3519,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-template": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3519,7 +3532,7 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "require-yield": true
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3542,7 +3555,7 @@ const rules = [
         true,
         "never"
       ]
-    ~~~`,
+    ~~~`
   },
   {
     available: false,
@@ -3555,9 +3568,11 @@ const rules = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "yield-star-spacing": true
-    ~~~`,
-  },
+    ~~~`
+  }
 ];
 
-exports.categories = categories;
-exports.rules = rules;
+export {
+  categories,
+  rules,
+};
