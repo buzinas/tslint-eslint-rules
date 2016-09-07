@@ -49,6 +49,11 @@ In your `tslint.json` file, insert the rules as described below.
 The table below shows all the existing ESLint rules and the similar rules available in TSLint.
 
 <!-- Start:AutoTable:: Modify `rules.js` and run `gulp readme` to update this block -->
+
+### Possible Errors
+
+The following rules point out areas where you might have made mistakes.
+
 | :grey_question: | Eslint | Tslint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:ballot_box_with_check:|[comma-dangle](http://eslint.org/docs/rules/comma-dangle)|[trailing-comma](http://palantir.github.io/tslint/rules/trailing-comma)|disallow or enforce trailing commas (recommended)|
@@ -79,6 +84,14 @@ The table below shows all the existing ESLint rules and the similar rules availa
 |:white_check_mark:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](http://palantir.github.io/tslint/rules/use-isnan)|disallow comparisons with the value `NaN` (recommended)|
 |:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](http://palantir.github.io/tslint/rules/valid-jsdoc)|Ensure JSDoc comments are valid|
 |:white_check_mark:|[valid-typeof](http://eslint.org/docs/rules/valid-typeof)|[valid-typeof](http://palantir.github.io/tslint/rules/valid-typeof)|Ensure that the results of typeof are compared against a valid string (recommended)|
+
+### Best Practices
+
+These are rules designed to prevent you from making mistakes. They either
+    prescribe a better way of doing something or help you avoid footguns.
+
+| :grey_question: | Eslint | Tslint | Description |
+| :---            | :---:  | :---:  | :---        |
 |:x:|[accessor-pairs](http://eslint.org/docs/rules/accessor-pairs)|[accessor-pairs](http://palantir.github.io/tslint/rules/accessor-pairs)|Enforces getter/setter pairs in objects|
 |:x:|[array-callback-return](http://eslint.org/docs/rules/array-callback-return)|[array-callback-return](http://palantir.github.io/tslint/rules/array-callback-return)|Enforce return statements in callbacks of array’s methods|
 |:x:|[block-scoped-var](http://eslint.org/docs/rules/block-scoped-var)|[accessor-pairs](http://palantir.github.io/tslint/rules/accessor-pairs)|treat `var` statements as if they were block scoped|
@@ -142,7 +155,21 @@ The table below shows all the existing ESLint rules and the similar rules availa
 |:x:|[vars-on-top](http://eslint.org/docs/rules/vars-on-top)|[vars-on-top](http://palantir.github.io/tslint/rules/vars-on-top)|require declaration of all vars at the top of their containing scope|
 |:x:|[wrap-iife](http://eslint.org/docs/rules/wrap-iife)|[wrap-iife](http://palantir.github.io/tslint/rules/wrap-iife)|require immediate function invocation to be wrapped in parentheses|
 |:x:|[yoda](http://eslint.org/docs/rules/yoda)|[yoda](http://palantir.github.io/tslint/rules/yoda)|require or disallow Yoda conditions|
+
+### Strict Mode
+
+These rules relate to using strict mode.
+
+| :grey_question: | Eslint | Tslint | Description |
+| :---            | :---:  | :---:  | :---        |
 |:x:|[strict](http://eslint.org/docs/rules/strict)|[strict](http://palantir.github.io/tslint/rules/strict)|require effective use of strict mode directives|
+
+### Variables
+
+These rules have to do with variable declarations.
+
+| :grey_question: | Eslint | Tslint | Description |
+| :---            | :---:  | :---:  | :---        |
 |:x:|[init-declarations](http://eslint.org/docs/rules/init-declarations)|[init-declarations](http://palantir.github.io/tslint/rules/init-declarations)|enforce or disallow variable initializations at definition|
 |:x:|[no-catch-shadow](http://eslint.org/docs/rules/no-catch-shadow)|[no-catch-shadow](http://palantir.github.io/tslint/rules/no-catch-shadow)|disallow the catch clause parameter name being the same as a variable in the outer scope|
 |:x:|[no-delete-var](http://eslint.org/docs/rules/no-delete-var)|Not applicable|disallow deletion of variables (recommended)|
@@ -154,6 +181,13 @@ The table below shows all the existing ESLint rules and the similar rules availa
 |:x:|[no-undefined](http://eslint.org/docs/rules/no-undefined)|[no-undefined](http://palantir.github.io/tslint/rules/no-undefined)|disallow use of `undefined` variable|
 |:ballot_box_with_check:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|[no-unused-variable](http://palantir.github.io/tslint/rules/no-unused-variable)|disallow declaration of variables that are not used in the code (recommended)|
 |:ballot_box_with_check:|[no-use-before-define](http://eslint.org/docs/rules/no-use-before-define)|[no-use-before-define](http://palantir.github.io/tslint/rules/no-use-before-define)|disallow use of variables before they are defined|
+
+### Node.js and CommonJS
+
+These rules are specific to JavaScript running on Node.js or using CommonJS in the browser.
+
+| :grey_question: | Eslint | Tslint | Description |
+| :---            | :---:  | :---:  | :---        |
 |:x:|[callback-return](http://eslint.org/docs/rules/callback-return)|[callback-return](http://palantir.github.io/tslint/rules/callback-return)|enforce `return` after a callback|
 |:x:|[global-require](http://eslint.org/docs/rules/global-require)|[global-require](http://palantir.github.io/tslint/rules/global-require)|enforce `require()` on top-level module scope|
 |:white_check_mark:|[handle-callback-err](http://eslint.org/docs/rules/handle-callback-err)|[handle-callback-err](http://palantir.github.io/tslint/rules/handle-callback-err)|enforce error handling in callbacks|
@@ -164,6 +198,13 @@ The table below shows all the existing ESLint rules and the similar rules availa
 |:x:|[no-process-exit](http://eslint.org/docs/rules/no-process-exit)|[no-process-exit](http://palantir.github.io/tslint/rules/no-process-exit)|disallow `process.exit()`|
 |:x:|[no-restricted-modules](http://eslint.org/docs/rules/no-restricted-modules)|[no-restricted-modules](http://palantir.github.io/tslint/rules/no-restricted-modules)|restrict Usage of specified node modules|
 |:x:|[no-sync](http://eslint.org/docs/rules/no-sync)|[no-sync](http://palantir.github.io/tslint/rules/no-sync)|disallow use of synchronous methods|
+
+### Stylistic Issues
+
+These rules are purely matters of style and are quite subjective.
+
+| :grey_question: | Eslint | Tslint | Description |
+| :---            | :---:  | :---:  | :---        |
 |:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](http://palantir.github.io/tslint/rules/array-bracket-spacing)|enforce spacing inside array brackets|
 |:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](http://palantir.github.io/tslint/rules/block-spacing)|disallow or enforce spaces inside of single line blocks|
 |:white_check_mark:|[brace-style](http://eslint.org/docs/rules/brace-style)|[brace-style](http://palantir.github.io/tslint/rules/brace-style)|enforce one true brace style|
@@ -231,6 +272,13 @@ The table below shows all the existing ESLint rules and the similar rules availa
 |:x:|[space-unary-ops](http://eslint.org/docs/rules/space-unary-ops)|[space-unary-ops](http://palantir.github.io/tslint/rules/space-unary-ops)|require or disallow spaces before/after unary operators|
 |:x:|[spaced-comment](http://eslint.org/docs/rules/spaced-comment)|[spaced-comment](http://palantir.github.io/tslint/rules/spaced-comment)|require or disallow a space immediately following the `//` or `/*` in a comment|
 |:x:|[wrap-regex](http://eslint.org/docs/rules/wrap-regex)|[wrap-regex](http://palantir.github.io/tslint/rules/wrap-regex)|require regex literals to be wrapped in parentheses|
+
+### ECMAScript 6
+
+These rules are only relevant to ES6 environments.
+
+| :grey_question: | Eslint | Tslint | Description |
+| :---            | :---:  | :---:  | :---        |
 |:x:|[arrow-body-style](http://eslint.org/docs/rules/arrow-body-style)|[arrow-body-style](http://palantir.github.io/tslint/rules/arrow-body-style)|require braces in arrow function body|
 |:x:|[arrow-parens](http://eslint.org/docs/rules/arrow-parens)|[arrow-parens](http://palantir.github.io/tslint/rules/arrow-parens)|require parens in arrow function arguments|
 |:x:|[arrow-spacing](http://eslint.org/docs/rules/arrow-spacing)|[arrow-spacing](http://palantir.github.io/tslint/rules/arrow-spacing)|require space before/after arrow function's arrow|

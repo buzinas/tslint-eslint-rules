@@ -6,11 +6,17 @@ function formatUsage(usage) {
 }
 
 function createRuleTable() {
-  const buffer = [
-    '| :grey_question: | Eslint | Tslint | Description |\n',
-    '| :---            | :---:  | :---:  | :---        |\n'
-  ];
+  const buffer = [];
+  let category = null;
   ruleMod.rules.forEach((rule) => {
+    if (category !== rule.category) {
+      category = rule.category;
+      buffer.push(`\n### ${category}\n\n`);
+      buffer.push(`${ruleMod.categories[category]}\n\n`);
+      buffer.push('| :grey_question: | Eslint | Tslint | Description |\n');
+      buffer.push('| :---            | :---:  | :---:  | :---        |\n');
+    }
+
     let available;
     if (rule.available) {
       available = rule.provider === 'native' ? ':ballot_box_with_check:' : ':white_check_mark:';

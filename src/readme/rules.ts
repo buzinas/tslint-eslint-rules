@@ -29,8 +29,7 @@ const categories = {
   'ECMAScript 6': 'These rules are only relevant to ES6 environments.',
   'Variables': 'These rules have to do with variable declarations.',
   'Best Practices': `These are rules designed to prevent you from making mistakes. They either
-    prescribe a better way of doing something or help you avoid footguns.
-  `
+    prescribe a better way of doing something or help you avoid footguns.`
 };
 const rules: IRule[] = [
   {
