@@ -1,3 +1,26 @@
+type Provider = 'native' | 'tslint-eslint-rules' | 'Not applicable';
+
+type Category = 'Strict Mode'
+  | 'Stylistic Issues'
+  | 'Possible Errors'
+  | 'Node.js and CommonJS'
+  | 'ECMAScript 6'
+  | 'Variables'
+  | 'Best Practices';
+
+interface IRule {
+  available: boolean;
+  eslintRule: string;
+  tslintRule: string;
+  category: Category;
+  description: string;
+  eslintUrl: string;
+  tslintUrl?: string;
+  provider: Provider;
+  usage: string;
+  note?: string;
+}
+
 const categories = {
   'Strict Mode': 'These rules relate to using strict mode.',
   'Stylistic Issues': 'These rules are purely matters of style and are quite subjective.',
@@ -9,7 +32,7 @@ const categories = {
     prescribe a better way of doing something or help you avoid footguns.
   `
 };
-const rules = [
+const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'comma-dangle',
@@ -3573,6 +3596,9 @@ const rules = [
 ];
 
 export {
+  Provider,
+  Category,
+  IRule,
   categories,
   rules,
 };

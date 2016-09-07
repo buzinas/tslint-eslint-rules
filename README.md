@@ -513,7 +513,9 @@ The following rules point out areas where you might have made mistakes.
 
 ### Best Practices
 
-These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.
+These are rules designed to prevent you from making mistakes. They either
+    prescribe a better way of doing something or help you avoid footguns.
+  
 
 * [accessor-pairs](http://eslint.org/docs/rules/accessor-pairs) => accessor-pairs (tslint-eslint-rules) [TODO]()
   * Description: Enforces getter/setter pairs in objects
@@ -2718,7 +2720,18 @@ These rules are only relevant to ES6 environments.
     "prefer-reflect": [
         true,
         {
-          "exceptions": ["apply", "call", "defineProperty", "getOwnPropertyDescriptor", "getPrototypeOf", "setPrototypeOf", "isExtensible", "getOwnPropertyNames", "preventExtensions", "delete"]
+          "exceptions": [
+            "apply",
+            "call",
+            "defineProperty",
+            "getOwnPropertyDescriptor",
+            "getPrototypeOf",
+            "setPrototypeOf",
+            "isExtensible",
+            "getOwnPropertyNames",
+            "preventExtensions",
+            "delete"
+          ]
         }
       ]
     ```
