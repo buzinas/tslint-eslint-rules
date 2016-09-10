@@ -59,7 +59,7 @@ function createRuleContent(rule: IRule) {
   const note = rule.note ? `\n\n### Note\n\n${rule.note}\n` : '';
   return `## ${rule.tslintRule} (eslint: [${rule.eslintRule}](${rule.eslintUrl}))
 
-${rule.description}${usage}${note};
+${rule.description}${usage}${note}
 `;
 }
 
@@ -72,7 +72,7 @@ function updateRuleFile(name: string, rule: IRule) {
       [
         '<!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->\n',
         createRuleContent(rule),
-        '<!-- End:AutoDoc -->' + (readErr ? '\n' : '')
+        '\n<!-- End:AutoDoc -->' + (readErr ? '\n' : '')
       ].join('')
     );
     fs.writeFile(docFileName, content, 'utf8', (writeErr) => {

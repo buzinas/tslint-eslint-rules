@@ -10,5 +10,6 @@ enforce error handling in callbacks
     true,
     "^(err|error|anySpecificError)$"
   ]
-```;
+```
+
 <!-- End:AutoDoc -->

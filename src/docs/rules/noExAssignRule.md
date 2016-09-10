@@ -7,5 +7,6 @@ disallow assigning to the exception in a `catch` block (recommended)
 
 ```json
 "no-ex-assign": true
-```;
+```
+
 <!-- End:AutoDoc -->

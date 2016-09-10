@@ -7,5 +7,6 @@ disallow irregular whitespace outside of strings and comments (recommended)
 
 ```json
 "no-irregular-whitespace": true
-```;
+```
+
 <!-- End:AutoDoc -->

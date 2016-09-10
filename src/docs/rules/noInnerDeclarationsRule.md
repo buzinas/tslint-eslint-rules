@@ -17,5 +17,6 @@ disallow function or variable declarations in nested blocks (recommended)
   true,
   "both"
 ]
-```;
+```
+
 <!-- End:AutoDoc -->

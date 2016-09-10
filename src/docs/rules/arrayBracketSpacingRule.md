@@ -27,5 +27,6 @@ enforce spacing inside array brackets
       "arraysInArrays": true
     }
   ]
-```;
+```
+
 <!-- End:AutoDoc -->

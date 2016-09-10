@@ -7,5 +7,6 @@ Avoid code that looks like two expressions but is actually one
 
 ```json
 "no-unexpected-multiline": true
-```;
+```
+
 <!-- End:AutoDoc -->

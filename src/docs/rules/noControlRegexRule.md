@@ -7,5 +7,6 @@ disallow control characters in regular expressions (recommended)
 
 ```json
 "no-control-regex": true
-```;
+```
+
 <!-- End:AutoDoc -->

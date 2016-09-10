@@ -7,5 +7,6 @@ disallow use of constant expressions in conditions (recommended)
 
 ```json
 "no-constant-condition": true
-```;
+```
+
 <!-- End:AutoDoc -->

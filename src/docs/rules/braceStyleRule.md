@@ -33,5 +33,6 @@ enforce one true brace style
       "allowSingleLine": true
     }
   ]
-```;
+```
+
 <!-- End:AutoDoc -->

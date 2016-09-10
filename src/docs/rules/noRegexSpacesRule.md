@@ -7,5 +7,6 @@ disallow multiple spaces in a regular expression literal (recommended)
 
 ```json
 "no-regex-spaces": true
-```;
+```
+
 <!-- End:AutoDoc -->

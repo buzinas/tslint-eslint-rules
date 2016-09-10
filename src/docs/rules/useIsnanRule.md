@@ -7,5 +7,6 @@ disallow comparisons with the value `NaN` (recommended)
 
 ```json
 "use-isnan": true
-```;
+```
+
 <!-- End:AutoDoc -->

@@ -7,5 +7,6 @@ disallow a duplicate case label. (recommended)
 
 ```json
 "no-duplicate-case": true
-```;
+```
+
 <!-- End:AutoDoc -->

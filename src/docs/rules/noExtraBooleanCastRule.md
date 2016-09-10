@@ -7,5 +7,6 @@ disallow double-negation boolean casts in a boolean context (recommended)
 
 ```json
 "no-extra-boolean-cast": true
-```;
+```
+
 <!-- End:AutoDoc -->

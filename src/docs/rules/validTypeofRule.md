@@ -7,5 +7,6 @@ Ensure that the results of typeof are compared against a valid string (recommend
 
 ```json
 "valid-typeof": true
-```;
+```
+
 <!-- End:AutoDoc -->

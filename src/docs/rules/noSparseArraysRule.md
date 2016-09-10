@@ -7,5 +7,6 @@ disallow sparse arrays (recommended)
 
 ```json
 "no-sparse-arrays": true
-```;
+```
+
 <!-- End:AutoDoc -->

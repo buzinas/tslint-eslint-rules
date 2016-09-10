@@ -17,5 +17,6 @@ disallow or enforce spaces inside of single line blocks
     true,
     "never"
   ]
-```;
+```
+
 <!-- End:AutoDoc -->

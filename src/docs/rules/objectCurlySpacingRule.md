@@ -17,5 +17,6 @@ require or disallow padding inside curly braces
     true,
     "never"
   ]
-```;
+```
+
 <!-- End:AutoDoc -->

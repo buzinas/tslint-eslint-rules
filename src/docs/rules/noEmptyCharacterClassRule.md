@@ -7,5 +7,6 @@ disallow the use of empty character classes in regular expressions (recommended)
 
 ```json
 "no-empty-character-class": true
-```;
+```
+
 <!-- End:AutoDoc -->

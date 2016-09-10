@@ -7,5 +7,6 @@ disallow invalid regular expression strings in the `RegExp` constructor (recomme
 
 ```json
 "no-invalid-regexp": true
-```;
+```
+
 <!-- End:AutoDoc -->

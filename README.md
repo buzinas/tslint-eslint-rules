@@ -206,7 +206,7 @@ These rules are purely matters of style and are quite subjective.
 | :grey_question: | Eslint | Tslint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md)|enforce spacing inside array brackets|
-|:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](http://palantir.github.io/tslint/rules/block-spacing)|disallow or enforce spaces inside of single line blocks|
+|:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/blockSpacingRule.md)|disallow or enforce spaces inside of single line blocks|
 |:white_check_mark:|[brace-style](http://eslint.org/docs/rules/brace-style)|[brace-style](http://palantir.github.io/tslint/rules/brace-style)|enforce one true brace style|
 |:ballot_box_with_check:|[camelcase](http://eslint.org/docs/rules/camelcase)|[variable-name](http://palantir.github.io/tslint/rules/variable-name)|require camel case names|
 |:x:|[comma-spacing](http://eslint.org/docs/rules/comma-spacing)|[comma-spacing](http://palantir.github.io/tslint/rules/comma-spacing)|enforce spacing before and after comma|

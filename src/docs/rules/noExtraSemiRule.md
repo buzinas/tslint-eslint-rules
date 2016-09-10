@@ -7,5 +7,6 @@ disallow unnecessary semicolons (recommended)
 
 ```json
 "no-extra-semi": true
-```;
+```
+
 <!-- End:AutoDoc -->

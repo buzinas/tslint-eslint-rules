@@ -18,5 +18,6 @@ Ensure JSDoc comments are valid
     "matchDescription": "^[A-Z][A-Za-z0-9\\s]*[.]$"
   }
 ]
-```;
+```
+
 <!-- End:AutoDoc -->
