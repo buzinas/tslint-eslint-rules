@@ -59,31 +59,31 @@ The following rules point out areas where you might have made mistakes.
 |:ballot_box_with_check:|[comma-dangle](http://eslint.org/docs/rules/comma-dangle)|[trailing-comma](http://palantir.github.io/tslint/rules/trailing-comma)|disallow or enforce trailing commas (recommended)|
 |:ballot_box_with_check:|[no-cond-assign](http://eslint.org/docs/rules/no-cond-assign)|[no-conditional-assignment](http://palantir.github.io/tslint/rules/no-conditional-assignment)|disallow assignment in conditional expressions (recommended)|
 |:ballot_box_with_check:|[no-console](http:/eslint.org/docs/rules/no-console)|[no-console](http://palantir.github.io/tslint/rules/no-console)|disallow use of `console` in the node environment (recommended)|
-|:white_check_mark:|[no-constant-condition](http://eslint.org/docs/rules/no-constant-condition)|[no-constant-condition](http://palantir.github.io/tslint/rules/no-constant-condition)|disallow use of constant expressions in conditions (recommended)|
-|:white_check_mark:|[no-control-regex](http://eslint.org/docs/rules/no-control-regex)|[no-control-regex](http://palantir.github.io/tslint/rules/no-control-regex)|disallow control characters in regular expressions (recommended)|
+|:white_check_mark:|[no-constant-condition](http://eslint.org/docs/rules/no-constant-condition)|[no-constant-condition](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noConstantConditionRule.md)|disallow use of constant expressions in conditions (recommended)|
+|:white_check_mark:|[no-control-regex](http://eslint.org/docs/rules/no-control-regex)|[no-control-regex](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noControlRegexRule.md)|disallow control characters in regular expressions (recommended)|
 |:ballot_box_with_check:|[no-debugger](http://eslint.org/docs/rules/no-debugger)|[no-debugger](http://palantir.github.io/tslint/rules/no-debugger)|disallow use of `debugger` (recommended)|
 |:x:|[no-dupe-args](http://eslint.org/docs/rules/no-dupe-args)|Not applicable|disallow duplicate arguments in functions (recommended)|
 |:ballot_box_with_check:|[no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys)|[no-duplicate-key](http://palantir.github.io/tslint/rules/no-duplicate-key)|disallow duplicate keys when creating object literals (recommended)|
-|:white_check_mark:|[no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case)|[no-duplicate-case](http://palantir.github.io/tslint/rules/no-duplicate-case)|disallow a duplicate case label. (recommended)|
+|:white_check_mark:|[no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case)|[no-duplicate-case](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noDuplicateCaseRule.md)|disallow a duplicate case label. (recommended)|
 |:ballot_box_with_check:|[no-empty](http://eslint.org/docs/rules/no-empty)|[no-empty](http://palantir.github.io/tslint/rules/no-empty)|disallow empty statements (recommended)|
 |:white_check_mark:|[no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class)|[no-empty-character-class](http://palantir.github.io/tslint/rules/no-empty-character-class)|disallow the use of empty character classes in regular expressions (recommended)|
 |:white_check_mark:|[no-ex-assign](http://eslint.org/docs/rules/no-ex-assign)|[no-ex-assign](http://palantir.github.io/tslint/rules/no-ex-assign)|disallow assigning to the exception in a `catch` block (recommended)|
 |:white_check_mark:|[no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast)|[no-extra-boolean-cast](http://palantir.github.io/tslint/rules/no-extra-boolean-cast)|disallow double-negation boolean casts in a boolean context (recommended)|
 |:x:|[no-extra-parens](http://eslint.org/docs/rules/no-extra-parens)|[no-extra-parens](http://palantir.github.io/tslint/rules/no-extra-parens)|disallow unnecessary parentheses|
-|:white_check_mark:|[no-extra-semi](http://eslint.org/docs/rules/no-extra-semi)|[no-extra-semi](http://palantir.github.io/tslint/rules/no-extra-semi)|disallow unnecessary semicolons (recommended)|
+|:white_check_mark:|[no-extra-semi](http://eslint.org/docs/rules/no-extra-semi)|[no-extra-semi](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noExtraSemiRule.md)|disallow unnecessary semicolons (recommended)|
 |:x:|[no-func-assign](http://eslint.org/docs/rules/no-func-assign)|Not applicable|disallow overwriting functions written as function declarations (recommended)|
-|:white_check_mark:|[no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations)|[no-inner-declarations](http://palantir.github.io/tslint/rules/no-inner-declarations)|disallow function or variable declarations in nested blocks (recommended)|
-|:white_check_mark:|[no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp)|[no-invalid-regexp](http://palantir.github.io/tslint/rules/no-invalid-regexp)|disallow invalid regular expression strings in the `RegExp` constructor (recommended)|
-|:white_check_mark:|[no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace)|[no-irregular-whitespace](http://palantir.github.io/tslint/rules/no-irregular-whitespace)|disallow irregular whitespace outside of strings and comments (recommended)|
+|:white_check_mark:|[no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations)|[no-inner-declarations](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noInnerDeclarationsRule.md)|disallow function or variable declarations in nested blocks (recommended)|
+|:white_check_mark:|[no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp)|[no-invalid-regexp](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noInvalidRegexpRule.md)|disallow invalid regular expression strings in the `RegExp` constructor (recommended)|
+|:white_check_mark:|[no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace)|[no-irregular-whitespace](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noIrregularWhitespaceRule.md)|disallow irregular whitespace outside of strings and comments (recommended)|
 |:x:|[no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs)|Not applicable|disallow negation of the left operand of an `in` expression (recommended)|
 |:x:|[no-obj-calls](http://eslint.org/docs/rules/no-obj-calls)|Not applicable|disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)|
-|:white_check_mark:|[no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces)|[no-regex-spaces](http://palantir.github.io/tslint/rules/no-regex-spaces)|disallow multiple spaces in a regular expression literal (recommended)|
-|:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[no-sparse-arrays](http://palantir.github.io/tslint/rules/no-sparse-arrays)|disallow sparse arrays (recommended)|
-|:white_check_mark:|[no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline)|[no-unexpected-multiline](http://palantir.github.io/tslint/rules/no-unexpected-multiline)|Avoid code that looks like two expressions but is actually one|
+|:white_check_mark:|[no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces)|[no-regex-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noRegexSpacesRule.md)|disallow multiple spaces in a regular expression literal (recommended)|
+|:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[no-sparse-arrays](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noSparseArraysRule.md)|disallow sparse arrays (recommended)|
+|:white_check_mark:|[no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline)|[no-unexpected-multiline](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noUnexpectedMultilineRule.md)|Avoid code that looks like two expressions but is actually one|
 |:ballot_box_with_check:|[no-unreachable](http://eslint.org/docs/rules/no-unreachable)|[no-unreachable](http://palantir.github.io/tslint/rules/no-unreachable)|disallow unreachable statements after a return, throw, continue, or break statement (recommended)|
-|:white_check_mark:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](http://palantir.github.io/tslint/rules/use-isnan)|disallow comparisons with the value `NaN` (recommended)|
-|:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](http://palantir.github.io/tslint/rules/valid-jsdoc)|Ensure JSDoc comments are valid|
-|:white_check_mark:|[valid-typeof](http://eslint.org/docs/rules/valid-typeof)|[valid-typeof](http://palantir.github.io/tslint/rules/valid-typeof)|Ensure that the results of typeof are compared against a valid string (recommended)|
+|:white_check_mark:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/useIsnanRule.md)|disallow comparisons with the value `NaN` (recommended)|
+|:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validJsdocRule.md)|Ensure JSDoc comments are valid|
+|:white_check_mark:|[valid-typeof](http://eslint.org/docs/rules/valid-typeof)|[valid-typeof](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validTypeofRule.md)|Ensure that the results of typeof are compared against a valid string (recommended)|
 
 ### Best Practices
 
@@ -92,62 +92,62 @@ These are rules designed to prevent you from making mistakes. They either
 
 | :grey_question: | Eslint | Tslint | Description |
 | :---            | :---:  | :---:  | :---        |
-|:x:|[accessor-pairs](http://eslint.org/docs/rules/accessor-pairs)|[accessor-pairs](http://palantir.github.io/tslint/rules/accessor-pairs)|Enforces getter/setter pairs in objects|
-|:x:|[array-callback-return](http://eslint.org/docs/rules/array-callback-return)|[array-callback-return](http://palantir.github.io/tslint/rules/array-callback-return)|Enforce return statements in callbacks of array’s methods|
-|:x:|[block-scoped-var](http://eslint.org/docs/rules/block-scoped-var)|[accessor-pairs](http://palantir.github.io/tslint/rules/accessor-pairs)|treat `var` statements as if they were block scoped|
-|:x:|[complexity](http://eslint.org/docs/rules/complexity)|[complexity](http://palantir.github.io/tslint/rules/complexity)|specify the maximum cyclomatic complexity allowed in a program|
-|:x:|[consistent-return](http://eslint.org/docs/rules/consistent-return)|[consistent-return](http://palantir.github.io/tslint/rules/consistent-return)|require `return` statements to either always or never specify values|
+|:x:|[accessor-pairs](http://eslint.org/docs/rules/accessor-pairs)|accessor-pairs|Enforces getter/setter pairs in objects|
+|:x:|[array-callback-return](http://eslint.org/docs/rules/array-callback-return)|array-callback-return|Enforce return statements in callbacks of array’s methods|
+|:x:|[block-scoped-var](http://eslint.org/docs/rules/block-scoped-var)|accessor-pairs|treat `var` statements as if they were block scoped|
+|:x:|[complexity](http://eslint.org/docs/rules/complexity)|complexity|specify the maximum cyclomatic complexity allowed in a program|
+|:x:|[consistent-return](http://eslint.org/docs/rules/consistent-return)|consistent-return|require `return` statements to either always or never specify values|
 |:ballot_box_with_check:|[curly](http://eslint.org/docs/rules/curly)|[curly](http://palantir.github.io/tslint/rules/curly)|specify curly brace conventions for all control statements|
 |:ballot_box_with_check:|[default-case](http://eslint.org/docs/rules/default-case)|[switch-default](http://palantir.github.io/tslint/rules/switch-default)|require `default` case in `switch` statements|
-|:x:|[dot-location](http://eslint.org/docs/rules/dot-location)|[dot-location](http://palantir.github.io/tslint/rules/dot-location)|enforces consistent newlines before or after dots|
-|:x:|[dot-notation](http://eslint.org/docs/rules/dot-notation)|[dot-notation](http://palantir.github.io/tslint/rules/dot-notation)|encourages use of dot notation whenever possible|
+|:x:|[dot-location](http://eslint.org/docs/rules/dot-location)|dot-location|enforces consistent newlines before or after dots|
+|:x:|[dot-notation](http://eslint.org/docs/rules/dot-notation)|dot-notation|encourages use of dot notation whenever possible|
 |:ballot_box_with_check:|[eqeqeq](http://eslint.org/docs/rules/eqeqeq)|[triple-equals](http://palantir.github.io/tslint/rules/triple-equals)|require the use of `===` and `!==`|
 |:ballot_box_with_check:|[guard-for-in](http://eslint.org/docs/rules/guard-for-in)|[forin](http://palantir.github.io/tslint/rules/forin)|make sure `for-in` loops have an `if` statement|
-|:x:|[no-alert](http://eslint.org/docs/rules/no-alert)|[no-alert](http://palantir.github.io/tslint/rules/no-alert)|disallow the use of `alert`, `confirm`, and `prompt`|
+|:x:|[no-alert](http://eslint.org/docs/rules/no-alert)|no-alert|disallow the use of `alert`, `confirm`, and `prompt`|
 |:ballot_box_with_check:|[no-caller](http://eslint.org/docs/rules/no-caller)|[no-arg](http://palantir.github.io/tslint/rules/no-arg)|disallow use of `arguments.caller` or `arguments.callee`|
-|:x:|[no-case-declarations](http://eslint.org/docs/rules/no-case-declarations)|[no-case-declarations](http://palantir.github.io/tslint/rules/no-case-declarations)|disallow lexical declarations in case clauses|
-|:x:|[no-div-regex](http://eslint.org/docs/rules/no-div-regex)|[no-div-regex](http://palantir.github.io/tslint/rules/no-div-regex)|disallow division operators explicitly at beginning of regular expression|
-|:x:|[no-else-return](http://eslint.org/docs/rules/no-else-return)|[no-else-return](http://palantir.github.io/tslint/rules/no-else-return)|disallow `else` after a `return` in an `if`|
-|:x:|[no-empty-function](http://eslint.org/docs/rules/no-empty-function)|[no-empty-function](http://palantir.github.io/tslint/rules/no-empty-function)|disallow use of empty functions|
-|:x:|[no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern)|[no-empty-pattern](http://palantir.github.io/tslint/rules/no-empty-pattern)|disallow use of empty destructuring patterns|
-|:x:|[no-eq-null](http://eslint.org/docs/rules/no-eq-null)|[no-eq-null](http://palantir.github.io/tslint/rules/no-eq-null)|disallow comparisons to null without a type-checking operator|
+|:x:|[no-case-declarations](http://eslint.org/docs/rules/no-case-declarations)|no-case-declarations|disallow lexical declarations in case clauses|
+|:x:|[no-div-regex](http://eslint.org/docs/rules/no-div-regex)|no-div-regex|disallow division operators explicitly at beginning of regular expression|
+|:x:|[no-else-return](http://eslint.org/docs/rules/no-else-return)|no-else-return|disallow `else` after a `return` in an `if`|
+|:x:|[no-empty-function](http://eslint.org/docs/rules/no-empty-function)|no-empty-function|disallow use of empty functions|
+|:x:|[no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern)|no-empty-pattern|disallow use of empty destructuring patterns|
+|:x:|[no-eq-null](http://eslint.org/docs/rules/no-eq-null)|no-eq-null|disallow comparisons to null without a type-checking operator|
 |:ballot_box_with_check:|[no-eval](http://eslint.org/docs/rules/no-eval)|[no-eval](http://palantir.github.io/tslint/rules/no-eval)|disallow use of `eval()`|
-|:x:|[no-extend-native](http://eslint.org/docs/rules/no-extend-native)|[no-extend-native](http://palantir.github.io/tslint/rules/no-extend-native)|disallow adding to native types|
-|:x:|[no-extra-bind](http://eslint.org/docs/rules/no-extra-bind)|[no-extra-bind](http://palantir.github.io/tslint/rules/no-extra-bind)|disallow unnecessary function binding|
-|:x:|[no-extra-label](http://eslint.org/docs/rules/no-extra-label)|[no-extra-label](http://palantir.github.io/tslint/rules/no-extra-label)|disallow unnecessary labels|
+|:x:|[no-extend-native](http://eslint.org/docs/rules/no-extend-native)|no-extend-native|disallow adding to native types|
+|:x:|[no-extra-bind](http://eslint.org/docs/rules/no-extra-bind)|no-extra-bind|disallow unnecessary function binding|
+|:x:|[no-extra-label](http://eslint.org/docs/rules/no-extra-label)|no-extra-label|disallow unnecessary labels|
 |:ballot_box_with_check:|[no-fallthrough](http://eslint.org/docs/rules/no-fallthrough)|[no-switch-case-fall-through](http://palantir.github.io/tslint/rules/no-switch-case-fall-through)|disallow fallthrough of `case` statements (recommended)|
-|:x:|[no-floating-decimal](http://eslint.org/docs/rules/no-floating-decimal)|[no-floating-decimal](http://palantir.github.io/tslint/rules/no-floating-decimal)|disallow the use of leading or trailing decimal points in numeric literals|
-|:x:|[no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion)|[no-implicit-coercion](http://palantir.github.io/tslint/rules/no-implicit-coercion)|disallow the type conversions with shorter notations|
-|:x:|[no-implicit-globals](http://eslint.org/docs/rules/no-implicit-globals)|[no-implicit-globals](http://palantir.github.io/tslint/rules/no-implicit-globals)|disallow var and named functions in global scope|
-|:x:|[no-implied-eval](http://eslint.org/docs/rules/no-implied-eval)|[no-implied-eval](http://palantir.github.io/tslint/rules/no-implied-eval)|disallow use of `eval()`-like methods|
-|:x:|[no-invalid-this](http://eslint.org/docs/rules/no-invalid-this)|[no-invalid-this](http://palantir.github.io/tslint/rules/no-invalid-this)|disallow `this` keywords outside of classes or class-like objects|
-|:x:|[no-iterator](http://eslint.org/docs/rules/no-iterator)|[no-iterator](http://palantir.github.io/tslint/rules/no-iterator)|disallow Usage of `__iterator__` property|
-|:x:|[no-labels](http://eslint.org/docs/rules/no-labels)|[no-labels](http://palantir.github.io/tslint/rules/no-labels)|disallow use of labeled statements|
-|:x:|[no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks)|[no-lone-blocks](http://palantir.github.io/tslint/rules/no-lone-blocks)|disallow unnecessary nested blocks|
-|:x:|[no-loop-func](http://eslint.org/docs/rules/no-loop-func)|[no-loop-func](http://palantir.github.io/tslint/rules/no-loop-func)|disallow creation of functions within loops|
-|:x:|[no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers)|[no-magic-numbers](http://palantir.github.io/tslint/rules/no-magic-numbers)|disallow the use of magic numbers|
-|:x:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|[no-multi-spaces](http://palantir.github.io/tslint/rules/no-multi-spaces)|disallow use of multiple spaces|
-|:x:|[no-multi-str](http://eslint.org/docs/rules/no-multi-str)|[no-multi-str](http://palantir.github.io/tslint/rules/no-multi-str)|disallow use of multiline strings|
+|:x:|[no-floating-decimal](http://eslint.org/docs/rules/no-floating-decimal)|no-floating-decimal|disallow the use of leading or trailing decimal points in numeric literals|
+|:x:|[no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion)|no-implicit-coercion|disallow the type conversions with shorter notations|
+|:x:|[no-implicit-globals](http://eslint.org/docs/rules/no-implicit-globals)|no-implicit-globals|disallow var and named functions in global scope|
+|:x:|[no-implied-eval](http://eslint.org/docs/rules/no-implied-eval)|no-implied-eval|disallow use of `eval()`-like methods|
+|:x:|[no-invalid-this](http://eslint.org/docs/rules/no-invalid-this)|no-invalid-this|disallow `this` keywords outside of classes or class-like objects|
+|:x:|[no-iterator](http://eslint.org/docs/rules/no-iterator)|no-iterator|disallow Usage of `__iterator__` property|
+|:x:|[no-labels](http://eslint.org/docs/rules/no-labels)|no-labels|disallow use of labeled statements|
+|:x:|[no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks)|no-lone-blocks|disallow unnecessary nested blocks|
+|:x:|[no-loop-func](http://eslint.org/docs/rules/no-loop-func)|no-loop-func|disallow creation of functions within loops|
+|:x:|[no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers)|no-magic-numbers|disallow the use of magic numbers|
+|:x:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|no-multi-spaces|disallow use of multiple spaces|
+|:x:|[no-multi-str](http://eslint.org/docs/rules/no-multi-str)|no-multi-str|disallow use of multiline strings|
 |:x:|[no-native-reassign](http://eslint.org/docs/rules/no-native-reassign)|Not applicable|disallow reassignments of native objects|
-|:x:|[no-new](http://eslint.org/docs/rules/no-new)|[no-new](http://palantir.github.io/tslint/rules/no-new)|disallow use of the `new` operator when not part of an assignment or comparison|
-|:x:|[no-new-func](http://eslint.org/docs/rules/no-new-func)|[no-new-func](http://palantir.github.io/tslint/rules/no-new-func)|disallow use of new operator for `Function` object|
-|:x:|[no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers)|[no-new-wrappers](http://palantir.github.io/tslint/rules/no-new-wrappers)|disallows creating new instances of `String`,`Number`, and `Boolean`|
+|:x:|[no-new](http://eslint.org/docs/rules/no-new)|no-new|disallow use of the `new` operator when not part of an assignment or comparison|
+|:x:|[no-new-func](http://eslint.org/docs/rules/no-new-func)|no-new-func|disallow use of new operator for `Function` object|
+|:x:|[no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers)|no-new-wrappers|disallows creating new instances of `String`,`Number`, and `Boolean`|
 |:x:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
-|:x:|[no-octal-escape](http://eslint.org/docs/rules/no-octal-escape)|[no-octal-escape](http://palantir.github.io/tslint/rules/no-octal-escape)|disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`|
-|:x:|[no-param-reassign](http://eslint.org/docs/rules/no-param-reassign)|[no-param-reassign](http://palantir.github.io/tslint/rules/no-param-reassign)|disallow reassignment of function parameters|
-|:x:|[no-proto](http://eslint.org/docs/rules/no-proto)|[no-proto](http://palantir.github.io/tslint/rules/no-proto)|disallow Usage of `__proto__` property|
+|:x:|[no-octal-escape](http://eslint.org/docs/rules/no-octal-escape)|no-octal-escape|disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`|
+|:x:|[no-param-reassign](http://eslint.org/docs/rules/no-param-reassign)|no-param-reassign|disallow reassignment of function parameters|
+|:x:|[no-proto](http://eslint.org/docs/rules/no-proto)|no-proto|disallow Usage of `__proto__` property|
 |:ballot_box_with_check:|[no-redeclare](http://eslint.org/docs/rules/no-redeclare)|[no-duplicate-variable](http://palantir.github.io/tslint/rules/no-duplicate-variable)|disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)|
-|:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|[no-return-assign](http://palantir.github.io/tslint/rules/no-return-assign)|disallow use of assignment in `return` statement|
-|:x:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|[no-script-url](http://palantir.github.io/tslint/rules/no-script-url)|disallow use of `javascript:` urls.|
-|:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|[no-self-compare](http://palantir.github.io/tslint/rules/no-self-compare)|disallow comparisons where both sides are exactly the same|
-|:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|[no-sequences](http://palantir.github.io/tslint/rules/no-sequences)|disallow use of the comma operator|
-|:x:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|[no-throw-literal](http://palantir.github.io/tslint/rules/no-throw-literal)|restrict what can be thrown as an exception|
-|:x:|[no-unmodified-loop-condition](http://eslint.org/docs/rules/no-unmodified-loop-condition)|[no-unmodified-loop-condition](http://palantir.github.io/tslint/rules/no-unmodified-loop-condition)|disallow unmodified conditions of loops|
+|:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|no-return-assign|disallow use of assignment in `return` statement|
+|:x:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|no-script-url|disallow use of `javascript:` urls.|
+|:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|no-self-compare|disallow comparisons where both sides are exactly the same|
+|:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|no-sequences|disallow use of the comma operator|
+|:x:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|no-throw-literal|restrict what can be thrown as an exception|
+|:x:|[no-unmodified-loop-condition](http://eslint.org/docs/rules/no-unmodified-loop-condition)|no-unmodified-loop-condition|disallow unmodified conditions of loops|
 |:ballot_box_with_check:|[no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions)|[no-unused-expression](http://palantir.github.io/tslint/rules/no-unused-expression)|disallow Usage of expressions in statement position|
-|:x:|[no-unused-labels](http://eslint.org/docs/rules/no-unused-labels)|[no-unused-labels](http://palantir.github.io/tslint/rules/no-unused-labels)|disallow unused labels|
-|:x:|[no-useless-call](http://eslint.org/docs/rules/no-useless-call)|[no-useless-call](http://palantir.github.io/tslint/rules/no-useless-call)|disallow unnecessary `.call()` and `.apply()`|
-|:x:|[no-useless-concat](http://eslint.org/docs/rules/no-useless-concat)|[no-useless-concat](http://palantir.github.io/tslint/rules/no-useless-concat)|disallow unnecessary concatenation of literals or template literals|
-|:x:|[no-useless-escape](http://eslint.org/docs/rules/no-useless-escape)|[no-useless-escape](http://palantir.github.io/tslint/rules/no-useless-escape)|disallow unnecessary usage of escape character|
+|:x:|[no-unused-labels](http://eslint.org/docs/rules/no-unused-labels)|no-unused-labels|disallow unused labels|
+|:x:|[no-useless-call](http://eslint.org/docs/rules/no-useless-call)|no-useless-call|disallow unnecessary `.call()` and `.apply()`|
+|:x:|[no-useless-concat](http://eslint.org/docs/rules/no-useless-concat)|no-useless-concat|disallow unnecessary concatenation of literals or template literals|
+|:x:|[no-useless-escape](http://eslint.org/docs/rules/no-useless-escape)|no-useless-escape|disallow unnecessary usage of escape character|
 |:x:|[no-void](http://eslint.org/docs/rules/no-void)|[no-void](http://palantir.github.io/tslint/rules/no-void)|disallow use of the `void` operator|
 |:x:|[no-warning-comments](http://eslint.org/docs/rules/no-warning-comments)|[no-warning-comments](http://palantir.github.io/tslint/rules/no-warning-comments)|disallow Usage of configurable warning terms in comments e.g. `TODO` or `FIXME`|
 |:x:|[no-with](http://eslint.org/docs/rules/no-with)|[no-with](http://palantir.github.io/tslint/rules/no-with)|disallow use of the `with` statement|
@@ -190,7 +190,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
 | :---            | :---:  | :---:  | :---        |
 |:x:|[callback-return](http://eslint.org/docs/rules/callback-return)|[callback-return](http://palantir.github.io/tslint/rules/callback-return)|enforce `return` after a callback|
 |:x:|[global-require](http://eslint.org/docs/rules/global-require)|[global-require](http://palantir.github.io/tslint/rules/global-require)|enforce `require()` on top-level module scope|
-|:white_check_mark:|[handle-callback-err](http://eslint.org/docs/rules/handle-callback-err)|[handle-callback-err](http://palantir.github.io/tslint/rules/handle-callback-err)|enforce error handling in callbacks|
+|:white_check_mark:|[handle-callback-err](http://eslint.org/docs/rules/handle-callback-err)|[handle-callback-err](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/handleCallbackErrRule.md)|enforce error handling in callbacks|
 |:x:|[no-mixed-requires](http://eslint.org/docs/rules/no-mixed-requires)|[no-mixed-requires](http://palantir.github.io/tslint/rules/no-mixed-requires)|disallow mixing regular variable and require declarations|
 |:x:|[no-new-require](http://eslint.org/docs/rules/no-new-require)|[no-new-require](http://palantir.github.io/tslint/rules/no-new-require)|disallow use of `new` operator with the `require` function|
 |:x:|[no-path-concat](http://eslint.org/docs/rules/no-path-concat)|[no-path-concat](http://palantir.github.io/tslint/rules/no-path-concat)|disallow string concatenation with `__dirname` and `__filename`|
@@ -207,7 +207,7 @@ These rules are purely matters of style and are quite subjective.
 | :---            | :---:  | :---:  | :---        |
 |:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md)|enforce spacing inside array brackets|
 |:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/blockSpacingRule.md)|disallow or enforce spaces inside of single line blocks|
-|:white_check_mark:|[brace-style](http://eslint.org/docs/rules/brace-style)|[brace-style](http://palantir.github.io/tslint/rules/brace-style)|enforce one true brace style|
+|:white_check_mark:|[brace-style](http://eslint.org/docs/rules/brace-style)|[brace-style](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/braceStyleRule.md)|enforce one true brace style|
 |:ballot_box_with_check:|[camelcase](http://eslint.org/docs/rules/camelcase)|[variable-name](http://palantir.github.io/tslint/rules/variable-name)|require camel case names|
 |:x:|[comma-spacing](http://eslint.org/docs/rules/comma-spacing)|[comma-spacing](http://palantir.github.io/tslint/rules/comma-spacing)|enforce spacing before and after comma|
 |:x:|[comma-style](http://eslint.org/docs/rules/comma-style)|[comma-style](http://palantir.github.io/tslint/rules/comma-style)|enforce one true comma style|

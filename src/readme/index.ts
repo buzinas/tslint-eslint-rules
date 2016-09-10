@@ -24,7 +24,8 @@ function createRuleTable() {
     } else {
       available = ':x:';
     }
-    const tsRule = rule.tslintRule === 'Not applicable' ? 'Not applicable' : `[${rule.tslintRule}](${rule.tslintUrl})`;
+    const tsRuleName = rule.tslintUrl ? `[${rule.tslintRule}](${rule.tslintUrl})` : rule.tslintRule;
+    const tsRule = rule.tslintRule === 'Not applicable' ? 'Not applicable' : tsRuleName;
     buffer.push('|');
     buffer.push(`${available}|`);
     buffer.push(`[${rule.eslintRule}](${rule.eslintUrl})|`);
@@ -64,8 +65,10 @@ ${rule.description}${usage}${note}
 }
 
 function updateRuleFile(name: string, rule: IRule) {
+  const baseUrl = 'https://github.com/buzinas/tslint-eslint-rules/blob/master';
   const docFileName = `src/docs/rules/${name}Rule.md`;
   fs.readFile(docFileName, 'utf8', (readErr, data) => {
+    rule.tslintUrl = rule.tslintUrl || `${baseUrl}/${docFileName}`;
     let content = readErr || !data ? '<!-- Start:AutoDoc\n End:AutoDoc -->' : data;
     content = content.replace(
       /^<!-- Start:AutoDoc((.*?(\n))+.*?)End:AutoDoc -->$/gm,
