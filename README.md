@@ -48,7 +48,7 @@ In your `tslint.json` file, insert the rules as described below.
 
 The table below shows all the existing ESLint rules and the similar rules available in TSLint.
 
-<!-- Start:AutoTable:: Modify `rules.js` and run `gulp readme` to update this block -->
+<!-- Start:AutoTable:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 
 ### Possible Errors
 
@@ -73,7 +73,7 @@ The following rules point out areas where you might have made mistakes.
 |:white_check_mark:|[no-extra-semi](http://eslint.org/docs/rules/no-extra-semi)|[no-extra-semi](http://palantir.github.io/tslint/rules/no-extra-semi)|disallow unnecessary semicolons (recommended)|
 |:x:|[no-func-assign](http://eslint.org/docs/rules/no-func-assign)|Not applicable|disallow overwriting functions written as function declarations (recommended)|
 |:white_check_mark:|[no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations)|[no-inner-declarations](http://palantir.github.io/tslint/rules/no-inner-declarations)|disallow function or variable declarations in nested blocks (recommended)|
-|:white_check_mark:|[no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp)|[no-invalid-regex](http://palantir.github.io/tslint/rules/no-invalid-regex)|disallow invalid regular expression strings in the `RegExp` constructor (recommended)|
+|:white_check_mark:|[no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp)|[no-invalid-regexp](http://palantir.github.io/tslint/rules/no-invalid-regexp)|disallow invalid regular expression strings in the `RegExp` constructor (recommended)|
 |:white_check_mark:|[no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace)|[no-irregular-whitespace](http://palantir.github.io/tslint/rules/no-irregular-whitespace)|disallow irregular whitespace outside of strings and comments (recommended)|
 |:x:|[no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs)|Not applicable|disallow negation of the left operand of an `in` expression (recommended)|
 |:x:|[no-obj-calls](http://eslint.org/docs/rules/no-obj-calls)|Not applicable|disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)|
@@ -205,7 +205,7 @@ These rules are purely matters of style and are quite subjective.
 
 | :grey_question: | Eslint | Tslint | Description |
 | :---            | :---:  | :---:  | :---        |
-|:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](http://palantir.github.io/tslint/rules/array-bracket-spacing)|enforce spacing inside array brackets|
+|:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md)|enforce spacing inside array brackets|
 |:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](http://palantir.github.io/tslint/rules/block-spacing)|disallow or enforce spaces inside of single line blocks|
 |:white_check_mark:|[brace-style](http://eslint.org/docs/rules/brace-style)|[brace-style](http://palantir.github.io/tslint/rules/brace-style)|enforce one true brace style|
 |:ballot_box_with_check:|[camelcase](http://eslint.org/docs/rules/camelcase)|[variable-name](http://palantir.github.io/tslint/rules/variable-name)|require camel case names|

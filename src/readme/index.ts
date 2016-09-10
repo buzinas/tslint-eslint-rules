@@ -1,18 +1,19 @@
 import * as fs from 'fs';
-import * as ruleMod from './rules';
+import * as path from 'path';
+import { IRule, categories, rules, ruleMap } from './rules';
 
 function formatUsage(usage) {
-  return usage.replace(/~~~/g, '```').replace(/(^[ \t]*\n)/gm, '\n');
+  return usage.replace(/~~~/g, '```').replace(/(^[ \t]*\n)/gm, '\n').replace(/^    /mg, '');
 }
 
 function createRuleTable() {
   const buffer = [];
   let category = null;
-  ruleMod.rules.forEach((rule) => {
+  rules.forEach((rule) => {
     if (category !== rule.category) {
       category = rule.category;
       buffer.push(`\n### ${category}\n\n`);
-      buffer.push(`${ruleMod.categories[category]}\n\n`);
+      buffer.push(`${categories[category]}\n\n`);
       buffer.push('| :grey_question: | Eslint | Tslint | Description |\n');
       buffer.push('| :---            | :---:  | :---:  | :---        |\n');
     }
@@ -41,7 +42,7 @@ function updateReadme() {
     }
     let content = data.replace(
       /^<!-- Start:AutoTable((.*?(\n))+.*?)End:AutoTable -->$/gm,
-      '<!-- Start:AutoTable:: Modify `rules.js` and run `gulp readme` to update this block -->\n' +
+      '<!-- Start:AutoTable:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->\n' +
       createRuleTable() +
       '<!-- End:AutoTable -->'
     );
@@ -53,7 +54,50 @@ function updateReadme() {
   });
 }
 
+function createRuleContent(rule: IRule) {
+  const usage = rule.usage ? `\n\n### Usage\n\n${formatUsage(rule.usage)}` : '';
+  const note = rule.note ? `\n\n### Note\n\n${rule.note}\n` : '';
+  return `## ${rule.tslintRule} (eslint: [${rule.eslintRule}](${rule.eslintUrl}))
+
+${rule.description}${usage}${note};
+`;
+}
+
+function updateRuleFile(name: string, rule: IRule) {
+  const docFileName = `src/docs/rules/${name}Rule.md`;
+  fs.readFile(docFileName, 'utf8', (readErr, data) => {
+    let content = readErr || !data ? '<!-- Start:AutoDoc\n End:AutoDoc -->' : data;
+    content = content.replace(
+      /^<!-- Start:AutoDoc((.*?(\n))+.*?)End:AutoDoc -->$/gm,
+      [
+        '<!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->\n',
+        createRuleContent(rule),
+        '<!-- End:AutoDoc -->' + (readErr ? '\n' : '')
+      ].join('')
+    );
+    fs.writeFile(docFileName, content, 'utf8', (writeErr) => {
+      if (writeErr) {
+        return console.error(writeErr);
+      }
+    });
+  });
+}
+
+function updateRuleFiles() {
+  const ruleDir = 'src/rules/';
+  const allFiles = fs.readdirSync(ruleDir).filter(
+    file => fs.lstatSync(path.join(ruleDir, file)).isFile()
+  );
+  const ruleNames = allFiles
+    .filter(name => name.endsWith('.ts'))
+    .map(name => name.substr(0, name.length - 7));
+  ruleNames.forEach((name) => {
+    updateRuleFile(name, ruleMap[name]);
+  });
+}
+
 export {
   formatUsage,
   updateReadme,
+  updateRuleFiles,
 };

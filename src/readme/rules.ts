@@ -285,11 +285,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-invalid-regexp',
-    tslintRule: 'no-invalid-regex',
+    tslintRule: 'no-invalid-regexp',
     category: 'Possible Errors',
     description: 'disallow invalid regular expression strings in the `RegExp` constructor (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-invalid-regexp',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-invalid-regex',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/no-invalid-regexp',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-invalid-regexp": true
@@ -1698,7 +1698,7 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce spacing inside array brackets',
     eslintUrl: 'http://eslint.org/docs/rules/array-bracket-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/array-bracket-spacing',
+    tslintUrl: 'https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "array-bracket-spacing": [
@@ -1731,7 +1731,7 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow or enforce spaces inside of single line blocks',
     eslintUrl: 'http://eslint.org/docs/rules/block-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/block-spacing',
+    tslintUrl: 'https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/blockSpacingRule.md',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "block-spacing": [
@@ -3594,10 +3594,20 @@ const rules: IRule[] = [
   }
 ];
 
+function toCamelCase(str) {
+  const words = str.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+  words[0] = words[0].toLowerCase();
+  return words.join('');
+}
+
+const ruleMap = {};
+rules.forEach(rule => ruleMap[toCamelCase(rule.tslintRule)] = rule);
+
 export {
   Provider,
   Category,
   IRule,
   categories,
   rules,
+  ruleMap,
 };
