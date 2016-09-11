@@ -177,7 +177,6 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow the use of empty character classes in regular expressions (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-empty-character-class',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-empty-character-class',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-empty-character-class": true
@@ -190,7 +189,6 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow assigning to the exception in a `catch` block (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-ex-assign',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-ex-assign',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-ex-assign": true
@@ -203,7 +201,6 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow double-negation boolean casts in a boolean context (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-extra-boolean-cast',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-extra-boolean-cast',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-extra-boolean-cast": true
@@ -216,7 +213,6 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow unnecessary parentheses',
     eslintUrl: 'http://eslint.org/docs/rules/no-extra-parens',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-extra-parens',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-extra-parens": [
@@ -1172,7 +1168,6 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'disallow use of the `void` operator',
     eslintUrl: 'http://eslint.org/docs/rules/no-void',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-void',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-void":true
@@ -1185,7 +1180,6 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'disallow Usage of configurable warning terms in comments e.g. `TODO` or `FIXME`',
     eslintUrl: 'http://eslint.org/docs/rules/no-warning-comments',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-warning-comments',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-warning-comments": [
@@ -1204,7 +1198,6 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'disallow use of the `with` statement',
     eslintUrl: 'http://eslint.org/docs/rules/no-with',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-with',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-with": true
@@ -1230,7 +1223,6 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'require declaration of all vars at the top of their containing scope',
     eslintUrl: 'http://eslint.org/docs/rules/vars-on-top',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/vars-on-top',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "vars-on-top": true
@@ -1243,7 +1235,6 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'require immediate function invocation to be wrapped in parentheses',
     eslintUrl: 'http://eslint.org/docs/rules/wrap-iife',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/wrap-iife',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "wrap-iife": [
@@ -1273,7 +1264,6 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'require or disallow Yoda conditions',
     eslintUrl: 'http://eslint.org/docs/rules/yoda',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/yoda',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "yoda": [
@@ -1296,7 +1286,6 @@ const rules: IRule[] = [
     category: 'Strict Mode',
     description: 'require effective use of strict mode directives',
     eslintUrl: 'http://eslint.org/docs/rules/strict',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/strict',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "strict": [
@@ -1333,7 +1322,6 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'enforce or disallow variable initializations at definition',
     eslintUrl: 'http://eslint.org/docs/rules/init-declarations',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/init-declarations',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "init-declarations": [
@@ -1362,7 +1350,6 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow the catch clause parameter name being the same as a variable in the outer scope',
     eslintUrl: 'http://eslint.org/docs/rules/no-catch-shadow',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-catch-shadow',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-catch-shadow": true
@@ -1386,7 +1373,6 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow labels that share a name with a variable',
     eslintUrl: 'http://eslint.org/docs/rules/no-label-var',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-label-var',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-label-var": true
@@ -1412,7 +1398,6 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow shadowing of names such as `arguments`',
     eslintUrl: 'http://eslint.org/docs/rules/no-shadow-restricted-names',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-shadow-restricted-names',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-shadow-restricted-names": true
@@ -1436,7 +1421,6 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow use of undefined when initializing variables',
     eslintUrl: 'http://eslint.org/docs/rules/no-undef-init',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-undef-init',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-undef-init": true
@@ -1449,7 +1433,6 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow use of `undefined` variable',
     eslintUrl: 'http://eslint.org/docs/rules/no-undefined',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-undefined',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-undefined": true
@@ -1488,7 +1471,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'enforce `return` after a callback',
     eslintUrl: 'http://eslint.org/docs/rules/callback-return',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/callback-return',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "callback-return": [
@@ -1508,7 +1490,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'enforce `require()` on top-level module scope',
     eslintUrl: 'http://eslint.org/docs/rules/global-require',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/global-require',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "global-require": true
@@ -1536,7 +1517,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'disallow mixing regular variable and require declarations',
     eslintUrl: 'http://eslint.org/docs/rules/no-mixed-requires',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-mixed-requires',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-mixed-requires": [
@@ -1554,7 +1534,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'disallow use of `new` operator with the `require` function',
     eslintUrl: 'http://eslint.org/docs/rules/no-new-require',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-new-require',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-require": true
@@ -1567,7 +1546,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'disallow string concatenation with `__dirname` and `__filename`',
     eslintUrl: 'http://eslint.org/docs/rules/no-path-concat',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-path-concat',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-path-concat": true
@@ -1580,7 +1558,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'disallow use of `process.env`',
     eslintUrl: 'http://eslint.org/docs/rules/no-process-env',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-process-env',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-process-env": true
@@ -1593,7 +1570,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'disallow `process.exit()`',
     eslintUrl: 'http://eslint.org/docs/rules/no-process-exit',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-process-exit',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-process-exit": true
@@ -1606,7 +1582,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'restrict Usage of specified node modules',
     eslintUrl: 'http://eslint.org/docs/rules/no-restricted-modules',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-restricted-modules',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-restricted-modules": [
@@ -1626,7 +1601,6 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'disallow use of synchronous methods',
     eslintUrl: 'http://eslint.org/docs/rules/no-sync',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-sync',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-sync": true
@@ -1747,7 +1721,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce spacing before and after comma',
     eslintUrl: 'http://eslint.org/docs/rules/comma-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/comma-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "comma-spacing": [
@@ -1766,7 +1739,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce one true comma style',
     eslintUrl: 'http://eslint.org/docs/rules/comma-style',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/comma-style',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "comma-style": [
@@ -1789,7 +1761,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow padding inside computed properties',
     eslintUrl: 'http://eslint.org/docs/rules/computed-property-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/computed-property-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "computed-property-spacing": [
@@ -1812,7 +1783,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce consistent naming when capturing the current execution context',
     eslintUrl: 'http://eslint.org/docs/rules/consistent-this',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/consistent-this',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "consistent-this": [
@@ -1828,7 +1798,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce newline at the end of file, with no multiple empty lines',
     eslintUrl: 'http://eslint.org/docs/rules/eol-last',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/eol-last',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "eol-last": [
@@ -1851,7 +1820,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require function expressions to have a name',
     eslintUrl: 'http://eslint.org/docs/rules/func-names',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/func-names',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "func-names": true
@@ -1864,7 +1832,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce use of function declarations or expressions',
     eslintUrl: 'http://eslint.org/docs/rules/func-style',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/func-style',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "func-style": [
@@ -1893,7 +1860,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow certain identifiers to prevent them being used',
     eslintUrl: 'http://eslint.org/docs/rules/id-blacklist',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/id-blacklist',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "id-blacklist": [
@@ -1909,7 +1875,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'this option enforces minimum and maximum identifier lengths (variable names, property names etc.)',
     eslintUrl: 'http://eslint.org/docs/rules/id-length',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/id-length',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "id-length": [
@@ -1942,7 +1907,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require identifiers to match the provided regular expression',
     eslintUrl: 'http://eslint.org/docs/rules/id-match',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/id-match',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "id-match": [
@@ -1984,7 +1948,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify whether double or single quotes should be used in JSX attributes',
     eslintUrl: 'http://eslint.org/docs/rules/jsx-quotes',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/jsx-quotes',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "jsx-quotes": [
@@ -2007,7 +1970,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce spacing between keys and values in object literal properties',
     eslintUrl: 'http://eslint.org/docs/rules/key-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/key-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "key-spacing": [
@@ -2028,7 +1990,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce spacing before and after keywords',
     eslintUrl: 'http://eslint.org/docs/rules/keyword-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/keyword-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "keyword-spacing": [
@@ -2052,7 +2013,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: "disallow mixed 'LF' and 'CRLF' as linebreaks",
     eslintUrl: 'http://eslint.org/docs/rules/linebreak-style',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/linebreak-style',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "linebreak-style": [
@@ -2075,7 +2035,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce empty lines around comments',
     eslintUrl: 'http://eslint.org/docs/rules/lines-around-comment',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/lines-around-comment',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "lines-around-comment": [
@@ -2102,7 +2061,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify the maximum depth that blocks can be nested',
     eslintUrl: 'http://eslint.org/docs/rules/max-depth',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-depth',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "max-depth": [
@@ -2127,7 +2085,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify the maximum length of a line in your program',
     eslintUrl: 'http://eslint.org/docs/rules/max-len',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-len',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "max-len": [
@@ -2166,7 +2123,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify the maximum depth callbacks can be nested',
     eslintUrl: 'http://eslint.org/docs/rules/max-nested-callbacks',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-nested-callbacks',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "max-nested-callbacks": [
@@ -2182,7 +2138,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify the number of parameters that can be used in the function declaration',
     eslintUrl: 'http://eslint.org/docs/rules/max-params',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-params',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "max-params": [
@@ -2207,7 +2162,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify the maximum number of statement allowed in a function',
     eslintUrl: 'http://eslint.org/docs/rulesmax-statements',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-statements',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "max-statements": [
@@ -2238,7 +2192,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify the maximum number of statements allowed per line',
     eslintUrl: 'http://eslint.org/docs/max-statements-per-line',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-statements-per-line',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "max-statements-per-line": [
@@ -2274,7 +2227,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow the omission of parentheses when invoking a constructor with no arguments',
     eslintUrl: 'http://eslint.org/docs/rules/new-parens',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/new-parens',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "new-parens": true
@@ -2287,7 +2239,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow an empty newline after variable declarations',
     eslintUrl: 'http://eslint.org/docs/rules/newline-after-var',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/newline-after-var',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "newline-after-var": [
@@ -2310,7 +2261,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require newline before return statement',
     eslintUrl: 'http://eslint.org/docs/rules/newline-before-return',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/newline-before-return',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "newline-before-return": true
@@ -2323,7 +2273,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce newline after each call when chaining the calls',
     eslintUrl: 'http://eslint.org/docs/rules/newline-per-chained-call',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/newline-per-chained-call',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "newline-per-chained-call": [
@@ -2341,7 +2290,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow use of the `Array` constructor',
     eslintUrl: 'http://eslint.org/docs/rules/no-array-constructor',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-array-constructor',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-array-constructor": true
@@ -2354,7 +2302,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow use of the `continue` statement',
     eslintUrl: 'http://eslint.org/docs/rules/no-continue',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-continue',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-continue": true
@@ -2367,7 +2314,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow comments inline after code',
     eslintUrl: 'http://eslint.org/docs/rules/no-inline-comments',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-inline-comments',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-inline-comments": true
@@ -2380,7 +2326,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow `if` as the only statement in an `else` block',
     eslintUrl: 'http://eslint.org/docs/rules/no-lonely-if',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-lonely-if',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-lonely-if": true
@@ -2413,7 +2358,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow multiple empty lines',
     eslintUrl: 'http://eslint.org/docs/rules/no-multiple-empty-lines',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-multiple-empty-lines',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-multiple-empty-lines": [
@@ -2432,7 +2376,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow negated conditions',
     eslintUrl: 'http://eslint.org/docs/rules/no-negated-condition',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-negated-condition',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-negated-condition": true
@@ -2445,7 +2388,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow nested ternary expressions',
     eslintUrl: 'http://eslint.org/docs/rules/no-nested-ternary',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-nested-ternary',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-nested-ternary": true
@@ -2458,7 +2400,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow the use of the `Object` constructor',
     eslintUrl: 'http://eslint.org/docs/rules/no-new-object',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-new-object',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-object": true
@@ -2471,7 +2412,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow use of certain syntax in code',
     eslintUrl: 'http://eslint.org/docs/rules/no-restricted-syntax',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-restricted-syntax',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-restricted-syntax": [
@@ -2488,7 +2428,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow space between function identifier and application',
     eslintUrl: 'http://eslint.org/docs/rules/no-spaced-func',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-spaced-func',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-spaced-func": true
@@ -2501,7 +2440,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow the use of ternary operators',
     eslintUrl: 'http://eslint.org/docs/rules/no-ternary',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-ternary',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-ternary": true
@@ -2527,7 +2465,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow dangling underscores in identifiers',
     eslintUrl: 'http://eslint.org/docs/rules/no-underscore-dangle',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-underscore-dangle',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-underscore-dangle": [
@@ -2545,7 +2482,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow the use of ternary operators when a simpler alternative exists',
     eslintUrl: 'http://eslint.org/docs/rules/no-unneeded-ternary',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-unneeded-ternary',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-unneeded-ternary": [
@@ -2563,7 +2499,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'disallow whitespace before properties',
     eslintUrl: 'http://eslint.org/docs/rules/no-whitespace-before-property',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-whitespace-before-property',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-whitespace-before-property": true
@@ -2576,7 +2511,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow padding inside curly braces',
     eslintUrl: 'http://eslint.org/docs/rules/object-curly-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/object-curly-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "object-curly-spacing": [
@@ -2599,7 +2533,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow one variable declaration per function',
     eslintUrl: 'http://eslint.org/docs/rules/one-var',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/one-var',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "one-var": [
@@ -2622,7 +2555,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow a newline around variable declarations',
     eslintUrl: 'http://eslint.org/docs/rules/one-var-declaration-per-line',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/one-var-declaration-per-line',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "one-var-declaration-per-line": [
@@ -2645,7 +2577,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require assignment operator shorthand where possible or prohibit it entirely',
     eslintUrl: 'http://eslint.org/docs/rules/operator-assignment',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/operator-assignment',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "operator-assignment": [
@@ -2668,7 +2599,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce operators to be placed before or after line breaks',
     eslintUrl: 'http://eslint.org/docs/rules/operator-linebreak',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/operator-linebreak',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "operator-linebreak": [
@@ -2707,7 +2637,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce padding within blocks',
     eslintUrl: 'http://eslint.org/docs/rules/padded-blocks',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/padded-blocks',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "padded-blocks": [
@@ -2730,7 +2659,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require quotes around object literal property names',
     eslintUrl: 'http://eslint.org/docs/rules/quote-props',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/quote-props',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "quote-props": [
@@ -2767,7 +2695,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'specify whether backticks, double or single quotes should be used',
     eslintUrl: 'http://eslint.org/docs/rules/quotes',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/quote-props',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "quotes": [
@@ -2821,7 +2748,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'Require JSDoc comment',
     eslintUrl: 'http://eslint.org/docs/rules/require-jsdoc',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/require-jsdoc',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "require-jsdoc": [
@@ -2844,7 +2770,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow use of semicolons instead of ASI',
     eslintUrl: 'http://eslint.org/docs/rules/semi',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/semi',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "semi": [
@@ -2867,7 +2792,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce spacing before and after semicolons',
     eslintUrl: 'http://eslint.org/docs/rules/semi-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/semi-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "semi-spacing": [
@@ -2886,7 +2810,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce sorting import declarations within module',
     eslintUrl: 'http://eslint.org/docs/rules/sort-imports',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/sort-imports',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "sort-imports": [
@@ -2911,7 +2834,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'sort variables within the same declaration block',
     eslintUrl: 'http://eslint.org/docs/rules/sort-vars',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/sort-vars',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "sort-vars": [
@@ -2929,7 +2851,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow a space before blocks',
     eslintUrl: 'http://eslint.org/docs/rules/space-before-blocks',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/space-before-blocks',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "space-before-blocks": [
@@ -2962,7 +2883,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow a space before function opening parenthesis',
     eslintUrl: 'http://eslint.org/docs/rules/space-before-function-paren',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/space-before-function-paren',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "space-before-function-paren": [
@@ -2995,7 +2915,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow spaces inside parentheses',
     eslintUrl: 'http://eslint.org/docs/rules/space-in-parens',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/space-in-parens',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "space-in-parens": [
@@ -3018,7 +2937,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require spaces around operators',
     eslintUrl: 'http://eslint.org/docs/rules/space-infix-ops',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/space-infix-ops',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "space-infix-ops": [
@@ -3036,7 +2954,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow spaces before/after unary operators',
     eslintUrl: 'http://eslint.org/docs/rules/space-unary-ops',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/space-unary-ops',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "space-unary-ops": [
@@ -3055,7 +2972,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require or disallow a space immediately following the `//` or `/*` in a comment',
     eslintUrl: 'http://eslint.org/docs/rules/spaced-comment',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/spaced-comment',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "spaced-comment": [
@@ -3105,7 +3021,6 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'require regex literals to be wrapped in parentheses',
     eslintUrl: 'http://eslint.org/docs/rules/wrap-regex',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/wrap-regex',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "wrap-regex": true
@@ -3118,7 +3033,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'require braces in arrow function body',
     eslintUrl: 'http://eslint.org/docs/rules/arrow-body-style',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/arrow-body-style',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "arrow-body-style": [
@@ -3141,7 +3055,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'require parens in arrow function arguments',
     eslintUrl: 'http://eslint.org/docs/rules/arrow-parens',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/arrow-parens',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "arrow-parens": [
@@ -3164,7 +3077,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: "require space before/after arrow function's arrow",
     eslintUrl: 'http://eslint.org/docs/rules/arrow-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/arrow-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "arrow-spacing": [
@@ -3183,7 +3095,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'verify calls of `super()` in constructors',
     eslintUrl: 'http://eslint.org/docs/rules/constructor-super',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/constructor-super',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "constructor-super": true
@@ -3196,7 +3107,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'enforce spacing around the `*` in generator functions',
     eslintUrl: 'http://eslint.org/docs/rules/generator-star-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/generator-star-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "generator-star-spacing": [
@@ -3215,7 +3125,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow modifying variables of class declarations',
     eslintUrl: 'http://eslint.org/docs/rules/no-class-assign',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-class-assign',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-class-assign": true
@@ -3228,7 +3137,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow arrow functions where they could be confused with comparisons',
     eslintUrl: 'http://eslint.org/docs/rules/no-confusing-arrow',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-confusing-arrow',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-confusing-arrow": [
@@ -3246,7 +3154,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow modifying variables that are declared using `const`',
     eslintUrl: 'http://eslint.org/docs/rules/no-const-assign',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-const-assign',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-const-assign": true
@@ -3270,7 +3177,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow duplicate module imports',
     eslintUrl: 'http://eslint.org/docs/rules/no-duplicate-imports',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-duplicate-imports',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-duplicate-imports": [
@@ -3288,7 +3194,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow use of the `new` operator with the `Symbol` object',
     eslintUrl: 'http://eslint.org/docs/rules/no-new-symbol',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-new-symbol',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-new-symbol": true
@@ -3301,7 +3206,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'restrict usage of specified modules when loaded by `import` declaration',
     eslintUrl: 'http://eslint.org/docs/rules/no-restricted-imports',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-restricted-imports',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-restricted-imports": [
@@ -3318,7 +3222,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow use of `this`/`super` before calling `super()` in constructors.',
     eslintUrl: 'http://eslint.org/docs/rules/no-this-before-super',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-this-before-super',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-this-before-super": true
@@ -3331,7 +3234,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow unnecessary constructor',
     eslintUrl: 'http://eslint.org/docs/rules/no-useless-constructor',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-useless-constructor',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-useless-constructor": true
@@ -3357,7 +3259,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'require method and property shorthand syntax for object literals',
     eslintUrl: 'http://eslint.org/docs/rules/object-shorthand',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/object-shorthand',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "object-shorthand": [
@@ -3394,7 +3295,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'suggest using arrow functions as callbacks',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-arrow-callback',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-arrow-callback',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-arrow-callback": true
@@ -3407,7 +3307,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'suggest using `const` declaration for variables that are never modified after declared',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-const',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-const',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-const": true
@@ -3420,7 +3319,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'suggest using Reflect methods where applicable',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-reflect',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-reflect',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-reflect": [
@@ -3449,7 +3347,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'suggest using the rest parameters instead of `arguments`',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-rest-params',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-rest-params',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-rest-params": true
@@ -3462,7 +3359,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'suggest using the spread operator instead of `.apply()`.',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-spread',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-spread',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-spread": true
@@ -3475,7 +3371,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'suggest using template literals instead of strings concatenation',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-template',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-template',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "prefer-template": true
@@ -3488,7 +3383,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'disallow generator functions that do not have `yield`',
     eslintUrl: 'http://eslint.org/docs/rules/require-yield',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/require-yield',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "require-yield": true
@@ -3501,7 +3395,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'enforce spacing around embedded expressions of template strings',
     eslintUrl: 'http://eslint.org/docs/rules/template-curly-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/template-curly-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "template-curly-spacing": [
@@ -3524,7 +3417,6 @@ const rules: IRule[] = [
     category: 'ECMAScript 6',
     description: 'enforce spacing around the `*` in `yield*` expressions',
     eslintUrl: 'http://eslint.org/docs/rules/yield-star-spacing',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/yield-star-spacing',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "yield-star-spacing": true
