@@ -878,7 +878,7 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-multi-spaces',
     tslintRule: 'no-multi-spaces',
     category: 'Best Practices',
@@ -889,7 +889,7 @@ const rules: IRule[] = [
     "no-multi-spaces": [
         true,
         {
-          "exceptions": [ { "ImportDeclation": true }, { "Property": false } ]
+          "exceptions": { "PropertyAssignment": false, "OtherException": "true|false" }
         }
       ]
     ~~~`

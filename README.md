@@ -134,7 +134,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks)|no-lone-blocks|disallow unnecessary nested blocks|
 |:x:|[no-loop-func](http://eslint.org/docs/rules/no-loop-func)|no-loop-func|disallow creation of functions within loops|
 |:x:|[no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers)|no-magic-numbers|disallow the use of magic numbers|
-|:x:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|no-multi-spaces|disallow use of multiple spaces|
+|:white_check_mark:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|[no-multi-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noMultiSpacesRule.md)|disallow use of multiple spaces|
 |:x:|[no-multi-str](http://eslint.org/docs/rules/no-multi-str)|no-multi-str|disallow use of multiline strings|
 |:no_entry_sign:|[no-native-reassign](http://eslint.org/docs/rules/no-native-reassign)|Not applicable|disallow reassignments of native objects|
 |:x:|[no-new](http://eslint.org/docs/rules/no-new)|no-new|disallow use of the `new` operator when not part of an assignment or comparison|
