@@ -22,7 +22,7 @@ function createRuleTable() {
     if (rule.available) {
       available = rule.provider === 'native' ? ':ballot_box_with_check:' : ':white_check_mark:';
     } else {
-      available = ':x:';
+      available = rule.tslintRule === 'Not applicable' ? ':no_entry_sign:' : ':x:';
     }
     const tsRuleName = rule.tslintUrl ? `[${rule.tslintRule}](${rule.tslintUrl})` : rule.tslintRule;
     const tsRule = rule.tslintRule === 'Not applicable' ? 'Not applicable' : tsRuleName;

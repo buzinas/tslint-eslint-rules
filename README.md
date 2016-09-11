@@ -62,7 +62,7 @@ The following rules point out areas where you might have made mistakes.
 |:white_check_mark:|[no-constant-condition](http://eslint.org/docs/rules/no-constant-condition)|[no-constant-condition](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noConstantConditionRule.md)|disallow use of constant expressions in conditions (recommended)|
 |:white_check_mark:|[no-control-regex](http://eslint.org/docs/rules/no-control-regex)|[no-control-regex](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noControlRegexRule.md)|disallow control characters in regular expressions (recommended)|
 |:ballot_box_with_check:|[no-debugger](http://eslint.org/docs/rules/no-debugger)|[no-debugger](http://palantir.github.io/tslint/rules/no-debugger)|disallow use of `debugger` (recommended)|
-|:x:|[no-dupe-args](http://eslint.org/docs/rules/no-dupe-args)|Not applicable|disallow duplicate arguments in functions (recommended)|
+|:no_entry_sign:|[no-dupe-args](http://eslint.org/docs/rules/no-dupe-args)|Not applicable|disallow duplicate arguments in functions (recommended)|
 |:ballot_box_with_check:|[no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys)|[no-duplicate-key](http://palantir.github.io/tslint/rules/no-duplicate-key)|disallow duplicate keys when creating object literals (recommended)|
 |:white_check_mark:|[no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case)|[no-duplicate-case](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noDuplicateCaseRule.md)|disallow a duplicate case label. (recommended)|
 |:ballot_box_with_check:|[no-empty](http://eslint.org/docs/rules/no-empty)|[no-empty](http://palantir.github.io/tslint/rules/no-empty)|disallow empty statements (recommended)|
@@ -71,12 +71,12 @@ The following rules point out areas where you might have made mistakes.
 |:white_check_mark:|[no-extra-boolean-cast](http://eslint.org/docs/rules/no-extra-boolean-cast)|[no-extra-boolean-cast](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noExtraBooleanCastRule.md)|disallow double-negation boolean casts in a boolean context (recommended)|
 |:x:|[no-extra-parens](http://eslint.org/docs/rules/no-extra-parens)|no-extra-parens|disallow unnecessary parentheses|
 |:white_check_mark:|[no-extra-semi](http://eslint.org/docs/rules/no-extra-semi)|[no-extra-semi](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noExtraSemiRule.md)|disallow unnecessary semicolons (recommended)|
-|:x:|[no-func-assign](http://eslint.org/docs/rules/no-func-assign)|Not applicable|disallow overwriting functions written as function declarations (recommended)|
+|:no_entry_sign:|[no-func-assign](http://eslint.org/docs/rules/no-func-assign)|Not applicable|disallow overwriting functions written as function declarations (recommended)|
 |:white_check_mark:|[no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations)|[no-inner-declarations](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noInnerDeclarationsRule.md)|disallow function or variable declarations in nested blocks (recommended)|
 |:white_check_mark:|[no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp)|[no-invalid-regexp](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noInvalidRegexpRule.md)|disallow invalid regular expression strings in the `RegExp` constructor (recommended)|
 |:white_check_mark:|[no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace)|[no-irregular-whitespace](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noIrregularWhitespaceRule.md)|disallow irregular whitespace outside of strings and comments (recommended)|
-|:x:|[no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs)|Not applicable|disallow negation of the left operand of an `in` expression (recommended)|
-|:x:|[no-obj-calls](http://eslint.org/docs/rules/no-obj-calls)|Not applicable|disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)|
+|:no_entry_sign:|[no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs)|Not applicable|disallow negation of the left operand of an `in` expression (recommended)|
+|:no_entry_sign:|[no-obj-calls](http://eslint.org/docs/rules/no-obj-calls)|Not applicable|disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)|
 |:white_check_mark:|[no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces)|[no-regex-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noRegexSpacesRule.md)|disallow multiple spaces in a regular expression literal (recommended)|
 |:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[no-sparse-arrays](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noSparseArraysRule.md)|disallow sparse arrays (recommended)|
 |:white_check_mark:|[no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline)|[no-unexpected-multiline](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noUnexpectedMultilineRule.md)|Avoid code that looks like two expressions but is actually one|
@@ -128,11 +128,11 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers)|no-magic-numbers|disallow the use of magic numbers|
 |:x:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|no-multi-spaces|disallow use of multiple spaces|
 |:x:|[no-multi-str](http://eslint.org/docs/rules/no-multi-str)|no-multi-str|disallow use of multiline strings|
-|:x:|[no-native-reassign](http://eslint.org/docs/rules/no-native-reassign)|Not applicable|disallow reassignments of native objects|
+|:no_entry_sign:|[no-native-reassign](http://eslint.org/docs/rules/no-native-reassign)|Not applicable|disallow reassignments of native objects|
 |:x:|[no-new](http://eslint.org/docs/rules/no-new)|no-new|disallow use of the `new` operator when not part of an assignment or comparison|
 |:x:|[no-new-func](http://eslint.org/docs/rules/no-new-func)|no-new-func|disallow use of new operator for `Function` object|
 |:x:|[no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers)|no-new-wrappers|disallows creating new instances of `String`,`Number`, and `Boolean`|
-|:x:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
+|:no_entry_sign:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
 |:x:|[no-octal-escape](http://eslint.org/docs/rules/no-octal-escape)|no-octal-escape|disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`|
 |:x:|[no-param-reassign](http://eslint.org/docs/rules/no-param-reassign)|no-param-reassign|disallow reassignment of function parameters|
 |:x:|[no-proto](http://eslint.org/docs/rules/no-proto)|no-proto|disallow Usage of `__proto__` property|
@@ -172,11 +172,11 @@ These rules have to do with variable declarations.
 | :---            | :---:  | :---:  | :---        |
 |:x:|[init-declarations](http://eslint.org/docs/rules/init-declarations)|init-declarations|enforce or disallow variable initializations at definition|
 |:x:|[no-catch-shadow](http://eslint.org/docs/rules/no-catch-shadow)|no-catch-shadow|disallow the catch clause parameter name being the same as a variable in the outer scope|
-|:x:|[no-delete-var](http://eslint.org/docs/rules/no-delete-var)|Not applicable|disallow deletion of variables (recommended)|
+|:no_entry_sign:|[no-delete-var](http://eslint.org/docs/rules/no-delete-var)|Not applicable|disallow deletion of variables (recommended)|
 |:x:|[no-label-var](http://eslint.org/docs/rules/no-label-var)|no-label-var|disallow labels that share a name with a variable|
 |:ballot_box_with_check:|[no-shadow](http://eslint.org/docs/rules/no-shadow)|[no-shadowed-variable](http://palantir.github.io/tslint/rules/no-shadowed-variable)|disallow declaration of variables already declared in the outer scope|
 |:x:|[no-shadow-restricted-names](http://eslint.org/docs/rules/no-shadow-restricted-names)|no-shadow-restricted-names|disallow shadowing of names such as `arguments`|
-|:x:|[no-undef](http://eslint.org/docs/rules/no-undef)|Not applicable|disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)|
+|:no_entry_sign:|[no-undef](http://eslint.org/docs/rules/no-undef)|Not applicable|disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)|
 |:x:|[no-undef-init](http://eslint.org/docs/rules/no-undef-init)|no-undef-init|disallow use of undefined when initializing variables|
 |:x:|[no-undefined](http://eslint.org/docs/rules/no-undefined)|no-undefined|disallow use of `undefined` variable|
 |:ballot_box_with_check:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|[no-unused-variable](http://palantir.github.io/tslint/rules/no-unused-variable)|disallow declaration of variables that are not used in the code (recommended)|
@@ -231,7 +231,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[max-params](http://eslint.org/docs/rules/max-params)|max-params|specify the number of parameters that can be used in the function declaration|
 |:x:|[max-statements](http://eslint.org/docs/rulesmax-statements)|max-statements|specify the maximum number of statement allowed in a function|
 |:x:|[max-statements-per-line](http://eslint.org/docs/max-statements-per-line)|max-statements-per-line|specify the maximum number of statements allowed per line|
-|:x:|[new-cap](http://eslint.org/docs/rules/new-cap)|Not applicable|require a capital letter for constructors|
+|:no_entry_sign:|[new-cap](http://eslint.org/docs/rules/new-cap)|Not applicable|require a capital letter for constructors|
 |:x:|[new-parens](http://eslint.org/docs/rules/new-parens)|new-parens|disallow the omission of parentheses when invoking a constructor with no arguments|
 |:x:|[newline-after-var](http://eslint.org/docs/rules/newline-after-var)|newline-after-var|require or disallow an empty newline after variable declarations|
 |:x:|[newline-before-return](http://eslint.org/docs/rules/newline-before-return)|newline-before-return|require newline before return statement|
@@ -287,7 +287,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[no-class-assign](http://eslint.org/docs/rules/no-class-assign)|no-class-assign|disallow modifying variables of class declarations|
 |:x:|[no-confusing-arrow](http://eslint.org/docs/rules/no-confusing-arrow)|no-confusing-arrow|disallow arrow functions where they could be confused with comparisons|
 |:x:|[no-const-assign](http://eslint.org/docs/rules/no-const-assign)|no-const-assign|disallow modifying variables that are declared using `const`|
-|:x:|[no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members)|Not applicable|disallow duplicate name in class members|
+|:no_entry_sign:|[no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members)|Not applicable|disallow duplicate name in class members|
 |:x:|[no-duplicate-imports](http://eslint.org/docs/rules/no-duplicate-imports)|no-duplicate-imports|disallow duplicate module imports|
 |:x:|[no-new-symbol](http://eslint.org/docs/rules/no-new-symbol)|no-new-symbol|disallow use of the `new` operator with the `Symbol` object|
 |:x:|[no-restricted-imports](http://eslint.org/docs/rules/no-restricted-imports)|no-restricted-imports|restrict usage of specified modules when loaded by `import` declaration|
