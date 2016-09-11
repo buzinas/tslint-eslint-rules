@@ -44,7 +44,7 @@ In your `tslint.json` file, add the `rulesDirectory` property, e.g:
 In your `tslint.json` file, insert the rules as described below.
 
 
-## Rules (copied from [ESLint website](http://eslint.org/docs/rules/))
+## Rules (copied from the [ESLint website](http://eslint.org/docs/rules/))
 
 The following tables shows all the existing ESLint rules and the similar rules available in TSLint.
 Please refer to the following icons as they provide the status of the rule.
