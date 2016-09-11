@@ -46,7 +46,15 @@ In your `tslint.json` file, insert the rules as described below.
 
 ## Rules (copied from [ESLint website](http://eslint.org/docs/rules/))
 
-The table below shows all the existing ESLint rules and the similar rules available in TSLint.
+The following tables shows all the existing ESLint rules and the similar rules available in TSLint.
+Please refer to the following icons as they provide the status of the rule.
+
+| Icon                    | Description |
+| :---                    | :--         |
+| :no_entry_sign:         | The rule is not applicable to Typescript. |
+| :ballot_box_with_check: | The rule is provided natively by [TSLint](http://palantir.github.io/tslint/rules/). |
+| :white_check_mark:      | The rule is available via tslint-eslint-rules. |
+| :x:                     | The rule is currently unavailable. |
 
 <!-- Start:AutoTable:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 
