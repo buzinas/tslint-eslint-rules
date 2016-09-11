@@ -3430,8 +3430,12 @@ function toCamelCase(str) {
   return words.join('');
 }
 
-const ruleMap = {};
-rules.forEach(rule => ruleMap[toCamelCase(rule.tslintRule)] = rule);
+const ruleTSMap = {};
+const ruleESMap = {};
+rules.forEach((rule) => {
+  ruleTSMap[toCamelCase(rule.tslintRule)] = rule;
+  ruleESMap[toCamelCase(rule.eslintRule)] = rule;
+});
 
 export {
   Provider,
@@ -3439,5 +3443,7 @@ export {
   IRule,
   categories,
   rules,
-  ruleMap,
+  ruleTSMap,
+  ruleESMap,
+  toCamelCase,
 };

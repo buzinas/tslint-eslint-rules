@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { IRule, categories, rules, ruleMap } from './rules';
+import { IRule, categories, rules, ruleTSMap } from './rules';
 
 function formatUsage(usage) {
   return usage.replace(/~~~/g, '```').replace(/(^[ \t]*\n)/gm, '\n').replace(/^    /mg, '');
@@ -95,7 +95,7 @@ function updateRuleFiles() {
     .filter(name => name.endsWith('.ts'))
     .map(name => name.substr(0, name.length - 7));
   ruleNames.forEach((name) => {
-    updateRuleFile(name, ruleMap[name]);
+    updateRuleFile(name, ruleTSMap[name]);
   });
 }
 
