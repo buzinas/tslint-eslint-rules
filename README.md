@@ -308,26 +308,31 @@ These rules are only relevant to ES6 environments.
 
 ## Contributing
 
-Bugs, rules requests, doubts etc., open a Github Issue.
+Bugs, rules requests, doubts etc., open a Github Issue. If you want to create a new rule or
+fix/improve some existing rule you can fork this repository and follow the instructions below.
 
-If you didn't find the rule, you can also create an ESLint custom rule for TSLint:
-
-- Open an issue asking for the rule
-- Fork this repository
+- Open an issue asking for the rule or bug.
 - Create a branch with the rule name, e.g: no-if-usage
 - Run `npm install`
-- Run `gulp` to run the tests and watch for file changes
-- Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convetion:
+- Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convention:
   - Name: rule-name (hyphenated, e.g: no-if-usage)
-  - File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: noIfUsageRule.ts)
+  - Rule File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: noIfUsageRule.ts)
   - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix, e.g: noIfUsageRuleTests.ts)
-- Check if single rule is passing with `gulp test --single rule-name` (hyphenated, e.g no-inner-declarations)
-- Check if all the tests are passing with `gulp test`
+- Check if your rule is passing with `gulp test --single rule-name` (hyphenated, e.g no-inner-declarations)
+  - During development you may have some linting errors that won't let you run the test. You can
+    disable the linting process with the `--no-lint` flag. That is run `gulp test --single rule-name --no-lint`
+- Make sure that all the tests are passing with `gulp test`.
+- Update the file `src/readme/rules.ts` with the rule information.
+- To update the README file with the information you just updated run `gulp readme`. This will
+  also update/create the rule documentation in `docs/rules`. You may add more details about the
+  rule in this file.
 - Commit the changes to your repo with the following convention:
   - Example: `[feat] added use-isnan rule (closes #20)`
-- Finally, open a Pull Request
+- Finally, open a Pull Request.
 
-You can also contribute with PRs for fixing bugs, or improving documentation, performance. The commit convention for these are, respectively:
+You can also contribute with PRs for fixing bugs, or improving documentation, performance. The
+commit convention for these are, respectively:
+
 - Example: `[bug] fixed no-constant-condition rule (closes #9)`
 - Example: `[docs] improved README.md file (closes #32)`
 - Example: `[perf] improved valid-typeof rule (closes #48)`
