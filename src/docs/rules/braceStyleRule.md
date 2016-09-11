@@ -1,5 +1,5 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
-## brace-style (eslint: [brace-style](http://eslint.org/docs/rules/brace-style))
+## brace-style (ESLint: [brace-style](http://eslint.org/docs/rules/brace-style))
 
 enforce one true brace style
 

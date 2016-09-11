@@ -1,5 +1,5 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
-## valid-jsdoc (eslint: [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc))
+## valid-jsdoc (ESLint: [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc))
 
 Ensure JSDoc comments are valid
 

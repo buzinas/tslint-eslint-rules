@@ -1,5 +1,5 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
-## array-bracket-spacing (eslint: [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing))
+## array-bracket-spacing (ESLint: [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing))
 
 enforce spacing inside array brackets
 

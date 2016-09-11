@@ -14,7 +14,7 @@ function createRuleTable() {
       category = rule.category;
       buffer.push(`\n### ${category}\n\n`);
       buffer.push(`${categories[category]}\n\n`);
-      buffer.push('| :grey_question: | Eslint | Tslint | Description |\n');
+      buffer.push('| :grey_question: | ESLint | TSLint | Description |\n');
       buffer.push('| :---            | :---:  | :---:  | :---        |\n');
     }
 
@@ -58,7 +58,7 @@ function updateReadme() {
 function createRuleContent(rule: IRule) {
   const usage = rule.usage ? `\n\n### Usage\n\n${formatUsage(rule.usage)}` : '';
   const note = rule.note ? `\n\n### Note\n\n${rule.note}\n` : '';
-  return `## ${rule.tslintRule} (eslint: [${rule.eslintRule}](${rule.eslintUrl}))
+  return `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))
 
 ${rule.description}${usage}${note}
 `;

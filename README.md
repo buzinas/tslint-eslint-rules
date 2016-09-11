@@ -54,7 +54,7 @@ The table below shows all the existing ESLint rules and the similar rules availa
 
 The following rules point out areas where you might have made mistakes.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:ballot_box_with_check:|[comma-dangle](http://eslint.org/docs/rules/comma-dangle)|[trailing-comma](http://palantir.github.io/tslint/rules/trailing-comma)|disallow or enforce trailing commas (recommended)|
 |:ballot_box_with_check:|[no-cond-assign](http://eslint.org/docs/rules/no-cond-assign)|[no-conditional-assignment](http://palantir.github.io/tslint/rules/no-conditional-assignment)|disallow assignment in conditional expressions (recommended)|
@@ -90,7 +90,7 @@ The following rules point out areas where you might have made mistakes.
 These are rules designed to prevent you from making mistakes. They either
     prescribe a better way of doing something or help you avoid footguns.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:x:|[accessor-pairs](http://eslint.org/docs/rules/accessor-pairs)|accessor-pairs|Enforces getter/setter pairs in objects|
 |:x:|[array-callback-return](http://eslint.org/docs/rules/array-callback-return)|array-callback-return|Enforce return statements in callbacks of array’s methods|
@@ -160,7 +160,7 @@ These are rules designed to prevent you from making mistakes. They either
 
 These rules relate to using strict mode.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:x:|[strict](http://eslint.org/docs/rules/strict)|strict|require effective use of strict mode directives|
 
@@ -168,7 +168,7 @@ These rules relate to using strict mode.
 
 These rules have to do with variable declarations.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:x:|[init-declarations](http://eslint.org/docs/rules/init-declarations)|init-declarations|enforce or disallow variable initializations at definition|
 |:x:|[no-catch-shadow](http://eslint.org/docs/rules/no-catch-shadow)|no-catch-shadow|disallow the catch clause parameter name being the same as a variable in the outer scope|
@@ -186,7 +186,7 @@ These rules have to do with variable declarations.
 
 These rules are specific to JavaScript running on Node.js or using CommonJS in the browser.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:x:|[callback-return](http://eslint.org/docs/rules/callback-return)|callback-return|enforce `return` after a callback|
 |:x:|[global-require](http://eslint.org/docs/rules/global-require)|global-require|enforce `require()` on top-level module scope|
@@ -203,7 +203,7 @@ These rules are specific to JavaScript running on Node.js or using CommonJS in t
 
 These rules are purely matters of style and are quite subjective.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md)|enforce spacing inside array brackets|
 |:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/blockSpacingRule.md)|disallow or enforce spaces inside of single line blocks|
@@ -277,7 +277,7 @@ These rules are purely matters of style and are quite subjective.
 
 These rules are only relevant to ES6 environments.
 
-| :grey_question: | Eslint | Tslint | Description |
+| :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:x:|[arrow-body-style](http://eslint.org/docs/rules/arrow-body-style)|arrow-body-style|require braces in arrow function body|
 |:x:|[arrow-parens](http://eslint.org/docs/rules/arrow-parens)|arrow-parens|require parens in arrow function arguments|
