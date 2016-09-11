@@ -31,6 +31,12 @@ const TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 const DEF_FOLDER = 'typings/**/*.ts'
 const TS_CONFIG = ts.createProject('tsconfig.json');
 
+gulp.task('readme', ['build'], () => {
+  const readme = require('./dist/readme');
+  readme.updateRuleFiles();
+  readme.updateReadme();
+});
+
 gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
