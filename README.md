@@ -147,6 +147,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:ballot_box_with_check:|[no-redeclare](http://eslint.org/docs/rules/no-redeclare)|[no-duplicate-variable](http://palantir.github.io/tslint/rules/no-duplicate-variable)|disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)|
 |:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|no-return-assign|disallow use of assignment in `return` statement|
 |:x:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|no-script-url|disallow use of `javascript:` urls.|
+|:x:|[no-self-assign](http://eslint.org/docs/rules/no-self-assign)|no-self-assign|disallow assignments where both sides are exactly the same|
 |:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|no-self-compare|disallow comparisons where both sides are exactly the same|
 |:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|no-sequences|disallow use of the comma operator|
 |:x:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|no-throw-literal|restrict what can be thrown as an exception|
