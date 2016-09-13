@@ -269,7 +269,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[quote-props](http://eslint.org/docs/rules/quote-props)|quote-props|require quotes around object literal property names|
 |:x:|[quotes](http://eslint.org/docs/rules/quotes)|quote-props|specify whether backticks, double or single quotes should be used|
 |:x:|[require-jsdoc](http://eslint.org/docs/rules/require-jsdoc)|require-jsdoc|Require JSDoc comment|
-|:x:|[semi](http://eslint.org/docs/rules/semi)|semi|require or disallow use of semicolons instead of ASI|
+|:ballot_box_with_check:|[semi](http://eslint.org/docs/rules/semi)|[semicolon](http://palantir.github.io/tslint/rules/semicolon)|require or disallow use of semicolons instead of ASI|
 |:x:|[semi-spacing](http://eslint.org/docs/rules/semi-spacing)|semi-spacing|enforce spacing before and after semicolons|
 |:x:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|sort-imports|enforce sorting import declarations within module|
 |:x:|[sort-vars](http://eslint.org/docs/rules/sort-vars)|sort-vars|sort variables within the same declaration block|

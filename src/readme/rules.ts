@@ -2764,26 +2764,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'semi',
-    tslintRule: 'semi',
+    tslintRule: 'semicolon',
     category: 'Stylistic Issues',
     description: 'require or disallow use of semicolons instead of ASI',
     eslintUrl: 'http://eslint.org/docs/rules/semi',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "semi": [
-        true,
-        "always"
-      ]
-    ~~~
-    
-    ~~~json
-    "semi": [
-        true,
-        "never"
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/semicolon',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,
