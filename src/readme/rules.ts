@@ -1280,40 +1280,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'strict',
-    tslintRule: 'strict',
+    tslintRule: 'use-strict',
     category: 'Strict Mode',
     description: 'require effective use of strict mode directives',
     eslintUrl: 'http://eslint.org/docs/rules/strict',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "strict": [
-        true,
-        "safe"
-      ]
-    ~~~
-    
-    ~~~json
-    "strict": [
-        true,
-        "never"
-      ]
-    ~~~
-    
-    ~~~json
-    "strict": [
-        true,
-        "global"
-      ]
-    ~~~
-    
-    ~~~json
-    "strict": [
-        true,
-        "function"
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/use-strict',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,

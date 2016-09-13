@@ -170,7 +170,7 @@ These rules relate to using strict mode.
 
 | :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
-|:x:|[strict](http://eslint.org/docs/rules/strict)|strict|require effective use of strict mode directives|
+|:ballot_box_with_check:|[strict](http://eslint.org/docs/rules/strict)|[use-strict](http://palantir.github.io/tslint/rules/use-strict)|require effective use of strict mode directives|
 
 ### Variables
 
