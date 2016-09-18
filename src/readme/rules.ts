@@ -1054,6 +1054,18 @@ const rules: IRule[] = [
   },
   {
     available: false,
+    eslintRule: 'no-self-assign',
+    tslintRule: 'no-self-assign',
+    category: 'Best Practices',
+    description: 'disallow assignments where both sides are exactly the same',
+    eslintUrl: 'http://eslint.org/docs/rules/no-self-assign',
+    provider: 'tslint-eslint-rules',
+    usage: `~~~json
+    "no-self-assign": true
+    ~~~`
+  },
+  {
+    available: false,
     eslintRule: 'no-self-compare',
     tslintRule: 'no-self-compare',
     category: 'Best Practices',
