@@ -878,7 +878,7 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-multi-spaces',
     tslintRule: 'no-multi-spaces',
     category: 'Best Practices',
@@ -889,7 +889,7 @@ const rules: IRule[] = [
     "no-multi-spaces": [
         true,
         {
-          "exceptions": [ { "ImportDeclation": true }, { "Property": false } ]
+          "exceptions": { "PropertyAssignment": false, "OtherException": "true|false" }
         }
       ]
     ~~~`
@@ -1050,6 +1050,18 @@ const rules: IRule[] = [
     provider: 'tslint-eslint-rules',
     usage: `~~~json
     "no-script-url": true
+    ~~~`
+  },
+  {
+    available: false,
+    eslintRule: 'no-self-assign',
+    tslintRule: 'no-self-assign',
+    category: 'Best Practices',
+    description: 'disallow assignments where both sides are exactly the same',
+    eslintUrl: 'http://eslint.org/docs/rules/no-self-assign',
+    provider: 'tslint-eslint-rules',
+    usage: `~~~json
+    "no-self-assign": true
     ~~~`
   },
   {
