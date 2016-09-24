@@ -37,10 +37,10 @@ gulp.task('readme', ['build'], () => {
   readme.updateReadme();
 });
 
-gulp.task('sync', ['build'], () => {
-  const sync = require('./dist/readme/sync');
-  sync.compareToESLint();
-  sync.compareToTSLint();
+gulp.task('fetch', ['build'], () => {
+  const fetch = require('./dist/readme/fetch');
+  fetch.compareToESLint();
+  fetch.compareToTSLint();
 });
 
 gulp.task('lint', function lint() {
