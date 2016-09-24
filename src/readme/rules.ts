@@ -2104,6 +2104,17 @@ const rules: IRule[] = [
     ~~~`
   },
   {
+    available: true,
+    eslintRule: 'max-lines',
+    tslintRule: 'max-file-line-count',
+    category: 'Stylistic Issues',
+    description: 'enforce a maximum number of lines per file',
+    eslintUrl: 'http://eslint.org/docs/rules/max-lines',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/max-file-line-count',
+    provider: 'native',
+    usage: ''
+  },
+  {
     available: false,
     eslintRule: 'max-nested-callbacks',
     tslintRule: 'max-nested-callbacks',
