@@ -2323,22 +2323,15 @@ const rules: IRule[] = [
     and we're not going to support this.`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-multiple-empty-lines',
-    tslintRule: 'no-multiple-empty-lines',
+    tslintRule: 'no-consecutive-blank-lines',
     category: 'Stylistic Issues',
     description: 'disallow multiple empty lines',
     eslintUrl: 'http://eslint.org/docs/rules/no-multiple-empty-lines',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-multiple-empty-lines": [
-        true,
-        {
-          "max": 2,
-          "maxEOF": 1
-        }
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/no-consecutive-blank-lines',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,

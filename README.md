@@ -251,7 +251,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-inline-comments](http://eslint.org/docs/rules/no-inline-comments)|no-inline-comments|disallow comments inline after code|
 |:x:|[no-lonely-if](http://eslint.org/docs/rules/no-lonely-if)|no-lonely-if|disallow `if` as the only statement in an `else` block|
 |:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[ident](http://palantir.github.io/tslint/rules/ident)|disallow mixed spaces and tabs for indentation (recommended)|
-|:x:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|no-multiple-empty-lines|disallow multiple empty lines|
+|:ballot_box_with_check:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|[no-consecutive-blank-lines](http://palantir.github.io/tslint/rules/no-consecutive-blank-lines)|disallow multiple empty lines|
 |:x:|[no-negated-condition](http://eslint.org/docs/rules/no-negated-condition)|no-negated-condition|disallow negated conditions|
 |:x:|[no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary)|no-nested-ternary|disallow nested ternary expressions|
 |:x:|[no-new-object](http://eslint.org/docs/rules/no-new-object)|no-new-object|disallow the use of the `Object` constructor|
