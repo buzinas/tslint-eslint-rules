@@ -2066,42 +2066,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'max-len',
-    tslintRule: 'max-len',
+    tslintRule: 'max-line-length',
     category: 'Stylistic Issues',
     description: 'specify the maximum length of a line in your program',
     eslintUrl: 'http://eslint.org/docs/rules/max-len',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "max-len": [
-        true,
-        80,
-        4,
-        {
-          "comments": 80,
-          "ignoreComments": true
-          "ignoreTrailingComments": true
-          "ignoreUrls": true,
-          "ignorePattern": true
-        }
-      ]
-    ~~~
-    
-    ~~~json
-    "max-len": [
-        true,
-        {
-          "code": 80,
-          "comments": 80,
-          "tabWidth": 4,
-          "ignoreComments": true
-          "ignoreTrailingComments": true
-          "ignoreUrls": true,
-          "ignorePattern": true
-        }
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/max-line-length',
+    provider: 'native',
+    usage: ''
   },
   {
     available: true,
