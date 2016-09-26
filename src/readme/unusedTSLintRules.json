@@ -1,0 +1,6 @@
+[
+  "no-any",
+  "typedef",
+  "typedef-whitespace",
+  "no-namespace"
+]

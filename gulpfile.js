@@ -37,6 +37,12 @@ gulp.task('readme', ['build'], () => {
   readme.updateReadme();
 });
 
+gulp.task('fetch', ['build'], () => {
+  const fetch = require('./dist/readme/fetch');
+  fetch.compareToESLint();
+  fetch.compareToTSLint();
+});
+
 gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
