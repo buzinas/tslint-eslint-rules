@@ -34,11 +34,12 @@ export class Gulpfile {
   }
 
   @Task('readme', ['build'])
-  public readme() {
+  public readme(gulpCallBack: Function) {
     // The module './dist/readme' will be available after the `build` task
     const readme = require('./dist/readme');
     readme.updateRuleFiles();
     readme.updateReadme();
+    gulpCallBack();
   }
 
   @Task('lint')
@@ -92,5 +93,13 @@ export class Gulpfile {
       ])
       .pipe(ts(Gulpfile.TS_CONFIG))
       .pipe(gulp.dest('dist'));
+  }
+
+  @Task('fetch', ['build'])
+  public fetch(gulpCallBack: Function) {
+    const fetch = require('./dist/readme/fetch');
+    fetch.compareToESLint();
+    fetch.compareToTSLint();
+    gulpCallBack();
   }
 }
