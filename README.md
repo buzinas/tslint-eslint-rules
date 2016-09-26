@@ -171,7 +171,7 @@ These rules relate to using strict mode.
 
 | :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
-|:x:|[strict](http://eslint.org/docs/rules/strict)|strict|require effective use of strict mode directives|
+|:ballot_box_with_check:|[strict](http://eslint.org/docs/rules/strict)|[use-strict](http://palantir.github.io/tslint/rules/use-strict)|require effective use of strict mode directives|
 
 ### Variables
 
@@ -235,7 +235,8 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[linebreak-style](http://eslint.org/docs/rules/linebreak-style)|linebreak-style|disallow mixed 'LF' and 'CRLF' as linebreaks|
 |:x:|[lines-around-comment](http://eslint.org/docs/rules/lines-around-comment)|lines-around-comment|enforce empty lines around comments|
 |:x:|[max-depth](http://eslint.org/docs/rules/max-depth)|max-depth|specify the maximum depth that blocks can be nested|
-|:x:|[max-len](http://eslint.org/docs/rules/max-len)|max-len|specify the maximum length of a line in your program|
+|:ballot_box_with_check:|[max-len](http://eslint.org/docs/rules/max-len)|[max-line-length](http://palantir.github.io/tslint/rules/max-line-length)|specify the maximum length of a line in your program|
+|:ballot_box_with_check:|[max-lines](http://eslint.org/docs/rules/max-lines)|[max-file-line-count](http://palantir.github.io/tslint/rules/max-file-line-count)|enforce a maximum number of lines per file|
 |:x:|[max-nested-callbacks](http://eslint.org/docs/rules/max-nested-callbacks)|max-nested-callbacks|specify the maximum depth callbacks can be nested|
 |:x:|[max-params](http://eslint.org/docs/rules/max-params)|max-params|specify the number of parameters that can be used in the function declaration|
 |:x:|[max-statements](http://eslint.org/docs/rulesmax-statements)|max-statements|specify the maximum number of statement allowed in a function|
@@ -250,7 +251,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-inline-comments](http://eslint.org/docs/rules/no-inline-comments)|no-inline-comments|disallow comments inline after code|
 |:x:|[no-lonely-if](http://eslint.org/docs/rules/no-lonely-if)|no-lonely-if|disallow `if` as the only statement in an `else` block|
 |:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[ident](http://palantir.github.io/tslint/rules/ident)|disallow mixed spaces and tabs for indentation (recommended)|
-|:x:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|no-multiple-empty-lines|disallow multiple empty lines|
+|:ballot_box_with_check:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|[no-consecutive-blank-lines](http://palantir.github.io/tslint/rules/no-consecutive-blank-lines)|disallow multiple empty lines|
 |:x:|[no-negated-condition](http://eslint.org/docs/rules/no-negated-condition)|no-negated-condition|disallow negated conditions|
 |:x:|[no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary)|no-nested-ternary|disallow nested ternary expressions|
 |:x:|[no-new-object](http://eslint.org/docs/rules/no-new-object)|no-new-object|disallow the use of the `Object` constructor|
@@ -270,7 +271,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[quote-props](http://eslint.org/docs/rules/quote-props)|quote-props|require quotes around object literal property names|
 |:x:|[quotes](http://eslint.org/docs/rules/quotes)|quote-props|specify whether backticks, double or single quotes should be used|
 |:x:|[require-jsdoc](http://eslint.org/docs/rules/require-jsdoc)|require-jsdoc|Require JSDoc comment|
-|:x:|[semi](http://eslint.org/docs/rules/semi)|semi|require or disallow use of semicolons instead of ASI|
+|:ballot_box_with_check:|[semi](http://eslint.org/docs/rules/semi)|[semicolon](http://palantir.github.io/tslint/rules/semicolon)|require or disallow use of semicolons instead of ASI|
 |:x:|[semi-spacing](http://eslint.org/docs/rules/semi-spacing)|semi-spacing|enforce spacing before and after semicolons|
 |:x:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|sort-imports|enforce sorting import declarations within module|
 |:x:|[sort-vars](http://eslint.org/docs/rules/sort-vars)|sort-vars|sort variables within the same declaration block|
