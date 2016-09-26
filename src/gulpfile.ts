@@ -37,9 +37,11 @@ export class Gulpfile {
   public readme(gulpCallBack: Function) {
     // The module './dist/readme' will be available after the `build` task
     const readme = require('./dist/readme');
-    readme.updateRuleFiles();
-    readme.updateReadme();
-    gulpCallBack();
+    readme.updateRuleFiles(() => {
+      readme.updateReadme(() => {
+        gulpCallBack();
+      });
+    });
   }
 
   @Task('lint')

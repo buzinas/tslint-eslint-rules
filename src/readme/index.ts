@@ -36,7 +36,7 @@ function createRuleTable() {
   return buffer.join('');
 }
 
-function updateReadme() {
+function updateReadme(cb: Function) {
   fs.readFile('README.md', 'utf8', (readErr, data) => {
     if (readErr) {
       return console.error(readErr);
@@ -51,6 +51,7 @@ function updateReadme() {
       if (writeErr) {
         return console.error(writeErr);
       }
+      cb();
     });
   });
 }
@@ -86,7 +87,7 @@ function updateRuleFile(name: string, rule: IRule) {
   });
 }
 
-function updateRuleFiles() {
+function updateRuleFiles(cb: Function) {
   const ruleDir = 'src/rules/';
   const allFiles = fs.readdirSync(ruleDir).filter(
     file => fs.lstatSync(path.join(ruleDir, file)).isFile()
@@ -97,6 +98,7 @@ function updateRuleFiles() {
   ruleNames.forEach((name) => {
     updateRuleFile(name, ruleTSMap[name]);
   });
+  cb();
 }
 
 export {
