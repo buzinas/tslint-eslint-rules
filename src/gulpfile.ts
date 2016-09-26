@@ -100,8 +100,11 @@ export class Gulpfile {
   @Task('fetch', ['build'])
   public fetch(gulpCallBack: Function) {
     const fetch = require('./dist/readme/fetch');
-    fetch.compareToESLint();
-    fetch.compareToTSLint();
-    gulpCallBack();
+    Promise.all([
+      fetch.compareToESLint(),
+      fetch.compareToTSLint()
+    ]).then(() => {
+      gulpCallBack();
+    });
   }
 }
