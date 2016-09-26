@@ -1292,40 +1292,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'strict',
-    tslintRule: 'strict',
+    tslintRule: 'use-strict',
     category: 'Strict Mode',
     description: 'require effective use of strict mode directives',
     eslintUrl: 'http://eslint.org/docs/rules/strict',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "strict": [
-        true,
-        "safe"
-      ]
-    ~~~
-    
-    ~~~json
-    "strict": [
-        true,
-        "never"
-      ]
-    ~~~
-    
-    ~~~json
-    "strict": [
-        true,
-        "global"
-      ]
-    ~~~
-    
-    ~~~json
-    "strict": [
-        true,
-        "function"
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/use-strict',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,
@@ -2091,42 +2066,26 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'max-len',
-    tslintRule: 'max-len',
+    tslintRule: 'max-line-length',
     category: 'Stylistic Issues',
     description: 'specify the maximum length of a line in your program',
     eslintUrl: 'http://eslint.org/docs/rules/max-len',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "max-len": [
-        true,
-        80,
-        4,
-        {
-          "comments": 80,
-          "ignoreComments": true
-          "ignoreTrailingComments": true
-          "ignoreUrls": true,
-          "ignorePattern": true
-        }
-      ]
-    ~~~
-    
-    ~~~json
-    "max-len": [
-        true,
-        {
-          "code": 80,
-          "comments": 80,
-          "tabWidth": 4,
-          "ignoreComments": true
-          "ignoreTrailingComments": true
-          "ignoreUrls": true,
-          "ignorePattern": true
-        }
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/max-line-length',
+    provider: 'native',
+    usage: ''
+  },
+  {
+    available: true,
+    eslintRule: 'max-lines',
+    tslintRule: 'max-file-line-count',
+    category: 'Stylistic Issues',
+    description: 'enforce a maximum number of lines per file',
+    eslintUrl: 'http://eslint.org/docs/rules/max-lines',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/max-file-line-count',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,
@@ -2364,22 +2323,15 @@ const rules: IRule[] = [
     and we're not going to support this.`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-multiple-empty-lines',
-    tslintRule: 'no-multiple-empty-lines',
+    tslintRule: 'no-consecutive-blank-lines',
     category: 'Stylistic Issues',
     description: 'disallow multiple empty lines',
     eslintUrl: 'http://eslint.org/docs/rules/no-multiple-empty-lines',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-multiple-empty-lines": [
-        true,
-        {
-          "max": 2,
-          "maxEOF": 1
-        }
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/no-consecutive-blank-lines',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,
@@ -2776,26 +2728,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'semi',
-    tslintRule: 'semi',
+    tslintRule: 'semicolon',
     category: 'Stylistic Issues',
     description: 'require or disallow use of semicolons instead of ASI',
     eslintUrl: 'http://eslint.org/docs/rules/semi',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "semi": [
-        true,
-        "always"
-      ]
-    ~~~
-    
-    ~~~json
-    "semi": [
-        true,
-        "never"
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/semicolon',
+    provider: 'native',
+    usage: ''
   },
   {
     available: false,
@@ -3442,8 +3383,12 @@ function toCamelCase(str) {
   return words.join('');
 }
 
-const ruleMap = {};
-rules.forEach(rule => ruleMap[toCamelCase(rule.tslintRule)] = rule);
+const ruleTSMap = {};
+const ruleESMap = {};
+rules.forEach((rule) => {
+  ruleTSMap[toCamelCase(rule.tslintRule)] = rule;
+  ruleESMap[toCamelCase(rule.eslintRule)] = rule;
+});
 
 export {
   Provider,
@@ -3451,5 +3396,7 @@ export {
   IRule,
   categories,
   rules,
-  ruleMap,
+  ruleTSMap,
+  ruleESMap,
+  toCamelCase,
 };
