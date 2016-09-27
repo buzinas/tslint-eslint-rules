@@ -8,24 +8,6 @@ const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
 const mocha = require('gulp-spawn-mocha');
 
-
-function toCamelCase(str){
-  const words = str.split('-').map(function(word){
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  });
-  words[0] = words[0].toLowerCase();
-  return words.join('');
-}
-
-function singleRule(name) {
-  return `src/**/?(${toCamelCase(name)}*|helper).ts`;
-}
-
-function singleTest(name) {
-  return `dist/test/rules/${toCamelCase(name)}RuleTests.js`;
-}
-
-
 const SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
 const TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 const DEF_FOLDER = 'typings/**/*.ts'
@@ -84,3 +66,16 @@ gulp.task('publish', function build() {
     .pipe(ts(TS_CONFIG))
     .pipe(gulp.dest('dist'));
 });
+
+// ---
+function toCamelCase(str){
+  return str.split('-').map((word, i) => word.charAt(0)[i ? 'toUpperCase' : 'toLowerCase']() + word.slice(1)).join('');
+}
+
+function singleRule(name) {
+  return `src/**/?(${toCamelCase(name)}*|helper).ts`;
+}
+
+function singleTest(name) {
+  return `dist/test/rules/${toCamelCase(name)}RuleTests.js`;
+}
