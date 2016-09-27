@@ -36,7 +36,7 @@ function createRuleTable() {
   return buffer.join('');
 }
 
-function updateReadme(cb: Function) {
+function updateReadme() {
   fs.readFile('README.md', 'utf8', (readErr, data) => {
     if (readErr) {
       return console.error(readErr);
@@ -51,8 +51,6 @@ function updateReadme(cb: Function) {
       if (writeErr) {
         return console.error(writeErr);
       }
-      console.log('[DONE] updating README.md ...');
-      cb();
     });
   });
 }
@@ -69,30 +67,26 @@ ${rule.description}${usage}${note}
 function updateRuleFile(name: string, rule: IRule) {
   const baseUrl = 'https://github.com/buzinas/tslint-eslint-rules/blob/master';
   const docFileName = `src/docs/rules/${name}Rule.md`;
-  return new Promise((fulfill, reject) => {
-    fs.readFile(docFileName, 'utf8', (readErr, data) => {
-      rule.tslintUrl = rule.tslintUrl || `${baseUrl}/${docFileName}`;
-      let content = readErr || !data ? '<!-- Start:AutoDoc\n End:AutoDoc -->' : data;
-      content = content.replace(
-        /^<!-- Start:AutoDoc((.*?(\n))+.*?)End:AutoDoc -->$/gm,
-        [
-          '<!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->\n',
-          createRuleContent(rule),
-          '\n<!-- End:AutoDoc -->' + (readErr ? '\n' : '')
-        ].join('')
-      );
-      fs.writeFile(docFileName, content, 'utf8', (writeErr) => {
-        if (writeErr) {
-          return reject(writeErr);
-        }
-        console.log(` - ${name}`);
-        fulfill();
-      });
+  fs.readFile(docFileName, 'utf8', (readErr, data) => {
+    rule.tslintUrl = rule.tslintUrl || `${baseUrl}/${docFileName}`;
+    let content = readErr || !data ? '<!-- Start:AutoDoc\n End:AutoDoc -->' : data;
+    content = content.replace(
+      /^<!-- Start:AutoDoc((.*?(\n))+.*?)End:AutoDoc -->$/gm,
+      [
+        '<!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->\n',
+        createRuleContent(rule),
+        '\n<!-- End:AutoDoc -->' + (readErr ? '\n' : '')
+      ].join('')
+    );
+    fs.writeFile(docFileName, content, 'utf8', (writeErr) => {
+      if (writeErr) {
+        return console.error(writeErr);
+      }
     });
   });
 }
 
-function updateRuleFiles(cb: Function) {
+function updateRuleFiles() {
   const ruleDir = 'src/rules/';
   const allFiles = fs.readdirSync(ruleDir).filter(
     file => fs.lstatSync(path.join(ruleDir, file)).isFile()
@@ -100,14 +94,8 @@ function updateRuleFiles(cb: Function) {
   const ruleNames = allFiles
     .filter(name => name.endsWith('.ts'))
     .map(name => name.substr(0, name.length - 7));
-  const allPromises = [];
   ruleNames.forEach((name) => {
-    allPromises.push(updateRuleFile(name, ruleTSMap[name]));
-  });
-  // Only do the callback when all the promises have been resolved.
-  Promise.all(allPromises).then(() => {
-    console.log('[DONE] processing rule files ...');
-    cb();
+    updateRuleFile(name, ruleTSMap[name]);
   });
 }
 
