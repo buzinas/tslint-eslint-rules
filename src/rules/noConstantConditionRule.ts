@@ -11,6 +11,17 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoConstantConditionWalker extends Lint.RuleWalker {
+  constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
+    super(sourceFile, options);
+
+    const opts = this.getOptions();
+
+    if (opts.length && opts[0].checkLoops === false) {
+      this.checkLoops = false;
+    }
+  }
+
+  private checkLoops = true;
   private isInConditional = false;
 
   protected visitIfStatement(node: ts.IfStatement) {
@@ -19,17 +30,21 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
   }
 
   protected visitWhileStatement(node: ts.WhileStatement) {
-    this.validateCondition(node.expression);
+    if (this.checkLoops) {
+      this.validateCondition(node.expression);
+    }
     super.visitWhileStatement(node);
   }
 
   protected visitDoStatement(node: ts.DoStatement) {
-    this.validateCondition(node.expression);
+    if (this.checkLoops) {
+      this.validateCondition(node.expression);
+    }
     super.visitDoStatement(node);
   }
 
   protected visitForStatement(node: ts.ForStatement) {
-    if (node.condition) {
+    if (this.checkLoops && node.condition) {
       this.validateCondition(node.condition);
     }
     super.visitForStatement(node);

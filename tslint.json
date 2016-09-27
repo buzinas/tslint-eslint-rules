@@ -19,7 +19,7 @@
       true,
       "spaces"
     ],
-    "interface-name": false,
+    "interface-name": [false],
     "jsdoc-format": true,
     "label-position": true,
     "label-undefined": true,
@@ -71,7 +71,7 @@
       "avoid-escape"
     ],
     "radix": false,
-    "semicolon": true,
+    "semicolon": [true],
     "switch-default": false,
     "trailing-comma": [
       true,

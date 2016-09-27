@@ -212,4 +212,12 @@ describe(rule, function test() {
   it('should fail on for literals', function testForLiterals() {
     makeTest(rule, scripts.forLiterals, false);
   });
+
+  it('should pass for literals in loops when checkLoops is false', function testCheckLoopsFalse() {
+    const config = {
+      rules: { 'no-constant-condition': [true, { checkLoops: false }] }
+    };
+
+    makeTest(rule, scripts.forLiterals, true, config);
+  });
 });
