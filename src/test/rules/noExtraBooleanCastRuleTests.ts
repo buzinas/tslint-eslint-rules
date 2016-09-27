@@ -19,7 +19,8 @@ const scripts = {
     'const foo = new Boolean(!!bar);',
     'while (!!foo) {}',
     'do {} while (!!foo);',
-    'for (; !!foo; ) {}`'
+    'for (; !!foo; ) {}`',
+    'if (!!lastUpdated && !!savedJwt) {}'
   ]
 };
 

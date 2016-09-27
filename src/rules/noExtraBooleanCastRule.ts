@@ -20,6 +20,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoExtraBooleanCastWalker extends Lint.RuleWalker {
+
   protected visitPrefixUnaryExpression(node: ts.PrefixUnaryExpression) {
     this.validateNoExtraBoolean(node);
     super.visitPrefixUnaryExpression(node);
@@ -27,13 +28,18 @@ class NoExtraBooleanCastWalker extends Lint.RuleWalker {
 
   private validateNoExtraBoolean(node: ts.PrefixUnaryExpression) {
     const parent = node.parent;
-    const grandparent = parent.parent;
+    let grandparent = parent.parent;
 
     // Exit early if it's guaranteed not to match
     if (node.operator !== ts.SyntaxKind.ExclamationToken ||
       parent.kind !== ts.SyntaxKind.PrefixUnaryExpression ||
       (parent as ts.PrefixUnaryExpression).operator !== ts.SyntaxKind.ExclamationToken) {
       return;
+    }
+
+    // sometimes the grandparent is not a condition, but something like `if (!!x || !!y)`
+    if (grandparent.kind === ts.SyntaxKind.BinaryExpression) {
+      grandparent = grandparent.parent;
     }
 
     if (grandparent.kind === ts.SyntaxKind.IfStatement) {
