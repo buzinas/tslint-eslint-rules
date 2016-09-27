@@ -23,7 +23,8 @@ const scripts = {
     'if (100 > x) {}',
     'if (!(100 > x)) {}',
     'if (x === -y) {}',
-    'if (!(x === -y)) {}'
+    'if (!(x === -y)) {}',
+    'if (len--)'
   ],
   booleans: [
     'if (true) {}',

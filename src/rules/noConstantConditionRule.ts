@@ -68,7 +68,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
         return true;
       // ESLint UnaryExpression
       case ts.SyntaxKind.PostfixUnaryExpression:
-        return true;
+        return this.isConstant((node as ts.PostfixUnaryExpression).operand);
       // ESLint BinaryExpression / LogicalExpression
       case ts.SyntaxKind.BinaryExpression:
         // ESLint AssignmentExpression
