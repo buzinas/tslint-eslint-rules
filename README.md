@@ -250,7 +250,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-continue](http://eslint.org/docs/rules/no-continue)|no-continue|disallow use of the `continue` statement|
 |:x:|[no-inline-comments](http://eslint.org/docs/rules/no-inline-comments)|no-inline-comments|disallow comments inline after code|
 |:x:|[no-lonely-if](http://eslint.org/docs/rules/no-lonely-if)|no-lonely-if|disallow `if` as the only statement in an `else` block|
-|:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[ident](http://palantir.github.io/tslint/rules/ident)|disallow mixed spaces and tabs for indentation (recommended)|
+|:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[indent](http://palantir.github.io/tslint/rules/indent)|disallow mixed spaces and tabs for indentation (recommended)|
 |:ballot_box_with_check:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|[no-consecutive-blank-lines](http://palantir.github.io/tslint/rules/no-consecutive-blank-lines)|disallow multiple empty lines|
 |:x:|[no-negated-condition](http://eslint.org/docs/rules/no-negated-condition)|no-negated-condition|disallow negated conditions|
 |:x:|[no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary)|no-nested-ternary|disallow nested ternary expressions|
@@ -305,7 +305,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[no-useless-constructor](http://eslint.org/docs/rules/no-useless-constructor)|no-useless-constructor|disallow unnecessary constructor|
 |:ballot_box_with_check:|[no-var](http://eslint.org/docs/rules/no-var)|[no-var-keyword](http://palantir.github.io/tslint/rules/no-var-keyword)|require `let` or `const` instead of `var`|
 |:x:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|object-shorthand|require method and property shorthand syntax for object literals|
-|:x:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|prefer-arrow-callback|suggest using arrow functions as callbacks|
+|:ballot_box_with_check:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[only-arrow-functions](http://palantir.github.io/tslint/rules/only-arrow-functions/)|suggest using arrow functions as callbacks|
 |:x:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|prefer-const|suggest using `const` declaration for variables that are never modified after declared|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|
