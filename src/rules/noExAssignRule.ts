@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
+import { isAssignmentToken } from '../support/token';
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = 'do not assign to the exception parameter';
@@ -24,6 +25,10 @@ class NoExAssignWalker extends Lint.RuleWalker {
 
   protected visitBinaryExpression(node: ts.BinaryExpression) {
     if (this.isInCatchClause) {
+      if (!isAssignmentToken(node.operatorToken)) {
+        return;
+      }
+
       if (node.left.kind === ts.SyntaxKind.Identifier && this.variableNode.name.getText() === node.left.getText()) {
         this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
       }

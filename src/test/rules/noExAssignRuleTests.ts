@@ -62,10 +62,15 @@ const scripts = {
             done();
         });
     });
-    `
+    `,
+    'try {} catch (err) { if (err instanceof Foo) {} }',
+    'try {} catch (err) { if (err == err) {} }',
+    'try {} catch (err) { if (err === err) {} }'
   ],
   invalid: [
     'try { } catch (e) { e = 10; }',
+    'try { } catch (e) { e += 10; }',
+    'try { } catch (e) { e -= 10; }',
     'try { } catch (ex) { ex = 10; }',
     'try { } catch (ex) { [ex] = []; }',
     'try { } catch (ex) { ({x: ex = 0}) = {}; }',
