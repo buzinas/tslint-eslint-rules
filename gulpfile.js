@@ -11,7 +11,7 @@ const mocha = require('gulp-spawn-mocha');
 const SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
 const TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 const DEF_FOLDER = 'typings/**/*.ts'
-const TS_CONFIG = ts.createProject('tsconfig.json');
+const tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('readme', ['build'], () => {
   const readme = require('./dist/readme');
@@ -37,10 +37,12 @@ gulp.task('lint', function lint() {
 });
 
 gulp.task('build', argv.lint === false ? [] : ['lint'], function build() {
-  return gulp
-    .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es6.d.ts'])
+  const tsResult = tsProject
+    .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es2015.core.d.ts'])
     .pipe(sourcemaps.init())
-    .pipe(ts(TS_CONFIG))
+    .pipe(tsProject());
+
+  return tsResult.js
     .pipe(sourcemaps.write({
       includeContent: false,
       sourceRoot: path.join(__dirname, '/src')
@@ -63,7 +65,7 @@ gulp.task('default', ['watch']);
 gulp.task('publish', function build() {
   return gulp
     .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es6.d.ts'])
-    .pipe(ts(TS_CONFIG))
+    .pipe(ts(tsProject))
     .pipe(gulp.dest('dist'));
 });
 
