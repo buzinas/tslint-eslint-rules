@@ -38,7 +38,7 @@ gulp.task('lint', function lint() {
 
 gulp.task('build', argv.lint === false ? [] : ['lint'], function build() {
   const tsResult = tsProject
-    .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es2015.core.d.ts'])
+    .src([SRC_FOLDER, DEF_FOLDER])
     .pipe(sourcemaps.init())
     .pipe(tsProject());
 
@@ -63,10 +63,9 @@ gulp.task('watch', function watch() {
 gulp.task('default', ['watch']);
 
 gulp.task('publish', function build() {
-  return gulp
-    .src([SRC_FOLDER, DEF_FOLDER, 'node_modules/typescript/lib/lib.es6.d.ts'])
-    .pipe(ts(tsProject))
-    .pipe(gulp.dest('dist'));
+  return tsProject
+    .src([SRC_FOLDER, DEF_FOLDER])
+    .pipe(tsProject());
 });
 
 // ---

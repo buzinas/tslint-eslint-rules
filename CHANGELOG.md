@@ -1,5 +1,9 @@
 ## Change Log
 
+### v2.0.0 (2016/10/01 06:12 +00:00)
+- [a8f558f](https://github.com/buzinas/tslint-eslint-rules/commit/a8f558f8b25ec0965c1d31bac5ed603713f569f6) [feat] updated TypeScript dependency to v2.0 (@buzinas)
+- [a4cbb6f](https://github.com/buzinas/tslint-eslint-rules/commit/a4cbb6f17817df4de84e3d2e19fabc8057fd9db1) [docs] v1.6.1 (@buzinas)
+
 ### v1.6.1 (2016/10/01 05:41 +00:00)
 - [#119](https://github.com/buzinas/tslint-eslint-rules/pull/119) Merge pull request #119 from blakeembrey/no-ex-assign-patch (@blakeembrey)
 - [31afa69](https://github.com/buzinas/tslint-eslint-rules/commit/31afa69d1718bda1b6d7b9f16c77ef1eb157bb37) Fix `no-ex-assign` rule on non-assignment ops (@blakeembrey)
