@@ -28,12 +28,18 @@ const scripts = {
     invalid: [
       `function(err, stream) { stream.on('done', function(){exit(0)} }`,
       `function loadData (err, data) { doSomething(); }`,
+      `test(function (err) {
+        console.log('hello world')
+      })`,
+      `test(err => undefined)`,
+      `const cb = (err) => null`,
+      `var cb = function (err) {}`,
       `function loadData (err, data) {
         if (error) {
             console.log(error.stack);
         }
         doSomething();
-    }`
+      }`
     ]
   },
   customErrorNameConfig: {

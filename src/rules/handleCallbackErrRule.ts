@@ -26,21 +26,31 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
     }
   }
 
+  public visitFunctionExpression(node: ts.FunctionExpression) {
+    this.validateFunction(node);
+    super.visitFunctionExpression(node);
+  }
+
   public visitFunctionDeclaration(node: ts.FunctionDeclaration) {
-    const parameter = node.parameters[0];
-
-    if (parameter && this.errorCheck(parameter.name.getText())) {
-      this.validateReferencesForVariable(parameter);
-    }
-
+    this.validateFunction(node);
     super.visitFunctionDeclaration(node);
   }
 
-  private validateReferencesForVariable(node: ts.ParameterDeclaration) {
-    const fileName = this.getSourceFile().fileName;
-    const highlights = this.languageService.getDocumentHighlights(fileName, node.pos, [fileName]);
-    if (!highlights || highlights[0].highlightSpans.length <= 1) {
-      this.addFailure(this.createFailure(node.name.getStart(), node.name.getWidth(), Rule.FAILURE_STRING));
+  public visitArrowFunction(node: ts.ArrowFunction) {
+    this.validateFunction(node);
+    super.visitArrowFunction(node);
+  }
+
+  private validateFunction(node: ts.FunctionLikeDeclaration) {
+    const parameter = node.parameters[0];
+
+    if (parameter && this.errorCheck(parameter.name.getText())) {
+      const fileName = this.getSourceFile().fileName;
+      const highlights = this.languageService.getDocumentHighlights(fileName, parameter.pos, [fileName]);
+
+      if (!highlights || highlights[0].highlightSpans.length <= 1) {
+        this.addFailure(this.createFailure(parameter.name.getStart(), parameter.name.getWidth(), Rule.FAILURE_STRING));
+      }
     }
   }
 }
