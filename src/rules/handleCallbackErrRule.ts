@@ -12,24 +12,24 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class ErrCallbackHandlerWalker extends Lint.RuleWalker {
   private languageService: ts.LanguageService;
-  private errorRegex: RegExp;
+  private errorCheck: (name: string) => boolean;
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions, languageService: ts.LanguageService) {
     super(sourceFile, options);
     this.languageService = languageService;
-    const customExpression = options.ruleArguments[0] || 'err';
+    const errorArgument = options.ruleArguments[0] || 'err';
 
-    if (customExpression.charAt(0) === '^') {
-      this.errorRegex = new RegExp(customExpression);
+    if (errorArgument.charAt(0) === '^') {
+      this.errorCheck = RegExp.prototype.test.bind(new RegExp(errorArgument));
     } else {
-      this.errorRegex = new RegExp(`^${customExpression}$`);
+      this.errorCheck = (name) => name === errorArgument;
     }
   }
 
   public visitFunctionDeclaration(node: ts.FunctionDeclaration) {
     const parameter = node.parameters[0];
 
-    if (parameter && this.errorRegex.test(parameter.name.getText())) {
+    if (parameter && this.errorCheck(parameter.name.getText())) {
       this.validateReferencesForVariable(parameter);
     }
 
