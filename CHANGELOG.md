@@ -1,5 +1,10 @@
 ## Change Log
 
+### v1.6.1 (2016/10/01 05:41 +00:00)
+- [#119](https://github.com/buzinas/tslint-eslint-rules/pull/119) Merge pull request #119 from blakeembrey/no-ex-assign-patch (@blakeembrey)
+- [31afa69](https://github.com/buzinas/tslint-eslint-rules/commit/31afa69d1718bda1b6d7b9f16c77ef1eb157bb37) Fix `no-ex-assign` rule on non-assignment ops (@blakeembrey)
+- [36eb552](https://github.com/buzinas/tslint-eslint-rules/commit/36eb5529a1cfba10c79ecf8eede72403cc197e07) [docs] v1.6.0 (@buzinas)
+
 ### v1.6.0 (2016/09/27 05:56 +00:00)
 - [3f8dcc5](https://github.com/buzinas/tslint-eslint-rules/commit/3f8dcc5a2f5804243c86a47ba6dbfb4a2241d771) [feat] added the checkLoops option to the no-constant-condition rule (closes #92) (@buzinas)
 - [8a98530](https://github.com/buzinas/tslint-eslint-rules/commit/8a985309a3c2c645fdd143ae893b026710fa8c01) [bug] fixed no-extra-boolean-cast inside binary expressions (closes #87) (@buzinas)
