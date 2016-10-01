@@ -11,13 +11,19 @@ const scripts = {
             console.log(err.stack);
         }
         doSomething();
-    }`,
+      }`,
       `function loadData (Err, data) {
         if (Err) {
             console.log(Err.stack);
         }
         doSomething();
-    }`
+      }`,
+      `function test (cb) {
+        doSomething(function (err) {
+          cb(err)
+        })
+      }`,
+      `function handle (arg, err) {}`
     ],
     invalid: [
       `function(err, stream) { stream.on('done', function(){exit(0)} }`,
