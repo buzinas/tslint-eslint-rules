@@ -1,5 +1,23 @@
 ## Change Log
 
+### v2.1.0 (2016/10/03 19:29 +00:00)
+- [a3cca1b](https://github.com/buzinas/tslint-eslint-rules/commit/a3cca1b07641a58d4d6e69cc992270ae4e35b5e2) [docs] v2.1.0 - support for Node v4 and v0.10 (@buzinas)
+- [#128](https://github.com/buzinas/tslint-eslint-rules/pull/128) Merge pull request #128 from blakeembrey/0.10-support (@blakeembrey)
+- [adc290c](https://github.com/buzinas/tslint-eslint-rules/commit/adc290c02f1299251637ce5d448a3c152b58dc56) Support node 0.10 (@blakeembrey)
+- [4785e36](https://github.com/buzinas/tslint-eslint-rules/commit/4785e3637166072d10fec61c9bf8a3350aa05733) [feat] added support for Node v4.x (@buzinas)
+- [83ad6e3](https://github.com/buzinas/tslint-eslint-rules/commit/83ad6e3c89eb88a55707502c1251255771805e4a) Use `es5` as the TypeScript target (@blakeembrey)
+- [521ab3b](https://github.com/buzinas/tslint-eslint-rules/commit/521ab3b7714e01f64b76563d82f56de3863ae7e8) [docs] improved readme (@buzinas)
+- [b74c5cc](https://github.com/buzinas/tslint-eslint-rules/commit/b74c5ccbb00673b293120cf9e24f3e9f73698bc2) Merge remote-tracking branch 'upstream/master' into rulesMatching (@jcristovao)
+- [4826f33](https://github.com/buzinas/tslint-eslint-rules/commit/4826f33799780e911c2a0124ea7068ff52e64c3d) more wrong or missing links in README.md (@jcristovao)
+- [#123](https://github.com/buzinas/tslint-eslint-rules/pull/123) Merge pull request #123 from blakeembrey/handle-callback-err-patch (@blakeembrey)
+- [3e4a5c3](https://github.com/buzinas/tslint-eslint-rules/commit/3e4a5c3c0be0c0c3e69491fffb9cb3e5e4425d65) Refactor the `handle-callback-err` rule (@blakeembrey)
+- [#122](https://github.com/buzinas/tslint-eslint-rules/pull/122) Merge pull request #122 from blakeembrey/patch-handle-callback-err-rule (@blakeembrey)
+- [a9db8df](https://github.com/buzinas/tslint-eslint-rules/commit/a9db8dfe12f25586fb181a78aea36e0eb01b8eab) Tidy up error arg check for `handle-callback-err` (@blakeembrey)
+- [0555fe1](https://github.com/buzinas/tslint-eslint-rules/commit/0555fe129c7f6c08dbdf6407abdfbfcb00e6955c) [docs] v2.0.1 (@buzinas)
+- [#121](https://github.com/buzinas/tslint-eslint-rules/pull/121) Merge pull request #121 from blakeembrey/patch-handle-callback-err-rule (@blakeembrey)
+- [caf6ec6](https://github.com/buzinas/tslint-eslint-rules/commit/caf6ec62be772297c18a9dd56d280d9b2dac076a) Patch `handle-callback-err` (@blakeembrey)
+- [7f8ec85](https://github.com/buzinas/tslint-eslint-rules/commit/7f8ec857bed0d1088ed2232c80944d8475ffdfeb) [docs] v2.0.0 (closes #116) (@buzinas)
+
 ### v2.0.0 (2016/10/01 06:12 +00:00)
 - [a8f558f](https://github.com/buzinas/tslint-eslint-rules/commit/a8f558f8b25ec0965c1d31bac5ed603713f569f6) [feat] updated TypeScript dependency to v2.0 (@buzinas)
 - [a4cbb6f](https://github.com/buzinas/tslint-eslint-rules/commit/a4cbb6f17817df4de84e3d2e19fabc8057fd9db1) [docs] v1.6.1 (@buzinas)
@@ -7,6 +25,7 @@
 ### v1.6.1 (2016/10/01 05:41 +00:00)
 - [#119](https://github.com/buzinas/tslint-eslint-rules/pull/119) Merge pull request #119 from blakeembrey/no-ex-assign-patch (@blakeembrey)
 - [31afa69](https://github.com/buzinas/tslint-eslint-rules/commit/31afa69d1718bda1b6d7b9f16c77ef1eb157bb37) Fix `no-ex-assign` rule on non-assignment ops (@blakeembrey)
+- [279c1bb](https://github.com/buzinas/tslint-eslint-rules/commit/279c1bbd14408d42bb2f662aa01ad7f57a110559) README: fix ident error, only-arrow-function (@jcristovao)
 - [36eb552](https://github.com/buzinas/tslint-eslint-rules/commit/36eb5529a1cfba10c79ecf8eede72403cc197e07) [docs] v1.6.0 (@buzinas)
 
 ### v1.6.0 (2016/09/27 05:56 +00:00)
