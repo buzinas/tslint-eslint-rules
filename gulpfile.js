@@ -1,26 +1,26 @@
 'use strict';
 
-const argv = require('yargs').argv;
-const path = require('path');
-const gulp = require('gulp');
-const sourcemaps = require('gulp-sourcemaps');
-const ts = require('gulp-typescript');
-const tslint = require('gulp-tslint');
-const mocha = require('gulp-spawn-mocha');
+var argv = require('yargs').argv;
+var path = require('path');
+var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps');
+var ts = require('gulp-typescript');
+var tslint = require('gulp-tslint');
+var mocha = require('gulp-spawn-mocha');
 
-const SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
-const TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
-const DEF_FOLDER = 'typings/**/*.ts'
-const tsProject = ts.createProject('tsconfig.json');
+var SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
+var TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
+var DEF_FOLDER = 'typings/**/*.ts'
+var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task('readme', ['build'], () => {
-  const readme = require('./dist/readme');
+gulp.task('readme', ['build'], function () {
+  var readme = require('./dist/readme');
   readme.updateRuleFiles();
   readme.updateReadme();
 });
 
-gulp.task('fetch', ['build'], () => {
-  const fetch = require('./dist/readme/fetch');
+gulp.task('fetch', ['build'], function () {
+  var fetch = require('./dist/readme/fetch');
   fetch.compareToESLint();
   fetch.compareToTSLint();
 });
@@ -37,7 +37,7 @@ gulp.task('lint', function lint() {
 });
 
 gulp.task('build', argv.lint === false ? [] : ['lint'], function build() {
-  const tsResult = tsProject
+  var tsResult = tsProject
     .src([SRC_FOLDER, DEF_FOLDER])
     .pipe(sourcemaps.init())
     .pipe(tsProject());
@@ -70,13 +70,15 @@ gulp.task('publish', function build() {
 
 // ---
 function toCamelCase(str){
-  return str.split('-').map((word, i) => word.charAt(0)[i ? 'toUpperCase' : 'toLowerCase']() + word.slice(1)).join('');
+  return str.replace(/-(.)/g, function (_, char) {
+    return char.toUpperCase();
+  });
 }
 
 function singleRule(name) {
-  return `src/**/?(${toCamelCase(name)}*|helper).ts`;
+  return 'src/**/?(' + toCamelCase(name) + '*|helper).ts';
 }
 
 function singleTest(name) {
-  return `dist/test/rules/${toCamelCase(name)}RuleTests.js`;
+  return 'dist/test/rules/' + toCamelCase(name) + 'RuleTests.js';
 }
