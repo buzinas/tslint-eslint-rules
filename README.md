@@ -189,7 +189,7 @@ These rules have to do with variable declarations.
 |:x:|[no-undef-init](http://eslint.org/docs/rules/no-undef-init)|no-undef-init|disallow use of undefined when initializing variables|
 |:x:|[no-undefined](http://eslint.org/docs/rules/no-undefined)|no-undefined|disallow use of `undefined` variable|
 |:ballot_box_with_check:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|[no-unused-variable](http://palantir.github.io/tslint/rules/no-unused-variable)|disallow declaration of variables that are not used in the code (recommended)|
-|:ballot_box_with_check:|[no-use-before-define](http://eslint.org/docs/rules/no-use-before-define)|[no-use-before-define](http://palantir.github.io/tslint/rules/no-use-before-define)|disallow use of variables before they are defined|
+|:ballot_box_with_check:|[no-use-before-define](http://eslint.org/docs/rules/no-use-before-define)|[no-use-before-declare](http://palantir.github.io/tslint/rules/no-use-before-declare)|disallow use of variables before they are defined|
 
 ### Node.js and CommonJS
 
@@ -250,7 +250,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-continue](http://eslint.org/docs/rules/no-continue)|no-continue|disallow use of the `continue` statement|
 |:x:|[no-inline-comments](http://eslint.org/docs/rules/no-inline-comments)|no-inline-comments|disallow comments inline after code|
 |:x:|[no-lonely-if](http://eslint.org/docs/rules/no-lonely-if)|no-lonely-if|disallow `if` as the only statement in an `else` block|
-|:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[ident](http://palantir.github.io/tslint/rules/ident)|disallow mixed spaces and tabs for indentation (recommended)|
+|:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[indent](http://palantir.github.io/tslint/rules/indent)|disallow mixed spaces and tabs for indentation (recommended)|
 |:ballot_box_with_check:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|[no-consecutive-blank-lines](http://palantir.github.io/tslint/rules/no-consecutive-blank-lines)|disallow multiple empty lines|
 |:x:|[no-negated-condition](http://eslint.org/docs/rules/no-negated-condition)|no-negated-condition|disallow negated conditions|
 |:x:|[no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary)|no-nested-ternary|disallow nested ternary expressions|
@@ -263,13 +263,13 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-unneeded-ternary](http://eslint.org/docs/rules/no-unneeded-ternary)|no-unneeded-ternary|disallow the use of ternary operators when a simpler alternative exists|
 |:x:|[no-whitespace-before-property](http://eslint.org/docs/rules/no-whitespace-before-property)|no-whitespace-before-property|disallow whitespace before properties|
 |:white_check_mark:|[object-curly-spacing](http://eslint.org/docs/rules/object-curly-spacing)|[object-curly-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/objectCurlySpacingRule.md)|require or disallow padding inside curly braces|
-|:x:|[one-var](http://eslint.org/docs/rules/one-var)|one-var|require or disallow one variable declaration per function|
+|:ballot_box_with_check:|[one-var](http://eslint.org/docs/rules/one-var)|[one-variable-per-declaration](http://palantir.github.io/tslint/rules/one-variable-per-declaration/)|require or disallow one variable declaration per function|
 |:x:|[one-var-declaration-per-line](http://eslint.org/docs/rules/one-var-declaration-per-line)|one-var-declaration-per-line|require or disallow a newline around variable declarations|
 |:x:|[operator-assignment](http://eslint.org/docs/rules/operator-assignment)|operator-assignment|require assignment operator shorthand where possible or prohibit it entirely|
 |:x:|[operator-linebreak](http://eslint.org/docs/rules/operator-linebreak)|operator-linebreak|enforce operators to be placed before or after line breaks|
 |:x:|[padded-blocks](http://eslint.org/docs/rules/padded-blocks)|padded-blocks|enforce padding within blocks|
 |:x:|[quote-props](http://eslint.org/docs/rules/quote-props)|quote-props|require quotes around object literal property names|
-|:x:|[quotes](http://eslint.org/docs/rules/quotes)|quote-props|specify whether backticks, double or single quotes should be used|
+|:ballot_box_with_check:|[quotes](http://eslint.org/docs/rules/quotes)|[quotemark](http://palantir.github.io/tslint/rules/quotemark/)|specify whether backticks, double or single quotes should be used|
 |:x:|[require-jsdoc](http://eslint.org/docs/rules/require-jsdoc)|require-jsdoc|Require JSDoc comment|
 |:ballot_box_with_check:|[semi](http://eslint.org/docs/rules/semi)|[semicolon](http://palantir.github.io/tslint/rules/semicolon)|require or disallow use of semicolons instead of ASI|
 |:x:|[semi-spacing](http://eslint.org/docs/rules/semi-spacing)|semi-spacing|enforce spacing before and after semicolons|
@@ -305,7 +305,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[no-useless-constructor](http://eslint.org/docs/rules/no-useless-constructor)|no-useless-constructor|disallow unnecessary constructor|
 |:ballot_box_with_check:|[no-var](http://eslint.org/docs/rules/no-var)|[no-var-keyword](http://palantir.github.io/tslint/rules/no-var-keyword)|require `let` or `const` instead of `var`|
 |:x:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|object-shorthand|require method and property shorthand syntax for object literals|
-|:x:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|prefer-arrow-callback|suggest using arrow functions as callbacks|
+|:ballot_box_with_check:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[only-arrow-functions](http://palantir.github.io/tslint/rules/only-arrow-functions/)|suggest using arrow functions as callbacks|
 |:x:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|prefer-const|suggest using `const` declaration for variables that are never modified after declared|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|
