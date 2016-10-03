@@ -152,7 +152,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
       ts.SyntaxKind.VariableStatement
     ];
 
-    if (!node.getFullText().trim().startsWith('/**')) {
+    if (!/^\/\*\*/.test(node.getFullText().trim())) {
       if (ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
         return this.getJSDocComment(node.parent);
       }
@@ -166,7 +166,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
     let start = node.pos;
     let width = comments.length;
 
-    if (!comments.startsWith('/**') || !comments.endsWith('*/')) {
+    if (!/^\/\*\*/.test(comments) || !/\*\/$/.test(comments)) {
       return {};
     }
 
@@ -198,7 +198,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
       return;
     }
 
-    const fn = this.fns.find(f => node === f.node);
+    let fn = this.fns.filter(f => node === f.node)[0];
     let params = {};
     let hasReturns = false;
     let hasConstructor = false;

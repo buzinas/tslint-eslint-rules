@@ -1,3 +1,4 @@
+import { Promise } from 'es6-promise';
 import * as fs from 'fs';
 import * as path from 'path';
 import { IRule, categories, rules, ruleTSMap } from './rules';
@@ -98,7 +99,7 @@ function updateRuleFiles(cb: Function) {
     file => fs.lstatSync(path.join(ruleDir, file)).isFile()
   );
   const ruleNames = allFiles
-    .filter(name => name.endsWith('.ts'))
+    .filter(name => /\.ts$/.test(name))
     .map(name => name.substr(0, name.length - 7));
   const allPromises = [];
   ruleNames.forEach((name) => {
