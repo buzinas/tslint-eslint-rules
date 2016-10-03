@@ -38,7 +38,9 @@ class NoExtraSemiWalker extends Lint.RuleWalker {
   }
 
   private checkClass(node: ts.ClassDeclaration) {
-    const children = node.getChildren().slice(node.getChildren().indexOf(node.getChildren().find(child => child.kind === ts.SyntaxKind.FirstPunctuation)));
+    const indexOf = node.getChildren().map(child => child.kind).indexOf(ts.SyntaxKind.FirstPunctuation);
+    const children = node.getChildren().slice(indexOf);
+
     this.checkClassChildren(children);
   }
 

@@ -1,3 +1,4 @@
+import { Promise } from 'es6-promise';
 import * as https from 'https';
 import { ruleTSMap, ruleESMap, toCamelCase } from './rules';
 

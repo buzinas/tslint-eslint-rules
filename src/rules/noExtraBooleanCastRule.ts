@@ -60,10 +60,10 @@ class NoExtraBooleanCastWalker extends Lint.RuleWalker {
     else if (grandparent.kind === ts.SyntaxKind.PrefixUnaryExpression && (grandparent as ts.PrefixUnaryExpression).operator === ts.SyntaxKind.ExclamationToken) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.unaryCast));
     }
-    else if (grandparent.kind === ts.SyntaxKind.CallExpression && grandparent.getText().startsWith('Boolean')) {
+    else if (grandparent.kind === ts.SyntaxKind.CallExpression && /^Boolean/.test(grandparent.getText())) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.objectCast));
     }
-    else if (grandparent.kind === ts.SyntaxKind.NewExpression && grandparent.getText().startsWith('new Boolean')) {
+    else if (grandparent.kind === ts.SyntaxKind.NewExpression && /^new Boolean/.test(grandparent.getText())) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.newCast));
     }
   }
