@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
+import { isAssignmentToken } from '../support/token';
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = 'unexpected constant condition';
@@ -87,7 +88,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
       // ESLint BinaryExpression / LogicalExpression
       case ts.SyntaxKind.BinaryExpression:
         // ESLint AssignmentExpression
-        if (this.isAssignmentToken((node as ts.BinaryExpression).operatorToken)) {
+        if (isAssignmentToken((node as ts.BinaryExpression).operatorToken)) {
           return this.isConstant((node as ts.BinaryExpression).right);
         }
         return this.isConstant((node as ts.BinaryExpression).left) && this.isConstant((node as ts.BinaryExpression).right);
@@ -103,9 +104,5 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
     }
 
     return false;
-  }
-
-  private isAssignmentToken(token: ts.Node) {
-    return token.kind >= ts.SyntaxKind.FirstAssignment && token.kind <= ts.SyntaxKind.LastAssignment;
   }
 }

@@ -11,23 +11,35 @@ const scripts = {
             console.log(err.stack);
         }
         doSomething();
-    }`,
+      }`,
       `function loadData (Err, data) {
         if (Err) {
             console.log(Err.stack);
         }
         doSomething();
-    }`
+      }`,
+      `function test (cb) {
+        doSomething(function (err) {
+          cb(err)
+        })
+      }`,
+      `function handle (arg, err) {}`
     ],
     invalid: [
       `function(err, stream) { stream.on('done', function(){exit(0)} }`,
       `function loadData (err, data) { doSomething(); }`,
+      `test(function (err) {
+        console.log('hello world')
+      })`,
+      `test(err => undefined)`,
+      `const cb = (err) => null`,
+      `var cb = function (err) {}`,
       `function loadData (err, data) {
         if (error) {
             console.log(error.stack);
         }
         doSomething();
-    }`
+      }`
     ]
   },
   customErrorNameConfig: {

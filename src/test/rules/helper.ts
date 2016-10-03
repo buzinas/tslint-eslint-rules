@@ -63,7 +63,7 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
      -------
      ${scriptText}
      -------
-     
+
      Found ${failures.length} errors(s):
 
      ${errorMsgs}
@@ -77,11 +77,11 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
      -------
      ${scriptText}
      -------
-     
+
      Expected:
-     
+
        ${expectedErrorMsgs}
-     
+
      Found:
 
        ${actualErrorMsgs}
@@ -93,7 +93,7 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
 export function runTest(rule: string, scripts: IScripts) {
   scripts.forEach(item => {
     const code: string = typeof item === 'string' ? item : item.code;
-    const config = { rules: { [rule]: true } };
+    const config: any = { rules: { [rule]: true } };
     const errors = [];
     if (typeof item === 'object') {
       if (item.options) {

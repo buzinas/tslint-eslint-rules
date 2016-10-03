@@ -24,8 +24,7 @@ const scripts = {
       ];`,
       `var [ x, y ] = z;`,
       `var [ x,y ] = z;`,
-      `var [ x, ...y ] = z;`,
-      `var [ ,,x, ] = z;`
+      `var [ x, ...y ] = z;`
     ],
     invalid: [
       `var arr = ['foo', 'bar'];`,
