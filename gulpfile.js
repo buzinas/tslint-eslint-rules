@@ -13,10 +13,13 @@ var TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 var DEF_FOLDER = 'typings/**/*.ts'
 var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task('readme', ['build'], function () {
+gulp.task('readme', ['build'], (gulpCallBack) => {
   var readme = require('./dist/readme');
-  readme.updateRuleFiles();
-  readme.updateReadme();
+  readme.updateRuleFiles(() => {
+    readme.updateReadme(() => {
+      gulpCallBack();
+    });
+  });
 });
 
 gulp.task('fetch', ['build'], function () {
