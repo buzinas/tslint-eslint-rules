@@ -22,10 +22,14 @@ gulp.task('readme', ['build'], (gulpCallBack) => {
   });
 });
 
-gulp.task('fetch', ['build'], function () {
+gulp.task('fetch', ['build'], (gulpCallBack) => {
   var fetch = require('./dist/readme/fetch');
-  fetch.compareToESLint();
-  fetch.compareToTSLint();
+  Promise.all([
+    fetch.compareToESLint(),
+    fetch.compareToTSLint()
+  ]).then(() => {
+    gulpCallBack();
+  });
 });
 
 gulp.task('lint', function lint() {
