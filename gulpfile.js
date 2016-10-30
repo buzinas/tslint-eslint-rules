@@ -16,8 +16,8 @@ var tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('readme', ['build'], function readme(gulpCallBack) {
   var readme = require('./dist/readme');
-  readme.updateRuleFiles(() => {
-    readme.updateReadme(() => {
+  readme.updateRuleFiles(function () {
+    readme.updateReadme(function () {
       gulpCallBack();
     });
   });
@@ -28,7 +28,7 @@ gulp.task('fetch', ['build'], function fetch(gulpCallBack) {
   Promise.all([
     fetch.compareToESLint(),
     fetch.compareToTSLint()
-  ]).then(() => {
+  ]).then(function () {
     gulpCallBack();
   });
 });
