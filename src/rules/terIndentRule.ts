@@ -7,6 +7,7 @@
  */
 import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
+import * as assign from 'object-assign';
 
 const DEFAULT_VARIABLE_INDENT = 1;
 const DEFAULT_PARAMETER_INDENT = null;
@@ -181,7 +182,7 @@ class IndentWalker extends Lint.RuleWalker {
           const: userOptions.VariableDeclarator
         };
       } else if (typeof userOptions.VariableDeclarator === 'object') {
-        Object.assign(OPTIONS.VariableDeclarator, userOptions.VariableDeclarator);
+        assign(OPTIONS.VariableDeclarator, userOptions.VariableDeclarator);
       }
 
       if (typeof userOptions.outerIIFEBody === 'number') {
@@ -193,11 +194,11 @@ class IndentWalker extends Lint.RuleWalker {
       }
 
       if (typeof userOptions.FunctionDeclaration === 'object') {
-        Object.assign(OPTIONS.FunctionDeclaration, userOptions.FunctionDeclaration);
+        assign(OPTIONS.FunctionDeclaration, userOptions.FunctionDeclaration);
       }
 
       if (typeof userOptions.FunctionExpression === 'object') {
-        Object.assign(OPTIONS.FunctionExpression, userOptions.FunctionExpression);
+        assign(OPTIONS.FunctionExpression, userOptions.FunctionExpression);
       }
     }
     this.srcFile = sourceFile;
