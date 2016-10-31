@@ -968,7 +968,11 @@ class IndentWalker extends Lint.RuleWalker {
     }
 
     const propertyIndent = this.getNodeIndent(node).goodChar + indentSize * OPTIONS.MemberExpression;
-    const checkNodes = [node.name, node.dotToken];
+
+    // Assuming that the node has three children: [expression, dotToken, name]
+    // In typescript < 2.0 we had access to the dotToken as an attribute of the node.
+    const dotToken = node.getChildAt(1);
+    const checkNodes = [node.name, dotToken];
 
     this.checkNodesIndent(checkNodes, propertyIndent);
     super.visitPropertyAccessExpression(node);
