@@ -7,22 +7,30 @@ var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
 var mocha = require('gulp-spawn-mocha');
+var Promise = require('es6-promise').Promise;
 
 var SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
 var TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
 var DEF_FOLDER = 'typings/**/*.ts'
 var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task('readme', ['build'], function () {
+gulp.task('readme', ['build'], function readme(gulpCallBack) {
   var readme = require('./dist/readme');
-  readme.updateRuleFiles();
-  readme.updateReadme();
+  readme.updateRuleFiles(function () {
+    readme.updateReadme(function () {
+      gulpCallBack();
+    });
+  });
 });
 
-gulp.task('fetch', ['build'], function () {
+gulp.task('fetch', ['build'], function fetch(gulpCallBack) {
   var fetch = require('./dist/readme/fetch');
-  fetch.compareToESLint();
-  fetch.compareToTSLint();
+  Promise.all([
+    fetch.compareToESLint(),
+    fetch.compareToTSLint()
+  ]).then(function () {
+    gulpCallBack();
+  });
 });
 
 gulp.task('lint', function lint() {

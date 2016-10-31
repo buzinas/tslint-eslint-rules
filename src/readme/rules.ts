@@ -1441,14 +1441,14 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-use-before-define',
-    tslintRule: 'no-use-before-define',
+    tslintRule: 'no-use-before-declare',
     category: 'Variables',
     description: 'disallow use of variables before they are defined',
     eslintUrl: 'http://eslint.org/docs/rules/no-use-before-define',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-use-before-define',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/no-use-before-declare',
     provider: 'native',
     usage: `~~~json
-    "no-use-before-define": true
+    "no-use-before-declare": true
     ~~~`
   },
   {
@@ -2305,20 +2305,20 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-mixed-spaces-and-tabs',
-    tslintRule: 'ident',
+    tslintRule: 'indent',
     category: 'Stylistic Issues',
     description: 'disallow mixed spaces and tabs for indentation (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-mixed-spaces-and-tabs',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/ident',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/indent',
     provider: 'native',
     usage: `~~~json
-    "ident": "spaces"
+    "indent": "spaces"
     ~~~
     
     ~~~json
-    "ident": "tabs"
+    "indent": "tabs"
     ~~~`,
-    note: `When using TSLint \`ident\` rule, it will enforce the consistent use of the chosen
+    note: `When using TSLint \`indent\` rule, it will enforce the consistent use of the chosen
     indentation. The ESLint rule allows an option for Smart Tabs, but there are some open issues,
     and we're not going to support this.`
   },
@@ -2491,13 +2491,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'one-var',
-    tslintRule: 'one-var',
+    tslintRule: 'one-variable-per-declaration',
     category: 'Stylistic Issues',
     description: 'require or disallow one variable declaration per function',
     eslintUrl: 'http://eslint.org/docs/rules/one-var',
-    provider: 'tslint-eslint-rules',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/one-variable-per-declaration/',
+    provider: 'native',
     usage: `~~~json
     "one-var": [
         true,
@@ -2653,13 +2654,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'quotes',
-    tslintRule: 'quote-props',
+    tslintRule: 'quotemark',
     category: 'Stylistic Issues',
     description: 'specify whether backticks, double or single quotes should be used',
     eslintUrl: 'http://eslint.org/docs/rules/quotes',
-    provider: 'tslint-eslint-rules',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/quotemark/',
+    provider: 'native',
     usage: `~~~json
     "quotes": [
         true,
@@ -3242,13 +3244,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'prefer-arrow-callback',
-    tslintRule: 'prefer-arrow-callback',
+    tslintRule: 'only-arrow-functions',
     category: 'ECMAScript 6',
     description: 'suggest using arrow functions as callbacks',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-arrow-callback',
-    provider: 'tslint-eslint-rules',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/only-arrow-functions/',
+    provider: 'native',
     usage: `~~~json
     "prefer-arrow-callback": true
     ~~~`
