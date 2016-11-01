@@ -7,7 +7,6 @@
  */
 import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
-import * as assign from 'object-assign';
 
 const DEFAULT_VARIABLE_INDENT = 1;
 const DEFAULT_PARAMETER_INDENT = null;
@@ -15,6 +14,19 @@ const DEFAULT_FUNCTION_BODY_INDENT = 1;
 let indentType = 'space';
 let indentSize = 4;
 let OPTIONS: any;
+
+function assign(target: any, ...sources: any[]): any {
+  sources.forEach((source) => {
+    if (source !== undefined && source !== null) {
+      for (const nextKey in source) {
+        if (source.hasOwnProperty(nextKey)) {
+          target[nextKey] = source[nextKey];
+        }
+      }
+    }
+  });
+  return target;
+}
 
 function isKind(node: ts.Node, kind: string) {
   return node.kind === ts.SyntaxKind[kind];

@@ -24,7 +24,6 @@
   "author": "Vitor Buzinaro <buzinas@buzinas.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/object-assign": "^4.0.30",
     "chai": "^3.5.0",
     "es6-promise": "^4.0.4",
     "gulp": "^3.9.1",
