@@ -32,6 +32,13 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
   valid: [
     {
       code: Lint.Utils.dedent`
+        class MyComponent {
+            @Input prop: number;
+        }
+      `
+    },
+    {
+      code: Lint.Utils.dedent`
       const array = [
           ,
           'd',
@@ -1600,6 +1607,14 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
     }
   ],
   invalid: [
+    {
+      code: Lint.Utils.dedent`
+        class MyComponent {
+         @Input prop: number;
+        }
+      `,
+      errors: expectedErrors([[2, 4, 1]])
+    },
     {
       code: Lint.Utils.dedent`
         var a = b;

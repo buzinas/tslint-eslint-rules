@@ -358,7 +358,11 @@ class IndentWalker extends Lint.RuleWalker {
   }
 
   private isSingleLineNode(node): boolean {
-    return node.getText().indexOf('\n') === -1;
+    // Note: all the tests would pass using `node.getFullText()` but we should only use this for
+    // the syntax list nodes, otherwise nodes which are single line may say they are multiline
+    // and this will make us do unnecessary checks.
+    const text = node.kind === ts.SyntaxKind.SyntaxList ? node.getFullText() : node.getText();
+    return text.indexOf('\n') === -1;
   }
 
   /**
