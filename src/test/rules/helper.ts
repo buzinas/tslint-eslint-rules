@@ -73,7 +73,7 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
      ${scriptText}
      -------
 
-     Found ${failures.length} errors(s):
+     Found ${failures.length} error(s):
 
        ${errorMsgs.join('       ')}
     `;

@@ -32,6 +32,12 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
   valid: [
     {
       code: Lint.Utils.dedent`
+        this.http.get('/')
+          .map(res => res.json())`,
+      options: [2, { MemberExpression: 1 }]
+    },
+    {
+      code: Lint.Utils.dedent`
         class MyComponent {
             @Input prop: number;
         }
