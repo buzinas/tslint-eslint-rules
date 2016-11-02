@@ -42,7 +42,7 @@ export class Rule extends Lint.Rules.AbstractRule {
     description: 'enforce consistent indentation',
     rationale: Lint.Utils.dedent`
       Using only one of tabs or spaces for indentation leads to more consistent editor behavior,
-      cleaner diffs in version control, and easier programatic manipulation.`,
+      cleaner diffs in version control, and easier programmatic manipulation.`,
     optionsDescription: Lint.Utils.dedent`
       The string 'tab' or an integer indicating the number of spaces to use per tab.
 

@@ -1908,23 +1908,35 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'indent',
-    tslintRule: 'indent',
+    tslintRule: 'ter-indent',
     category: 'Stylistic Issues',
-    description: 'specify tab or space width for your code',
+    description: 'enforce consistent indentation',
     eslintUrl: 'http://eslint.org/docs/rules/indent',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/indent',
-    provider: 'native',
+    provider: 'tslint-eslint-rules',
     usage: `~~~json
     "indent": [
         true,
-        "spaces"
+        "tab"
       ]
     ~~~
-    
+
     ~~~json
     "indent": [
         true,
-        "tabs"
+        2
+      ]
+    ~~~
+
+    ~~~json
+    "indent": [
+        true,
+        2,
+        {
+          "FunctionExpression": {
+            "parameters": 1,
+            "body": 1
+          }
+        }
       ]
     ~~~`
   },
