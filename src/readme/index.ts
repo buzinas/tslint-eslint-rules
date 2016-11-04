@@ -1,7 +1,7 @@
 import { Promise } from 'es6-promise';
 import * as fs from 'fs';
 import * as path from 'path';
-import { IRule, categories, rules, ruleTSMap } from './rules';
+import { IRule, categories, rules, ruleTSMap, toCamelCase } from './rules';
 
 function formatUsage(usage) {
   return usage.replace(/~~~/g, '```').replace(/(^[ \t]*\n)/gm, '\n').replace(/^    /mg, '');
@@ -59,6 +59,38 @@ function updateReadme(cb: Function) {
 }
 
 function createRuleContent(rule: IRule) {
+  const moduleName = `../rules/${toCamelCase(rule.tslintRule)}Rule.js`;
+  const module = require(moduleName);
+  const metaData = module.Rule.metadata;
+  if (metaData) {
+    // Checking that the rule name and description match
+    if (metaData.ruleName !== rule.tslintRule) {
+      console.warn('[WARNING]: metadata.ruleName !== rule.tslintRule');
+      console.warn(`           ${metaData.ruleName} !== ${rule.tslintRule}`);
+    }
+    if (metaData.description !== rule.description) {
+      console.warn('[WARNING]: metadata.description !== rule.description');
+      console.warn(`           ${metaData.description} !== ${rule.description}`);
+    }
+    const examples = metaData.optionExamples.map(
+      x => ['```json', x, '```'].join('')
+    ).join('\n\n');
+    const schema = [
+      '```json',
+      JSON.stringify(metaData.options, null, 2),
+      '```'
+    ].join('\n');
+    return [
+      `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))\n`,
+      `${rule.description}\n`,
+      `#### Rationale\n${metaData.rationale}`,
+      `### Config\n${metaData.optionsDescription}`,
+      `#### Examples\n\n${examples}`,
+      `#### Schema\n\n${schema}`
+    ].join('\n');
+  }
+
+  // TODO: Remove the next statements once every rule in this project have metadata.
   const usage = rule.usage ? `\n\n### Usage\n\n${formatUsage(rule.usage)}` : '';
   const note = rule.note ? `\n\n### Note\n\n${rule.note}\n` : '';
   return `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))

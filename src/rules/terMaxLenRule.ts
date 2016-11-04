@@ -92,7 +92,8 @@ export class Rule extends Lint.Rules.AbstractRule {
     rationale: Lint.Utils.dedent`
       Limiting the length of a line of code improves code readability.
       It also makes comparing code side-by-side easier and improves compatibility with
-      various editors, IDEs, and diff viewers.`,
+      various editors, IDEs, and diff viewers.
+      `,
     optionsDescription: Lint.Utils.dedent`
       An integer indicating the maximum length of lines followed by an optional integer specifying
       the character width for tab characters.
@@ -160,12 +161,14 @@ export class Rule extends Lint.Rules.AbstractRule {
         additionalProperties: false
       }],
       minLength: 1,
-      maxLength: 2
+      maxLength: 3
     },
     optionExamples: [
-      '[true, 100]',
       Lint.Utils.dedent`
-        [
+        "ter-max-len": [true, 100]
+        `,
+      Lint.Utils.dedent`
+        "ter-max-len": [
           true,
           100,
           2,
@@ -173,9 +176,10 @@ export class Rule extends Lint.Rules.AbstractRule {
             "${IGNORE_URLS}": true,
             "${IGNORE_PATTERN}": "^\\\\s*(let|const)\\\\s.+=\\\\s*require\\\\s*\\\\("
           }
-        ]`,
+        ]
+        `,
       Lint.Utils.dedent`
-        [
+        "ter-max-len": [
           true,
           {
             "${CODE}": 100,
@@ -184,7 +188,8 @@ export class Rule extends Lint.Rules.AbstractRule {
             "${IGNORE_URLS}": true,
             "${IGNORE_PATTERN}": "^\\\\s*(let|const)\\\\s.+=\\\\s*require\\\\s*\\\\("
           }
-        ]`
+        ]
+        `
     ],
     type: 'style'
   };

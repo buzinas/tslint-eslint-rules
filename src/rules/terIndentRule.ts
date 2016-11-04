@@ -8,6 +8,7 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint/lib/lint';
 
+const RULE_NAME = 'ter-indent';
 const DEFAULT_VARIABLE_INDENT = 1;
 const DEFAULT_PARAMETER_INDENT = null;
 const DEFAULT_FUNCTION_BODY_INDENT = 1;
@@ -38,17 +39,18 @@ function isOneOf(node: ts.Node, kinds: string[]) {
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
-    ruleName: 'ter-indent',
+    ruleName: RULE_NAME,
     description: 'enforce consistent indentation',
     rationale: Lint.Utils.dedent`
       Using only one of tabs or spaces for indentation leads to more consistent editor behavior,
-      cleaner diffs in version control, and easier programmatic manipulation.`,
+      cleaner diffs in version control, and easier programmatic manipulation.
+      `,
     optionsDescription: Lint.Utils.dedent`
       The string 'tab' or an integer indicating the number of spaces to use per tab.
 
       An object may be provided to fine tune the indentation rules:
             
-        * \`"SwitchCase"\` (default: 0) enforces indentation level for \`case\` clauses in 
+        * \`"SwitchCase"\` (default: 0) enforces indentation level for \`case\` clauses in
                            \`switch\` statements
         * \`"VariableDeclarator"\` (default: 1) enforces indentation level for \`var\` declarators;
                                    can also take an object to define separate rules for \`var\`,
@@ -140,6 +142,24 @@ export class Rule extends Lint.Rules.AbstractRule {
       maxLength: 2
     },
     optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "tab"]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, 2]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [
+          true,
+          2,
+          {
+            "FunctionExpression": {
+              "parameters": 1,
+              "body": 1
+            }
+          }
+        ]      
+        `
     ],
     type: 'maintainability'
   };

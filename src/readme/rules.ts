@@ -1912,33 +1912,7 @@ const rules: IRule[] = [
     category: 'Stylistic Issues',
     description: 'enforce consistent indentation',
     eslintUrl: 'http://eslint.org/docs/rules/indent',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "indent": [
-        true,
-        "tab"
-      ]
-    ~~~
-
-    ~~~json
-    "indent": [
-        true,
-        2
-      ]
-    ~~~
-
-    ~~~json
-    "indent": [
-        true,
-        2,
-        {
-          "FunctionExpression": {
-            "parameters": 1,
-            "body": 1
-          }
-        }
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,

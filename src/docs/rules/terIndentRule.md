@@ -3,48 +3,17 @@
 
 enforce consistent indentation
 
-### Usage
-
-```json
-"indent": [
-    true,
-    "tab"
-  ]
-```
-
-```json
-"indent": [
-    true,
-    2
-  ]
-```
-
-```json
-"indent": [
-    true,
-    2,
-    {
-      "FunctionExpression": {
-        "parameters": 1,
-        "body": 1
-      }
-    }
-  ]
-```
-
-<!-- End:AutoDoc -->
-
-### Rationale
+#### Rationale
 
 Using only one of tabs or spaces for indentation leads to more consistent editor behavior,
 cleaner diffs in version control, and easier programmatic manipulation.
 
-### Options
+### Config
 
 The string 'tab' or an integer indicating the number of spaces to use per tab.
 
 An object may be provided to fine tune the indentation rules:
-
+      
   * `"SwitchCase"` (default: 0) enforces indentation level for `case` clauses in
                      `switch` statements
   * `"VariableDeclarator"` (default: 1) enforces indentation level for `var` declarators;
@@ -65,6 +34,110 @@ An object may be provided to fine tune the indentation rules:
                          indentation level, or the string `"first"` indicating that all
                          parameters of the declaration must be aligned with the first parameter.
       * `"body"` (default: 1) enforces indentation level for the body of a function expression.
+
+#### Examples
+
+```json
+"ter-indent": [true, "tab"]
+```
+
+```json
+"ter-indent": [true, 2]
+```
+
+```json
+"ter-indent": [
+  true,
+  2,
+  {
+    "FunctionExpression": {
+      "parameters": 1,
+      "body": 1
+    }
+  }
+]      
+```
+#### Schema
+
+```json
+{
+  "type": "array",
+  "items": [
+    {
+      "type": "number",
+      "minimum": "0"
+    },
+    {
+      "type": "string",
+      "enum": [
+        "tab"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "SwitchCase": {
+          "type": "number",
+          "minimum": 0
+        },
+        "VariableDeclarator": {
+          "type": "object",
+          "properties": {
+            "var": {
+              "type": "number",
+              "minimum": 0
+            },
+            "let": {
+              "type": "number",
+              "minimum": 0
+            },
+            "const": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "outerIIFEBody": {
+          "type": "number"
+        },
+        "FunctionDeclaration": {
+          "type": "object",
+          "properties": {
+            "parameters": {
+              "type": "number",
+              "minimum": 0
+            },
+            "body": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "FunctionExpression": {
+          "type": "object",
+          "properties": {
+            "parameters": {
+              "type": "number",
+              "minimum": 0
+            },
+            "body": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "MemberExpression": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "minLength": 1,
+  "maxLength": 2
+}
+```
+<!-- End:AutoDoc -->
 
 ### TSLint Rule: `indent`
 
