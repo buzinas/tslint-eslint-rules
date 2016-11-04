@@ -17,7 +17,7 @@ interface IRule {
   eslintUrl: string;
   tslintUrl?: string;
   provider: Provider;
-  usage: string;
+  usage?: string;
   note?: string;
 }
 
@@ -2080,13 +2080,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'max-len',
-    tslintRule: 'max-line-length',
+    tslintRule: 'ter-max-len',
     category: 'Stylistic Issues',
-    description: 'specify the maximum length of a line in your program',
+    description: 'enforce a maximum line length',
     eslintUrl: 'http://eslint.org/docs/rules/max-len',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/max-line-length',
-    provider: 'native',
-    usage: ''
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
