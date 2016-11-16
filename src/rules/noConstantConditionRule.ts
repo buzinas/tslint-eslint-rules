@@ -95,10 +95,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
       case ts.SyntaxKind.ConditionalExpression:
         return this.isConstant((node as ts.ConditionalExpression).condition);
       case ts.SyntaxKind.PrefixUnaryExpression:
-        if (node.getFirstToken().kind === ts.SyntaxKind.ExclamationToken) {
-          return this.isConstant((node as ts.PrefixUnaryExpression).operand);
-        }
-        return true;
+        return this.isConstant((node as ts.PrefixUnaryExpression).operand);
       case ts.SyntaxKind.ParenthesizedExpression:
         return this.isConstant((node as ts.ParenthesizedExpression).expression);
     }
