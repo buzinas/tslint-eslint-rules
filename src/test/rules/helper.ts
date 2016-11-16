@@ -4,6 +4,7 @@ import * as Lint from 'tslint/lib/lint';
 
 export interface IScriptError {
   message: string;
+  line?: number;
 }
 export interface IScript {
   code: string;
@@ -11,6 +12,10 @@ export interface IScript {
   errors?: IScriptError[];
 }
 export type IScripts = (IScript|string)[];
+
+function arrayDiff(source, target) {
+  return source.filter(item => target.indexOf(item) === -1);
+}
 
 export function testScript(rule: string, scriptText: string, config: Object): boolean {
   const options: Lint.ILinterOptions = {
@@ -55,23 +60,35 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
   const result = linter.lint();
 
   const failures = JSON.parse(result.output);
+  const line = errors[0] ? 'line' in errors[0] : false;
 
   if (failures.length !== errors.length) {
-    const errorMsgs = failures.map(x => `- ${x.failure}\n`).join('     ');
+    const errorMsgs = failures.map((x) => {
+      const start = `(${x.startPosition.line})`;
+      return `${start} ${x.failure}\n`;
+    });
     const msg = `Expected ${errors.length} error(s) in:
 
      -------
      ${scriptText}
      -------
 
-     Found ${failures.length} errors(s):
+     Found ${failures.length} error(s):
 
-     ${errorMsgs}
+       ${errorMsgs.join('       ')}
     `;
     assert.fail(failures.length, errors.length, msg);
   } else {
-    const expectedErrorMsgs = errors.map(x => `- ${x.message}\n`).join('       ');
-    const actualErrorMsgs = failures.map(x => `- ${x.failure}\n`).join('       ');
+    const expectedErrorMsgs = errors.map((x) => {
+      const start = line ? `(${x.line})` : '-';
+      return `${start} ${x.message}\n`;
+    });
+    const actualErrorMsgs = failures.map((x) => {
+      const start = line ? `(${x.startPosition.line})` : '-';
+      return `${start} ${x.failure}\n`;
+    });
+    const expected = arrayDiff(expectedErrorMsgs, actualErrorMsgs);
+    const found = arrayDiff(actualErrorMsgs, expectedErrorMsgs);
     const msg = `Error mismatch in:
 
      -------
@@ -80,13 +97,13 @@ export function runScript(rule: string, scriptText: string, config: Object, erro
 
      Expected:
 
-       ${expectedErrorMsgs}
+       ${expected.join('       ')}
 
      Found:
 
-       ${actualErrorMsgs}
+       ${found.join('       ')}
     `;
-    assert(actualErrorMsgs === expectedErrorMsgs, msg);
+    assert(expected.length === 0 && found.length === 0, msg);
   }
 }
 

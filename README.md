@@ -228,7 +228,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[id-blacklist](http://eslint.org/docs/rules/id-blacklist)|id-blacklist|disallow certain identifiers to prevent them being used|
 |:x:|[id-length](http://eslint.org/docs/rules/id-length)|id-length|this option enforces minimum and maximum identifier lengths (variable names, property names etc.)|
 |:x:|[id-match](http://eslint.org/docs/rules/id-match)|id-match|require identifiers to match the provided regular expression|
-|:ballot_box_with_check:|[indent](http://eslint.org/docs/rules/indent)|[indent](http://palantir.github.io/tslint/rules/indent)|specify tab or space width for your code|
+|:white_check_mark:|[indent](http://eslint.org/docs/rules/indent)|[ter-indent](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terIndentRule.md)|enforce consistent indentation|
 |:x:|[jsx-quotes](http://eslint.org/docs/rules/jsx-quotes)|jsx-quotes|specify whether double or single quotes should be used in JSX attributes|
 |:x:|[key-spacing](http://eslint.org/docs/rules/key-spacing)|key-spacing|enforce spacing between keys and values in object literal properties|
 |:x:|[keyword-spacing](http://eslint.org/docs/rules/keyword-spacing)|keyword-spacing|enforce spacing before and after keywords|
