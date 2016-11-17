@@ -4,6 +4,8 @@ import { makeTest } from './helper';
 const rule = 'no-constant-condition';
 const scripts = {
   variables: [
+    'const a = "1"; const b = "2"; if (+a > +b) {}',
+    'const a = { value: true }; if (a.value) {}',
     'if (foo === true) {}',
     'if (!foo === true) {}',
     'if (bar === false) {}',
