@@ -235,7 +235,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[linebreak-style](http://eslint.org/docs/rules/linebreak-style)|linebreak-style|disallow mixed 'LF' and 'CRLF' as linebreaks|
 |:x:|[lines-around-comment](http://eslint.org/docs/rules/lines-around-comment)|lines-around-comment|enforce empty lines around comments|
 |:x:|[max-depth](http://eslint.org/docs/rules/max-depth)|max-depth|specify the maximum depth that blocks can be nested|
-|:ballot_box_with_check:|[max-len](http://eslint.org/docs/rules/max-len)|[max-line-length](http://palantir.github.io/tslint/rules/max-line-length)|specify the maximum length of a line in your program|
+|:white_check_mark:|[max-len](http://eslint.org/docs/rules/max-len)|[ter-max-len](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terMaxLenRule.md)|enforce a maximum line length|
 |:ballot_box_with_check:|[max-lines](http://eslint.org/docs/rules/max-lines)|[max-file-line-count](http://palantir.github.io/tslint/rules/max-file-line-count)|enforce a maximum number of lines per file|
 |:x:|[max-nested-callbacks](http://eslint.org/docs/rules/max-nested-callbacks)|max-nested-callbacks|specify the maximum depth callbacks can be nested|
 |:x:|[max-params](http://eslint.org/docs/rules/max-params)|max-params|specify the number of parameters that can be used in the function declaration|
