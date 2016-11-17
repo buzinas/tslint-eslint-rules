@@ -417,14 +417,14 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
       if (lineIsComment && exceedLineLimit(lineLength, maxCommentLength, source[to - 2])) {
         ruleFailure = new Lint.RuleFailure(
           sourceFile, from, to - 1,
-          `Line ${i} exceeds the maximum comment line length of ${maxCommentLength}.`,
-          this.getOptions().ruleName
+          `Line ${i + 1} exceeds the maximum comment line length of ${maxCommentLength}.`,
+          Rule.metadata.ruleName
         );
       } else if (exceedLineLimit(lineLength, lineLimit, source[to - 2])) {
         ruleFailure = new Lint.RuleFailure(
           sourceFile, from, to - 1,
-          `Line ${i} exceeds the maximum line length of ${lineLimit}.`,
-          this.getOptions().ruleName
+          `Line ${i + 1} exceeds the maximum line length of ${lineLimit}.`,
+          Rule.metadata.ruleName
         );
       }
 
