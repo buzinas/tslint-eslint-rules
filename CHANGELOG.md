@@ -1,5 +1,9 @@
 # Change Log
 
+## [v2.2.1] - 2016/11/17 21:50 GMT-0600
+#### Fixes
+- ter-max-len ([539b3c2](https://github.com/buzinas/tslint-eslint-rules/commit/539b3c210d1fd157d27a9fb61e123c28249e7690))
+
 ## [v2.2.0] - 2016/11/17 02:30 GMT-0600
 #### Rules Added
 - ter-indent ([b0334d4](https://github.com/buzinas/tslint-eslint-rules/commit/b0334d4fbf7286e07521cbffc5fa90f96e536224))
@@ -150,6 +154,7 @@
 - Added and made lots of improvements in README.md
 
 
+[v2.2.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.0...v2.2.1
 [v2.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v1.6.1...v2.0.0
