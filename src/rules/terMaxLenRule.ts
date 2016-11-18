@@ -11,6 +11,7 @@ import * as Lint from 'tslint/lib/lint';
 
 import { IDisabledInterval } from 'tslint/lib/language/rule/rule';
 
+const RULE_NAME = 'ter-max-len';
 const CODE: string = 'code';
 const COMMENTS: string = 'comments';
 const TAB_WIDTH: string = 'tabWidth';
@@ -87,7 +88,7 @@ function groupByLineNumber(acc, node: INode) {
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
-    ruleName: 'ter-max-len',
+    ruleName: RULE_NAME,
     description: 'enforce a maximum line length',
     rationale: Lint.Utils.dedent`
       Limiting the length of a line of code improves code readability.
@@ -165,10 +166,10 @@ export class Rule extends Lint.Rules.AbstractRule {
     },
     optionExamples: [
       Lint.Utils.dedent`
-        "ter-max-len": [true, 100]
+        "${RULE_NAME}": [true, 100]
         `,
       Lint.Utils.dedent`
-        "ter-max-len": [
+        "${RULE_NAME}": [
           true,
           100,
           2,
@@ -179,7 +180,7 @@ export class Rule extends Lint.Rules.AbstractRule {
         ]
         `,
       Lint.Utils.dedent`
-        "ter-max-len": [
+        "${RULE_NAME}": [
           true,
           {
             "${CODE}": 100,
@@ -417,14 +418,14 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
       if (lineIsComment && exceedLineLimit(lineLength, maxCommentLength, source[to - 2])) {
         ruleFailure = new Lint.RuleFailure(
           sourceFile, from, to - 1,
-          `Line ${i} exceeds the maximum comment line length of ${maxCommentLength}.`,
-          this.getOptions().ruleName
+          `Line ${i + 1} exceeds the maximum comment line length of ${maxCommentLength}.`,
+          RULE_NAME
         );
       } else if (exceedLineLimit(lineLength, lineLimit, source[to - 2])) {
         ruleFailure = new Lint.RuleFailure(
           sourceFile, from, to - 1,
-          `Line ${i} exceeds the maximum line length of ${lineLimit}.`,
-          this.getOptions().ruleName
+          `Line ${i + 1} exceeds the maximum line length of ${lineLimit}.`,
+          RULE_NAME
         );
       }
 

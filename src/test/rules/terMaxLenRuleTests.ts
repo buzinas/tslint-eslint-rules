@@ -4,9 +4,9 @@ import { runTest, IScripts, IScriptError } from './helper';
 
 function expectedErrors(errors: [[number, number] | [number, number, boolean]]): IScriptError[] {
   return errors.map((err) => {
-    let message = `Line ${err[0]} exceeds the maximum line length of ${err[1]}.`;
+    let message = `Line ${err[0] + 1} exceeds the maximum line length of ${err[1]}.`;
     if (err[2]) {
-      message = `Line ${err[0]} exceeds the maximum comment line length of ${err[1]}.`;
+      message = `Line ${err[0] + 1} exceeds the maximum comment line length of ${err[1]}.`;
     }
 
     return { message, line: err[0] };
