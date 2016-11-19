@@ -1,7 +1,7 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
 import * as fs from 'fs';
 import * as path from 'path';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import { runTest, IScripts, IScriptError } from './helper';
 
 const fixture = fs.readFileSync(

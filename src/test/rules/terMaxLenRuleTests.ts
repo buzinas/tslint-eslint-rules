@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import { runTest, IScripts, IScriptError } from './helper';
 
 function expectedErrors(errors: [[number, number] | [number, number, boolean]]): IScriptError[] {

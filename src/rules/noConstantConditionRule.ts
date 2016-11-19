@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import { isAssignmentToken } from '../support/token';
 
 export class Rule extends Lint.Rules.AbstractRule {

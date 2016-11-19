@@ -7,7 +7,7 @@
  * An addition exception has been added: ignoreImports.
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 
 import { IDisabledInterval } from 'tslint/lib/language/rule/rule';
 
@@ -192,6 +192,7 @@ export class Rule extends Lint.Rules.AbstractRule {
         ]
         `
     ],
+    typescriptOnly: false,
     type: 'style'
   };
 

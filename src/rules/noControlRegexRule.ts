@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = 'unexpected control character in regular expression';
