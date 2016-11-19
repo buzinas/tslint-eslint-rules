@@ -34,7 +34,7 @@ function requestFromGithub(path, callback) {
 }
 
 function compareToESLint() {
-  return new Promise((fulfill, reject) => {
+  return new Promise((fulfill) => {
     requestFromGithub('/repos/eslint/eslint/contents/lib/rules', (data) => {
       const rules = data
         .filter(obj => obj.name.endsWith('.js'))
@@ -71,7 +71,7 @@ function compareToESLint() {
 }
 
 function compareToTSLint() {
-  return new Promise((fulfill, reject) => {
+  return new Promise((fulfill) => {
     requestFromGithub('/repos/palantir/tslint/contents/src/rules', (data) => {
       const rules = data
         .filter(obj => obj.name.endsWith('.ts'))

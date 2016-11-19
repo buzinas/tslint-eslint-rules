@@ -30,7 +30,7 @@ const IGNORE_IMPORTS: string = 'ignoreImports';
  */
 function computeLineLength(line: string, tabWidth: number) {
   let extraCharacterCount = 0;
-  line.replace(/\t/g, (match, offset) => {
+  line.replace(/\t/g, (_, offset) => {
     const totalOffset = offset + extraCharacterCount;
     const previousTabStopOffset = tabWidth ? totalOffset % tabWidth : 0;
     const spaceCount = tabWidth - previousTabStopOffset;
@@ -66,7 +66,7 @@ function isTrailingComment(line: string, lineNumber: number, comment: INode) {
 /**
  * Gets the line after the comment and any remaining trailing whitespace is stripped.
  */
-function stripTrailingComment(line: string, lineNumber: number, comment: INode) {
+function stripTrailingComment(line: string, comment: INode) {
   return line.slice(0, comment.start[1]).replace(/\s+$/, '');
 }
 
@@ -394,7 +394,7 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
         if (isFullLineComment(line, i, comment)) {
           lineIsComment = true;
         } else if (ignoreTrailingComments && isTrailingComment(line, i, comment)) {
-          line = stripTrailingComment(line, i, comment);
+          line = stripTrailingComment(line, comment);
         }
       }
 
