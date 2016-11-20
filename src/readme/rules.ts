@@ -128,22 +128,16 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow duplicate arguments in functions (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-dupe-args',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'no-dupe-keys',
-    tslintRule: 'no-duplicate-key',
+    tslintRule: 'Not applicable',
     category: 'Possible Errors',
     description: 'disallow duplicate keys when creating object literals (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-dupe-keys',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-duplicate-key',
-    provider: 'native',
-    usage: `~~~json
-    "no-duplicate-key": true
-    ~~~`
+    provider: 'Not applicable'
   },
   {
     available: true,
