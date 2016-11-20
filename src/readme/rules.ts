@@ -960,9 +960,7 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'disallow use of octal literals (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-octal',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1292,15 +1290,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'strict',
-    tslintRule: 'use-strict',
+    tslintRule: 'Not applicable',
     category: 'Strict Mode',
     description: 'require effective use of strict mode directives',
     eslintUrl: 'http://eslint.org/docs/rules/strict',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/use-strict',
-    provider: 'native',
-    usage: ''
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1349,9 +1345,7 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow deletion of variables (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-delete-var',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1397,9 +1391,7 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-undef',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
     available: false,
