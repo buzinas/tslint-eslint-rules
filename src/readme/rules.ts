@@ -1418,17 +1418,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'no-unused-vars',
-    tslintRule: 'no-unused-variable',
+    tslintRule: 'Not applicable',
     category: 'Variables',
-    description: 'disallow declaration of variables that are not used in the code (recommended)',
+    description: '|DEPRECATION: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)| disallow declaration of variables that are not used in the code (recommended).',
     eslintUrl: 'http://eslint.org/docs/rules/no-unused-vars',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-unused-variable',
-    provider: 'native',
-    usage: `~~~json
-    "no-unused-variable": true
-    ~~~`
+    provider: 'Not applicable'
   },
   {
     available: true,
