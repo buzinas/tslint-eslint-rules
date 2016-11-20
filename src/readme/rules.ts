@@ -350,17 +350,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'no-unreachable',
-    tslintRule: 'no-unreachable',
+    tslintRule: 'Not applicable',
     category: 'Possible Errors',
     description: 'disallow unreachable statements after a return, throw, continue, or break statement (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-unreachable',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-unreachable',
-    provider: 'native',
-    usage: `~~~json
-    "no-unreachable": true
-    ~~~`
+    provider: 'Not applicable'
   },
   {
     available: true,
