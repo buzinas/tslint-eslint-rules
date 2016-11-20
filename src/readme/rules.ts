@@ -1422,7 +1422,7 @@ const rules: IRule[] = [
     eslintRule: 'no-unused-vars',
     tslintRule: 'Not applicable',
     category: 'Variables',
-    description: '|DEPRECATION: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)| disallow declaration of variables that are not used in the code (recommended).',
+    description: '[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).',
     eslintUrl: 'http://eslint.org/docs/rules/no-unused-vars',
     provider: 'Not applicable'
   },

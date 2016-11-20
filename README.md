@@ -188,7 +188,7 @@ These rules have to do with variable declarations.
 |:no_entry_sign:|[no-undef](http://eslint.org/docs/rules/no-undef)|Not applicable|disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)|
 |:x:|[no-undef-init](http://eslint.org/docs/rules/no-undef-init)|no-undef-init|disallow use of undefined when initializing variables|
 |:x:|[no-undefined](http://eslint.org/docs/rules/no-undefined)|no-undefined|disallow use of `undefined` variable|
-|:no_entry_sign:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|Not applicable||DEPRECATION: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)| disallow declaration of variables that are not used in the code (recommended).|
+|:no_entry_sign:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|Not applicable|[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).|
 |:ballot_box_with_check:|[no-use-before-define](http://eslint.org/docs/rules/no-use-before-define)|[no-use-before-declare](http://palantir.github.io/tslint/rules/no-use-before-declare)|disallow use of variables before they are defined|
 
 ### Node.js and CommonJS
