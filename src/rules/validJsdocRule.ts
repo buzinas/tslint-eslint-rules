@@ -174,7 +174,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
   }
 
   private checkJSDoc(node: ts.Node) {
-    const {comments, start, width} = this.getJSDocComment(node);
+    const { comments, start, width } = this.getJSDocComment(node);
 
     if (!comments)
       return;

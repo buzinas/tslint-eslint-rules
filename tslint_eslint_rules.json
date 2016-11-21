@@ -3,6 +3,8 @@
   "rules": {
     "ter-max-len": [true, 180, {
       "ignoreUrls": true
-    }]
+    }],
+    "no-multi-spaces": [true],
+    "object-curly-spacing": [false, "always"]
   }
 }
