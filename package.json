@@ -4,7 +4,7 @@
   "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test && gulp self-lint"
   },
   "repository": {
     "type": "git",

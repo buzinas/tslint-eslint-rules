@@ -1,0 +1,8 @@
+{
+  "rulesDirectory": "dist/rules",
+  "rules": {
+    "ter-max-len": [true, 180, {
+      "ignoreUrls": true
+    }]
+  }
+}

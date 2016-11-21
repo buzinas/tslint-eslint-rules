@@ -42,6 +42,16 @@ gulp.task('lint', function lint() {
     .pipe(tslint.report());
 });
 
+gulp.task('self-lint', function selfLint() {
+  return gulp
+    .src(SRC_FOLDER)
+    .pipe(tslint({
+      configuration: 'tslint_eslint_rules.json',
+      formatter: 'verbose'
+    }))
+    .pipe(tslint.report());
+});
+
 gulp.task('build', argv.lint === false ? [] : ['lint'], function build(done) {
   var hasError = false;
   tsProject
