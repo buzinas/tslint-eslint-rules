@@ -37,25 +37,43 @@ gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
     .pipe(tslint({
-      tslint: require('tslint')
+      formatter: 'verbose',
     }))
-    .pipe(tslint.report('prose', {
-      summarizeFailureOutput: false
-    }));
+    .pipe(tslint.report());
 });
 
-gulp.task('build', argv.lint === false ? [] : ['lint'], function build() {
-  var tsResult = tsProject
+gulp.task('self-lint', function selfLint() {
+  return gulp
+    .src(SRC_FOLDER)
+    .pipe(tslint({
+      configuration: 'tslint_eslint_rules.json',
+      formatter: 'verbose'
+    }))
+    .pipe(tslint.report());
+});
+
+gulp.task('build', argv.lint === false ? [] : ['lint'], function build(done) {
+  var hasError = false;
+  tsProject
     .src([SRC_FOLDER, DEF_FOLDER])
     .pipe(sourcemaps.init())
-    .pipe(tsProject());
-
-  return tsResult.js
+    .pipe(tsProject())
+    .on('error', function onError() {
+      hasError = true;
+    })
+    .js
     .pipe(sourcemaps.write({
       includeContent: false,
       sourceRoot: path.join(__dirname, '/src')
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .on('end', function() {
+      if (hasError) {
+        done('TypeScript has reported errors');
+      } else {
+        done();
+      }
+    });
 });
 
 gulp.task('test', ['build'], function test() {

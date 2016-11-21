@@ -1,0 +1,14 @@
+{
+  "rulesDirectory": "dist/rules",
+  "rules": {
+    "ter-max-len": [true, 180, {
+      "ignoreUrls": true
+    }],
+    "no-multi-spaces": [true, {
+      "exceptions": {
+        "PropertyAssignment": false
+      }
+    }],
+    "object-curly-spacing": [false, "always"]
+  }
+}

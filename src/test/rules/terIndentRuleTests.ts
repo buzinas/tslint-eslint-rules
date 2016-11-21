@@ -1,7 +1,7 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
 import * as fs from 'fs';
 import * as path from 'path';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import { runTest, IScripts, IScriptError } from './helper';
 
 const fixture = fs.readFileSync(
@@ -263,39 +263,39 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
           files.concat(fileList)
         };
         `,
-      options: [2, {VariableDeclarator: { var: 2, let: 2, const: 3}}]
+      options: [2, { VariableDeclarator: { var: 2, let: 2, const: 3 } }]
     },
     {
       code: '  ',
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1 }]
     },
     {
       code: Lint.Utils.dedent`
         if(data) {
           console.log('hi');
           b = true;};`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1 }]
     },
     {
       code: Lint.Utils.dedent`
         foo = () => {
           console.log('hi');
           return true;};`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1 }]
     },
     {
       code: Lint.Utils.dedent`
         function test(data) {
           console.log('hi');
           return true;};`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
         var test = function(data) {
           console.log('hi');
         };`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -303,14 +303,14 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
           otherdata.forEach(function(zero) {
             console.log('hi');
           }) });`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
         a = [
             ,3
         ]`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -323,7 +323,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
           console.log(method);
         });
         `,
-      options: [2, {SwitchCase: 1, VariableDeclarator: 2}]
+      options: [2, { SwitchCase: 1, VariableDeclarator: 2}]
     },
     {
       code: Lint.Utils.dedent`
@@ -336,7 +336,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
                 ]
             }
         });`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -346,7 +346,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
                     a: 1
                 }
             ];`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -359,7 +359,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
         {
             x: 2
         }];`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -372,7 +372,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
                 ].join(',')
             ]
         });`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -385,7 +385,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
             ]
           ]
         };`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -395,7 +395,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
             b: 2
           }
         );`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -403,7 +403,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
             a: 1,
             b: 2
         });`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -416,7 +416,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
               b: 2
             }
           ];`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -428,7 +428,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
             b: 2
           }
         ];`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -439,7 +439,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
               a: 1,
               b: 2
             };`,
-      options: [2, {VariableDeclarator: 2, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 2, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -448,7 +448,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
               a: 1,
               b: 2
             };`,
-      options: [2, {VariableDeclarator: 2, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 2, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -457,7 +457,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
                 b: 2
             }),
             b = 2;`,
-      options: [4, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [4, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -467,7 +467,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
             b: 2
           },
           b = 2;`,
-      options: [2, {VariableDeclarator: 1, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 1, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`
@@ -477,7 +477,7 @@ const scripts: { valid: IScripts, invalid: IScripts } = {
               b: 2
             },
             b = 2;`,
-      options: [2, {VariableDeclarator: 2, SwitchCase: 1}]
+      options: [2, { VariableDeclarator: 2, SwitchCase: 1}]
     },
     {
       code: Lint.Utils.dedent`

@@ -128,22 +128,16 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow duplicate arguments in functions (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-dupe-args',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'no-dupe-keys',
-    tslintRule: 'no-duplicate-key',
+    tslintRule: 'Not applicable',
     category: 'Possible Errors',
     description: 'disallow duplicate keys when creating object literals (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-dupe-keys',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-duplicate-key',
-    provider: 'native',
-    usage: `~~~json
-    "no-duplicate-key": true
-    ~~~`
+    provider: 'Not applicable'
   },
   {
     available: true,
@@ -356,17 +350,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'no-unreachable',
-    tslintRule: 'no-unreachable',
+    tslintRule: 'Not applicable',
     category: 'Possible Errors',
     description: 'disallow unreachable statements after a return, throw, continue, or break statement (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-unreachable',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-unreachable',
-    provider: 'native',
-    usage: `~~~json
-    "no-unreachable": true
-    ~~~`
+    provider: 'Not applicable'
   },
   {
     available: true,
@@ -960,9 +950,7 @@ const rules: IRule[] = [
     category: 'Best Practices',
     description: 'disallow use of octal literals (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-octal',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1292,15 +1280,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'strict',
-    tslintRule: 'use-strict',
+    tslintRule: 'Not applicable',
     category: 'Strict Mode',
     description: 'require effective use of strict mode directives',
     eslintUrl: 'http://eslint.org/docs/rules/strict',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/use-strict',
-    provider: 'native',
-    usage: ''
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1349,9 +1335,7 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow deletion of variables (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-delete-var',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1397,9 +1381,7 @@ const rules: IRule[] = [
     category: 'Variables',
     description: 'disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-undef',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/Not applicable',
-    provider: 'Not applicable',
-    usage: ``
+    provider: 'Not applicable'
   },
   {
     available: false,
@@ -1426,17 +1408,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: true,
+    available: false,
     eslintRule: 'no-unused-vars',
-    tslintRule: 'no-unused-variable',
+    tslintRule: 'Not applicable',
     category: 'Variables',
-    description: 'disallow declaration of variables that are not used in the code (recommended)',
+    description: '[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).',
     eslintUrl: 'http://eslint.org/docs/rules/no-unused-vars',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/no-unused-variable',
-    provider: 'native',
-    usage: `~~~json
-    "no-unused-variable": true
-    ~~~`
+    provider: 'Not applicable'
   },
   {
     available: true,

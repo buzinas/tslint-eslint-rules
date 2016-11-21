@@ -71,7 +71,7 @@ The following rules point out areas where you might have made mistakes.
 |:white_check_mark:|[no-control-regex](http://eslint.org/docs/rules/no-control-regex)|[no-control-regex](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noControlRegexRule.md)|disallow control characters in regular expressions (recommended)|
 |:ballot_box_with_check:|[no-debugger](http://eslint.org/docs/rules/no-debugger)|[no-debugger](http://palantir.github.io/tslint/rules/no-debugger)|disallow use of `debugger` (recommended)|
 |:no_entry_sign:|[no-dupe-args](http://eslint.org/docs/rules/no-dupe-args)|Not applicable|disallow duplicate arguments in functions (recommended)|
-|:ballot_box_with_check:|[no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys)|[no-duplicate-key](http://palantir.github.io/tslint/rules/no-duplicate-key)|disallow duplicate keys when creating object literals (recommended)|
+|:no_entry_sign:|[no-dupe-keys](http://eslint.org/docs/rules/no-dupe-keys)|Not applicable|disallow duplicate keys when creating object literals (recommended)|
 |:white_check_mark:|[no-duplicate-case](http://eslint.org/docs/rules/no-duplicate-case)|[no-duplicate-case](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noDuplicateCaseRule.md)|disallow a duplicate case label. (recommended)|
 |:ballot_box_with_check:|[no-empty](http://eslint.org/docs/rules/no-empty)|[no-empty](http://palantir.github.io/tslint/rules/no-empty)|disallow empty statements (recommended)|
 |:white_check_mark:|[no-empty-character-class](http://eslint.org/docs/rules/no-empty-character-class)|[no-empty-character-class](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noEmptyCharacterClassRule.md)|disallow the use of empty character classes in regular expressions (recommended)|
@@ -88,7 +88,7 @@ The following rules point out areas where you might have made mistakes.
 |:white_check_mark:|[no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces)|[no-regex-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noRegexSpacesRule.md)|disallow multiple spaces in a regular expression literal (recommended)|
 |:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[no-sparse-arrays](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noSparseArraysRule.md)|disallow sparse arrays (recommended)|
 |:white_check_mark:|[no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline)|[no-unexpected-multiline](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noUnexpectedMultilineRule.md)|Avoid code that looks like two expressions but is actually one|
-|:ballot_box_with_check:|[no-unreachable](http://eslint.org/docs/rules/no-unreachable)|[no-unreachable](http://palantir.github.io/tslint/rules/no-unreachable)|disallow unreachable statements after a return, throw, continue, or break statement (recommended)|
+|:no_entry_sign:|[no-unreachable](http://eslint.org/docs/rules/no-unreachable)|Not applicable|disallow unreachable statements after a return, throw, continue, or break statement (recommended)|
 |:white_check_mark:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/useIsnanRule.md)|disallow comparisons with the value `NaN` (recommended)|
 |:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validJsdocRule.md)|Ensure JSDoc comments are valid|
 |:white_check_mark:|[valid-typeof](http://eslint.org/docs/rules/valid-typeof)|[valid-typeof](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validTypeofRule.md)|Ensure that the results of typeof are compared against a valid string (recommended)|
@@ -171,7 +171,7 @@ These rules relate to using strict mode.
 
 | :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
-|:ballot_box_with_check:|[strict](http://eslint.org/docs/rules/strict)|[use-strict](http://palantir.github.io/tslint/rules/use-strict)|require effective use of strict mode directives|
+|:no_entry_sign:|[strict](http://eslint.org/docs/rules/strict)|Not applicable|require effective use of strict mode directives|
 
 ### Variables
 
@@ -188,7 +188,7 @@ These rules have to do with variable declarations.
 |:no_entry_sign:|[no-undef](http://eslint.org/docs/rules/no-undef)|Not applicable|disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)|
 |:x:|[no-undef-init](http://eslint.org/docs/rules/no-undef-init)|no-undef-init|disallow use of undefined when initializing variables|
 |:x:|[no-undefined](http://eslint.org/docs/rules/no-undefined)|no-undefined|disallow use of `undefined` variable|
-|:ballot_box_with_check:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|[no-unused-variable](http://palantir.github.io/tslint/rules/no-unused-variable)|disallow declaration of variables that are not used in the code (recommended)|
+|:no_entry_sign:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|Not applicable|[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).|
 |:ballot_box_with_check:|[no-use-before-define](http://eslint.org/docs/rules/no-use-before-define)|[no-use-before-declare](http://palantir.github.io/tslint/rules/no-use-before-declare)|disallow use of variables before they are defined|
 
 ### Node.js and CommonJS

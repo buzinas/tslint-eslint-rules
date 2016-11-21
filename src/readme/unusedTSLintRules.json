@@ -1,6 +1,16 @@
 [
+  "adjacent-overload-signatures",
+  "member-access",
+  "member-ordering",
   "no-any",
+  "no-inferrable-types",
+  "no-internal-module",
+  "no-namespace",
+  "no-reference",
+  "no-var-requires",
+  "only-arrow-functions",
+  "prefer-for-of",
   "typedef",
   "typedef-whitespace",
-  "no-namespace"
+  "max-line-length"
 ]

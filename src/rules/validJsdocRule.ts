@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 import * as doctrine from 'doctrine';
 
 export class Rule extends Lint.Rules.AbstractRule {
@@ -174,7 +174,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
   }
 
   private checkJSDoc(node: ts.Node) {
-    const {comments, start, width} = this.getJSDocComment(node);
+    const { comments, start, width } = this.getJSDocComment(node);
 
     if (!comments)
       return;

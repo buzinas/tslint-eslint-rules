@@ -6,7 +6,7 @@
  *
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 
 const RULE_NAME = 'ter-indent';
 const DEFAULT_VARIABLE_INDENT = 1;
@@ -161,6 +161,7 @@ export class Rule extends Lint.Rules.AbstractRule {
         ]      
         `
     ],
+    typescriptOnly: false,
     type: 'maintainability'
   };
 

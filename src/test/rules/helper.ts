@@ -1,6 +1,6 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
 import { expect, assert } from 'chai';
-import * as Lint from 'tslint/lib/lint';
+import * as Lint from 'tslint';
 
 export interface IScriptError {
   message: string;
@@ -19,16 +19,16 @@ function arrayDiff(source, target) {
 
 export function testScript(rule: string, scriptText: string, config: Object): boolean {
   const options: Lint.ILinterOptions = {
-    configuration: config,
+    fix: false,
     formatter: 'json',
     formattersDirectory: 'dist/formatters/',
     rulesDirectory: 'dist/rules/'
   };
 
-  const linter = new Lint.Linter(`${rule}.ts`, scriptText, options);
-  const result = linter.lint();
+  const linter = new Lint.Linter(options);
+  linter.lint(`${rule}.ts`, scriptText, config);
 
-  const failures = JSON.parse(result.output);
+  const failures = JSON.parse(linter.getResult().output);
 
   return failures.length === 0;
 }
@@ -50,16 +50,16 @@ export function makeTest(rule: string, scripts: Array<string>, expected: boolean
 
 export function runScript(rule: string, scriptText: string, config: Object, errors: IScriptError[]): void {
   const options: Lint.ILinterOptions = {
-    configuration: config,
+    fix: false,
     formatter: 'json',
     formattersDirectory: 'dist/formatters/',
     rulesDirectory: 'dist/rules/'
   };
 
-  const linter = new Lint.Linter(`${rule}.ts`, scriptText, options);
-  const result = linter.lint();
+  const linter = new Lint.Linter(options);
+  linter.lint(`${rule}.ts`, scriptText, config);
 
-  const failures = JSON.parse(result.output);
+  const failures = JSON.parse(linter.getResult().output);
   const line = errors[0] ? 'line' in errors[0] : false;
 
   if (failures.length !== errors.length) {
