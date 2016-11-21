@@ -1,9 +1,9 @@
-import { RuleTester, IFailure, Position, dedent } from './ruleTester';
+import { RuleTester, Failure, Position, dedent } from './ruleTester';
 // ESLint Tests: https://github.com/eslint/eslint/blob/master/tests/lib/rules/max-len.js
 
 const ruleTester = new RuleTester('ter-max-len');
 
-function expecting(errors: [[number, number] | [number, number, boolean]]): IFailure[] {
+function expecting(errors: [[number, number] | [number, number, boolean]]): Failure[] {
   return errors.map((err) => {
     let message = `Line ${err[0] + 1} exceeds the maximum line length of ${err[1]}.`;
     if (err[2]) {

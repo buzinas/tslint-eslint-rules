@@ -48,13 +48,13 @@ class Position {
   }
 }
 
-interface IFailure {
+interface Failure {
   failure: string;
   startPosition: Position;
   endPosition: Position;
 }
 
-class Failure {
+class LintFailure {
   private name: string;
   private ruleName: string;
   private failure: string;
@@ -89,8 +89,8 @@ class Failure {
    * @param obj The Failure to compare.
    * @returns {Failure} A comparable Failure.
    */
-  public getComparableFailure(obj: Failure): Failure {
-    return new Failure(
+  public getComparableFailure(obj: LintFailure): LintFailure {
+    return new LintFailure(
       obj.name,
       obj.ruleName,
       obj.failure,
@@ -104,7 +104,7 @@ interface ITest {
   code: string;
   output?: string;
   options?: any;
-  errors?: IFailure[];
+  errors?: Failure[];
 }
 
 class Test {
@@ -112,9 +112,9 @@ class Test {
   public code: string;
   public output: string;
   public options: any;
-  public errors: Failure[];
+  public errors: LintFailure[];
 
-  constructor(name: string, code: string, output: string, options: any, errors: Failure[]) {
+  constructor(name: string, code: string, output: string, options: any, errors: LintFailure[]) {
     this.name = name;
     this.code = code;
     this.output = output;
@@ -136,7 +136,7 @@ class Test {
     this.compareErrors(this.errors || [], failures.map((error: any) => {
       const start = error.startPosition;
       const end = error.endPosition;
-      return new Failure(
+      return new LintFailure(
         error.name,
         error.ruleName,
         error.failure,
@@ -146,7 +146,7 @@ class Test {
     }));
   }
 
-  private compareErrors(expectedErrors: Failure[], foundErrors: Failure[]): void {
+  private compareErrors(expectedErrors: LintFailure[], foundErrors: LintFailure[]): void {
     const expected = this.arrayDiff(expectedErrors, foundErrors);
     const found = this.arrayDiff(foundErrors, expectedErrors, false);
 
@@ -168,7 +168,7 @@ class Test {
     assert(expected.length === 0 && found.length === 0, msg);
   }
 
-  private arrayDiff(source: Failure[], target: Failure[], compareToTarget: boolean = true) {
+  private arrayDiff(source: LintFailure[], target: LintFailure[], compareToTarget: boolean = true) {
     return source.filter(item => {
       return this.findIndex(target, item, compareToTarget) === -1;
     }).map((x) => {
@@ -180,7 +180,7 @@ class Test {
     });
   }
 
-  private findIndex(source: Failure[], error: Failure, compareToError: boolean = true) {
+  private findIndex(source: LintFailure[], error: LintFailure, compareToError: boolean = true) {
     const len = source.length;
     let k = 0;
     while (k < len) {
@@ -220,8 +220,8 @@ class TestGroup {
       if (test.options) {
         config.rules[ruleName] = [true, ...test.options];
       }
-      const failures: Failure[] = (test.errors || []).map((error) => {
-        return new Failure(
+      const failures: LintFailure[] = (test.errors || []).map((error) => {
+        return new LintFailure(
           codeFileName,
           ruleName,
           error.failure,
@@ -263,7 +263,7 @@ class RuleTester {
 export {
   dedent,
   Position,
-  IFailure,
+  Failure,
   TestGroup,
   RuleTester
 };
