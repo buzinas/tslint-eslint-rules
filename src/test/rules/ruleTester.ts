@@ -163,7 +163,7 @@ class Test {
       `     ${expectedStr}`,
       '',
       `     ${foundStr}`,
-      '',
+      ''
     ].join('\n');
     assert(expected.length === 0 && found.length === 0, msg);
   }

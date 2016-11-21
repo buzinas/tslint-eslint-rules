@@ -37,11 +37,9 @@ gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
     .pipe(tslint({
-      tslint: require('tslint')
+      formatter: 'verbose',
     }))
-    .pipe(tslint.report('prose', {
-      summarizeFailureOutput: false
-    }));
+    .pipe(tslint.report());
 });
 
 gulp.task('build', argv.lint === false ? [] : ['lint'], function build(done) {

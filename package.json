@@ -29,7 +29,7 @@
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-spawn-mocha": "^2.2.2",
-    "gulp-tslint": "^3.6.0",
+    "gulp-tslint": "^7.0.0",
     "gulp-typescript": "^3.0.1",
     "typescript": "^2.0.3",
     "yargs": "^5.0.0"
