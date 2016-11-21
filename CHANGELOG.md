@@ -1,8 +1,21 @@
 # Change Log
 
+## [v3.0.0] - 2016/11/21 12:36 GTM-0600
+### Upgraded to [TSLint 4.0](https://palantir.github.io/tslint/2016/11/17/new-for-4.0.html)
+- Several rules are no longer applicable
+    - no-duplicate-key
+    - no-unreachable
+    - no-unused-variable
+    - use-strict
+
+#### Developer Tools
+- Added RuleTester to help writing tests, see [max-len-rule](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terMaxLenRuleTests.ts) and [no-multi-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noMultiSpacesRuleTests.ts) for usage examples.
+
+
 ## [v2.2.1] - 2016/11/17 21:50 GMT-0600
 #### Fixes
 - ter-max-len ([539b3c2](https://github.com/buzinas/tslint-eslint-rules/commit/539b3c210d1fd157d27a9fb61e123c28249e7690))
+
 
 ## [v2.2.0] - 2016/11/17 02:30 GMT-0600
 #### Rules Added
@@ -15,6 +28,7 @@
 #### Changes
 - Rule documentation can be generated from its metadata ([d6ea71e](https://github.com/buzinas/tslint-eslint-rules/commit/d6ea71ee398c26e55d9bc86f01bbe2beca08b350))
 
+
 ## [v2.1.0] - 2016/10/03 19:29 +00:00
 #### Fixes
 - handle-callback-err ([caf6ec6](https://github.com/buzinas/tslint-eslint-rules/commit/caf6ec62be772297c18a9dd56d280d9b2dac076a))
@@ -26,7 +40,7 @@
 
 
 ## [v2.0.0] - 2016/10/01 06:12 +00:00
-### Upgraded to TypeScript 2.0
+### Upgraded to [TypeScript 2.0](https://www.typescriptlang.org/docs/release-notes/typescript-2.0.html)
 - Using `es6` as the TypeScript target.
 - Dropped support for node 4
 
@@ -154,6 +168,7 @@
 - Added and made lots of improvements in README.md
 
 
+[v3.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.1...v3.0.0
 [v2.2.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.0...v2.2.1
 [v2.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.0.0...v2.1.0
