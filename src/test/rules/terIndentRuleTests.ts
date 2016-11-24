@@ -28,6 +28,14 @@ ruleTester.addTestGroup('no-options', 'should capture the correct indentation wi
   'switch (0) {\n}',
   'switch(value){ default: a(); break; }\n',
   dedent`
+    return (
+        foo
+    );`,
+  dedent`
+    return (
+        foo
+    )`,
+  dedent`
     const array = [
         ,
         'd',
@@ -124,6 +132,23 @@ ruleTester.addTestGroup('no-options', 'should capture the correct indentation wi
 ]);
 
 ruleTester.addTestGroup('indent-number', 'should force a certain indentation number', [
+  {
+    code: dedent`
+      var x = [
+          'a',
+          'b',
+          'c'
+      ];`,
+    options: [4]
+  },
+  {
+    code: dedent`
+      var x = ['a',
+          'b',
+          'c',
+      ];`,
+    options: [4]
+  },
   {
     code: "import {addons} from 'react/addons'\nimport React from 'react'",
     options: [2]
@@ -262,7 +287,7 @@ ruleTester.addTestGroup('indent-number', 'should force a certain indentation num
   {
     code: dedent`
       require('http').request({hostname: 'localhost',
-                               port: 80}, function(res) {
+        port: 80}, function(res) {
         res.end();
       });
       `,
@@ -329,19 +354,10 @@ ruleTester.addTestGroup('indent-number', 'should force a certain indentation num
   },
   {
     code: dedent`
-      [a, b, 
-      c].forEach((index) => {
-          index;
-      });
-      `,
-    options: [4]
-  },
-  {
-    code: dedent`
-      [a, b, 
-      c].forEach(function(index){
-          return index;
-      });
+      [a, b,
+          c].forEach((index) => {
+              index;
+          });
       `,
     options: [4]
   },
@@ -620,6 +636,50 @@ ruleTester.addTestGroup('indent-number', 'should force a certain indentation num
       '\t   \t\t\t  \t\t\t  \t   \tqux();',
       '}'
     ].join('\n'),
+    options: [2]
+  },
+  {
+    code: dedent`
+      function foo() {
+        return (bar === 1 || bar === 2 &&
+          (/Function/.test(grandparent.type))) &&
+          directives(parent).indexOf(node) >= 0;
+      }`,
+    options: [2]
+  },
+  {
+    code: dedent`
+      function foo() {
+        return (bar === 1 || bar === 2) &&
+          (z === 3 || z === 4);
+      }`,
+    options: [2]
+  },
+  {
+    code: dedent`
+      function foo() {
+        return ((bar === 1 || bar === 2) &&
+          (z === 3 || z === 4)
+        );
+      }`,
+    options: [2]
+  },
+  {
+    code: dedent`
+      function foo() {
+        return ((bar === 1 || bar === 2) &&
+          (z === 3 || z === 4));
+      }`,
+    options: [2]
+  },
+  {
+    code: dedent`
+      var foo = function() {
+        return bar(
+          [{
+          }].concat(baz)
+        );
+      };`,
     options: [2]
   }
 ]);
@@ -948,6 +1008,16 @@ ruleTester.addTestGroup('indent-number-errors', 'should warn of indentation erro
     ].join('\n'),
     options: [2],
     errors: expecting([[3, '0 spaces', '2 tabs']])
+  },
+  {
+    code: dedent`
+      require('http').request({hostname: 'localhost',
+                        port: 80}, function(res) {
+        res.end();
+      });
+      `,
+    options: [2],
+    errors: expecting([[2, 2, 18]])
   }
 ]);
 
@@ -1319,7 +1389,7 @@ ruleTester.addTestGroup('variable-declarator', 'should handle variable declarato
         var Command = function() {
           var fileList = [],
               files = []
-        
+
           files.concat(fileList)
         };
         `,
@@ -1662,7 +1732,7 @@ ruleTester.addTestGroup('var-dec/switch-case', 'should handle var declarator and
       },
       {
           b: 2
-      
+
       {
           x: 2
       }];`,
@@ -1714,7 +1784,7 @@ ruleTester.addTestGroup('var-dec/switch-case', 'should handle var declarator and
   },
   {
     code: dedent`
-      var abc = 
+      var abc =
         [
           c,
           xyz,
@@ -1741,7 +1811,7 @@ ruleTester.addTestGroup('var-dec/switch-case', 'should handle var declarator and
     code: dedent`
       var abc = 5,
           c = 2,
-          xyz = 
+          xyz =
           {
             a: 1,
             b: 2
@@ -1750,7 +1820,7 @@ ruleTester.addTestGroup('var-dec/switch-case', 'should handle var declarator and
   },
   {
     code: dedent`
-      var abc = 
+      var abc =
           {
             a: 1,
             b: 2
@@ -2326,7 +2396,7 @@ ruleTester.addTestGroup('functions', 'should handle functions declarations and e
       {
             bar();
       }`,
-    options: [2, { FunctionDeclaration: { body: 3 } }] // FIXME: what is the default for ` parameters`?
+    options: [2, { FunctionDeclaration: { body: 3 } }]
   },
   {
     code: dedent`
@@ -2335,7 +2405,7 @@ ruleTester.addTestGroup('functions', 'should handle functions declarations and e
         bbb) {
           bar();
       }`,
-    options: [2, { FunctionDeclaration: { parameters: 'first', body: 2 } }] // FIXME: make sure this is correct
+    options: [2, { FunctionDeclaration: { parameters: 'first', body: 2 } }]
   },
   {
     code: dedent`
@@ -2372,7 +2442,7 @@ ruleTester.addTestGroup('functions', 'should handle functions declarations and e
         ddd, eee) {
             bar();
       }`,
-    options: [2, { FunctionExpression: { parameters: 'first', body: 3 } }] // FIXME: make sure this is correct
+    options: [2, { FunctionExpression: { parameters: 'first', body: 3 } }]
   },
   {
     code: dedent`
@@ -2537,6 +2607,74 @@ ruleTester.addTestGroup('functions', 'should handle functions declarations and e
       }`,
     options: [2, { FunctionExpression: { parameters: 'first', body: 3 } }],
     errors: expecting([[3, 0, 4], [4, 6, 2]])
+  }
+]);
+
+ruleTester.addTestGroup('call-expression', 'should handle call expressions', [
+  {
+    code: dedent`
+      foo(
+        bar,
+        baz,
+        qux
+      );"`,
+    options: [2, { CallExpression: { arguments: 1 } }]
+  },
+  {
+    code: dedent`
+      foo(
+      \tbar,
+      \tbaz,
+      \tqux
+      );"`,
+    options: ['tab', { CallExpression: { arguments: 1 } }]
+  },
+  {
+    code: dedent`
+      foo(bar,
+              baz,
+              qux);"`,
+    options: [4, { CallExpression: { arguments: 2 } }]
+  },
+  {
+    code: dedent`
+      foo(
+      bar,
+      baz,
+      qux
+      );"`,
+    options: [2, { CallExpression: { arguments: 0 } }]
+  },
+  {
+    code: dedent`
+      foo(bar,
+          baz,
+          qux
+      );"`,
+    options: [2, { CallExpression: { arguments: 'first' } }]
+  },
+  {
+    code: dedent`
+      foo(bar, baz,
+          qux, barbaz,
+          barqux, bazqux);"`,
+    options: [2, { CallExpression: { arguments: 'first' } }]
+  },
+  {
+    code: dedent`
+      foo(
+                              bar, baz,
+                              qux);"`,
+    options: [2, { CallExpression: { arguments: 'first' } }]
+  },
+  {
+    code: dedent`
+      foo(bar,
+              1 + 2,
+              !baz,
+              new Car('!')
+      );"`,
+    options: [2, { CallExpression: { arguments: 4 } }]
   }
 ]);
 

@@ -134,6 +134,15 @@ export class Rule extends Lint.Rules.AbstractRule {
           },
           MemberExpression: {
             type: 'number'
+          },
+          CallExpression: {
+            type: 'object',
+            properties: {
+              arguments: {
+                type: 'number',
+                minimum: 0
+              }
+            }
           }
         },
         additionalProperties: false
@@ -194,6 +203,9 @@ class IndentWalker extends Lint.RuleWalker {
       FunctionExpression: {
         parameters: DEFAULT_PARAMETER_INDENT,
         body: DEFAULT_FUNCTION_BODY_INDENT
+      },
+      CallExpression: {
+        arguments: DEFAULT_PARAMETER_INDENT
       }
     };
     const firstParam = this.getOptions()[0];
@@ -233,6 +245,11 @@ class IndentWalker extends Lint.RuleWalker {
       if (typeof userOptions.FunctionExpression === 'object') {
         assign(OPTIONS.FunctionExpression, userOptions.FunctionExpression);
       }
+
+      if (typeof userOptions.CallExpression === 'object') {
+        assign(OPTIONS.CallExpression, userOptions.CallExpression);
+      }
+
     }
     this.srcFile = sourceFile;
     this.srcText = sourceFile.getFullText();
@@ -687,25 +704,10 @@ class IndentWalker extends Lint.RuleWalker {
     let elements = isKind(node, 'ObjectLiteralExpression') ? node['properties'] : node['elements'];
 
     // filter out empty elements, an example would be [ , 2]
-    elements = elements.filter((elem) => {
-      return elem.getText() !== '';
-    });
-
-    // Skip if first element is in same line with this node
-    if (elements.length && this.getLine(elements[0]) === this.getLine(node)) {
-      return;
-    }
+    elements = elements.filter(elem => elem.getText() !== '');
 
     const nodeLine = this.getLine(node);
     const nodeEndLine = this.getLine(node, true);
-
-    // Skip if first element is in same line with this node
-    if (elements.length) {
-      const firstElementLine = this.getLine(elements[0]);
-      if (nodeLine === firstElementLine) {
-        return;
-      }
-    }
 
     let nodeIndent;
     let elementsIndent;
@@ -714,22 +716,13 @@ class IndentWalker extends Lint.RuleWalker {
 
     if (this.isNodeFirstInLine(node)) {
       const parent = node.parent;
-      let effectiveParent = parent;
 
-      if (parent.kind === ts.SyntaxKind.PropertyDeclaration) {
-        if (this.isNodeFirstInLine(parent)) {
-          effectiveParent = parent.parent.parent;
-        } else {
-          effectiveParent = parent.parent;
-        }
-      }
-
-      nodeIndent = this.getNodeIndent(effectiveParent).goodChar;
+      nodeIndent = this.getNodeIndent(parent).goodChar;
       if (parentVarNode && this.getLine(parentVarNode) !== nodeLine) {
         if (!isKind(parent, 'VariableDeclaration') || parentVarNode === parentVarNode.parent.declarations[0]) {
           const parentVarLine = this.getLine(parentVarNode);
-          const effectiveParentLine = this.getLine(effectiveParent);
-          if (isKind(parent, 'VariableDeclaration') && parentVarLine === effectiveParentLine) {
+          const parentLine = this.getLine(parent);
+          if (isKind(parent, 'VariableDeclaration') && parentVarLine === parentLine) {
             varKind = parentVarNode.parent.getFirstToken().getText();
             nodeIndent = nodeIndent + (indentSize * OPTIONS.VariableDeclarator[varKind]);
           } else if (
@@ -748,10 +741,10 @@ class IndentWalker extends Lint.RuleWalker {
       } else if (
         !parentVarNode &&
         !this.isFirstArrayElementOnSameLine(parent) &&
-        effectiveParent.kind !== ts.SyntaxKind.PropertyAccessExpression &&
-        effectiveParent.kind !== ts.SyntaxKind.ExpressionStatement &&
-        effectiveParent.kind !== ts.SyntaxKind.PropertyAssignment &&
-        !(this.isAssignment(effectiveParent))
+        parent.kind !== ts.SyntaxKind.PropertyAccessExpression &&
+        parent.kind !== ts.SyntaxKind.ExpressionStatement &&
+        parent.kind !== ts.SyntaxKind.PropertyAssignment &&
+        !(this.isAssignment(parent))
       ) {
         nodeIndent = nodeIndent + indentSize;
       }
@@ -981,6 +974,22 @@ class IndentWalker extends Lint.RuleWalker {
       );
     }
     super.visitFunctionExpression(node);
+  }
+
+  protected visitCallExpression(node: ts.CallExpression) {
+    if (this.isSingleLineNode(node)) {
+      return;
+    }
+    if (OPTIONS.CallExpression.arguments === 'first' && node.arguments.length) {
+      const indent = this.getLineAndCharacter(node.arguments[0]).character;
+      this.checkNodesIndent(node.arguments.slice(1), indent);
+    } else if (OPTIONS.CallExpression.arguments !== null) {
+      this.checkNodesIndent(
+        node.arguments,
+        this.getNodeIndent(node).goodChar + indentSize * OPTIONS.CallExpression.arguments
+      );
+    }
+    super.visitCallExpression(node);
   }
 
   protected visitPropertyAccessExpression(node: ts.PropertyAccessExpression) {
