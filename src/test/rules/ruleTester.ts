@@ -1,5 +1,7 @@
 import { assert } from 'chai';
 import * as Lint from 'tslint';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const dedent = Lint.Utils.dedent;
 const empty = '░';
@@ -260,10 +262,15 @@ class RuleTester {
   }
 }
 
+function readFixture(name: string): string {
+  return fs.readFileSync(path.join(__dirname, `../../../src/test/fixtures/${name}`), 'utf8');
+}
+
 export {
   dedent,
   Position,
   Failure,
   TestGroup,
-  RuleTester
+  RuleTester,
+  readFixture,
 };
