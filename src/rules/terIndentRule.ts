@@ -669,10 +669,18 @@ class IndentWalker extends Lint.RuleWalker {
    * Returns a parent node of given node based on a specified type
    * if not present then return null
    */
-  private getParentNodeByType<T extends ts.Node>(node: ts.Node, kind): T {
+  private getParentNodeByType<T extends ts.Node>(
+    node: ts.Node,
+    kind: number,
+    stopAtList: number[] = [ts.SyntaxKind.SourceFile]
+  ): T {
     let parent = node.parent;
 
-    while (parent.kind !== kind && parent.kind !== ts.SyntaxKind.SourceFile) {
+    while (
+      parent.kind !== kind
+      && stopAtList.indexOf(parent.kind) === -1
+      && parent.kind !== ts.SyntaxKind.SourceFile
+    ) {
       parent = parent.parent;
     }
 
@@ -1005,11 +1013,15 @@ class IndentWalker extends Lint.RuleWalker {
     // alter the expectation of correct indentation. Skip them.
     // TODO: Add appropriate configuration options for variable
     // declarations and assignments.
-    if (this.getVariableDeclaratorNode(node)) {
+    const varDec = ts.SyntaxKind.VariableDeclaration;
+    const funcKind = [ts.SyntaxKind.FunctionExpression, ts.SyntaxKind.ArrowFunction];
+    if (this.getParentNodeByType<ts.VariableDeclaration>(node, varDec, funcKind)) {
       return;
     }
 
-    const binaryNode: ts.BinaryExpression = this.getBinaryExpressionNode(node);
+    const binExp = ts.SyntaxKind.BinaryExpression;
+    const funcExp = ts.SyntaxKind.FunctionExpression;
+    const binaryNode = this.getParentNodeByType<ts.BinaryExpression>(node, binExp, [funcExp]);
     if (binaryNode && this.isAssignment(binaryNode)) {
       return;
     }

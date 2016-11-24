@@ -1176,6 +1176,44 @@ ruleTester.addTestGroup('member-expression', 'should handle member expression st
     code: '\nBuffer\n  .foo\n  .bar',
     options: [2, { MemberExpression: 2 }],
     errors: expecting([[2, 4, 2], [3, 4, 2]])
+  },
+  {
+    code: dedent`
+      var foo = function(){
+          foo
+                .bar
+      }`,
+    options: [4, { MemberExpression: 1 }],
+    errors: expecting([[3, 8, 10]])
+  },
+  {
+    code: dedent`
+      var foo = function(){
+          foo
+                   .bar
+      }`,
+    options: [4, { MemberExpression: 2 }],
+    errors: expecting([[3, 12, 13]])
+  },
+  {
+    code: dedent`
+      var foo = () => {
+          foo
+                   .bar
+      }`,
+    options: [4, { MemberExpression: 2 }],
+    errors: expecting([[3, 12, 13]])
+  },
+  {
+    code: dedent`
+      TestClass.prototype.method = function () {
+        return Promise.resolve(3)
+            .then(function (x) {
+              return x;
+            });
+      };`,
+    options: [2, { MemberExpression: 1 }],
+    errors: expecting([[3, 4, 6]])
   }
 ]);
 
