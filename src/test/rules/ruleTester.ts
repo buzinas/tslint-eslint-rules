@@ -250,13 +250,20 @@ class RuleTester {
   }
 
   public runTests(): void {
+    const singleTest = JSON.parse(process.env.SINGLE_TEST || '');
+    const runGroup = singleTest === null || singleTest.group === null;
+    const runIndex = singleTest === null || singleTest.num === null;
     describe(this.ruleName, () => {
       this.groups.forEach((group) => {
-        it(group.description, () => {
-          group.tests.forEach((test) => {
-            test.runTest();
+        if (runGroup || group.name === singleTest.group) {
+          it(group.description, () => {
+            group.tests.forEach((test, index) => {
+              if (runIndex || singleTest.num === index) {
+                test.runTest();
+              }
+            });
           });
-        });
+        }
       });
     });
   }

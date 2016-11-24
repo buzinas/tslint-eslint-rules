@@ -9,8 +9,11 @@ var tslint = require('gulp-tslint');
 var mocha = require('gulp-spawn-mocha');
 var Promise = require('es6-promise').Promise;
 
-var SRC_FOLDER = argv.single ? singleRule(argv.single) : 'src/**/*.ts';
-var TEST_FOLDER = argv.single ? singleTest(argv.single) : 'dist/test/**/*.js';
+var SINGLE_TEST = argv.single ? parseTestName(argv.single) : null;
+process.env.SINGLE_TEST = JSON.stringify(SINGLE_TEST);
+
+var SRC_FOLDER = SINGLE_TEST ? singleRule(SINGLE_TEST.name) : 'src/**/*.ts';
+var TEST_FOLDER = SINGLE_TEST ? singleTest(SINGLE_TEST.name) : 'dist/test/**/*.js';
 var DEF_FOLDER = 'typings/**/*.ts'
 var tsProject = ts.createProject('tsconfig.json');
 
@@ -99,6 +102,15 @@ function toCamelCase(str){
   return str.replace(/-(.)/g, function (_, char) {
     return char.toUpperCase();
   });
+}
+
+function parseTestName(str) {
+  var parts = str.split(':');
+  return {
+    name: parts[0],
+    group: parts[1] || null,
+    num: parts[2] !== undefined ? parseInt(parts[2], 10) : null
+  };
 }
 
 function singleRule(name) {
