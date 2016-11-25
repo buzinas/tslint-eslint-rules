@@ -859,6 +859,15 @@ ruleTester.addTestGroup('indent-number-errors', 'should warn of indentation erro
   },
   {
     code: dedent`
+      [a, b,
+      c].forEach(function(index){
+          return index;
+      });`,
+    options: [4],
+    errors: expecting([[2, 4, 0]])
+  },
+  {
+    code: dedent`
       [a, b, c].forEach((index) => {
         index;
       });`,
@@ -1018,6 +1027,85 @@ ruleTester.addTestGroup('indent-number-errors', 'should warn of indentation erro
       `,
     options: [2],
     errors: expecting([[2, 2, 18]])
+  },
+  {
+    code: dedent`
+      var x = ['a',
+               'b',
+               'c'
+      ];`,
+    output: dedent`
+      var x = ['a',
+          'b',
+          'c'
+      ];`,
+    options: [4],
+    errors: expecting([
+      [2, 4, 9],
+      [3, 4, 9]
+    ])
+  },
+  {
+    code: dedent`
+      var x = [
+               'a',
+               'b',
+               'c'
+      ];`,
+    output: dedent`
+      var x = [
+          'a',
+          'b',
+          'c'
+      ];`,
+    options: [4],
+    errors: expecting([
+      [2, 4, 9],
+      [3, 4, 9],
+      [4, 4, 9]
+    ])
+  },
+  {
+    code: dedent`
+      var x = [
+               'a',
+               'b',
+               'c',
+      'd'];`,
+    output: dedent`
+      var x = [
+          'a',
+          'b',
+          'c',
+          'd'];`,
+    options: [4],
+    errors: expecting([
+      [2, 4, 9],
+      [3, 4, 9],
+      [4, 4, 9],
+      [5, 4, 0]
+    ])
+  },
+  {
+    code: dedent`
+      var x = [
+               'a',
+               'b',
+               'c'
+        ];`,
+    output: dedent`
+      var x = [
+          'a',
+          'b',
+          'c'
+      ];`,
+    options: [4],
+    errors: expecting([
+      [2, 4, 9],
+      [3, 4, 9],
+      [4, 4, 9],
+      [5, 0, 2]
+    ])
   }
 ]);
 
@@ -2713,6 +2801,274 @@ ruleTester.addTestGroup('call-expression', 'should handle call expressions', [
               new Car('!')
       );"`,
     options: [2, { CallExpression: { arguments: 4 } }]
+  }
+]);
+
+ruleTester.addTestGroup('new-batch', 'should pass', [
+  {
+    code: dedent`
+      {
+          try {
+          }
+      catch (err) {
+          }
+      finally {
+          }
+      }`,
+    output: dedent`
+      {
+          try {
+          }
+          catch (err) {
+          }
+          finally {
+          }
+      }`,
+    errors: expecting([
+      [4, 4, 0],
+      [6, 4, 0]
+    ])
+  },
+  {
+    code: dedent`
+      {
+          do {
+          }
+      while (true)
+      }`,
+    output: dedent`
+      {
+          do {
+          }
+          while (true)
+      }`,
+    errors: expecting([[4, 4, 0]])
+  },
+  {
+    code: dedent`
+      function foo() {
+        bar();
+      \t\t}`,
+    output: dedent`
+      function foo() {
+        bar();
+      }`,
+    options: [2],
+    errors: expecting([[3, '0 spaces', '2 tabs']])
+  },
+  {
+    code: dedent`
+      function foo() {
+        return (
+          1
+          )
+      }`,
+    output: dedent`
+      function foo() {
+        return (
+          1
+        )
+      }`,
+    options: [2],
+    errors: expecting([[4, '2 spaces', '4']])
+  },
+  {
+    code: dedent`
+      function foo() {
+        return (
+          1
+          );
+      }`,
+    output: dedent`
+      function foo() {
+        return (
+          1
+        );
+      }`,
+    options: [2],
+    errors: expecting([[4, '2 spaces', '4']])
+  },
+  {
+    code: dedent`
+      function foo() {
+        bar();
+      \t\t}`,
+    output: dedent`
+      function foo() {
+        bar();
+      }`,
+    options: [2],
+    errors: expecting([[3, '0 spaces', '2 tabs']])
+  },
+  {
+    code: dedent`
+      function test(){
+        switch(length){
+          case 1: return function(a){
+          return fn.call(that, a);
+          };
+        }
+      }`,
+    output: dedent`
+      function test(){
+        switch(length){
+          case 1: return function(a){
+            return fn.call(that, a);
+          };
+        }
+      }`,
+    options: [2, {VariableDeclarator: 2, SwitchCase: 1}],
+    errors: expecting([[4, '6 spaces', '4']])
+  },
+  {
+    code: dedent`
+      function foo() {
+         return 1
+      }`,
+    output: dedent`
+      function foo() {
+        return 1
+      }`,
+    options: [2],
+    errors: expecting([[2, '2 spaces', '3']])
+  },
+  {
+    code: dedent`
+      function foo() {
+         return 1;
+      }`,
+    output: dedent`
+      function foo() {
+        return 1;
+      }`,
+    options: [2],
+    errors: expecting([[2, '2 spaces', '3']])
+  },
+  {
+    code: dedent`
+      foo(
+      bar,
+        baz,
+          qux);`,
+    output: dedent`
+      foo(
+        bar,
+        baz,
+        qux);`,
+    options: [2, {CallExpression: {arguments: 1}}],
+    errors: expecting([[2, 2, 0], [4, 2, 4]])
+  },
+  {
+    code: dedent`
+      foo(
+      \tbar,
+      \tbaz);`,
+    output: dedent`
+      foo(
+          bar,
+          baz);`,
+    options: [2, {CallExpression: {arguments: 2}}],
+    errors: expecting([[2, '4 spaces', '1 tab'], [3, '4 spaces', '1 tab']])
+  },
+  {
+    code: dedent`
+      foo(bar,
+      \t\tbaz,
+      \t\tqux);`,
+    output: dedent`
+      foo(bar,
+      \tbaz,
+      \tqux);`,
+    options: ['tab', {CallExpression: {arguments: 1}}],
+    errors: expecting([[2, 1, 2], [3, 1, 2]], 'tab')
+  },
+  {
+    code: dedent`
+      foo(bar, baz,
+               qux);`,
+    output: dedent`
+      foo(bar, baz,
+          qux);`,
+    options: [2, {CallExpression: {arguments: 'first'}}],
+    errors: expecting([[2, 4, 9]])
+  },
+  {
+    code: dedent`
+      foo(
+                bar,
+          baz);`,
+    output: dedent`
+      foo(
+                bar,
+                baz);`,
+    options: [2, {CallExpression: {arguments: 'first'}}],
+    errors: expecting([[3, 10, 4]])
+  },
+  {
+    code: dedent`
+      foo(bar,
+        1 + 2,
+                    !baz,
+              new Car('!')
+      );`,
+    output: dedent`
+      foo(bar,
+            1 + 2,
+            !baz,
+            new Car('!')
+      );`,
+    options: [2, {CallExpression: {arguments: 3}}],
+    errors: expecting([[2, 6, 2], [3, 6, 14], [4, 6, 8]])
+  },
+
+  // https://github.com/eslint/eslint/issues/7573
+  {
+    code: dedent`
+      return (
+          foo
+          );`,
+    output: dedent`
+      return (
+          foo
+      );`,
+    errors: expecting([[3, 0, 4]])
+  },
+  {
+    code: dedent`
+      return (
+          foo
+          )`,
+    output: dedent`
+      return (
+          foo
+      )`,
+    errors: expecting([[3, 0, 4]])
+  },
+
+  // https://github.com/eslint/eslint/issues/7604
+  {
+    code: dedent`
+      if (foo) {
+              /* comment */bar();
+      }`,
+    output: dedent`
+      if (foo) {
+          /* comment */bar();
+      }`,
+    errors: expecting([[2, 4, 8]])
+  },
+  {
+    code: dedent`
+      foo('bar',
+              /** comment */{
+              ok: true" +
+          });`,
+    output: dedent`
+      foo('bar',
+          /** comment */{
+              ok: true" +
+          });`,
+    errors: expecting([[2, 4, 8]])
   }
 ]);
 

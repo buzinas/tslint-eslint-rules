@@ -392,6 +392,24 @@ class IndentWalker extends Lint.RuleWalker {
           this.checkNodeIndent(elseStatement, neededIndent);
         }
       }
+    } else if (isKind(node, 'TryStatement')) {
+      const handler = (node as ts.TryStatement).catchClause;
+      if (handler) {
+        const catchKeyword = handler.getChildren().filter(ch => isKind(ch, 'CatchKeyword')).shift();
+        this.checkNodeIndent(catchKeyword, neededIndent);
+        if (!this.isNodeFirstInLine(handler)) {
+          this.checkNodeIndent(handler, neededIndent);
+        }
+      }
+
+      const finalizer = (node as ts.TryStatement).finallyBlock;
+      if (finalizer) {
+        const finallyKeyword = node.getChildren().filter(ch => isKind(ch, 'FinallyKeyword')).shift();
+        this.checkNodeIndent(finallyKeyword, neededIndent);
+      }
+    } else if (isKind(node, 'DoStatement')) {
+      const whileKeyword = node.getChildren().filter(ch => isKind(ch, 'WhileKeyword')).shift();
+      this.checkNodeIndent(whileKeyword, neededIndent);
     }
   }
 
@@ -432,10 +450,13 @@ class IndentWalker extends Lint.RuleWalker {
       'DoStatement',
       'ClassDeclaration',
       'ClassExpression',
+      'TryStatement',
       'SourceFile'
     ];
     if (node.parent && isOneOf(node.parent, statementsWithProperties) && this.isNodeBodyBlock(node)) {
       indent = this.getNodeIndent(node.parent).goodChar;
+    } else if (node.parent && isKind(node.parent, 'CatchClause')) {
+      indent = this.getNodeIndent(node.parent.parent).goodChar;
     } else {
       indent = this.getNodeIndent(node).goodChar;
     }
