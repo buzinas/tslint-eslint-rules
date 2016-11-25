@@ -846,7 +846,7 @@ ruleTester.addTestGroup('indent-number-errors', 'should warn of indentation erro
         index;
       });`,
     options: [4],
-    errors: expecting([[3, 4, 2]])
+    errors: expecting([[2, 4, 0], [3, 4, 2]])
   },
   {
     code: dedent`
@@ -855,7 +855,7 @@ ruleTester.addTestGroup('indent-number-errors', 'should warn of indentation erro
         return index;
       });`,
     options: [4],
-    errors: expecting([[3, 4, 2]])
+    errors: expecting([[2, 4, 0], [3, 4, 2]])
   },
   {
     code: dedent`

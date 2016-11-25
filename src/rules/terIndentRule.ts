@@ -1001,10 +1001,6 @@ class IndentWalker extends Lint.RuleWalker {
   }
 
   protected visitPropertyAccessExpression(node: ts.PropertyAccessExpression) {
-    if (typeof OPTIONS.MemberExpression === 'undefined') {
-      return;
-    }
-
     if (this.isSingleLineNode(node)) {
       return;
     }
@@ -1026,6 +1022,11 @@ class IndentWalker extends Lint.RuleWalker {
       return;
     }
 
+    super.visitPropertyAccessExpression(node);
+    if (typeof OPTIONS.MemberExpression === 'undefined') {
+      return;
+    }
+
     const propertyIndent = this.getNodeIndent(node).goodChar + indentSize * OPTIONS.MemberExpression;
 
     // Assuming that the node has three children: [expression, dotToken, name]
@@ -1034,7 +1035,6 @@ class IndentWalker extends Lint.RuleWalker {
     const checkNodes = [node.name, dotToken];
 
     this.checkNodesIndent(checkNodes, propertyIndent);
-    super.visitPropertyAccessExpression(node);
   }
 
   protected visitSourceFile(node: ts.SourceFile) {
