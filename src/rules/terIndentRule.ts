@@ -303,7 +303,7 @@ class IndentWalker extends Lint.RuleWalker {
    * gottenSpaces: Indentation space count in the actual node/code
    * gottenTabs: Indentation tab count in the actual node/code
    */
-  private report(node: ts.Node, needed, gottenSpaces, gottenTabs) {
+  private report(node: ts.Node, needed, gottenSpaces, gottenTabs, loc?) {
     if (gottenSpaces && gottenTabs) {
       // Don't report lines that have both spaces and tabs to avoid conflicts with rules that
       // report a mix of tabs and spaces.
@@ -311,7 +311,7 @@ class IndentWalker extends Lint.RuleWalker {
     }
     const msg = this.createErrorMessage(needed, gottenSpaces, gottenTabs);
     const width = gottenSpaces + gottenTabs;
-    this.addFailure(this.createFailure(node.getStart() - width, width, msg));
+    this.addFailure(this.createFailure((loc !== undefined ? loc : node.getStart()) - width, width, msg));
   }
 
   /**
@@ -360,6 +360,15 @@ class IndentWalker extends Lint.RuleWalker {
       const comment = this.getSourceSubstr(lastComment.pos + offset, lastComment.end + offset);
       if (comment.indexOf('\n') !== -1) {
         firstInLine = true;
+      } else {
+        pos = lastComment.pos + offset;
+        while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
+          pos -= 1;
+        }
+        const content = this.getSourceSubstr(pos + 1, lastComment.pos + offset);
+        if (content.trim() === '') {
+          firstInLine = true;
+        }
       }
     }
 
@@ -864,6 +873,31 @@ class IndentWalker extends Lint.RuleWalker {
     this.checkNodesIndent(node.statements, caseIndent + indentSize);
   }
 
+  /**
+   * Check last node line indent this detects, that block closed correctly
+   * This function for more complicated return statement case, where closing parenthesis may be
+   * followed by ';'
+   */
+  private checkLastReturnStatementLineIndent(node: ts.ReturnStatement, firstLineIndent) {
+    const lastToken = node.expression.getLastToken();
+
+    const endIndex = lastToken.getStart();
+    let pos = endIndex - 1;
+    while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
+      pos -= 1;
+    }
+    const textBeforeClosingParenthesis = this.getSourceSubstr(pos + 1, endIndex);
+    if (textBeforeClosingParenthesis.trim()) {
+      // There are tokens before the closing paren, don't report this case
+      return;
+    }
+
+    const endIndent = this.getNodeIndent(lastToken);
+    if (endIndent.goodChar !== firstLineIndent) {
+      this.report(node, firstLineIndent, endIndent.space, endIndent.tab, lastToken.getStart());
+    }
+  }
+
   protected visitClassDeclaration(node: ts.ClassDeclaration) {
     const len = node.getChildCount();
     this.blockIndentationCheck(node.getChildAt(len - 2));
@@ -1056,6 +1090,22 @@ class IndentWalker extends Lint.RuleWalker {
     const checkNodes = [node.name, dotToken];
 
     this.checkNodesIndent(checkNodes, propertyIndent);
+  }
+
+  protected visitReturnStatement(node: ts.ReturnStatement) {
+    if (this.isSingleLineNode(node)) {
+      return;
+    }
+
+    const firstLineIndent = this.getNodeIndent(node).goodChar;
+
+    // in case if return statement is wrapped in parenthesis
+    if (isKind(node.expression, 'ParenthesizedExpression')) {
+      this.checkLastReturnStatementLineIndent(node, firstLineIndent);
+    } else {
+      this.checkNodeIndent(node, firstLineIndent);
+    }
+    super.visitReturnStatement(node);
   }
 
   protected visitSourceFile(node: ts.SourceFile) {
