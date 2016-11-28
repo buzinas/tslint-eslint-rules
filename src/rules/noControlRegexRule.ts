@@ -30,7 +30,7 @@ class NoControlRegexWalker extends Lint.RuleWalker {
     super.visitCallExpression(node);
   }
 
-  private visitRegularExpressionFunction(node: ts.CallExpression) {
+  private visitRegularExpressionFunction(node: ts.CallExpression | ts.NewExpression) {
     if (node.arguments && node.arguments.length > 0 && node.arguments[0].kind === ts.SyntaxKind.StringLiteral) {
       this.validateControlRegex(node.arguments[0] as ts.StringLiteral);
     }

@@ -2805,7 +2805,7 @@ ruleTester.addTestGroup('call-expression', 'should handle call expressions', [
   }
 ]);
 
-ruleTester.addTestGroup('new-batch', 'should pass', [
+ruleTester.addTestGroup('new-batch', 'should handle try/catch/do and return statements', [
   {
     code: dedent`
       {
@@ -3081,7 +3081,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
   }
 ]);
 
-ruleTester.addTestGroup('variable-declaration', 'should variable declarations', [
+ruleTester.addTestGroup('variable-declaration', 'should handle variable declarations', [
   {
     code: dedent`
       /**

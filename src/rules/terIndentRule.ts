@@ -695,7 +695,7 @@ class IndentWalker extends Lint.RuleWalker {
    */
   private expectedVarIndent(node: ts.VariableDeclaration, varIndent?: number) {
     // VariableStatement -> VariableDeclarationList -> VariableDeclaration
-    const varNode = node.parent.parent;
+    const varNode = node.parent;
     const line = this.getLine(varNode);
     let indent;
 
