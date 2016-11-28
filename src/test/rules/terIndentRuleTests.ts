@@ -1,5 +1,6 @@
 import { RuleTester, Failure, Position, dedent, readFixture } from './ruleTester';
 // ESLint Tests: https://github.com/eslint/eslint/blob/master/tests/lib/rules/indent.js
+// TODO: Split tests into better categories for easy finding
 
 type NumStr = number | string;
 const ruleTester = new RuleTester('ter-indent');
@@ -3080,7 +3081,29 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
   }
 ]);
 
-ruleTester.addTestGroup('bugs', 'testing bugs', [
+ruleTester.addTestGroup('variable-declaration', 'should variable declarations', [
+  {
+    code: dedent`
+      /**
+       * Returns the local state from inside the full redux store's state.
+       */
+      const getState = (store: Store) => store.foo
+      `
+  },
+  {
+    code: dedent`
+      const getState = (store: Store) => store.foo
+      `
+  },
+  {
+    code: dedent`
+      /**
+       * Returns the local state from inside the full redux store's state.
+       */
+        const getState = (store: Store) => store.foo
+      `,
+    errors: expecting([[4, 0, 2]])
+  },
   {
     code: dedent`
       const tough = require('tough-cookie')
