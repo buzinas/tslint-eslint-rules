@@ -70,6 +70,11 @@ export class Rule extends Lint.Rules.AbstractRule {
                                indentation level, or the string \`"first"\` indicating that all
                                parameters of the declaration must be aligned with the first parameter.
             * \`"body"\` (default: 1) enforces indentation level for the body of a function expression.
+        * \`"CallExpression"\` takes an object to define rules for function call expressions.
+            * \`"arguments"\` (off by default) enforces indentation level for arguments in a call
+                              expression. This can either be a number indicating indentation level,
+                              or the string \`"first"\` indicating that all arguments of the
+                              expression must be aligned with the first argument.
       `,
     options: {
       type: 'array',
