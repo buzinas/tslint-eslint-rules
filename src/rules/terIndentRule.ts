@@ -2,7 +2,7 @@
  * This rule is a direct port of eslint:
  *
  * source file: https://github.com/eslint/eslint/blob/master/lib/rules/indent.js
- * git commit hash: 332d21383d58fa75bd8d192fe03453f9bcbfe095
+ * git commit hash: 0643bfeff68979044ca57a2b392d855d18be7d08
  *
  */
 import * as ts from 'typescript';
