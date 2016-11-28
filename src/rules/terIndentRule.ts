@@ -324,7 +324,39 @@ class IndentWalker extends Lint.RuleWalker {
     while ([' ', '\t'].indexOf(this.srcText.charAt(pos)) !== -1) {
       pos -= 1;
     }
-    return this.srcText.charAt(pos) === '\n';
+    return this.srcText.charAt(pos) === '\n' || this._firstInLineCommentHelper(node);
+  }
+
+  /**
+   * Checks to see a leading comment is blocking the start of the node. For instance:
+   *
+   *    /* comment *\/ {
+   *
+   * is allowed and in this case `{` would be first in line.
+   */
+  private _firstInLineCommentHelper(node: ts.Node) {
+    let pos;
+    let firstInLine = false;
+    const comments = ts.getLeadingCommentRanges(node.getFullText(), 0);
+    if (comments && comments.length) {
+      const offset = node.getFullStart();
+      const lastComment = comments[comments.length - 1];
+      const comment = this.getSourceSubstr(lastComment.pos + offset, lastComment.end + offset);
+      if (comment.indexOf('\n') !== -1) {
+        firstInLine = true;
+      } else {
+        pos = lastComment.pos + offset;
+        while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
+          pos -= 1;
+        }
+        const content = this.getSourceSubstr(pos + 1, lastComment.pos + offset);
+        if (content.trim() === '') {
+          firstInLine = true;
+        }
+      }
+    }
+
+    return firstInLine;
   }
 
   /**
@@ -352,28 +384,8 @@ class IndentWalker extends Lint.RuleWalker {
     const spaces = indentChars.filter(char => char === ' ').length;
     const tabs = indentChars.filter(char => char === '\t').length;
 
-    let firstInLine = false;
-    const comments = ts.getLeadingCommentRanges(node.getFullText(), 0);
-    if (comments && comments.length) {
-      const offset = node.getFullStart();
-      const lastComment = comments[comments.length - 1];
-      const comment = this.getSourceSubstr(lastComment.pos + offset, lastComment.end + offset);
-      if (comment.indexOf('\n') !== -1) {
-        firstInLine = true;
-      } else {
-        pos = lastComment.pos + offset;
-        while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
-          pos -= 1;
-        }
-        const content = this.getSourceSubstr(pos + 1, lastComment.pos + offset);
-        if (content.trim() === '') {
-          firstInLine = true;
-        }
-      }
-    }
-
     return {
-      firstInLine: spaces + tabs === str.length || firstInLine,
+      firstInLine: spaces + tabs === str.length || this._firstInLineCommentHelper(node),
       space: spaces,
       tab: tabs,
       goodChar: indentType === 'space' ? spaces : tabs,

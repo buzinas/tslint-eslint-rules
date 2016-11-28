@@ -3056,17 +3056,17 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
       }`,
     errors: expecting([[2, 4, 8]])
   },
-  // {
-  //   code: dedent`
-  //     foo('bar',
-  //             /** comment */{
-  //             ok: true    });`,
-  //   output: dedent`
-  //     foo('bar',
-  //         /** comment */{
-  //             ok: true    });`,
-  //   errors: expecting([[2, 4, 8]])
-  // },
+  {
+    code: dedent`
+      foo('bar',
+              /** comment */{
+              ok: true    });`,
+    output: dedent`
+      foo('bar',
+          /** comment */{
+              ok: true    });`,
+    errors: expecting([[2, 4, 8]])
+  },
   {
     code: dedent`
       foo('bar',

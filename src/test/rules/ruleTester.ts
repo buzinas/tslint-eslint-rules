@@ -250,7 +250,7 @@ class RuleTester {
   }
 
   public runTests(): void {
-    const singleTest = JSON.parse(process.env.SINGLE_TEST || '');
+    const singleTest = JSON.parse(process.env.SINGLE_TEST || 'null');
     const runGroup = singleTest === null || singleTest.group === null;
     const runIndex = singleTest === null || singleTest.num === null;
     describe(this.ruleName, () => {
