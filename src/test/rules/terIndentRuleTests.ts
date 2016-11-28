@@ -2918,7 +2918,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
           };
         }
       }`,
-    options: [2, {VariableDeclarator: 2, SwitchCase: 1}],
+    options: [2, { VariableDeclarator: 2, SwitchCase: 1 }],
     errors: expecting([[4, '6 spaces', '4']])
   },
   {
@@ -2956,7 +2956,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
         bar,
         baz,
         qux);`,
-    options: [2, {CallExpression: {arguments: 1}}],
+    options: [2, { CallExpression: { arguments: 1 } }],
     errors: expecting([[2, 2, 0], [4, 2, 4]])
   },
   {
@@ -2968,7 +2968,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
       foo(
           bar,
           baz);`,
-    options: [2, {CallExpression: {arguments: 2}}],
+    options: [2, { CallExpression: { arguments: 2 } }],
     errors: expecting([[2, '4 spaces', '1 tab'], [3, '4 spaces', '1 tab']])
   },
   {
@@ -2980,7 +2980,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
       foo(bar,
       \tbaz,
       \tqux);`,
-    options: ['tab', {CallExpression: {arguments: 1}}],
+    options: ['tab', { CallExpression: { arguments: 1 } }],
     errors: expecting([[2, 1, 2], [3, 1, 2]], 'tab')
   },
   {
@@ -2990,7 +2990,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
     output: dedent`
       foo(bar, baz,
           qux);`,
-    options: [2, {CallExpression: {arguments: 'first'}}],
+    options: [2, { CallExpression: { arguments: 'first' } }],
     errors: expecting([[2, 4, 9]])
   },
   {
@@ -3002,7 +3002,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
       foo(
                 bar,
                 baz);`,
-    options: [2, {CallExpression: {arguments: 'first'}}],
+    options: [2, { CallExpression: { arguments: 'first' } }],
     errors: expecting([[3, 10, 4]])
   },
   {
@@ -3018,7 +3018,7 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
             !baz,
             new Car('!')
       );`,
-    options: [2, {CallExpression: {arguments: 3}}],
+    options: [2, { CallExpression: { arguments: 3 } }],
     errors: expecting([[2, 6, 2], [3, 6, 14], [4, 6, 8]])
   },
 
