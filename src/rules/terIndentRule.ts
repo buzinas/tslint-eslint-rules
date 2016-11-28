@@ -1009,12 +1009,14 @@ class IndentWalker extends Lint.RuleWalker {
     }
 
     const tokenBeforeLastElement = list.getChildAt(len - 2);
-    if (isKind(tokenBeforeLastElement, 'CommaToken')) {
+    if (tokenBeforeLastElement && isKind(tokenBeforeLastElement, 'CommaToken')) {
       // Special case for comma-first syntax where the semicolon is indented
       this.checkLastNodeLineIndent(node, this.getNodeIndent(tokenBeforeLastElement).goodChar);
     } else {
-      // TODO: Do we ever get here? Did not see an error in the test when uncommenting next line.
-      // this.checkLastNodeLineIndent(node, elementsIndent - indentSize);
+      const nodeIndent = this.getNodeIndent(node).goodChar;
+      const varKind = node.getFirstToken().getText();
+      const elementsIndent = nodeIndent + indentSize * OPTIONS.VariableDeclarator[varKind];
+      this.checkLastNodeLineIndent(node, elementsIndent - indentSize);
     }
   }
 

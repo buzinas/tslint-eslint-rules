@@ -3080,4 +3080,22 @@ ruleTester.addTestGroup('new-batch', 'should pass', [
   }
 ]);
 
+ruleTester.addTestGroup('bugs', 'testing bugs', [
+  {
+    code: dedent`
+      const tough = require('tough-cookie')
+      const jar = previousJar || new tough.CookieJar()
+      ;(client.defaults as any).jar = jar
+      `
+  },
+  {
+    code: dedent`
+      const tough = require('tough-cookie')
+      const jar = previousJar || new tough.CookieJar()
+       ;(client.defaults as any).jar = jar
+      `,
+    errors: expecting([[3, 0, 1]])
+  }
+]);
+
 ruleTester.runTests();
