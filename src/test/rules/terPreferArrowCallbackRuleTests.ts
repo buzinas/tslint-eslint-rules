@@ -43,6 +43,10 @@ ruleTester.addTestGroup('invalid', 'should alert of function expression usage', 
     errors
   },
   {
+    code: 'foo(function bar(x) { console.log("tricked you, not recursive: bar(x - 1)") })',
+    errors
+  },
+  {
     code: 'foo(function bar() {});',
     errors
   },

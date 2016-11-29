@@ -1,5 +1,5 @@
 /**
- * This rule is a direct port of eslint:
+ * This rule is a port of eslint:
  *
  * source file: https://github.com/eslint/eslint/blob/master/lib/rules/prefer-arrow-callback.js
  * git commit hash: 0b85004acdca863873d5e3cdcfcbe6fe4ac106b6
@@ -134,6 +134,8 @@ function getCallbackInfo(func: ts.FunctionExpression): ICallbackInfo {
 }
 
 interface IFunctionScope {
+  functionName: string | undefined;
+  _recursive: boolean;
   _arguments: boolean;
   _this: boolean;
   _super: boolean;
@@ -163,8 +165,15 @@ class RuleWalker extends Lint.RuleWalker {
   /**
    * Pushes new function scope with all `false` flags.
    */
-  private enterScope(): void {
-    this.stack.push({ _this: false, _super: false, _meta: false, _arguments: false });
+  private enterScope(functionName?: string): void {
+    this.stack.push({
+      functionName,
+      _recursive: false,
+      _this: false,
+      _super: false,
+      _meta: false,
+      _arguments: false
+    });
   }
 
   /**
@@ -184,19 +193,14 @@ class RuleWalker extends Lint.RuleWalker {
 
     // Skip named function expressions and recursive functions
     if (node.name && node.name.text) {
-      if (OPTIONS.allowNamedFunctions || node.body.getText().indexOf(node.name.text) !== -1) {
+      if (OPTIONS.allowNamedFunctions || scopeInfo._recursive) {
         return;
       }
     }
 
     // Skip if using arguments
-    let argumentsIsParam = false;
-    node.parameters.forEach((x) => {
-      if (x.name.getText() === 'arguments') {
-        argumentsIsParam = true;
-        return;
-      }
-    });
+    const params = node.parameters.map(x => x.name.getText());
+    const argumentsIsParam = params.indexOf('arguments') !== -1;
     if (!argumentsIsParam && scopeInfo._arguments) {
       return;
     }
@@ -230,28 +234,31 @@ class RuleWalker extends Lint.RuleWalker {
   }
 
   protected visitFunctionExpression(node: ts.FunctionExpression) {
-    this.enterScope();
+    this.enterScope(node.name ? node.name.text : undefined);
     super.visitFunctionExpression(node);
     this.exitFunctionExpression(node);
   }
 
   protected visitNode(node: ts.Node) {
     const info = this.stack[this.stack.length - 1];
-    if (info) {
+    // Making sure we are in a function body
+    if (info && node.parent.kind !== ts.SyntaxKind.FunctionExpression) {
       if (node.kind === ts.SyntaxKind.ThisKeyword) {
         info._this = true;
       } else if (node.kind === ts.SyntaxKind.SuperKeyword) {
         info._super = true;
+      } else if (node.kind === ts.SyntaxKind.Identifier) {
+        const text = (node as ts.Identifier).text;
+        if (text === 'arguments') {
+          info._arguments = true;
+        } else if (text === info.functionName) {
+          info._recursive = true;
+        }
       } else if (
         node.kind === ts.SyntaxKind.PropertyAccessExpression &&
         checkMetaProperty(node as ts.PropertyAccessExpression, 'new', 'target')
       ) {
         info._meta = true;
-      } else if (
-        node.kind === ts.SyntaxKind.Identifier &&
-        (node as ts.Identifier).text === 'arguments'
-      ) {
-        info._arguments = true;
       }
     }
     super.visitNode(node);
