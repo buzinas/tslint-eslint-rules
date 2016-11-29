@@ -71,3 +71,7 @@ may specify the following properties:
 }
 ```
 <!-- End:AutoDoc -->
+
+#### TSLint Rule: [`only-arrow-functions`]
+
+[`only-arrow-functions`]: https://palantir.github.io/tslint/rules/only-arrow-functions/
