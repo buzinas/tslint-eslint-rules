@@ -134,6 +134,7 @@ function getCallbackInfo(func: ts.FunctionExpression): ICallbackInfo {
 }
 
 interface IFunctionScope {
+  _arguments: boolean;
   _this: boolean;
   _super: boolean;
   _meta: boolean;
@@ -163,7 +164,7 @@ class RuleWalker extends Lint.RuleWalker {
    * Pushes new function scope with all `false` flags.
    */
   private enterScope(): void {
-    this.stack.push({ _this: false, _super: false, _meta: false });
+    this.stack.push({ _this: false, _super: false, _meta: false, _arguments: false });
   }
 
   /**
@@ -196,7 +197,7 @@ class RuleWalker extends Lint.RuleWalker {
         return;
       }
     });
-    if (!argumentsIsParam && node.body.getText().indexOf('arguments') !== -1) {
+    if (!argumentsIsParam && scopeInfo._arguments) {
       return;
     }
 
@@ -246,6 +247,11 @@ class RuleWalker extends Lint.RuleWalker {
         checkMetaProperty(node as ts.PropertyAccessExpression, 'new', 'target')
       ) {
         info._meta = true;
+      } else if (
+        node.kind === ts.SyntaxKind.Identifier &&
+        (node as ts.Identifier).text === 'arguments'
+      ) {
+        info._arguments = true;
       }
     }
     super.visitNode(node);

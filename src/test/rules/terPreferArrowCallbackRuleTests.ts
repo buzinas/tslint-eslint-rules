@@ -39,6 +39,10 @@ ruleTester.addTestGroup('allow-named-functions', 'should allow named functions',
 
 ruleTester.addTestGroup('invalid', 'should alert of function expression usage', [
   {
+    code: 'foo(function (x) { console.log("arguments", x) })',
+    errors
+  },
+  {
     code: 'foo(function bar() {});',
     errors
   },

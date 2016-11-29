@@ -1,6 +1,10 @@
 {
   "rulesDirectory": "dist/rules",
   "rules": {
+    "ter-prefer-arrow-callback": [true, {
+      "allowNamedFunctions": true,
+      "allowUnboundThis": false
+    }],
     "ter-max-len": [true, 180, {
       "ignoreUrls": true
     }],
