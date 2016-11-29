@@ -2,7 +2,7 @@
  * This rule is a direct port of eslint:
  *
  * source file: https://github.com/eslint/eslint/blob/master/lib/rules/indent.js
- * git commit hash: 332d21383d58fa75bd8d192fe03453f9bcbfe095
+ * git commit hash: 0643bfeff68979044ca57a2b392d855d18be7d08
  *
  */
 import * as ts from 'typescript';
@@ -70,6 +70,11 @@ export class Rule extends Lint.Rules.AbstractRule {
                                indentation level, or the string \`"first"\` indicating that all
                                parameters of the declaration must be aligned with the first parameter.
             * \`"body"\` (default: 1) enforces indentation level for the body of a function expression.
+        * \`"CallExpression"\` takes an object to define rules for function call expressions.
+            * \`"arguments"\` (off by default) enforces indentation level for arguments in a call
+                              expression. This can either be a number indicating indentation level,
+                              or the string \`"first"\` indicating that all arguments of the
+                              expression must be aligned with the first argument.
       `,
     options: {
       type: 'array',
@@ -134,6 +139,15 @@ export class Rule extends Lint.Rules.AbstractRule {
           },
           MemberExpression: {
             type: 'number'
+          },
+          CallExpression: {
+            type: 'object',
+            properties: {
+              arguments: {
+                type: 'number',
+                minimum: 0
+              }
+            }
           }
         },
         additionalProperties: false
@@ -194,6 +208,9 @@ class IndentWalker extends Lint.RuleWalker {
       FunctionExpression: {
         parameters: DEFAULT_PARAMETER_INDENT,
         body: DEFAULT_FUNCTION_BODY_INDENT
+      },
+      CallExpression: {
+        arguments: DEFAULT_PARAMETER_INDENT
       }
     };
     const firstParam = this.getOptions()[0];
@@ -233,6 +250,11 @@ class IndentWalker extends Lint.RuleWalker {
       if (typeof userOptions.FunctionExpression === 'object') {
         assign(OPTIONS.FunctionExpression, userOptions.FunctionExpression);
       }
+
+      if (typeof userOptions.CallExpression === 'object') {
+        assign(OPTIONS.CallExpression, userOptions.CallExpression);
+      }
+
     }
     this.srcFile = sourceFile;
     this.srcText = sourceFile.getFullText();
@@ -286,7 +308,7 @@ class IndentWalker extends Lint.RuleWalker {
    * gottenSpaces: Indentation space count in the actual node/code
    * gottenTabs: Indentation tab count in the actual node/code
    */
-  private report(node: ts.Node, needed, gottenSpaces, gottenTabs) {
+  private report(node: ts.Node, needed, gottenSpaces, gottenTabs, loc?) {
     if (gottenSpaces && gottenTabs) {
       // Don't report lines that have both spaces and tabs to avoid conflicts with rules that
       // report a mix of tabs and spaces.
@@ -294,7 +316,7 @@ class IndentWalker extends Lint.RuleWalker {
     }
     const msg = this.createErrorMessage(needed, gottenSpaces, gottenTabs);
     const width = gottenSpaces + gottenTabs;
-    this.addFailure(this.createFailure(node.getStart() - width, width, msg));
+    this.addFailure(this.createFailure((loc !== undefined ? loc : node.getStart()) - width, width, msg));
   }
 
   /**
@@ -307,7 +329,39 @@ class IndentWalker extends Lint.RuleWalker {
     while ([' ', '\t'].indexOf(this.srcText.charAt(pos)) !== -1) {
       pos -= 1;
     }
-    return this.srcText.charAt(pos) === '\n';
+    return this.srcText.charAt(pos) === '\n' || this._firstInLineCommentHelper(node);
+  }
+
+  /**
+   * Checks to see a leading comment is blocking the start of the node. For instance:
+   *
+   *    /* comment *\/ {
+   *
+   * is allowed and in this case `{` would be first in line.
+   */
+  private _firstInLineCommentHelper(node: ts.Node) {
+    let pos;
+    let firstInLine = false;
+    const comments = ts.getLeadingCommentRanges(node.getFullText(), 0);
+    if (comments && comments.length) {
+      const offset = node.getFullStart();
+      const lastComment = comments[comments.length - 1];
+      const comment = this.getSourceSubstr(lastComment.pos + offset, lastComment.end + offset);
+      if (comment.indexOf('\n') !== -1) {
+        firstInLine = true;
+      } else {
+        pos = lastComment.pos + offset;
+        while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
+          pos -= 1;
+        }
+        const content = this.getSourceSubstr(pos + 1, lastComment.pos + offset);
+        if (content.trim() === '') {
+          firstInLine = true;
+        }
+      }
+    }
+
+    return firstInLine;
   }
 
   /**
@@ -335,19 +389,8 @@ class IndentWalker extends Lint.RuleWalker {
     const spaces = indentChars.filter(char => char === ' ').length;
     const tabs = indentChars.filter(char => char === '\t').length;
 
-    let firstInLine = false;
-    const comments = ts.getLeadingCommentRanges(node.getFullText(), 0);
-    if (comments && comments.length) {
-      const offset = node.getFullStart();
-      const lastComment = comments[comments.length - 1];
-      const comment = this.getSourceSubstr(lastComment.pos + offset, lastComment.end + offset);
-      if (comment.indexOf('\n') !== -1) {
-        firstInLine = true;
-      }
-    }
-
     return {
-      firstInLine: spaces + tabs === str.length || firstInLine,
+      firstInLine: spaces + tabs === str.length || this._firstInLineCommentHelper(node),
       space: spaces,
       tab: tabs,
       goodChar: indentType === 'space' ? spaces : tabs,
@@ -375,6 +418,24 @@ class IndentWalker extends Lint.RuleWalker {
           this.checkNodeIndent(elseStatement, neededIndent);
         }
       }
+    } else if (isKind(node, 'TryStatement')) {
+      const handler = (node as ts.TryStatement).catchClause;
+      if (handler) {
+        const catchKeyword = handler.getChildren().filter(ch => isKind(ch, 'CatchKeyword')).shift();
+        this.checkNodeIndent(catchKeyword, neededIndent);
+        if (!this.isNodeFirstInLine(handler)) {
+          this.checkNodeIndent(handler, neededIndent);
+        }
+      }
+
+      const finalizer = (node as ts.TryStatement).finallyBlock;
+      if (finalizer) {
+        const finallyKeyword = node.getChildren().filter(ch => isKind(ch, 'FinallyKeyword')).shift();
+        this.checkNodeIndent(finallyKeyword, neededIndent);
+      }
+    } else if (isKind(node, 'DoStatement')) {
+      const whileKeyword = node.getChildren().filter(ch => isKind(ch, 'WhileKeyword')).shift();
+      this.checkNodeIndent(whileKeyword, neededIndent);
     }
   }
 
@@ -415,10 +476,13 @@ class IndentWalker extends Lint.RuleWalker {
       'DoStatement',
       'ClassDeclaration',
       'ClassExpression',
+      'TryStatement',
       'SourceFile'
     ];
     if (node.parent && isOneOf(node.parent, statementsWithProperties) && this.isNodeBodyBlock(node)) {
       indent = this.getNodeIndent(node.parent).goodChar;
+    } else if (node.parent && isKind(node.parent, 'CatchClause')) {
+      indent = this.getNodeIndent(node.parent.parent).goodChar;
     } else {
       indent = this.getNodeIndent(node).goodChar;
     }
@@ -631,7 +695,7 @@ class IndentWalker extends Lint.RuleWalker {
    */
   private expectedVarIndent(node: ts.VariableDeclaration, varIndent?: number) {
     // VariableStatement -> VariableDeclarationList -> VariableDeclaration
-    const varNode = node.parent.parent;
+    const varNode = node.parent;
     const line = this.getLine(varNode);
     let indent;
 
@@ -652,10 +716,18 @@ class IndentWalker extends Lint.RuleWalker {
    * Returns a parent node of given node based on a specified type
    * if not present then return null
    */
-  private getParentNodeByType<T extends ts.Node>(node: ts.Node, kind): T {
+  private getParentNodeByType<T extends ts.Node>(
+    node: ts.Node,
+    kind: number,
+    stopAtList: number[] = [ts.SyntaxKind.SourceFile]
+  ): T {
     let parent = node.parent;
 
-    while (parent.kind !== kind && parent.kind !== ts.SyntaxKind.SourceFile) {
+    while (
+      parent.kind !== kind
+      && stopAtList.indexOf(parent.kind) === -1
+      && parent.kind !== ts.SyntaxKind.SourceFile
+    ) {
       parent = parent.parent;
     }
 
@@ -687,25 +759,10 @@ class IndentWalker extends Lint.RuleWalker {
     let elements = isKind(node, 'ObjectLiteralExpression') ? node['properties'] : node['elements'];
 
     // filter out empty elements, an example would be [ , 2]
-    elements = elements.filter((elem) => {
-      return elem.getText() !== '';
-    });
-
-    // Skip if first element is in same line with this node
-    if (elements.length && this.getLine(elements[0]) === this.getLine(node)) {
-      return;
-    }
+    elements = elements.filter(elem => elem.getText() !== '');
 
     const nodeLine = this.getLine(node);
     const nodeEndLine = this.getLine(node, true);
-
-    // Skip if first element is in same line with this node
-    if (elements.length) {
-      const firstElementLine = this.getLine(elements[0]);
-      if (nodeLine === firstElementLine) {
-        return;
-      }
-    }
 
     let nodeIndent;
     let elementsIndent;
@@ -714,22 +771,13 @@ class IndentWalker extends Lint.RuleWalker {
 
     if (this.isNodeFirstInLine(node)) {
       const parent = node.parent;
-      let effectiveParent = parent;
 
-      if (parent.kind === ts.SyntaxKind.PropertyDeclaration) {
-        if (this.isNodeFirstInLine(parent)) {
-          effectiveParent = parent.parent.parent;
-        } else {
-          effectiveParent = parent.parent;
-        }
-      }
-
-      nodeIndent = this.getNodeIndent(effectiveParent).goodChar;
+      nodeIndent = this.getNodeIndent(parent).goodChar;
       if (parentVarNode && this.getLine(parentVarNode) !== nodeLine) {
         if (!isKind(parent, 'VariableDeclaration') || parentVarNode === parentVarNode.parent.declarations[0]) {
           const parentVarLine = this.getLine(parentVarNode);
-          const effectiveParentLine = this.getLine(effectiveParent);
-          if (isKind(parent, 'VariableDeclaration') && parentVarLine === effectiveParentLine) {
+          const parentLine = this.getLine(parent);
+          if (isKind(parent, 'VariableDeclaration') && parentVarLine === parentLine) {
             varKind = parentVarNode.parent.getFirstToken().getText();
             nodeIndent = nodeIndent + (indentSize * OPTIONS.VariableDeclarator[varKind]);
           } else if (
@@ -748,10 +796,10 @@ class IndentWalker extends Lint.RuleWalker {
       } else if (
         !parentVarNode &&
         !this.isFirstArrayElementOnSameLine(parent) &&
-        effectiveParent.kind !== ts.SyntaxKind.PropertyAccessExpression &&
-        effectiveParent.kind !== ts.SyntaxKind.ExpressionStatement &&
-        effectiveParent.kind !== ts.SyntaxKind.PropertyAssignment &&
-        !(this.isAssignment(effectiveParent))
+        parent.kind !== ts.SyntaxKind.PropertyAccessExpression &&
+        parent.kind !== ts.SyntaxKind.ExpressionStatement &&
+        parent.kind !== ts.SyntaxKind.PropertyAssignment &&
+        !(this.isAssignment(parent))
       ) {
         nodeIndent = nodeIndent + indentSize;
       }
@@ -840,6 +888,31 @@ class IndentWalker extends Lint.RuleWalker {
     }
     const caseIndent = this.expectedCaseIndent(node);
     this.checkNodesIndent(node.statements, caseIndent + indentSize);
+  }
+
+  /**
+   * Check last node line indent this detects, that block closed correctly
+   * This function for more complicated return statement case, where closing parenthesis may be
+   * followed by ';'
+   */
+  private checkLastReturnStatementLineIndent(node: ts.ReturnStatement, firstLineIndent) {
+    const lastToken = node.expression.getLastToken();
+
+    const endIndex = lastToken.getStart();
+    let pos = endIndex - 1;
+    while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
+      pos -= 1;
+    }
+    const textBeforeClosingParenthesis = this.getSourceSubstr(pos + 1, endIndex);
+    if (textBeforeClosingParenthesis.trim()) {
+      // There are tokens before the closing paren, don't report this case
+      return;
+    }
+
+    const endIndent = this.getNodeIndent(lastToken);
+    if (endIndent.goodChar !== firstLineIndent) {
+      this.report(node, firstLineIndent, endIndent.space, endIndent.tab, lastToken.getStart());
+    }
   }
 
   protected visitClassDeclaration(node: ts.ClassDeclaration) {
@@ -941,12 +1014,14 @@ class IndentWalker extends Lint.RuleWalker {
     }
 
     const tokenBeforeLastElement = list.getChildAt(len - 2);
-    if (isKind(tokenBeforeLastElement, 'CommaToken')) {
+    if (tokenBeforeLastElement && isKind(tokenBeforeLastElement, 'CommaToken')) {
       // Special case for comma-first syntax where the semicolon is indented
       this.checkLastNodeLineIndent(node, this.getNodeIndent(tokenBeforeLastElement).goodChar);
     } else {
-      // TODO: Do we ever get here? Did not see an error in the test when uncommenting next line.
-      // this.checkLastNodeLineIndent(node, elementsIndent - indentSize);
+      const nodeIndent = this.getNodeIndent(node).goodChar;
+      const varKind = node.getFirstToken().getText();
+      const elementsIndent = nodeIndent + indentSize * OPTIONS.VariableDeclarator[varKind];
+      this.checkLastNodeLineIndent(node, elementsIndent - indentSize);
     }
   }
 
@@ -983,11 +1058,23 @@ class IndentWalker extends Lint.RuleWalker {
     super.visitFunctionExpression(node);
   }
 
-  protected visitPropertyAccessExpression(node: ts.PropertyAccessExpression) {
-    if (typeof OPTIONS.MemberExpression === 'undefined') {
+  protected visitCallExpression(node: ts.CallExpression) {
+    if (this.isSingleLineNode(node)) {
       return;
     }
+    if (OPTIONS.CallExpression.arguments === 'first' && node.arguments.length) {
+      const indent = this.getLineAndCharacter(node.arguments[0]).character;
+      this.checkNodesIndent(node.arguments.slice(1), indent);
+    } else if (OPTIONS.CallExpression.arguments !== null) {
+      this.checkNodesIndent(
+        node.arguments,
+        this.getNodeIndent(node).goodChar + indentSize * OPTIONS.CallExpression.arguments
+      );
+    }
+    super.visitCallExpression(node);
+  }
 
+  protected visitPropertyAccessExpression(node: ts.PropertyAccessExpression) {
     if (this.isSingleLineNode(node)) {
       return;
     }
@@ -996,12 +1083,21 @@ class IndentWalker extends Lint.RuleWalker {
     // alter the expectation of correct indentation. Skip them.
     // TODO: Add appropriate configuration options for variable
     // declarations and assignments.
-    if (this.getVariableDeclaratorNode(node)) {
+    const varDec = ts.SyntaxKind.VariableDeclaration;
+    const funcKind = [ts.SyntaxKind.FunctionExpression, ts.SyntaxKind.ArrowFunction];
+    if (this.getParentNodeByType<ts.VariableDeclaration>(node, varDec, funcKind)) {
       return;
     }
 
-    const binaryNode: ts.BinaryExpression = this.getBinaryExpressionNode(node);
+    const binExp = ts.SyntaxKind.BinaryExpression;
+    const funcExp = ts.SyntaxKind.FunctionExpression;
+    const binaryNode = this.getParentNodeByType<ts.BinaryExpression>(node, binExp, [funcExp]);
     if (binaryNode && this.isAssignment(binaryNode)) {
+      return;
+    }
+
+    super.visitPropertyAccessExpression(node);
+    if (typeof OPTIONS.MemberExpression === 'undefined') {
       return;
     }
 
@@ -1013,7 +1109,22 @@ class IndentWalker extends Lint.RuleWalker {
     const checkNodes = [node.name, dotToken];
 
     this.checkNodesIndent(checkNodes, propertyIndent);
-    super.visitPropertyAccessExpression(node);
+  }
+
+  protected visitReturnStatement(node: ts.ReturnStatement) {
+    if (this.isSingleLineNode(node)) {
+      return;
+    }
+
+    const firstLineIndent = this.getNodeIndent(node).goodChar;
+
+    // in case if return statement is wrapped in parenthesis
+    if (isKind(node.expression, 'ParenthesizedExpression')) {
+      this.checkLastReturnStatementLineIndent(node, firstLineIndent);
+    } else {
+      this.checkNodeIndent(node, firstLineIndent);
+    }
+    super.visitReturnStatement(node);
   }
 
   protected visitSourceFile(node: ts.SourceFile) {

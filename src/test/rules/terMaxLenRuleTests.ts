@@ -165,7 +165,7 @@ ruleTester.addTestGroup('comments', 'should handle comments', [
     code: dedent`
       // I like short comments
       function butLongSourceLines() { weird(eh()) }`,
-    options: [80, {tabWidth: 4, comments: 30}]
+    options: [80, { tabWidth: 4, comments: 30 }]
   },
   {
     code: dedent`

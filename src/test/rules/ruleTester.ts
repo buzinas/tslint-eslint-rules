@@ -1,5 +1,7 @@
 import { assert } from 'chai';
 import * as Lint from 'tslint';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const dedent = Lint.Utils.dedent;
 const empty = '░';
@@ -248,16 +250,27 @@ class RuleTester {
   }
 
   public runTests(): void {
+    const singleTest = JSON.parse(process.env.SINGLE_TEST || 'null');
+    const runGroup = singleTest === null || singleTest.group === null;
+    const runIndex = singleTest === null || singleTest.num === null;
     describe(this.ruleName, () => {
       this.groups.forEach((group) => {
-        it(group.description, () => {
-          group.tests.forEach((test) => {
-            test.runTest();
+        if (runGroup || group.name === singleTest.group) {
+          it(group.description, () => {
+            group.tests.forEach((test, index) => {
+              if (runIndex || singleTest.num === index) {
+                test.runTest();
+              }
+            });
           });
-        });
+        }
       });
     });
   }
+}
+
+function readFixture(name: string): string {
+  return fs.readFileSync(path.join(__dirname, `../../../src/test/fixtures/${name}`), 'utf8');
 }
 
 export {
@@ -265,5 +278,6 @@ export {
   Position,
   Failure,
   TestGroup,
-  RuleTester
+  RuleTester,
+  readFixture,
 };

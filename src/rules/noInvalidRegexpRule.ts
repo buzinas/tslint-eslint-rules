@@ -19,7 +19,7 @@ class NoInvalidRegexpWalker extends Lint.RuleWalker {
     super.visitCallExpression(node);
   }
 
-  private validateInvalidRegExp(node: ts.CallExpression) {
+  private validateInvalidRegExp(node: ts.CallExpression | ts.NewExpression) {
     if (node.expression.getText() === 'RegExp') {
       const args = node.arguments;
       if (args && args.length > 0 && args[0].kind === ts.SyntaxKind.StringLiteral) {

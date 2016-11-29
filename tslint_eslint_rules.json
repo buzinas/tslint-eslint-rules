@@ -9,6 +9,6 @@
         "PropertyAssignment": false
       }
     }],
-    "object-curly-spacing": [false, "always"]
+    "object-curly-spacing": [true, "always"]
   }
 }
