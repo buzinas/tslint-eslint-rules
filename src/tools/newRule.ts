@@ -12,24 +12,36 @@ const RULE_NAME = '${ruleKebabName}';
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
-    description: 'enforce a maximum line length',
+    description: '',
     rationale: Lint.Utils.dedent\`
       \`,
     optionsDescription: Lint.Utils.dedent\`
       \`,
     options: {
+      type: 'array',
+      items: [{
+        type: 'object',
+        properties: {
+        },
+        additionalProperties: false
+      }],
+      maxLength: 1
     },
     optionExamples: [
       Lint.Utils.dedent\`
         "\${RULE_NAME}": [true]
+        \`,
+      Lint.Utils.dedent\`
+        "\${RULE_NAME}": [true, {
+        }]
         \`
     ],
     typescriptOnly: false,
-    type: ''
+    type: ''  // one of "functionality" | "maintainability" | "style" | "typescript"
   };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-    const walker = new (sourceFile, this.getOptions());
+    const walker = new RuleWalker(sourceFile, this.getOptions());
     return this.applyWithWalker(walker);
   }
 }
