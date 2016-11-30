@@ -1,5 +1,17 @@
 # Change Log
 
+## [v3.1.0] - 2016/11/29 23:20 GTM-0600
+#### Rules Added
+- ter-prefer-arrow-callback
+
+#### Fixes
+- ter-indent:
+  - issues with try/catch statements
+  - issues with return statements
+  - issues with method declarations
+  - A `CallExpression` option has been added.
+
+
 ## [v3.0.0] - 2016/11/21 12:36 GTM-0600
 ### Upgraded to [TSLint 4.0](https://palantir.github.io/tslint/2016/11/17/new-for-4.0.html)
 - Several rules are no longer applicable
@@ -168,6 +180,7 @@
 - Added and made lots of improvements in README.md
 
 
+[v3.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.1...v3.0.0
 [v2.2.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.0...v2.2.1
 [v2.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.1.0...v2.2.0

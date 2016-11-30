@@ -10,6 +10,7 @@ typings
 .npmignore
 .travis.yml
 eslint_tslint.json
+tslint_eslint_rules.json
 gulpfile.js
 jsconfig.json
 tsconfig.json
