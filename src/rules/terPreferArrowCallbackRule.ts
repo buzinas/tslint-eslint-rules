@@ -135,11 +135,11 @@ function getCallbackInfo(func: ts.FunctionExpression): ICallbackInfo {
 
 interface IFunctionScope {
   functionName: string | undefined;
-  _recursive: boolean;
-  _arguments: boolean;
-  _this: boolean;
-  _super: boolean;
-  _meta: boolean;
+  isRecursive: boolean;
+  hasArguments: boolean;
+  hasThis: boolean;
+  hasSuper: boolean;
+  hasMeta: boolean;
 }
 
 class RuleWalker extends Lint.RuleWalker {
@@ -168,11 +168,11 @@ class RuleWalker extends Lint.RuleWalker {
   private enterScope(functionName?: string): void {
     this.stack.push({
       functionName,
-      _recursive: false,
-      _this: false,
-      _super: false,
-      _meta: false,
-      _arguments: false
+      isRecursive: false,
+      hasThis: false,
+      hasSuper: false,
+      hasMeta: false,
+      hasArguments: false
     });
   }
 
@@ -193,7 +193,7 @@ class RuleWalker extends Lint.RuleWalker {
 
     // Skip named function expressions and recursive functions
     if (node.name && node.name.text) {
-      if (OPTIONS.allowNamedFunctions || scopeInfo._recursive) {
+      if (OPTIONS.allowNamedFunctions || scopeInfo.isRecursive) {
         return;
       }
     }
@@ -201,16 +201,16 @@ class RuleWalker extends Lint.RuleWalker {
     // Skip if using arguments
     const params = node.parameters.map(x => x.name.getText());
     const argumentsIsParam = params.indexOf('arguments') !== -1;
-    if (!argumentsIsParam && scopeInfo._arguments) {
+    if (!argumentsIsParam && scopeInfo.hasArguments) {
       return;
     }
 
     const callbackInfo = getCallbackInfo(node);
     if (
       callbackInfo.isCallback &&
-      (!OPTIONS.allowUnboundThis || !scopeInfo._this || callbackInfo.isLexicalThis) &&
-      !scopeInfo._super &&
-      !scopeInfo._meta
+      (!OPTIONS.allowUnboundThis || !scopeInfo.hasThis || callbackInfo.isLexicalThis) &&
+      !scopeInfo.hasSuper &&
+      !scopeInfo.hasMeta
     ) {
       const failure = this.createFailure(
         node.getStart(),
@@ -244,21 +244,21 @@ class RuleWalker extends Lint.RuleWalker {
     // Making sure we are in a function body
     if (info && node.parent.kind !== ts.SyntaxKind.FunctionExpression) {
       if (node.kind === ts.SyntaxKind.ThisKeyword) {
-        info._this = true;
+        info.hasThis = true;
       } else if (node.kind === ts.SyntaxKind.SuperKeyword) {
-        info._super = true;
+        info.hasSuper = true;
       } else if (node.kind === ts.SyntaxKind.Identifier) {
         const text = (node as ts.Identifier).text;
         if (text === 'arguments') {
-          info._arguments = true;
+          info.hasArguments = true;
         } else if (text === info.functionName) {
-          info._recursive = true;
+          info.isRecursive = true;
         }
       } else if (
         node.kind === ts.SyntaxKind.PropertyAccessExpression &&
         checkMetaProperty(node as ts.PropertyAccessExpression, 'new', 'target')
       ) {
-        info._meta = true;
+        info.hasMeta = true;
       }
     }
     super.visitNode(node);
