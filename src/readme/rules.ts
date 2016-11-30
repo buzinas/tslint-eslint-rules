@@ -3208,15 +3208,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'prefer-arrow-callback',
-    tslintRule: 'only-arrow-functions',
+    tslintRule: 'ter-prefer-arrow-callback',
     category: 'ECMAScript 6',
     description: 'suggest using arrow functions as callbacks',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-arrow-callback',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/only-arrow-functions/',
-    provider: 'native',
-    usage: `~~~json
-    "prefer-arrow-callback": true
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,

@@ -1,6 +1,10 @@
 {
   "rulesDirectory": "dist/rules",
   "rules": {
+    "ter-prefer-arrow-callback": [true, {
+      "allowNamedFunctions": true,
+      "allowUnboundThis": false
+    }],
     "ter-indent": [true, 2, {
       "SwitchCase": 1,
       "outerIIFEBody": 0,
