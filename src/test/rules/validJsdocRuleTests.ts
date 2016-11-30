@@ -99,18 +99,18 @@ const scripts = {
       * Description
       * @return {void} */
       function foo(){}`,
-      `/**
-       * Description for A.
-       */
-      class A {
-          /**
-           * Description for constructor.
-           * @param {object[]} xs - xs
-           * @returns {void}
-           */
-          constructor(xs) {
-              this.a = xs;    }
-      }`,
+    `/**
+     * Description for A.
+     */
+    class A {
+        /**
+         * Description for constructor.
+         * @param {object[]} xs - xs
+         * @returns {void}
+         */
+        constructor(xs) {
+            this.a = xs;    }
+    }`,
     `/**
        * Description for A.
        */
@@ -177,15 +177,15 @@ const scripts = {
       * @param {string} p mytest
       */
       Foo.bar = function(p){var t = function(){function name(){}; return name;}};`,
-      `var obj = {
-       /**
-       * Getter
-       * @type {string}
-       */
-       get location() {
-       return this._location;
-       }
-       }`,
+    `var obj = {
+     /**
+     * Getter
+     * @type {string}
+     */
+     get location() {
+     return this._location;
+     }
+     }`,
     `/**
        * Description for A.
        */
@@ -252,10 +252,10 @@ const scripts = {
       @returns {void Foo
        */
       function foo(){}`,
-      `/** Foo
-      @param {void Foo
-       */
-      function foo(){}`,
+    `/** Foo
+    @param {void Foo
+     */
+    function foo(){}`,
     `/** Foo
       @param {} p Bar
        */
@@ -336,12 +336,12 @@ const scripts = {
       @return {void} Foo
        */
       foo.bar = () => {}`,
-      `/**
-       * Does something.
-      * @param {string} a - this is a
-      * @return {Array<number>} The result of doing it
-      */
-       export function doSomething(a) { }`,
+    `/**
+     * Does something.
+    * @param {string} a - this is a
+    * @return {Array<number>} The result of doing it
+    */
+     export function doSomething(a) { }`,
     `/**
        * Does something.
       * @param {string} a - this is a

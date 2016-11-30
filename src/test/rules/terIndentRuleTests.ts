@@ -2482,7 +2482,7 @@ ruleTester.addTestGroup('outer-iife-body', 'should handle outer IIFE body', [
   }
 ]);
 
-ruleTester.addTestGroup('functions', 'should handle functions declarations and expressions', [
+ruleTester.addTestGroup('functions', 'should handle functions body and parameters', [
   {
     code: dedent`
       function foo(aaa,
@@ -2686,6 +2686,43 @@ ruleTester.addTestGroup('functions', 'should handle functions declarations and e
   },
   {
     code: dedent`
+      function foo(aaa, bbb)
+        {
+      bar();
+      }`,
+    options: [2, { FunctionDeclaration: { body: 3 } }],
+    errors: expecting([[2, 0, 2], [3, 6, 0]])
+  },
+  {
+    code: dedent`
+      function foo(
+        aaa,
+        bbb
+       )
+      {
+        bar();
+      }`,
+    options: [2, { FunctionDeclaration: { body: 1, parameters: 2 } }],
+    errors: expecting([
+      [2, 4, 2],
+      [3, 4, 2],
+      [4, 0, 1]
+    ])
+  },
+  {
+    code: dedent`
+      {
+        function foo(
+       )
+         {
+          return null;
+        }
+      }`,
+    options: [2, { FunctionDeclaration: { body: 1, parameters: 2 } }],
+    errors: expecting([[3, 2, 1], [4, 2, 3]])
+  },
+  {
+    code: dedent`
       function foo(
       aaa,
           bbb) {
@@ -2734,6 +2771,87 @@ ruleTester.addTestGroup('functions', 'should handle functions declarations and e
       }`,
     options: [2, { FunctionExpression: { parameters: 'first', body: 3 } }],
     errors: expecting([[3, 0, 4], [4, 6, 2]])
+  },
+  {
+    code: dedent`
+      var foo = function(
+      aaa, bbb, ccc,
+          ddd, eee)
+           {
+        bar();
+      }`,
+    options: [2, { FunctionExpression: { parameters: 1, body: 3 } }],
+    errors: expecting([
+      [2, 2, 0],
+      [3, 2, 4],
+      [4, 0, 5],
+      [5, 6, 2]
+    ])
+  }
+]);
+
+ruleTester.addTestGroup('methods', 'should handle methods body and parameters', [
+  {
+    code: dedent`
+      class A {
+        foo(aaa,
+          bbb, ccc, ddd) {
+            bar();
+        }
+      }`,
+    options: [2, { FunctionExpression: { parameters: 1, body: 2 } }]
+  },
+  {
+    code: dedent`
+      class A {
+        constructor(aaa,
+          bbb, ccc, ddd) {
+            bar();
+        }
+      }`,
+    options: [2, { FunctionExpression: { parameters: 1, body: 2 } }]
+  },
+  {
+    code: dedent`
+      class A {
+        foo(
+         aaa,
+          bbb,
+           ccc,
+          ddd
+       )
+         {
+            bar();
+        }
+      }`,
+    options: [2, { FunctionExpression: { parameters: 1, body: 2 } }],
+    errors: expecting([
+      [3, 4, 3],
+      [5, 4, 5],
+      [7, 2, 1],
+      [8, 2, 3]
+    ])
+  },
+  {
+    code: dedent`
+      class A {
+        constructor(
+         aaa,
+          bbb,
+           ccc,
+          ddd
+       )
+         {
+            bar();
+        }
+      }`,
+    options: [2, { FunctionExpression: { parameters: 1, body: 2 } }],
+    errors: expecting([
+      [3, 4, 3],
+      [5, 4, 5],
+      [7, 2, 1],
+      [8, 2, 3]
+    ])
   }
 ]);
 
