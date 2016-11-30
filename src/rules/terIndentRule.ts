@@ -1,5 +1,5 @@
 /**
- * This rule is a direct port of eslint:
+ * This rule is a port of eslint:
  *
  * source file: https://github.com/eslint/eslint/blob/master/lib/rules/indent.js
  * git commit hash: 0643bfeff68979044ca57a2b392d855d18be7d08
@@ -455,7 +455,13 @@ class IndentWalker extends Lint.RuleWalker {
       return;
     }
 
-    const functionLike = ['FunctionExpression', 'FunctionDeclaration', 'ArrowFunction'];
+    const functionLike = [
+      'FunctionExpression',
+      'FunctionDeclaration',
+      'MethodDeclaration',
+      'Constructor',
+      'ArrowFunction'
+    ];
     if (node.parent && isOneOf(node.parent, functionLike)) {
       this.checkIndentInFunctionBlock(node);
       return;
@@ -644,6 +650,8 @@ class IndentWalker extends Lint.RuleWalker {
       functionOffset = OPTIONS.FunctionExpression.body * indentSize;
     } else if (calleeNode.kind === ts.SyntaxKind.FunctionDeclaration) {
       functionOffset = OPTIONS.FunctionDeclaration.body * indentSize;
+    } else if (isOneOf(calleeNode, ['MethodDeclaration', 'Constructor'])) {
+      functionOffset = OPTIONS.FunctionExpression.body * indentSize;
     }
     indent += functionOffset;
 
@@ -654,6 +662,8 @@ class IndentWalker extends Lint.RuleWalker {
       const varKind = parentVarNode.parent.getFirstToken().getText();
       indent += indentSize * OPTIONS.VariableDeclarator[varKind];
     }
+
+    this.checkFirstNodeLineIndent(node, indent - functionOffset);
 
     if (node.statements.length) {
       this.checkNodesIndent(node.statements, indent);
@@ -1033,29 +1043,57 @@ class IndentWalker extends Lint.RuleWalker {
       const indent = this.getLineAndCharacter(node.parameters[0]).character;
       this.checkNodesIndent(node.parameters.slice(1), indent);
     } else if (OPTIONS.FunctionDeclaration.parameters !== null) {
+      const nodeIndent = this.getNodeIndent(node).goodChar;
       this.checkNodesIndent(
         node.parameters,
-        this.getNodeIndent(node).goodChar + indentSize * OPTIONS.FunctionDeclaration.parameters
+        nodeIndent + indentSize * OPTIONS.FunctionDeclaration.parameters
       );
+      const closingParen = node.getChildAt(node.getChildCount() - 2);
+      this.checkNodeIndent(closingParen, nodeIndent);
     }
 
     super.visitFunctionDeclaration(node);
+  }
+
+  private checkFunctionMethodExpression(
+    node: ts.MethodDeclaration | ts.ConstructorDeclaration | ts.FunctionExpression
+  ) {
+    if (OPTIONS.FunctionExpression.parameters === 'first' && node.parameters.length) {
+      const indent = this.getLineAndCharacter(node.parameters[0]).character;
+      this.checkNodesIndent(node.parameters.slice(1), indent);
+    } else if (OPTIONS.FunctionExpression.parameters !== null) {
+      const nodeIndent = this.getNodeIndent(node).goodChar;
+      this.checkNodesIndent(
+        node.parameters,
+        nodeIndent + indentSize * OPTIONS.FunctionExpression.parameters
+      );
+      const closingParen = node.getChildAt(node.getChildCount() - 2);
+      this.checkNodeIndent(closingParen, nodeIndent);
+    }
   }
 
   protected visitFunctionExpression(node: ts.FunctionExpression) {
     if (this.isSingleLineNode(node)) {
       return;
     }
-    if (OPTIONS.FunctionExpression.parameters === 'first' && node.parameters.length) {
-      const indent = this.getLineAndCharacter(node.parameters[0]).character;
-      this.checkNodesIndent(node.parameters.slice(1), indent);
-    } else if (OPTIONS.FunctionExpression.parameters !== null) {
-      this.checkNodesIndent(
-        node.parameters,
-        this.getNodeIndent(node).goodChar + indentSize * OPTIONS.FunctionExpression.parameters
-      );
-    }
+    this.checkFunctionMethodExpression(node);
     super.visitFunctionExpression(node);
+  }
+
+  protected visitMethodDeclaration(node: ts.MethodDeclaration) {
+    if (this.isSingleLineNode(node)) {
+      return;
+    }
+    this.checkFunctionMethodExpression(node);
+    super.visitMethodDeclaration(node);
+  }
+
+  protected visitConstructorDeclaration(node: ts.ConstructorDeclaration) {
+    if (this.isSingleLineNode(node)) {
+      return;
+    }
+    this.checkFunctionMethodExpression(node);
+    super.visitConstructorDeclaration(node);
   }
 
   protected visitCallExpression(node: ts.CallExpression) {
