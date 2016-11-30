@@ -305,7 +305,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[no-useless-constructor](http://eslint.org/docs/rules/no-useless-constructor)|no-useless-constructor|disallow unnecessary constructor|
 |:ballot_box_with_check:|[no-var](http://eslint.org/docs/rules/no-var)|[no-var-keyword](http://palantir.github.io/tslint/rules/no-var-keyword)|require `let` or `const` instead of `var`|
 |:x:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|object-shorthand|require method and property shorthand syntax for object literals|
-|:ballot_box_with_check:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[only-arrow-functions](http://palantir.github.io/tslint/rules/only-arrow-functions/)|suggest using arrow functions as callbacks|
+|:white_check_mark:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[ter-prefer-arrow-callback](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferArrowCallbackRule.md)|suggest using arrow functions as callbacks|
 |:x:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|prefer-const|suggest using `const` declaration for variables that are never modified after declared|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|

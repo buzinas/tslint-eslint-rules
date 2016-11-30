@@ -36,6 +36,17 @@ gulp.task('fetch', ['build'], function fetch(gulpCallBack) {
   });
 });
 
+gulp.task('new-rule', ['build'], function newRule(done) {
+  var newRule = require('./dist/tools/newRule');
+  if (argv.rule) {
+    newRule.writeNewRule(argv.rule);
+    newRule.writeNewRuleTests(argv.rule);
+    done();
+  } else {
+    done('missing `--rule` option');
+  }
+});
+
 gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
