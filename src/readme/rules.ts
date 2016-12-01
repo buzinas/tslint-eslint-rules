@@ -17,8 +17,8 @@ interface IRule {
   eslintUrl: string;
   tslintUrl?: string;
   provider: Provider;
-  usage?: string;
-  note?: string;
+  usage?: string;  // deprecated: Specify in the rule metadata
+  note?: string;   // deprecated: Specify in the rule doc file
 }
 
 const categories = {
