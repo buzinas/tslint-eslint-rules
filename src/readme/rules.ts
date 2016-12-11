@@ -1467,13 +1467,7 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'enforce error handling in callbacks',
     eslintUrl: 'http://eslint.org/docs/rules/handle-callback-err',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "handle-callback-err": [
-        true,
-        "^(err|error|anySpecificError)$"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
