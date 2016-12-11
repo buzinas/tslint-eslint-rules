@@ -93,6 +93,17 @@ ruleTester.addTestGroup('custom-error-regex-pass', 'should pass with custom erro
   {
     code: `function(errorMsg, stream) { console.error(errorMsg) }`,
     options: ['^(err|error|errorMsg)$']
+  },
+  {
+    code: dedent`
+      function query (cb) {
+        doThing(function (err) {
+          closeConnection(function (closeErr) {
+            cb(err || closeErr)
+          })
+        })
+      }`,
+    options: ['^(err|closeErr)$']
   }
 ]);
 
