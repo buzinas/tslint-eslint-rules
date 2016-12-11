@@ -2944,26 +2944,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'arrow-body-style',
-    tslintRule: 'arrow-body-style',
+    tslintRule: 'ter-arrow-body-style',
     category: 'ECMAScript 6',
     description: 'require braces in arrow function body',
     eslintUrl: 'http://eslint.org/docs/rules/arrow-body-style',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "arrow-body-style": [
-        true,
-        "as-needed"
-      ]
-    ~~~
-    
-    ~~~json
-    "arrow-body-style": [
-        true,
-        "always"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,

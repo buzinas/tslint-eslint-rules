@@ -1,6 +1,9 @@
 {
   "rulesDirectory": "dist/rules",
   "rules": {
+    "ter-arrow-body-style": [true, "as-needed", {
+      "requireReturnForObjectLiteral": true
+    }],
     "ter-prefer-arrow-callback": [true, {
       "allowNamedFunctions": true,
       "allowUnboundThis": false
