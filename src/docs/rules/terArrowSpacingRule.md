@@ -5,7 +5,7 @@ require space before/after arrow function's arrow
 
 #### Rationale
 
-This rule normalizes the style of spacing before/after an arrow function’s arrow('=>').
+This rule normalizes the style of spacing before/after an arrow function’s arrow(`=>`).
 
 ### Config
 
