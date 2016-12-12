@@ -15,7 +15,7 @@ export class Rule extends Lint.Rules.AbstractRule {
     ruleName: RULE_NAME,
     description: 'require space before/after arrow function\'s arrow',
     rationale: Lint.Utils.dedent`
-      This rule normalizes the style of spacing before/after an arrow function’s arrow(\'=>\').
+      This rule normalizes the style of spacing before/after an arrow function’s arrow(\`=>\`).
       `,
     optionsDescription: Lint.Utils.dedent`
       This rule takes an object argument with \`before\` and \`after\` properties, each with a
@@ -79,15 +79,11 @@ class RuleWalker extends Lint.RuleWalker {
     this.srcText = sourceFile.getFullText();
   }
 
-  private getCharAt(index: number) {
-    return this.srcText[index];
-  }
-
   protected visitArrowFunction(node: ts.ArrowFunction) {
     const arrow = node.equalsGreaterThanToken;
     const space = {
-      before: /\s/.test(this.getCharAt(arrow.getStart(this.srcFile) - 1)),
-      after: /\s/.test(this.getCharAt(arrow.end))
+      before: /\s/.test(this.srcText[arrow.getStart(this.srcFile) - 1]),
+      after: /\s/.test(this.srcText[arrow.end])
     };
     if (this.before) {
       if (!space.before) {
