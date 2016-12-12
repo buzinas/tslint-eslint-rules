@@ -1,6 +1,7 @@
 {
   "rulesDirectory": "dist/rules",
   "rules": {
+    "ter-arrow-spacing": [true],
     "ter-prefer-arrow-callback": [true, {
       "allowNamedFunctions": true,
       "allowUnboundThis": false
