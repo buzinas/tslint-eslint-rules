@@ -75,7 +75,7 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
     if (errorArgument.charAt(0) === '^') {
       this.errorCheck = RegExp.prototype.test.bind(new RegExp(errorArgument));
     } else {
-      this.errorCheck = (name) => name === errorArgument;
+      this.errorCheck = (name => name === errorArgument);
     }
     this.firstParameterName = (node: ts.FunctionLikeDeclaration) => {
       const param = node.parameters[0];

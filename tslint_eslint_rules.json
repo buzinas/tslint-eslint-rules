@@ -4,7 +4,7 @@
     "ter-arrow-body-style": [true, "as-needed", {
       "requireReturnForObjectLiteral": true
     }],
-    "ter-arrow-parens": [false, "as-needed", {
+    "ter-arrow-parens": [true, "as-needed", {
       "requireForBlockBody": true
     }],
     "ter-prefer-arrow-callback": [true, {

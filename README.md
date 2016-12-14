@@ -290,8 +290,6 @@ These rules are only relevant to ES6 environments.
 | :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
 |:white_check_mark:|[arrow-body-style](http://eslint.org/docs/rules/arrow-body-style)|[ter-arrow-body-style](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowBodyStyleRule.md)|require braces in arrow function body|
-|:x:|[arrow-parens](http://eslint.org/docs/rules/arrow-parens)|arrow-parens|require parens in arrow function arguments|
-|:x:|[arrow-body-style](http://eslint.org/docs/rules/arrow-body-style)|arrow-body-style|require braces in arrow function body|
 |:white_check_mark:|[arrow-parens](http://eslint.org/docs/rules/arrow-parens)|[ter-arrow-parens](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowParensRule.md)|require parens in arrow function arguments|
 |:x:|[arrow-spacing](http://eslint.org/docs/rules/arrow-spacing)|arrow-spacing|require space before/after arrow function's arrow|
 |:x:|[constructor-super](http://eslint.org/docs/rules/constructor-super)|constructor-super|verify calls of `super()` in constructors|
