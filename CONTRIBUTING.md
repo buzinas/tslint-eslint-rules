@@ -17,12 +17,14 @@ When opening a new [issue] please try to include the following information as th
 the issue easier and quicker.
 
  * tslint and typescript version.
-   ```
-   $ tslint --version
-   4.0.0
-   $ tsc --version
-   Version 2.0.10
-   ```
+
+       ```sh
+$ tslint --version
+4.0.0
+$ tsc --version
+Version 2.0.10
+       ```
+
  * `tslint.json` configuration.
  * typescript code being linted.
  * actual behavior.
