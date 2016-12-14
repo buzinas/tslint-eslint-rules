@@ -1,5 +1,18 @@
 # Change Log
 
+## [v3.2.0] - 2016/12/14 00:50 GMT-0600
+#### Rules Added
+- [ter-arrow-body-style](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowBodyStyleRule.md)
+- [ter-arrow-parens](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowParensRule.md)
+- [ter-arrow-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowSpacingRule.md)
+
+#### Fixes
+- handle-callback-err: [Issue 146](https://github.com/buzinas/tslint-eslint-rules/issues/146)
+
+#### Changes
+- Added contributing file detailing how to use the current gulp tasks
+- Added links to the rule and test source in each of the rule documentation
+
 ## [v3.1.0] - 2016/11/29 23:20 GTM-0600
 #### Rules Added
 - ter-prefer-arrow-callback
@@ -180,6 +193,7 @@
 - Added and made lots of improvements in README.md
 
 
+[v3.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.1...v3.0.0
 [v2.2.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.0...v2.2.1
