@@ -8,5 +8,7 @@ disallow comparisons with the value `NaN` (recommended)
 ```json
 "use-isnan": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/useIsnanRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/useIsnanRuleTests.ts)**
 
 <!-- End:AutoDoc -->

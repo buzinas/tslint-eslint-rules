@@ -8,5 +8,7 @@ disallow double-negation boolean casts in a boolean context (recommended)
 ```json
 "no-extra-boolean-cast": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noExtraBooleanCastRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noExtraBooleanCastRuleTests.ts)**
 
 <!-- End:AutoDoc -->

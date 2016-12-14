@@ -8,5 +8,7 @@ disallow irregular whitespace outside of strings and comments (recommended)
 ```json
 "no-irregular-whitespace": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noIrregularWhitespaceRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noIrregularWhitespaceRuleTests.ts)**
 
 <!-- End:AutoDoc -->

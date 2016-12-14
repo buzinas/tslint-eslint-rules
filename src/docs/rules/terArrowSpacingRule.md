@@ -50,4 +50,6 @@ The default configuration is `{ "before": true, "after": true }`.
   "maxLength": 1
 }
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terArrowSpacingRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terArrowSpacingRuleTests.ts)**
 <!-- End:AutoDoc -->

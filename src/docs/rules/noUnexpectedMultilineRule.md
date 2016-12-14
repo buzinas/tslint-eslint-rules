@@ -8,5 +8,7 @@ Avoid code that looks like two expressions but is actually one
 ```json
 "no-unexpected-multiline": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noUnexpectedMultilineRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noUnexpectedMultilineRuleTests.ts)**
 
 <!-- End:AutoDoc -->

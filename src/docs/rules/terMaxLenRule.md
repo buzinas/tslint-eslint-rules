@@ -116,4 +116,6 @@ An optional object may be provided to fine tune the rule:
   "maxLength": 3
 }
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terMaxLenRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terMaxLenRuleTests.ts)**
 <!-- End:AutoDoc -->

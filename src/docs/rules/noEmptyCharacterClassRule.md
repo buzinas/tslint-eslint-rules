@@ -8,5 +8,7 @@ disallow the use of empty character classes in regular expressions (recommended)
 ```json
 "no-empty-character-class": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noEmptyCharacterClassRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noEmptyCharacterClassRuleTests.ts)**
 
 <!-- End:AutoDoc -->

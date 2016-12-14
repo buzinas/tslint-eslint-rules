@@ -65,6 +65,8 @@ Object properties for variants of the `"as-needed"` option:
   "maxLength": 1
 }
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terArrowParensRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terArrowParensRuleTests.ts)**
 <!-- End:AutoDoc -->
 
 #### TSLint Rule: [`arrow-parens`]

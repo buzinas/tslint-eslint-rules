@@ -18,5 +18,7 @@ disallow function or variable declarations in nested blocks (recommended)
   "both"
 ]
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noInnerDeclarationsRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noInnerDeclarationsRuleTests.ts)**
 
 <!-- End:AutoDoc -->

@@ -18,5 +18,7 @@ require or disallow padding inside curly braces
     "never"
   ]
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/objectCurlySpacingRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/objectCurlySpacingRuleTests.ts)**
 
 <!-- End:AutoDoc -->
