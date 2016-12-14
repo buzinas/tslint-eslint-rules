@@ -8,5 +8,7 @@ disallow use of constant expressions in conditions (recommended)
 ```json
 "no-constant-condition": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noConstantConditionRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noConstantConditionRuleTests.ts)**
 
 <!-- End:AutoDoc -->

@@ -151,6 +151,8 @@ An object may be provided to fine tune the indentation rules:
   "maxLength": 2
 }
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terIndentRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terIndentRuleTests.ts)**
 <!-- End:AutoDoc -->
 
 ### TSLint Rule: `indent`

@@ -13,6 +13,8 @@ disallow use of multiple spaces
     }
   ]
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noMultiSpacesRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noMultiSpacesRuleTests.ts)**
 
 <!-- End:AutoDoc -->
 

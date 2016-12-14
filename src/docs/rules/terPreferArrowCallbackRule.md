@@ -70,6 +70,8 @@ may specify the following properties:
   "maxLength": 1
 }
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terPreferArrowCallbackRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terPreferArrowCallbackRuleTests.ts)**
 <!-- End:AutoDoc -->
 
 #### TSLint Rule: [`only-arrow-functions`]

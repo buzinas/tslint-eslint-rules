@@ -59,9 +59,11 @@ function updateReadme(cb: Function) {
 }
 
 function createRuleContent(rule: IRule) {
-  const moduleName = `../rules/${toCamelCase(rule.tslintRule)}Rule.js`;
+  const ruleName = toCamelCase(rule.tslintRule);
+  const moduleName = `../rules/${ruleName}Rule.js`;
   const module = require(moduleName);
   const metaData = module.Rule.metadata;
+  const srcBase = 'https://github.com/buzinas/tslint-eslint-rules/blob/master/src';
   if (metaData) {
     // Checking that the rule name and description match
     if (metaData.ruleName !== rule.tslintRule) {
@@ -86,7 +88,9 @@ function createRuleContent(rule: IRule) {
       `#### Rationale\n${metaData.rationale}`,
       `### Config\n${metaData.optionsDescription}`,
       `#### Examples\n\n${examples}`,
-      `#### Schema\n\n${schema}`
+      `#### Schema\n\n${schema}`,
+      `**[:straight_ruler: Rule source](${srcBase}/rules/${ruleName}Rule.ts)**`,
+      `**[:blue_book: Test source](${srcBase}/test/rules/${ruleName}RuleTests.ts)**`
     ].join('\n');
   }
 
@@ -96,6 +100,8 @@ function createRuleContent(rule: IRule) {
   return `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))
 
 ${rule.description}${usage}${note}
+**[:straight_ruler: Rule source](${srcBase}/rules/${ruleName}Rule.ts)**
+**[:blue_book: Test source](${srcBase}/test/rules/${ruleName}RuleTests.ts)**
 `;
 }
 

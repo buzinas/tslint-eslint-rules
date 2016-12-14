@@ -8,5 +8,7 @@ disallow unnecessary semicolons (recommended)
 ```json
 "no-extra-semi": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noExtraSemiRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noExtraSemiRuleTests.ts)**
 
 <!-- End:AutoDoc -->

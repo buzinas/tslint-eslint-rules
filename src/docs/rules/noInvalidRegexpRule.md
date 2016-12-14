@@ -8,5 +8,7 @@ disallow invalid regular expression strings in the `RegExp` constructor (recomme
 ```json
 "no-invalid-regexp": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noInvalidRegexpRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noInvalidRegexpRuleTests.ts)**
 
 <!-- End:AutoDoc -->

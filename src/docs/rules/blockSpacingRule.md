@@ -18,5 +18,7 @@ disallow or enforce spaces inside of single line blocks
     "never"
   ]
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/blockSpacingRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/blockSpacingRuleTests.ts)**
 
 <!-- End:AutoDoc -->

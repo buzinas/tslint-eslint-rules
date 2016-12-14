@@ -19,5 +19,7 @@ Ensure JSDoc comments are valid
   }
 ]
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/validJsdocRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/validJsdocRuleTests.ts)**
 
 <!-- End:AutoDoc -->

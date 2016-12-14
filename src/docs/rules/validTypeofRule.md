@@ -8,5 +8,7 @@ Ensure that the results of typeof are compared against a valid string (recommend
 ```json
 "valid-typeof": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/validTypeofRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/validTypeofRuleTests.ts)**
 
 <!-- End:AutoDoc -->

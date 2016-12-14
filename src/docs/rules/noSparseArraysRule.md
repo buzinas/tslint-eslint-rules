@@ -8,5 +8,7 @@ disallow sparse arrays (recommended)
 ```json
 "no-sparse-arrays": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noSparseArraysRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noSparseArraysRuleTests.ts)**
 
 <!-- End:AutoDoc -->

@@ -8,5 +8,7 @@ disallow multiple spaces in a regular expression literal (recommended)
 ```json
 "no-regex-spaces": true
 ```
+**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/noRegexSpacesRule.ts)**
+**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/noRegexSpacesRuleTests.ts)**
 
 <!-- End:AutoDoc -->
