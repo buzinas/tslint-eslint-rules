@@ -1,5 +1,7 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 ## handle-callback-err (ESLint: [handle-callback-err](http://eslint.org/docs/rules/handle-callback-err))
+[![rule_source](https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/handleCallbackErrRule.ts)
+[![test_source](https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/handleCallbackErrRuleTests.ts)
 
 enforce error handling in callbacks
 
@@ -53,6 +55,4 @@ regexp pattern.
   "maxLength": 1
 }
 ```
-**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/handleCallbackErrRule.ts)**
-**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/handleCallbackErrRuleTests.ts)**
 <!-- End:AutoDoc -->

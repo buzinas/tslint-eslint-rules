@@ -1,5 +1,7 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 ## ter-indent (ESLint: [indent](http://eslint.org/docs/rules/indent))
+[![rule_source](https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terIndentRule.ts)
+[![test_source](https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terIndentRuleTests.ts)
 
 enforce consistent indentation
 
@@ -151,8 +153,6 @@ An object may be provided to fine tune the indentation rules:
   "maxLength": 2
 }
 ```
-**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terIndentRule.ts)**
-**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terIndentRuleTests.ts)**
 <!-- End:AutoDoc -->
 
 ### TSLint Rule: `indent`

@@ -1,5 +1,7 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 ## valid-jsdoc (ESLint: [valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc))
+[![rule_source](https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/validJsdocRule.ts)
+[![test_source](https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/validJsdocRuleTests.ts)
 
 Ensure JSDoc comments are valid
 
@@ -19,7 +21,5 @@ Ensure JSDoc comments are valid
   }
 ]
 ```
-**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/validJsdocRule.ts)**
-**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/validJsdocRuleTests.ts)**
 
 <!-- End:AutoDoc -->
