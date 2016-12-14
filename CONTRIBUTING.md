@@ -51,7 +51,7 @@ started on a new rule or fix/improve some existing rule you can follow the instr
 
 - Check if your rule is passing with `gulp test --single rule-name` (hyphenated, e.g no-inner-declarations)
   - During development you may have some linting errors that won't let you run the test. You can
-    disable the linting process with the `--no-lint` flag. That is run `gulp test --single rule-name --no-lint`
+    disable the linting process with the `--no-lint` flag: `gulp test --single rule-name --no-lint`.
   - If you are using the `RuleTester` utility as in the `ter-indent` rule tests you can specify a
     group of tests to run, for instance `gulp test --single ter-indent:call-expression`. If there
     is a particular rule from the group that needs to be tested you can also specify the index of
