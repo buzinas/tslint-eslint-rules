@@ -1,5 +1,7 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 ## ter-arrow-spacing (ESLint: [arrow-spacing](http://eslint.org/docs/rules/arrow-spacing))
+[![rule_source](https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terArrowSpacingRule.ts)
+[![test_source](https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terArrowSpacingRuleTests.ts)
 
 require space before/after arrow function's arrow
 
@@ -50,6 +52,4 @@ The default configuration is `{ "before": true, "after": true }`.
   "maxLength": 1
 }
 ```
-**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terArrowSpacingRule.ts)**
-**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terArrowSpacingRuleTests.ts)**
 <!-- End:AutoDoc -->

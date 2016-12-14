@@ -64,6 +64,8 @@ function createRuleContent(rule: IRule) {
   const module = require(moduleName);
   const metaData = module.Rule.metadata;
   const srcBase = 'https://github.com/buzinas/tslint-eslint-rules/blob/master/src';
+  const ruleBadge = 'https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg';
+  const testBadge = 'https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg';
   if (metaData) {
     // Checking that the rule name and description match
     if (metaData.ruleName !== rule.tslintRule) {
@@ -83,14 +85,15 @@ function createRuleContent(rule: IRule) {
       '```'
     ].join('\n');
     return [
-      `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))\n`,
+      `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))`,
+      `[![rule_source](${ruleBadge})](${srcBase}/rules/${ruleName}Rule.ts)`,
+      `[![test_source](${testBadge})](${srcBase}/test/rules/${ruleName}RuleTests.ts)`,
+      '',
       `${rule.description}\n`,
       `#### Rationale\n${metaData.rationale}`,
       `### Config\n${metaData.optionsDescription}`,
       `#### Examples\n\n${examples}`,
-      `#### Schema\n\n${schema}`,
-      `**[:straight_ruler: Rule source](${srcBase}/rules/${ruleName}Rule.ts)**`,
-      `**[:blue_book: Test source](${srcBase}/test/rules/${ruleName}RuleTests.ts)**`
+      `#### Schema\n\n${schema}`
     ].join('\n');
   }
 
@@ -98,10 +101,10 @@ function createRuleContent(rule: IRule) {
   const usage = rule.usage ? `\n\n### Usage\n\n${formatUsage(rule.usage)}` : '';
   const note = rule.note ? `\n\n### Note\n\n${rule.note}\n` : '';
   return `## ${rule.tslintRule} (ESLint: [${rule.eslintRule}](${rule.eslintUrl}))
+[![rule_source](${ruleBadge})](${srcBase}/rules/${ruleName}Rule.ts)
+[![test_source](${testBadge})](${srcBase}/test/rules/${ruleName}RuleTests.ts)
 
 ${rule.description}${usage}${note}
-**[:straight_ruler: Rule source](${srcBase}/rules/${ruleName}Rule.ts)**
-**[:blue_book: Test source](${srcBase}/test/rules/${ruleName}RuleTests.ts)**
 `;
 }
 

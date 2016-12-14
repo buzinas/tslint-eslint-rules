@@ -1,5 +1,7 @@
 <!-- Start:AutoDoc:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 ## ter-arrow-body-style (ESLint: [arrow-body-style](http://eslint.org/docs/rules/arrow-body-style))
+[![rule_source](https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terArrowBodyStyleRule.ts)
+[![test_source](https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terArrowBodyStyleRuleTests.ts)
 
 require braces in arrow function body
 
@@ -80,6 +82,4 @@ return for object literals.
   ]
 }
 ```
-**[:straight_ruler: Rule source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terArrowBodyStyleRule.ts)**
-**[:blue_book: Test source](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terArrowBodyStyleRuleTests.ts)**
 <!-- End:AutoDoc -->
