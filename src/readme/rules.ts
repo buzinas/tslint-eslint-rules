@@ -2947,26 +2947,13 @@ const rules: IRule[] = [
     provider: 'tslint-eslint-rules'
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'arrow-parens',
-    tslintRule: 'arrow-parens',
+    tslintRule: 'ter-arrow-parens',
     category: 'ECMAScript 6',
     description: 'require parens in arrow function arguments',
     eslintUrl: 'http://eslint.org/docs/rules/arrow-parens',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "arrow-parens": [
-        true,
-        "as-needed"
-      ]
-    ~~~
-    
-    ~~~json
-    "arrow-parens": [
-        true,
-        "always"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
@@ -3311,7 +3298,7 @@ const rules: IRule[] = [
 ];
 
 function toCamelCase(str) {
-  const words = str.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+  const words = str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1));
   words[0] = words[0].toLowerCase();
   return words.join('');
 }
