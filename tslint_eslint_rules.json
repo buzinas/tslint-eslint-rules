@@ -1,6 +1,9 @@
 {
   "rulesDirectory": "dist/rules",
   "rules": {
+    "ter-arrow-parens": [false, "as-needed", {
+      "requireForBlockBody": true
+    }],
     "ter-prefer-arrow-callback": [true, {
       "allowNamedFunctions": true,
       "allowUnboundThis": false

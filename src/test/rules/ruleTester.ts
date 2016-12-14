@@ -171,7 +171,7 @@ class Test {
   }
 
   private arrayDiff(source: LintFailure[], target: LintFailure[], compareToTarget: boolean = true) {
-    return source.filter(item => {
+    return source.filter((item) => {
       return this.findIndex(target, item, compareToTarget) === -1;
     }).map((x) => {
       if (compareToTarget) {

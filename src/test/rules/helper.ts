@@ -27,7 +27,7 @@ export function makeTest(rule: string, scripts: Array<string>, expected: boolean
     config.rules[rule] = true;
   }
 
-  scripts.forEach(code => {
+  scripts.forEach((code) => {
     const res = testScript(rule, code, config);
     expect(res).to.equal(expected, code);
   });
