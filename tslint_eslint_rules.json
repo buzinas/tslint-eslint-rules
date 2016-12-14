@@ -1,6 +1,9 @@
 {
   "rulesDirectory": "dist/rules",
   "rules": {
+    "ter-arrow-body-style": [true, "as-needed", {
+      "requireReturnForObjectLiteral": true
+    }],
     "ter-arrow-parens": [false, "as-needed", {
       "requireForBlockBody": true
     }],
