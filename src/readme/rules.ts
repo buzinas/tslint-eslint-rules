@@ -2956,22 +2956,13 @@ const rules: IRule[] = [
     provider: 'tslint-eslint-rules'
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'arrow-spacing',
-    tslintRule: 'arrow-spacing',
+    tslintRule: 'ter-arrow-spacing',
     category: 'ECMAScript 6',
     description: "require space before/after arrow function's arrow",
     eslintUrl: 'http://eslint.org/docs/rules/arrow-spacing',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "arrow-spacing": [
-        true,
-        {
-          "before": true,
-          "after": true
-        }
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,

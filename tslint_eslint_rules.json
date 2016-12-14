@@ -7,6 +7,7 @@
     "ter-arrow-parens": [true, "as-needed", {
       "requireForBlockBody": true
     }],
+    "ter-arrow-spacing": [true],
     "ter-prefer-arrow-callback": [true, {
       "allowNamedFunctions": true,
       "allowUnboundThis": false
