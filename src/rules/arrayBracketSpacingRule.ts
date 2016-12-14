@@ -55,9 +55,7 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     const isBreakBeforeClosingBracket = this.isLineBreakBetween(children[children.length - 2], children[children.length - 1]);
 
     const syntaxList = node.getChildren()[1];
-    const itemsInArrayPattern = syntaxList.getChildren().filter(child => {
-      return child.kind !== ts.SyntaxKind.CommaToken;
-    });
+    const itemsInArrayPattern = syntaxList.getChildren().filter(child => child.kind !== ts.SyntaxKind.CommaToken);
 
     if (this.spaced && itemsInArrayPattern.length === 0) {
       return;
