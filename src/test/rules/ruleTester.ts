@@ -171,15 +171,15 @@ class Test {
   }
 
   private arrayDiff(source: LintFailure[], target: LintFailure[], compareToTarget: boolean = true) {
-    return source.filter(item => {
-      return this.findIndex(target, item, compareToTarget) === -1;
-    }).map((x) => {
-      if (compareToTarget) {
-        return x.toString();
-      } else {
-        return target.length ? target[0].getComparableFailure(x).toString() : x.toString();
-      }
-    });
+    return source
+      .filter(item => this.findIndex(target, item, compareToTarget) === -1)
+      .map((x) => {
+        if (compareToTarget) {
+          return x.toString();
+        } else {
+          return target.length ? target[0].getComparableFailure(x).toString() : x.toString();
+        }
+      });
   }
 
   private findIndex(source: LintFailure[], error: LintFailure, compareToError: boolean = true) {

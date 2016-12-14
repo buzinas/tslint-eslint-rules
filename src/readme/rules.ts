@@ -1467,13 +1467,7 @@ const rules: IRule[] = [
     category: 'Node.js and CommonJS',
     description: 'enforce error handling in callbacks',
     eslintUrl: 'http://eslint.org/docs/rules/handle-callback-err',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "handle-callback-err": [
-        true,
-        "^(err|error|anySpecificError)$"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
@@ -2944,66 +2938,31 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'arrow-body-style',
-    tslintRule: 'arrow-body-style',
+    tslintRule: 'ter-arrow-body-style',
     category: 'ECMAScript 6',
     description: 'require braces in arrow function body',
     eslintUrl: 'http://eslint.org/docs/rules/arrow-body-style',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "arrow-body-style": [
-        true,
-        "as-needed"
-      ]
-    ~~~
-    
-    ~~~json
-    "arrow-body-style": [
-        true,
-        "always"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'arrow-parens',
-    tslintRule: 'arrow-parens',
+    tslintRule: 'ter-arrow-parens',
     category: 'ECMAScript 6',
     description: 'require parens in arrow function arguments',
     eslintUrl: 'http://eslint.org/docs/rules/arrow-parens',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "arrow-parens": [
-        true,
-        "as-needed"
-      ]
-    ~~~
-    
-    ~~~json
-    "arrow-parens": [
-        true,
-        "always"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'arrow-spacing',
-    tslintRule: 'arrow-spacing',
+    tslintRule: 'ter-arrow-spacing',
     category: 'ECMAScript 6',
     description: "require space before/after arrow function's arrow",
     eslintUrl: 'http://eslint.org/docs/rules/arrow-spacing',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "arrow-spacing": [
-        true,
-        {
-          "before": true,
-          "after": true
-        }
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
@@ -3339,7 +3298,7 @@ const rules: IRule[] = [
 ];
 
 function toCamelCase(str) {
-  const words = str.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+  const words = str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1));
   words[0] = words[0].toLowerCase();
   return words.join('');
 }

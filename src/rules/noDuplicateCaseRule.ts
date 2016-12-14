@@ -19,7 +19,7 @@ class NoDuplicateCaseWalker extends Lint.RuleWalker {
   private validateNoDupeCase(node: ts.SwitchStatement) {
     const cases = Object.create(null);
 
-    node.caseBlock.clauses.forEach(clause => {
+    node.caseBlock.clauses.forEach((clause) => {
       if (clause.kind === ts.SyntaxKind.CaseClause) {
         const key = clause.getText();
         if (cases[key]) {
