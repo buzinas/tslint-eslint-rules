@@ -135,6 +135,31 @@ ruleTester.addTestGroup('no-options', 'should capture the correct indentation wi
 ruleTester.addTestGroup('indent-number', 'should force a certain indentation number', [
   {
     code: dedent`
+      /**
+       * @var {string}
+       */
+      const FOO = 'bar';`,
+    options: [4]
+  },
+  {
+    code: dedent`
+      /**
+       * @var {string}
+       */
+       const FOO = 'bar';`,
+    options: [4],
+    errors: expecting([[4, 0, 1]])
+  },
+  {
+    code: dedent`
+      /**
+       * @param {string} text
+       */
+      const log = (text) => console.log(text);`,
+    options: [4]
+  },
+  {
+    code: dedent`
       var x = [
           'a',
           'b',
@@ -1541,6 +1566,27 @@ ruleTester.addTestGroup('variable-declarator', 'should handle variable declarato
     code: '\nlet geometry,\n  rotate;',
     options: [2, { VariableDeclarator: 2 }],
     errors: expecting([[2, 4, 2]])
+  },
+  {
+    code: dedent`
+      /**
+       * @var {number}
+       * @var {number}
+       */
+      var geometry,
+          rotate;`,
+    options: [4, { VariableDeclarator: 1 }]
+  },
+  {
+    code: dedent`
+      /**
+       * @var {number}
+       * @var {number}
+       */
+      var geometry,
+         rotate;`,
+    options: [4, { VariableDeclarator: 1 }],
+    errors: expecting([[6, 4, 3]])
   },
   {
     code: dedent`

@@ -1013,6 +1013,9 @@ class IndentWalker extends Lint.RuleWalker {
       return;
     }
     const len = list.getChildCount();
+    if (len === 0) {
+      return;
+    }
     const lastElement = list.getChildAt(len - 1);
     const lastToken = node.getLastToken();
     const lastTokenLine = this.getLine(lastToken, true);
