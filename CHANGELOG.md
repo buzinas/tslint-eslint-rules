@@ -1,5 +1,9 @@
 # Change Log
 
+## [v3.2.1] - 2016/12/22 12:00 GMT-0600
+#### Fixes
+- ter-indent ([cb01358](https://github.com/buzinas/tslint-eslint-rules/commit/cb013580a74a2eb6781a6a0701a7bfafc0818c75))
+
 ## [v3.2.0] - 2016/12/14 00:50 GMT-0600
 #### Rules Added
 - [ter-arrow-body-style](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowBodyStyleRule.md)
@@ -193,6 +197,7 @@
 - Added and made lots of improvements in README.md
 
 
+[v3.2.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.1
 [v3.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.1...v3.0.0
