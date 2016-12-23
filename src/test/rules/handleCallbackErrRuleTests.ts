@@ -119,6 +119,10 @@ ruleTester.addTestGroup('custom-error-name-fail', 'should fail with custom error
   {
     code: `error => error ? console.error(error.stack) : console.log('no error');`,
     options: ['^(err|error)$']
+  },
+  {
+    code: `error => error ? console.error(error.stack) : console.log('no error');`,
+    options: ['^(err|error)$', { allowProperties: false }]
   }
 ]);
 
