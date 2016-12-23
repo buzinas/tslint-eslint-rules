@@ -113,7 +113,7 @@ ruleTester.addTestGroup('custom-error-name-fail', 'should fail with custom error
   },
   {
     code: 'var test = err => err.message;',
-    options: ['err', { allowProperties: false }],
+    options: [{ allowProperties: false }],
     errors: [strictError]
   },
   {

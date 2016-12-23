@@ -79,9 +79,15 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
     const opt = this.getOptions();
-    const errorArgument = opt[0] || 'err';
-    if (opt[1]) {
-      this.allowProperties = !!opt[1].allowProperties;
+    let errorArgument = 'err';
+    let optObj = opt[0];
+    if (typeof opt[0] === 'string') {
+      errorArgument = opt[0];
+      optObj = opt[1];
+    }
+
+    if (optObj) {
+      this.allowProperties = !!optObj.allowProperties;
     }
 
     if (errorArgument.charAt(0) === '^') {
