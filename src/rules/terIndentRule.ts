@@ -482,6 +482,8 @@ class IndentWalker extends Lint.RuleWalker {
       'DoStatement',
       'ClassDeclaration',
       'ClassExpression',
+      'InterfaceDeclaration',
+      'TypeLiteral',
       'TryStatement',
       'SourceFile'
     ];
@@ -498,7 +500,14 @@ class IndentWalker extends Lint.RuleWalker {
     } else {
       if (node.kind === ts.SyntaxKind.Block) {
         nodesToCheck = node.getChildren()[1].getChildren();
-      } else if (isOneOf(node.parent, ['ClassDeclaration', 'ClassExpression'])) {
+      } else if (
+        isOneOf(node.parent, [
+          'ClassDeclaration',
+          'ClassExpression',
+          'InterfaceDeclaration',
+          'TypeLiteral'
+        ])
+      ) {
         nodesToCheck = node.getChildren();
       } else {
         nodesToCheck = [(node as ts.IterationStatement).statement];
@@ -512,11 +521,9 @@ class IndentWalker extends Lint.RuleWalker {
 
     if (isKind(node, 'Block')) {
       this.checkLastNodeLineIndent(node, indent);
+    } else if (this.isNodeBodyBlock(node)) {
+      this.checkLastNodeLineIndent(node.parent, indent);
     }
-  }
-
-  private isClassLike(node) {
-    return isOneOf(node, ['ClassDeclaration', 'ClassExpression']);
   }
 
   /**
@@ -533,10 +540,13 @@ class IndentWalker extends Lint.RuleWalker {
    * Check if the node or node body is a BlockStatement or not
    */
   private isNodeBodyBlock(node): boolean {
-    return node.kind === ts.SyntaxKind.Block ||
-      (node.kind === ts.SyntaxKind.SyntaxList && this.isClassLike(node.parent.kind));
-    // return node.type === "BlockStatement" || node.type === "ClassBody" || (node.body && node.body.type === "BlockStatement") ||
-    //   (node.consequent && node.consequent.type === "BlockStatement");
+    const hasBlock = [
+      'ClassDeclaration',
+      'ClassExpression',
+      'InterfaceDeclaration',
+      'TypeLiteral'
+    ];
+    return isKind(node, 'Block') || (isKind(node, 'SyntaxList') && isOneOf(node.parent, hasBlock));
   }
 
   /**
@@ -935,6 +945,18 @@ class IndentWalker extends Lint.RuleWalker {
     const len = node.getChildCount();
     this.blockIndentationCheck(node.getChildAt(len - 2));
     super.visitClassExpression(node);
+  }
+
+  protected visitInterfaceDeclaration(node: ts.InterfaceDeclaration) {
+    const len = node.getChildCount();
+    this.blockIndentationCheck(node.getChildAt(len - 2));
+    super.visitInterfaceDeclaration(node);
+  }
+
+  protected visitTypeLiteral(node: ts.TypeLiteralNode) {
+    const len = node.getChildCount();
+    this.blockIndentationCheck(node.getChildAt(len - 2));
+    super.visitTypeLiteral(node);
   }
 
   protected visitBlock(node: ts.Block) {
