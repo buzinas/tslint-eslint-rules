@@ -49,6 +49,14 @@ In addition to the string we may specify an options object with the following pr
 ```json
 "handle-callback-err": [true, "^(err|error|anySpecificError)$"]
       ```
+
+```json
+"handle-callback-err": [true, { "allowProperties": false }]
+      ```
+
+```json
+"handle-callback-err": [true, "^(err|error|anySpecificError)$", { "allowProperties": false }]
+      ```
 #### Schema
 
 ```json

@@ -54,6 +54,12 @@ export class Rule extends Lint.Rules.AbstractRule {
       `,
       Lint.Utils.dedent`
         "${RULE_NAME}": [true, "^(err|error|anySpecificError)$"]
+      `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, { "allowProperties": false }]
+      `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "^(err|error|anySpecificError)$", { "allowProperties": false }]
       `
     ],
     typescriptOnly: false,
