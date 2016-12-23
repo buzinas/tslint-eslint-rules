@@ -51,7 +51,6 @@ export class Rule extends Lint.Rules.AbstractRule {
     typescriptOnly: false,
     type: 'maintainability'
   };
-  public static FAILURE_STRING = 'Expected error to be handled';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     return this.applyWithWalker(new ErrCallbackHandlerWalker(sourceFile, this.getOptions()));
@@ -67,10 +66,15 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
   private stack: IFunctionScope[] = [];
   private errorCheck: (name: string) => boolean;
   private firstParameterName: (node: ts.FunctionLikeDeclaration) => string | undefined;
+  private allowProperties: boolean = true;
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
-    const errorArgument = options.ruleArguments[0] || 'err';
+    const opt = this.getOptions();
+    const errorArgument = opt[0] || 'err';
+    if (opt[1]) {
+      this.allowProperties = !!opt[1].allowProperties;
+    }
 
     if (errorArgument.charAt(0) === '^') {
       this.errorCheck = RegExp.prototype.test.bind(new RegExp(errorArgument));
@@ -139,33 +143,55 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
     const param = scopeInfo.firstParamName;
     if (param && this.errorCheck(param) && !scopeInfo.hasFirstParam) {
       const name = node.parameters[0].name;
+      const strictMsg = !this.allowProperties ? ' without property access at least once' : '';
+      const msg = `Expected error to be handled${strictMsg}`;
       const failure = this.createFailure(
         name.getStart(this.getSourceFile()),
         name.getWidth(this.getSourceFile()),
-        Rule.FAILURE_STRING
+        msg
       );
       this.addFailure(failure);
     }
   }
 
+  private isPropAccess(node: ts.Node): boolean {
+    return node.kind === ts.SyntaxKind.PropertyAccessExpression;
+  }
+
   protected visitNode(node: ts.Node) {
+    // Only execute when inside a function scope and dealing with an identifier.
     if (
       this.stack.length > 0 &&
       node.parent.kind !== ts.SyntaxKind.Parameter &&
       node.kind === ts.SyntaxKind.Identifier
     ) {
-      const text = (node as ts.Identifier).text;
-      // traverse through the function scopes (starting with the inner most)
-      // until we see one function that uses the current identifier
-      let i = this.stack.length;
-      while (i--) {
-        const info = this.stack[i];
-        if (text === info.firstParamName) {
-          info.hasFirstParam = true;
-          break;
+      let doCheck = false;
+      const inPropertyAccess = this.isPropAccess(node.parent);
+      if (!this.allowProperties) {
+        doCheck = !inPropertyAccess;
+      } else if (inPropertyAccess) {
+        // Make sure we are not in nested property access, i.e. caller.caller.error.prop
+        const isCaller = (node.parent as ts.PropertyAccessExpression).expression === node;
+        doCheck = isCaller && !this.isPropAccess(node.parent.parent);
+      } else {
+        doCheck = true;
+      }
+
+      if (doCheck) {
+        const text = (node as ts.Identifier).text;
+        // traverse through the function scopes (starting with the inner most)
+        // until we see one function that uses the current identifier
+        let i = this.stack.length;
+        while (i--) {
+          const info = this.stack[i];
+          if (text === info.firstParamName) {
+            info.hasFirstParam = true;
+            break;
+          }
         }
       }
     }
+
     super.visitNode(node);
   }
 }
