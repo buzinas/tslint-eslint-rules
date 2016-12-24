@@ -14,7 +14,7 @@ export class Rule extends Lint.Rules.AbstractRule {
       application.
       `,
     optionsDescription: Lint.Utils.dedent`
-      The rule takes a single string option: the name of the error parameter. The default is
+      The rule takes a string option: the name of the error parameter. The default is
       \`"err"\`.
       
       Sometimes the name of the error variable is not consistent across the project, so you need a
@@ -31,6 +31,14 @@ export class Rule extends Lint.Rules.AbstractRule {
       - If the option is \`"^.*(e|E)rr"\`, the rule reports unhandled errors where the parameter
         name matches any string that contains \`err\` or \`Err\` (for example, \`err\`, \`error\`,
         \`anyError\`, \`some_err\` will match).
+
+      In addition to the string we may specify an options object with the following property:
+      
+      - \`allowProperties\`: (\`true\` by default) When this is set to \`false\` the rule will not
+        report unhandled errors as long as the error object is handled without accessing any of its
+        properties at least once. For instance, \`(err) => console.log(err.stack)\` would report an
+        issue when \`allowProperties\` is set to \`false\` because \`err\` is not handled on its
+        own.
       `,
     options: {
       type: 'array',
@@ -46,12 +54,17 @@ export class Rule extends Lint.Rules.AbstractRule {
       `,
       Lint.Utils.dedent`
         "${RULE_NAME}": [true, "^(err|error|anySpecificError)$"]
+      `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, { "allowProperties": false }]
+      `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "^(err|error|anySpecificError)$", { "allowProperties": false }]
       `
     ],
     typescriptOnly: false,
     type: 'maintainability'
   };
-  public static FAILURE_STRING = 'Expected error to be handled';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     return this.applyWithWalker(new ErrCallbackHandlerWalker(sourceFile, this.getOptions()));
@@ -67,10 +80,21 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
   private stack: IFunctionScope[] = [];
   private errorCheck: (name: string) => boolean;
   private firstParameterName: (node: ts.FunctionLikeDeclaration) => string | undefined;
+  private allowProperties: boolean = true;
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
-    const errorArgument = options.ruleArguments[0] || 'err';
+    const opt = this.getOptions();
+    let errorArgument = 'err';
+    let optObj = opt[0];
+    if (typeof opt[0] === 'string') {
+      errorArgument = opt[0];
+      optObj = opt[1];
+    }
+
+    if (optObj) {
+      this.allowProperties = !!optObj.allowProperties;
+    }
 
     if (errorArgument.charAt(0) === '^') {
       this.errorCheck = RegExp.prototype.test.bind(new RegExp(errorArgument));
@@ -139,33 +163,55 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
     const param = scopeInfo.firstParamName;
     if (param && this.errorCheck(param) && !scopeInfo.hasFirstParam) {
       const name = node.parameters[0].name;
+      const strictMsg = !this.allowProperties ? ' without property access at least once' : '';
+      const msg = `Expected error to be handled${strictMsg}`;
       const failure = this.createFailure(
         name.getStart(this.getSourceFile()),
         name.getWidth(this.getSourceFile()),
-        Rule.FAILURE_STRING
+        msg
       );
       this.addFailure(failure);
     }
   }
 
+  private isPropAccess(node: ts.Node): boolean {
+    return node.kind === ts.SyntaxKind.PropertyAccessExpression;
+  }
+
   protected visitNode(node: ts.Node) {
+    // Only execute when inside a function scope and dealing with an identifier.
     if (
       this.stack.length > 0 &&
       node.parent.kind !== ts.SyntaxKind.Parameter &&
       node.kind === ts.SyntaxKind.Identifier
     ) {
-      const text = (node as ts.Identifier).text;
-      // traverse through the function scopes (starting with the inner most)
-      // until we see one function that uses the current identifier
-      let i = this.stack.length;
-      while (i--) {
-        const info = this.stack[i];
-        if (text === info.firstParamName) {
-          info.hasFirstParam = true;
-          break;
+      let doCheck = false;
+      const inPropertyAccess = this.isPropAccess(node.parent);
+      if (!this.allowProperties) {
+        doCheck = !inPropertyAccess;
+      } else if (inPropertyAccess) {
+        // Make sure we are not in nested property access, i.e. caller.caller.error.prop
+        const isCaller = (node.parent as ts.PropertyAccessExpression).expression === node;
+        doCheck = isCaller && !this.isPropAccess(node.parent.parent);
+      } else {
+        doCheck = true;
+      }
+
+      if (doCheck) {
+        const text = (node as ts.Identifier).text;
+        // traverse through the function scopes (starting with the inner most)
+        // until we see one function that uses the current identifier
+        let i = this.stack.length;
+        while (i--) {
+          const info = this.stack[i];
+          if (text === info.firstParamName) {
+            info.hasFirstParam = true;
+            break;
+          }
         }
       }
     }
+
     super.visitNode(node);
   }
 }

@@ -8,6 +8,11 @@ const error: Failure = {
   startPosition: new Position(),
   endPosition: new Position()
 };
+const strictError: Failure = {
+  failure: 'Expected error to be handled without property access at least once',
+  startPosition: new Position(),
+  endPosition: new Position()
+};
 
 ruleTester.addTestGroup('standard-pass', 'should pass with standard config', [
   'function(stream) {}',
@@ -86,7 +91,39 @@ ruleTester.addTestGroup('custom-error-name-pass', 'should pass with custom error
 ]);
 
 ruleTester.addTestGroup('custom-error-name-fail', 'should fail with custom error name', [
-  { code: `function(errorMsg, stream) { }`, options: ['errorMsg'], errors: [error] }
+  { code: `function(errorMsg, stream) { }`, options: ['errorMsg'], errors: [error] },
+  {
+    code: `error => console.error('Could not print the document');`,
+    options: ['error'],
+    errors: [error]
+  },
+  {
+    code: `error => something.something.error.something.err('Could not print the document');`,
+    options: ['^(err|error)$'],
+    errors: [error]
+  },
+  {
+    code: `error => console.error(error.stack);`,
+    options: ['^(err|error)$']
+  },
+  {
+    code: `error => console.error(error.stack);`,
+    options: ['^(err|error)$', { allowProperties: false }],
+    errors: [strictError]
+  },
+  {
+    code: 'var test = err => err.message;',
+    options: [{ allowProperties: false }],
+    errors: [strictError]
+  },
+  {
+    code: `error => error ? console.error(error.stack) : console.log('no error');`,
+    options: ['^(err|error)$']
+  },
+  {
+    code: `error => error ? console.error(error.stack) : console.log('no error');`,
+    options: ['^(err|error)$', { allowProperties: false }]
+  }
 ]);
 
 ruleTester.addTestGroup('custom-error-regex-pass', 'should pass with custom error regex', [
