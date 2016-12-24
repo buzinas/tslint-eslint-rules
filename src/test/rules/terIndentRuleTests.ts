@@ -2869,13 +2869,14 @@ ruleTester.addTestGroup('methods', 'should handle methods body and parameters', 
          {
             bar();
         }
-      }`,
+       }`,
     options: [2, { FunctionExpression: { parameters: 1, body: 2 } }],
     errors: expecting([
       [3, 4, 3],
       [5, 4, 5],
       [7, 2, 1],
-      [8, 2, 3]
+      [8, 2, 3],
+      [11, 0, 1]
     ])
   },
   {
@@ -3282,6 +3283,44 @@ ruleTester.addTestGroup('variable-declaration', 'should handle variable declarat
        ;(client.defaults as any).jar = jar
       `,
     errors: expecting([[3, 0, 1]])
+  }
+]);
+
+ruleTester.addTestGroup('interfaces', 'should check indentation on interfaces', [
+  {
+    code: dedent`
+      interface Foo {
+        a: number;
+      }
+      `,
+    errors: expecting([[2, 4, 2]])
+  },
+  {
+    code: dedent`
+      interface Foo extends Bar {
+        a: number;
+          b: {
+             c: string;
+           };
+        }
+      `,
+    errors: expecting([
+      [2, 4, 2],
+      [4, 8, 7],
+      [5, 4, 5],
+      [6, 0, 2]
+    ])
+  },
+  {
+    code: dedent`
+      interface Foo extends Bar {
+        a: number;
+        b: {
+          c: string;
+        };
+      }
+      `,
+    options: [2]
   }
 ]);
 
