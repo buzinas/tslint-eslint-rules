@@ -1,8 +1,15 @@
 # Change Log
 
-## [v3.2.1] - 2016/12/22 12:00 GMT-0600
+## [v3.2.1] - 2016/12/24 12:10 GMT-0600
 #### Fixes
-- ter-indent ([cb01358](https://github.com/buzinas/tslint-eslint-rules/commit/cb013580a74a2eb6781a6a0701a7bfafc0818c75))
+- ter-indent
+   - JSDocs no longer break variable declarations [cb01358]
+   - Interfaces are also checked for indentation [5be6774]
+- handle-callback-err: [Issue 153](https://github.com/buzinas/tslint-eslint-rules/issues/153)
+   - Added `allowProperties` option to make the rule more strict.
+
+[5be6774]: https://github.com/buzinas/tslint-eslint-rules/commit/5be67747d4a74e216be14fc332e3871546609cdd
+[cb01358]: https://github.com/buzinas/tslint-eslint-rules/commit/cb013580a74a2eb6781a6a0701a7bfafc0818c75
 
 ## [v3.2.0] - 2016/12/14 00:50 GMT-0600
 #### Rules Added
