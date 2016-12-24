@@ -44,9 +44,15 @@ export class Rule extends Lint.Rules.AbstractRule {
       type: 'array',
       items: [{
         type: 'string'
+      }, {
+        type: 'object',
+        properties: {
+          allowProperties: 'boolean'
+        },
+        additionalProperties: false
       }],
       minLength: 0,
-      maxLength: 1
+      maxLength: 2
     },
     optionExamples: [
       Lint.Utils.dedent`

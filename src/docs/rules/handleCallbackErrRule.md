@@ -65,10 +65,17 @@ In addition to the string we may specify an options object with the following pr
   "items": [
     {
       "type": "string"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "allowProperties": "boolean"
+      },
+      "additionalProperties": false
     }
   ],
   "minLength": 0,
-  "maxLength": 1
+  "maxLength": 2
 }
 ```
 <!-- End:AutoDoc -->
