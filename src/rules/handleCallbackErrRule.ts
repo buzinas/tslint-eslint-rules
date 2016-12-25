@@ -99,7 +99,7 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
     }
 
     if (optObj) {
-      this.allowProperties = !!optObj.allowProperties;
+      this.allowProperties = optObj.allowProperties !== false;
     }
 
     if (errorArgument.charAt(0) === '^') {
