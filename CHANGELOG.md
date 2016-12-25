@@ -1,5 +1,12 @@
 # Change Log
 
+## [v3.2.3] - 2016/12/24 22:52 GMT-0600
+#### Fixes
+- handle-callback-err ([0a9a882])
+
+[0a9a882]: https://github.com/buzinas/tslint-eslint-rules/commit/0a9a88284f199ec292bcea0534b4323f10a5bc50
+
+
 ## [v3.2.2] - 2016/12/24 12:10 GMT-0600
 #### Fixes
 - ter-indent
@@ -12,6 +19,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 
 [5be6774]: https://github.com/buzinas/tslint-eslint-rules/commit/5be67747d4a74e216be14fc332e3871546609cdd
 [cb01358]: https://github.com/buzinas/tslint-eslint-rules/commit/cb013580a74a2eb6781a6a0701a7bfafc0818c75
+
 
 ## [v3.2.0] - 2016/12/14 00:50 GMT-0600
 #### Rules Added
@@ -206,7 +214,8 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
-[v3.2.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.2
+[v3.2.3]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.3
+[v3.2.2]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.2
 [v3.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v2.2.1...v3.0.0
