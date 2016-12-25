@@ -197,8 +197,7 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
         doCheck = !inPropertyAccess;
       } else if (inPropertyAccess) {
         // Make sure we are not in nested property access, i.e. caller.caller.error.prop
-        const isCaller = (node.parent as ts.PropertyAccessExpression).expression === node;
-        doCheck = isCaller && !this.isPropAccess(node.parent.parent);
+        doCheck = (node.parent as ts.PropertyAccessExpression).expression === node;
       } else {
         doCheck = true;
       }
