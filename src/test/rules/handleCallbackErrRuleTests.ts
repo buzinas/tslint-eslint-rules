@@ -86,11 +86,41 @@ ruleTester.addTestGroup('standard-fail', 'should fail with standard config', [
 ]);
 
 ruleTester.addTestGroup('custom-error-name-pass', 'should pass with custom error name', [
+  {
+    code: dedent`
+      function isRecoverable (error: TSError) {
+        return error.diagnostics.every(x => RECOVERY_CODES.indexOf(x.code) > -1)
+     }`,
+    options: ['error']
+  },
+  {
+    code: dedent`
+      const foo = (error: TSError) => {
+        return error.one.two.three.four.five(0);
+      }`,
+    options: ['error']
+  },
   { code: `function(errorMsg, stream) { console.error(errorMsg) }`, options: ['errorMsg'] },
   { code: `function(err, stream) { }`, options: ['errorMsg'] }
 ]);
 
 ruleTester.addTestGroup('custom-error-name-fail', 'should fail with custom error name', [
+  {
+    code: dedent`
+      const foo = (error: TSError) => {
+        return one.two.three.error.four.five(0);
+      }`,
+    options: ['error'],
+    errors: [error]
+  },
+  {
+    code: dedent`
+      const foo = (error: TSError) => {
+        return error.one.two.three.four.five(0);
+      }`,
+    options: ['error', { allowProperties: false }],
+    errors: [strictError]
+  },
   { code: `function(errorMsg, stream) { }`, options: ['errorMsg'], errors: [error] },
   {
     code: `error => console.error('Could not print the document');`,
