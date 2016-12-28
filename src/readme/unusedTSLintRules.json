@@ -12,5 +12,18 @@
   "prefer-for-of",
   "typedef",
   "typedef-whitespace",
-  "max-line-length"
+  "max-line-length",
+  "array-type",
+  "callable-types",
+  "file-header",
+  "interface-name",
+  "interface-over-type-literal",
+  "no-empty-interface",
+  "no-inferred-empty-object-type",
+  "no-mergeable-namespace",
+  "no-parameter-properties",
+  "no-void-expression",
+  "promise-function-async",
+  "restrict-plus-operands",
+  "strict-boolean-expressions"
 ]
