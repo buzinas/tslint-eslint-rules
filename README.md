@@ -89,7 +89,8 @@ The following rules point out areas where you might have made mistakes.
 |:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[no-sparse-arrays](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noSparseArraysRule.md)|disallow sparse arrays (recommended)|
 |:white_check_mark:|[no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline)|[no-unexpected-multiline](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noUnexpectedMultilineRule.md)|Avoid code that looks like two expressions but is actually one|
 |:no_entry_sign:|[no-unreachable](http://eslint.org/docs/rules/no-unreachable)|Not applicable|disallow unreachable statements after a return, throw, continue, or break statement (recommended)|
-|:white_check_mark:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/useIsnanRule.md)|disallow comparisons with the value `NaN` (recommended)|
+|:ballot_box_with_check:|[no-unsafe-finally](http://eslint.org/docs/rules/no-unsafe-finally)|[no-unsafe-finally](https://palantir.github.io/tslint/rules/no-unsafe-finally)|disallow control flow statements in finally blocks (recommended)|
+|:ballot_box_with_check:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](https://palantir.github.io/tslint/rules/use-isnan)|disallow comparisons with the value `NaN` (recommended)|
 |:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validJsdocRule.md)|Ensure JSDoc comments are valid|
 |:white_check_mark:|[valid-typeof](http://eslint.org/docs/rules/valid-typeof)|[valid-typeof](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validTypeofRule.md)|Ensure that the results of typeof are compared against a valid string (recommended)|
 
@@ -103,7 +104,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[accessor-pairs](http://eslint.org/docs/rules/accessor-pairs)|accessor-pairs|Enforces getter/setter pairs in objects|
 |:x:|[array-callback-return](http://eslint.org/docs/rules/array-callback-return)|array-callback-return|Enforce return statements in callbacks of array’s methods|
 |:x:|[block-scoped-var](http://eslint.org/docs/rules/block-scoped-var)|accessor-pairs|treat `var` statements as if they were block scoped|
-|:x:|[complexity](http://eslint.org/docs/rules/complexity)|complexity|specify the maximum cyclomatic complexity allowed in a program|
+|:ballot_box_with_check:|[complexity](http://eslint.org/docs/rules/complexity)|[cyclomatic-complexity](https://palantir.github.io/tslint/rules/cyclomatic-complexity)|specify the maximum cyclomatic complexity allowed in a program|
 |:x:|[consistent-return](http://eslint.org/docs/rules/consistent-return)|consistent-return|require `return` statements to either always or never specify values|
 |:ballot_box_with_check:|[curly](http://eslint.org/docs/rules/curly)|[curly](http://palantir.github.io/tslint/rules/curly)|specify curly brace conventions for all control statements|
 |:ballot_box_with_check:|[default-case](http://eslint.org/docs/rules/default-case)|[switch-default](http://palantir.github.io/tslint/rules/switch-default)|require `default` case in `switch` statements|
@@ -111,12 +112,12 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[dot-notation](http://eslint.org/docs/rules/dot-notation)|dot-notation|encourages use of dot notation whenever possible|
 |:ballot_box_with_check:|[eqeqeq](http://eslint.org/docs/rules/eqeqeq)|[triple-equals](http://palantir.github.io/tslint/rules/triple-equals)|require the use of `===` and `!==`|
 |:ballot_box_with_check:|[guard-for-in](http://eslint.org/docs/rules/guard-for-in)|[forin](http://palantir.github.io/tslint/rules/forin)|make sure `for-in` loops have an `if` statement|
-|:x:|[no-alert](http://eslint.org/docs/rules/no-alert)|no-alert|disallow the use of `alert`, `confirm`, and `prompt`|
+|:ballot_box_with_check:|[no-alert](http://eslint.org/docs/rules/no-alert)|[ban](https://palantir.github.io/tslint/rules/ban)|disallow the use of `alert`, `confirm`, and `prompt`<br>can be achieved using the `"ban": [true, ["alert"]]` tslint rule|
 |:ballot_box_with_check:|[no-caller](http://eslint.org/docs/rules/no-caller)|[no-arg](http://palantir.github.io/tslint/rules/no-arg)|disallow use of `arguments.caller` or `arguments.callee`|
 |:x:|[no-case-declarations](http://eslint.org/docs/rules/no-case-declarations)|no-case-declarations|disallow lexical declarations in case clauses|
 |:x:|[no-div-regex](http://eslint.org/docs/rules/no-div-regex)|no-div-regex|disallow division operators explicitly at beginning of regular expression|
 |:x:|[no-else-return](http://eslint.org/docs/rules/no-else-return)|no-else-return|disallow `else` after a `return` in an `if`|
-|:x:|[no-empty-function](http://eslint.org/docs/rules/no-empty-function)|no-empty-function|disallow use of empty functions|
+|:ballot_box_with_check:|[no-empty-function](http://eslint.org/docs/rules/no-empty-function)|[no-empty](http://palantir.github.io/tslint/rules/no-empty)|disallow use of empty functions|
 |:x:|[no-empty-pattern](http://eslint.org/docs/rules/no-empty-pattern)|no-empty-pattern|disallow use of empty destructuring patterns|
 |:x:|[no-eq-null](http://eslint.org/docs/rules/no-eq-null)|no-eq-null|disallow comparisons to null without a type-checking operator|
 |:ballot_box_with_check:|[no-eval](http://eslint.org/docs/rules/no-eval)|[no-eval](http://palantir.github.io/tslint/rules/no-eval)|disallow use of `eval()`|
@@ -130,16 +131,16 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[no-implied-eval](http://eslint.org/docs/rules/no-implied-eval)|no-implied-eval|disallow use of `eval()`-like methods|
 |:x:|[no-invalid-this](http://eslint.org/docs/rules/no-invalid-this)|no-invalid-this|disallow `this` keywords outside of classes or class-like objects|
 |:x:|[no-iterator](http://eslint.org/docs/rules/no-iterator)|no-iterator|disallow Usage of `__iterator__` property|
-|:x:|[no-labels](http://eslint.org/docs/rules/no-labels)|no-labels|disallow use of labeled statements|
+|:ballot_box_with_check:|[no-labels](http://eslint.org/docs/rules/no-labels)|[label-position](https://palantir.github.io/tslint/rules/label-position)|disallow use of labeled statements|
 |:x:|[no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks)|no-lone-blocks|disallow unnecessary nested blocks|
 |:x:|[no-loop-func](http://eslint.org/docs/rules/no-loop-func)|no-loop-func|disallow creation of functions within loops|
-|:x:|[no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers)|no-magic-numbers|disallow the use of magic numbers|
+|:ballot_box_with_check:|[no-magic-numbers](http://eslint.org/docs/rules/no-magic-numbers)|[no-magic-numbers](https://palantir.github.io/tslint/rules/no-magic-numbers)|disallow the use of magic numbers|
 |:white_check_mark:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|[no-multi-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noMultiSpacesRule.md)|disallow use of multiple spaces|
 |:x:|[no-multi-str](http://eslint.org/docs/rules/no-multi-str)|no-multi-str|disallow use of multiline strings|
 |:no_entry_sign:|[no-native-reassign](http://eslint.org/docs/rules/no-native-reassign)|Not applicable|disallow reassignments of native objects|
-|:x:|[no-new](http://eslint.org/docs/rules/no-new)|no-new|disallow use of the `new` operator when not part of an assignment or comparison|
+|:ballot_box_with_check:|[no-new](http://eslint.org/docs/rules/no-new)|[no-unused-new](https://palantir.github.io/tslint/rules/no-unused-new)|disallow use of the `new` operator when not part of an assignment or comparison|
 |:x:|[no-new-func](http://eslint.org/docs/rules/no-new-func)|no-new-func|disallow use of new operator for `Function` object|
-|:x:|[no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers)|no-new-wrappers|disallows creating new instances of `String`,`Number`, and `Boolean`|
+|:ballot_box_with_check:|[no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers)|[no-construct](https://palantir.github.io/tslint/rules/no-construct)|disallows creating new instances of `String`,`Number`, and `Boolean`|
 |:no_entry_sign:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
 |:x:|[no-octal-escape](http://eslint.org/docs/rules/no-octal-escape)|no-octal-escape|disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`|
 |:x:|[no-param-reassign](http://eslint.org/docs/rules/no-param-reassign)|no-param-reassign|disallow reassignment of function parameters|
@@ -150,7 +151,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[no-self-assign](http://eslint.org/docs/rules/no-self-assign)|no-self-assign|disallow assignments where both sides are exactly the same|
 |:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|no-self-compare|disallow comparisons where both sides are exactly the same|
 |:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|no-sequences|disallow use of the comma operator|
-|:x:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|no-throw-literal|restrict what can be thrown as an exception|
+|:ballot_box_with_check:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|[no-string-throw](https://palantir.github.io/tslint/rules/no-string-throw)|restrict what can be thrown as an exception|
 |:x:|[no-unmodified-loop-condition](http://eslint.org/docs/rules/no-unmodified-loop-condition)|no-unmodified-loop-condition|disallow unmodified conditions of loops|
 |:ballot_box_with_check:|[no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions)|[no-unused-expression](http://palantir.github.io/tslint/rules/no-unused-expression)|disallow Usage of expressions in statement position|
 |:x:|[no-unused-labels](http://eslint.org/docs/rules/no-unused-labels)|no-unused-labels|disallow unused labels|
@@ -222,7 +223,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[comma-style](http://eslint.org/docs/rules/comma-style)|comma-style|enforce one true comma style|
 |:x:|[computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing)|computed-property-spacing|require or disallow padding inside computed properties|
 |:x:|[consistent-this](http://eslint.org/docs/rules/consistent-this)|consistent-this|enforce consistent naming when capturing the current execution context|
-|:x:|[eol-last](http://eslint.org/docs/rules/eol-last)|eol-last|enforce newline at the end of file, with no multiple empty lines|
+|:ballot_box_with_check:|[eol-last](http://eslint.org/docs/rules/eol-last)|[eofline](https://palantir.github.io/tslint/rules/eofline)|enforce newline at the end of file, with no multiple empty lines|
 |:x:|[func-names](http://eslint.org/docs/rules/func-names)|func-names|require function expressions to have a name|
 |:x:|[func-style](http://eslint.org/docs/rules/func-style)|func-style|enforce use of function declarations or expressions|
 |:x:|[id-blacklist](http://eslint.org/docs/rules/id-blacklist)|id-blacklist|disallow certain identifiers to prevent them being used|
@@ -230,9 +231,9 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[id-match](http://eslint.org/docs/rules/id-match)|id-match|require identifiers to match the provided regular expression|
 |:white_check_mark:|[indent](http://eslint.org/docs/rules/indent)|[ter-indent](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terIndentRule.md)|enforce consistent indentation|
 |:x:|[jsx-quotes](http://eslint.org/docs/rules/jsx-quotes)|jsx-quotes|specify whether double or single quotes should be used in JSX attributes|
-|:x:|[key-spacing](http://eslint.org/docs/rules/key-spacing)|key-spacing|enforce spacing between keys and values in object literal properties|
-|:x:|[keyword-spacing](http://eslint.org/docs/rules/keyword-spacing)|keyword-spacing|enforce spacing before and after keywords|
-|:x:|[linebreak-style](http://eslint.org/docs/rules/linebreak-style)|linebreak-style|disallow mixed 'LF' and 'CRLF' as linebreaks|
+|:x:|[key-spacing](http://eslint.org/docs/rules/key-spacing)|key-spacing|enforce spacing between keys and values in object literal properties<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
+|:x:|[keyword-spacing](http://eslint.org/docs/rules/keyword-spacing)|keyword-spacing|enforce spacing before and after keywords<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
+|:ballot_box_with_check:|[linebreak-style](http://eslint.org/docs/rules/linebreak-style)|[linebreak-style](https://palantir.github.io/tslint/rules/linebreak-style)|disallow mixed 'LF' and 'CRLF' as linebreaks|
 |:x:|[lines-around-comment](http://eslint.org/docs/rules/lines-around-comment)|lines-around-comment|enforce empty lines around comments|
 |:x:|[max-depth](http://eslint.org/docs/rules/max-depth)|max-depth|specify the maximum depth that blocks can be nested|
 |:white_check_mark:|[max-len](http://eslint.org/docs/rules/max-len)|[ter-max-len](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terMaxLenRule.md)|enforce a maximum line length|
@@ -242,11 +243,12 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[max-statements](http://eslint.org/docs/rulesmax-statements)|max-statements|specify the maximum number of statement allowed in a function|
 |:x:|[max-statements-per-line](http://eslint.org/docs/max-statements-per-line)|max-statements-per-line|specify the maximum number of statements allowed per line|
 |:no_entry_sign:|[new-cap](http://eslint.org/docs/rules/new-cap)|Not applicable|require a capital letter for constructors|
-|:x:|[new-parens](http://eslint.org/docs/rules/new-parens)|new-parens|disallow the omission of parentheses when invoking a constructor with no arguments|
+|:ballot_box_with_check:|[new-parens](http://eslint.org/docs/rules/new-parens)|[new-parens](https://palantir.github.io/tslint/rules/new-parens)|disallow the omission of parentheses when invoking a constructor with no arguments|
 |:x:|[newline-after-var](http://eslint.org/docs/rules/newline-after-var)|newline-after-var|require or disallow an empty newline after variable declarations|
 |:x:|[newline-before-return](http://eslint.org/docs/rules/newline-before-return)|newline-before-return|require newline before return statement|
 |:x:|[newline-per-chained-call](http://eslint.org/docs/rules/newline-per-chained-call)|newline-per-chained-call|enforce newline after each call when chaining the calls|
 |:x:|[no-array-constructor](http://eslint.org/docs/rules/no-array-constructor)|no-array-constructor|disallow use of the `Array` constructor|
+|:ballot_box_with_check:|[no-bitwise](http://eslint.org/docs/rules/no-bitwise)|[no-bitwise](https://palantir.github.io/tslint/rules/no-bitwise)|disallows bitwise operators|
 |:x:|[no-continue](http://eslint.org/docs/rules/no-continue)|no-continue|disallow use of the `continue` statement|
 |:x:|[no-inline-comments](http://eslint.org/docs/rules/no-inline-comments)|no-inline-comments|disallow comments inline after code|
 |:x:|[no-lonely-if](http://eslint.org/docs/rules/no-lonely-if)|no-lonely-if|disallow `if` as the only statement in an `else` block|
@@ -268,19 +270,19 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[operator-assignment](http://eslint.org/docs/rules/operator-assignment)|operator-assignment|require assignment operator shorthand where possible or prohibit it entirely|
 |:x:|[operator-linebreak](http://eslint.org/docs/rules/operator-linebreak)|operator-linebreak|enforce operators to be placed before or after line breaks|
 |:x:|[padded-blocks](http://eslint.org/docs/rules/padded-blocks)|padded-blocks|enforce padding within blocks|
-|:x:|[quote-props](http://eslint.org/docs/rules/quote-props)|quote-props|require quotes around object literal property names|
+|:ballot_box_with_check:|[quote-props](http://eslint.org/docs/rules/quote-props)|[object-literal-key-quotes](https://palantir.github.io/tslint/rules/object-literal-key-quotes)|require quotes around object literal property names|
 |:ballot_box_with_check:|[quotes](http://eslint.org/docs/rules/quotes)|[quotemark](http://palantir.github.io/tslint/rules/quotemark/)|specify whether backticks, double or single quotes should be used|
 |:x:|[require-jsdoc](http://eslint.org/docs/rules/require-jsdoc)|require-jsdoc|Require JSDoc comment|
 |:ballot_box_with_check:|[semi](http://eslint.org/docs/rules/semi)|[semicolon](http://palantir.github.io/tslint/rules/semicolon)|require or disallow use of semicolons instead of ASI|
 |:x:|[semi-spacing](http://eslint.org/docs/rules/semi-spacing)|semi-spacing|enforce spacing before and after semicolons|
-|:x:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|sort-imports|enforce sorting import declarations within module|
+|:ballot_box_with_check:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|[ordered-imports](https://palantir.github.io/tslint/rules/ordered-imports)|enforce sorting import declarations within module|
 |:x:|[sort-vars](http://eslint.org/docs/rules/sort-vars)|sort-vars|sort variables within the same declaration block|
 |:x:|[space-before-blocks](http://eslint.org/docs/rules/space-before-blocks)|space-before-blocks|require or disallow a space before blocks|
 |:x:|[space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren)|space-before-function-paren|require or disallow a space before function opening parenthesis|
 |:x:|[space-in-parens](http://eslint.org/docs/rules/space-in-parens)|space-in-parens|require or disallow spaces inside parentheses|
-|:x:|[space-infix-ops](http://eslint.org/docs/rules/space-infix-ops)|space-infix-ops|require spaces around operators|
+|:x:|[space-infix-ops](http://eslint.org/docs/rules/space-infix-ops)|space-infix-ops|require spaces around operators<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
 |:x:|[space-unary-ops](http://eslint.org/docs/rules/space-unary-ops)|space-unary-ops|require or disallow spaces before/after unary operators|
-|:x:|[spaced-comment](http://eslint.org/docs/rules/spaced-comment)|spaced-comment|require or disallow a space immediately following the `//` or `/*` in a comment|
+|:ballot_box_with_check:|[spaced-comment](http://eslint.org/docs/rules/spaced-comment)|[comment-format](https://palantir.github.io/tslint/rules/comment-format)|require or disallow a space immediately following the `//` or `/*` in a comment|
 |:x:|[wrap-regex](http://eslint.org/docs/rules/wrap-regex)|wrap-regex|require regex literals to be wrapped in parentheses|
 
 ### ECMAScript 6
@@ -292,21 +294,21 @@ These rules are only relevant to ES6 environments.
 |:white_check_mark:|[arrow-body-style](http://eslint.org/docs/rules/arrow-body-style)|[ter-arrow-body-style](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowBodyStyleRule.md)|require braces in arrow function body|
 |:white_check_mark:|[arrow-parens](http://eslint.org/docs/rules/arrow-parens)|[ter-arrow-parens](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowParensRule.md)|require parens in arrow function arguments|
 |:white_check_mark:|[arrow-spacing](http://eslint.org/docs/rules/arrow-spacing)|[ter-arrow-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terArrowSpacingRule.md)|require space before/after arrow function's arrow|
-|:x:|[constructor-super](http://eslint.org/docs/rules/constructor-super)|constructor-super|verify calls of `super()` in constructors|
+|:no_entry_sign:|[constructor-super](http://eslint.org/docs/rules/constructor-super)|Not applicable|verify calls of `super()` in constructors|
 |:x:|[generator-star-spacing](http://eslint.org/docs/rules/generator-star-spacing)|generator-star-spacing|enforce spacing around the `*` in generator functions|
 |:x:|[no-class-assign](http://eslint.org/docs/rules/no-class-assign)|no-class-assign|disallow modifying variables of class declarations|
 |:x:|[no-confusing-arrow](http://eslint.org/docs/rules/no-confusing-arrow)|no-confusing-arrow|disallow arrow functions where they could be confused with comparisons|
-|:x:|[no-const-assign](http://eslint.org/docs/rules/no-const-assign)|no-const-assign|disallow modifying variables that are declared using `const`|
+|:no_entry_sign:|[no-const-assign](http://eslint.org/docs/rules/no-const-assign)|Not applicable|disallow modifying variables that are declared using `const`|
 |:no_entry_sign:|[no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members)|Not applicable|disallow duplicate name in class members|
 |:x:|[no-duplicate-imports](http://eslint.org/docs/rules/no-duplicate-imports)|no-duplicate-imports|disallow duplicate module imports|
 |:x:|[no-new-symbol](http://eslint.org/docs/rules/no-new-symbol)|no-new-symbol|disallow use of the `new` operator with the `Symbol` object|
 |:x:|[no-restricted-imports](http://eslint.org/docs/rules/no-restricted-imports)|no-restricted-imports|restrict usage of specified modules when loaded by `import` declaration|
-|:x:|[no-this-before-super](http://eslint.org/docs/rules/no-this-before-super)|no-this-before-super|disallow use of `this`/`super` before calling `super()` in constructors.|
+|:no_entry_sign:|[no-this-before-super](http://eslint.org/docs/rules/no-this-before-super)|Not applicable|disallow use of `this`/`super` before calling `super()` in constructors.|
 |:x:|[no-useless-constructor](http://eslint.org/docs/rules/no-useless-constructor)|no-useless-constructor|disallow unnecessary constructor|
 |:ballot_box_with_check:|[no-var](http://eslint.org/docs/rules/no-var)|[no-var-keyword](http://palantir.github.io/tslint/rules/no-var-keyword)|require `let` or `const` instead of `var`|
-|:x:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|object-shorthand|require method and property shorthand syntax for object literals|
+|:ballot_box_with_check:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|[object-literal-shorthand](https://palantir.github.io/tslint/rules/object-literal-shorthand)|require method and property shorthand syntax for object literals|
 |:white_check_mark:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[ter-prefer-arrow-callback](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferArrowCallbackRule.md)|suggest using arrow functions as callbacks|
-|:x:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|prefer-const|suggest using `const` declaration for variables that are never modified after declared|
+|:ballot_box_with_check:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|[prefer-const](https://palantir.github.io/tslint/rules/prefer-const)|suggest using `const` declaration for variables that are never modified after declared|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|
 |:x:|[prefer-spread](http://eslint.org/docs/rules/prefer-spread)|prefer-spread|suggest using the spread operator instead of `.apply()`.|

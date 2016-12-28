@@ -5,10 +5,4 @@
 
 disallow comparisons with the value `NaN` (recommended)
 
-### Usage
-
-```json
-"use-isnan": true
-```
-
 <!-- End:AutoDoc -->
