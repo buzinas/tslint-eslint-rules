@@ -4,6 +4,7 @@
 [![ZenHub](https://img.shields.io/badge/supercharged%20by-ZenHub.io-3F4D9C.svg)](https://zenhub.io/)
 [![Shields.io](https://img.shields.io/badge/badges%20by-shields.io-ff69b4.svg)](https://shields.io/)
 [![License](https://img.shields.io/npm/l/tslint-eslint-rules.svg)](LICENSE)
+[![Known Vulnerabilities](https://snyk.io/test/github/buzinas/tslint-eslint-rules/badge.svg)](https://snyk.io/test/github/buzinas/tslint-eslint-rules)
 
 
 # ESLint rules for TSLint
