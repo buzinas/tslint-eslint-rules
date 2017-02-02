@@ -5,8 +5,8 @@ const ALWAYS = 'always';
 
 export class Rule extends Lint.Rules.AbstractRule {
 
-  public static MISSING_SPACE_MESSAGE = 'here must be a space inside this paren.';
-  public static REJECTED_SPACE_MESSAGE = 'here should be no spaces inside this paren.';
+  public static MISSING_SPACE_MESSAGE = 'there must be a space inside this paren.';
+  public static REJECTED_SPACE_MESSAGE = 'there should be no spaces inside this paren.';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new SpaceInParensWalker(sourceFile, this.getOptions());
