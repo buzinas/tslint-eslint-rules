@@ -1,5 +1,4 @@
 node_modules
 .idea
-dist
 src/**/*.js
 generate-changelog.bat

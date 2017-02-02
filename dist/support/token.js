@@ -1,0 +1,8 @@
+"use strict";
+var ts = require("typescript");
+function isAssignmentToken(token) {
+    return token.kind >= ts.SyntaxKind.FirstAssignment && token.kind <= ts.SyntaxKind.LastAssignment;
+}
+exports.isAssignmentToken = isAssignmentToken;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN1cHBvcnQvdG9rZW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLCtCQUFpQztBQUVqQywyQkFBa0MsS0FBYztJQUM5QyxNQUFNLENBQUMsS0FBSyxDQUFDLElBQUksSUFBSSxFQUFFLENBQUMsVUFBVSxDQUFDLGVBQWUsSUFBSSxLQUFLLENBQUMsSUFBSSxJQUFJLEVBQUUsQ0FBQyxVQUFVLENBQUMsY0FBYyxDQUFDO0FBQ25HLENBQUM7QUFGRCw4Q0FFQyIsImZpbGUiOiJzdXBwb3J0L3Rva2VuLmpzIiwic291cmNlUm9vdCI6Ii9Vc2Vycy90aGFuaXNoL0dpdGh1Yi9jaW5lcmdpeC90c2xpbnQtZXNsaW50LXJ1bGVzL3NyYyJ9
