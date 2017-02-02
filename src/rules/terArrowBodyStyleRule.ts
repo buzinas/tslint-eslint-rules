@@ -98,7 +98,7 @@ class RuleWalker extends Lint.RuleWalker {
     this.requireReturnForObjectLiteral = opt[1] && opt[1].requireReturnForObjectLiteral;
   }
 
-  protected visitArrowFunction(node: ts.FunctionLikeDeclaration) {
+  protected visitArrowFunction(node: ts.ArrowFunction): void {
     const arrowBody = node.body;
     if (arrowBody.kind === ts.SyntaxKind.Block) {
       const blockBody = (arrowBody as ts.Block).statements;
