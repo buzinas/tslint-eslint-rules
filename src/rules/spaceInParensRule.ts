@@ -5,9 +5,9 @@ const ALWAYS = 'always';
 
 export class Rule extends Lint.Rules.AbstractRule {
 
-  public static MISSING_SPACE_MESSAGE = "There must be a space inside this paren.";
-  public static REJECTED_SPACE_MESSAGE = "There should be no spaces inside this paren.";
-  
+  public static MISSING_SPACE_MESSAGE = 'here must be a space inside this paren.';
+  public static REJECTED_SPACE_MESSAGE = 'here should be no spaces inside this paren.';
+
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new SpaceInParensWalker(sourceFile, this.getOptions());
     return this.applyWithWalker(walker);
@@ -22,7 +22,7 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   private bracketException: boolean;
   private parenException: boolean;
   private empty: boolean;
-  
+
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
     let ruleOptions = this.getOptions();
@@ -31,13 +31,13 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     if ( ruleOptions[1] ) {
       this.exceptionsArrayOptions = (ruleOptions.length === 2) ? ruleOptions[1].exceptions : [] ;
       if (this.exceptionsArrayOptions.length) {
-        this.braceException = this.exceptionsArrayOptions.indexOf("{}") !== -1;
-        this.bracketException = this.exceptionsArrayOptions.indexOf("[]") !== -1;
-        this.parenException = this.exceptionsArrayOptions.indexOf("()") !== -1;
-        this.empty = this.exceptionsArrayOptions.indexOf("empty") !== -1;
+        this.braceException = this.exceptionsArrayOptions.indexOf('{}') !== -1;
+        this.bracketException = this.exceptionsArrayOptions.indexOf('[]') !== -1;
+        this.parenException = this.exceptionsArrayOptions.indexOf('()') !== -1;
+        this.empty = this.exceptionsArrayOptions.indexOf('empty') !== -1;
       }
     }
-  }  
+  }
 
   private getExceptions() {
     let openers = [];
@@ -67,11 +67,10 @@ class SpaceInParensWalker extends Lint.RuleWalker {
       openers,
       closers
     };
-  }  
-  
+  }
+
   protected visitNode(node: ts.Node): void {
-    super.visitNode(node);
-    if( node.kind === ts.SyntaxKind.CallExpression || 
+    if ( node.kind === ts.SyntaxKind.CallExpression ||
         node.kind === ts.SyntaxKind.IfStatement ||
         node.kind === ts.SyntaxKind.CatchClause ||
         node.kind === ts.SyntaxKind.ForStatement ||
@@ -79,22 +78,23 @@ class SpaceInParensWalker extends Lint.RuleWalker {
         node.kind === ts.SyntaxKind.WhileStatement ) {
       this.checkParanSpace( node.getChildren()[1] , node.getChildren()[2] , node.getChildren()[3] );
     }
-    if( node.kind === ts.SyntaxKind.ParenthesizedExpression || 
+    if ( node.kind === ts.SyntaxKind.ParenthesizedExpression ||
         node.kind === ts.SyntaxKind.ParenthesizedType ) {
       this.checkParanSpace( node.getChildren()[0] , node.getChildren()[1] , node.getChildren()[2] );
     }
+    super.visitNode(node);
   }
-  
-  private checkParanSpace( first: ts.Node , middle: ts.Node, last: ts.Node ){
-    if( !first && !middle && !last ) return
+
+  private checkParanSpace( first: ts.Node , middle: ts.Node, last: ts.Node ) {
+    if ( !first && !middle && !last ) return;
     if ( this.shouldOpenerHaveSpace( first, middle ) ) {
-      this.addFailure(this.createFailure(1, 1, Rule.MISSING_SPACE_MESSAGE ));
-    } else if ( this.shouldOpenerRejectSpace( first, middle )) {
-      this.addFailure(this.createFailure(1, 1, Rule.REJECTED_SPACE_MESSAGE ));
-    } else if ( this.shouldCloserHaveSpace( middle, last )) {
-      this.addFailure(this.createFailure(1, 1, Rule.MISSING_SPACE_MESSAGE ));
-    } else if ( this.shouldCloserRejectSpace( middle, last )) {
-      this.addFailure(this.createFailure(1, 1, Rule.REJECTED_SPACE_MESSAGE ));
+      this.addFailure(this.createFailure( first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE ));
+    } if ( this.shouldOpenerRejectSpace( first, middle )) {
+      this.addFailure(this.createFailure( first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE ));
+    } if ( this.shouldCloserHaveSpace( middle, last )) {
+      this.addFailure(this.createFailure( last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE ));
+    } if ( this.shouldCloserRejectSpace( middle, last )) {
+      this.addFailure(this.createFailure( last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE ));
     }
   }
 
@@ -105,17 +105,17 @@ class SpaceInParensWalker extends Lint.RuleWalker {
       return !this.isOpenerException( right.getFirstToken() );
     }
     return this.isOpenerException( right.getFirstToken() );
-  }  
+  }
 
   protected shouldCloserHaveSpace(left: ts.Node, right: ts.Node ) {
-    if ( left.getText().trim() == ''  ) return false;
+    if ( left.getText().trim() === ''  ) return false;
     if (this.isSpaceBetween(left, right)) return false;
     if (this.spaced) return !this.isCloserException( left.getLastToken() );
     return this.isCloserException( left.getLastToken() );
   }
 
   private shouldOpenerRejectSpace(left: ts.Node, right: ts.Node) {
-    if (right.getText().trim() =='' ) return false;
+    if (right.getText().trim() === '' ) return false;
     if (this.isLineBreakBetween(left, right)) return false;
     if (!this.isSpaceBetween(left, right)) return false;
     if (this.spaced) return this.isOpenerException( right.getFirstToken() );
@@ -123,7 +123,7 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   }
 
   private shouldCloserRejectSpace(left: ts.Node, right: ts.Node) {
-    if (  left.getText().trim() == ''  ) return false;
+    if (  left.getText().trim() === ''  ) return false;
     if (this.isLineBreakBetween(left, right)) return false;
     if (!this.isSpaceBetween(left, right))  return false;
     if (this.spaced)  return this.isCloserException( left.getLastToken() );
@@ -131,15 +131,14 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   }
 
   protected isOpenerException(token: ts.Node) {
-    if( !token ) return false;
+    if ( !token ) return false;
     return  this.getExceptions().openers.indexOf( token.kind ) >= 0;
   }
 
   protected isCloserException(token: ts.Node) {
-    if( !token ) return false;
+    if ( !token ) return false;
     return  this.getExceptions().closers.indexOf( token.kind ) >= 0;
-  }  
-
+  }
 
   // space/line break detection helpers
   private isSpaceBetween(node: ts.Node, nextNode: ts.Node): boolean {
@@ -156,6 +155,6 @@ class SpaceInParensWalker extends Lint.RuleWalker {
 
   private getEndPosition(node: ts.Node) {
     return node.getSourceFile().getLineAndCharacterOfPosition(node.getEnd());
-  }   
-    
+  }
+
 }
