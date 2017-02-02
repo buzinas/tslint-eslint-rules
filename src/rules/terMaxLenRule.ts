@@ -304,10 +304,10 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
     Lint.scanAllTokens(ts.createScanner(ts.ScriptTarget.ES5, false, ts.LanguageVariant.Standard, node.text), (scanner: ts.Scanner) => {
       const token = scanner.getToken();
       const startPos = scanner.getStartPos();
-      if (this.tokensToSkipStartEndMap[startPos]) {
+      if (this.getSkipEndFromStart(startPos)) {
         // tokens to skip are places where the scanner gets confused about what the token is, without the proper context
         // (specifically, regex, identifiers, and templates). So skip those tokens.
-        scanner.setTextPos(this.tokensToSkipStartEndMap[startPos]);
+        scanner.setTextPos(this.getSkipEndFromStart(startPos));
         return;
       }
 

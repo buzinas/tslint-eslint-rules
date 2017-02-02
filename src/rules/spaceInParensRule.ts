@@ -89,11 +89,14 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     if ( !first && !middle && !last ) return;
     if ( this.shouldOpenerHaveSpace( first, middle ) ) {
       this.addFailure(this.createFailure( first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE ));
-    } if ( this.shouldOpenerRejectSpace( first, middle )) {
+    }
+    if ( this.shouldOpenerRejectSpace( first, middle )) {
       this.addFailure(this.createFailure( first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE ));
-    } if ( this.shouldCloserHaveSpace( middle, last )) {
+    }
+    if ( this.shouldCloserHaveSpace( middle, last )) {
       this.addFailure(this.createFailure( last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE ));
-    } if ( this.shouldCloserRejectSpace( middle, last )) {
+    }
+    if ( this.shouldCloserRejectSpace( middle, last )) {
       this.addFailure(this.createFailure( last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE ));
     }
   }
