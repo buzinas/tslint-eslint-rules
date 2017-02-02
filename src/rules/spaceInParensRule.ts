@@ -1,9 +1,66 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
+const RULE_NAME = 'space-in-parens';
 const ALWAYS = 'always';
 
 export class Rule extends Lint.Rules.AbstractRule {
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    description: 'require or disallow spaces inside parentheses',
+    rationale: Lint.Utils.dedent`
+      This rule will enforce consistency of spacing directly inside of parentheses,
+      by disallowing or requiring one or more spaces to the right of ( and to the
+      left of ). In either case, () will still be allowed. 
+      `,
+    optionsDescription: Lint.Utils.dedent`
+      There are two options for this rule:
+
+      - \`"never"\` (default) enforces zero spaces inside of parentheses
+      - \`"always"\` enforces a space inside of parentheses
+
+      Depending on your coding conventions, you can choose either option by specifying
+      it in your configuration.
+      `,
+    options: {
+      type: 'array',
+      items: [
+        {
+          enum: ['always', 'never']
+        },
+        {
+          type: 'object',
+          properties: {
+            exceptions: {
+              type: 'array',
+              items: [
+                {
+                  enum: ['{}', '[]', '()', 'empty']
+                }
+              ],
+              uniqueItems: true
+            }
+          },
+          additionalProperties: false
+        }
+      ],
+      minItems: 0,
+      maxItems: 2
+    },
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "always"]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "never"]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "always", { "exceptions": [ "{}", "[]", "()", "empty" ] }]
+        `
+    ],
+    typescriptOnly: false,
+    type: 'style'
+  };
 
   public static MISSING_SPACE_MESSAGE = 'there must be a space inside this paren.';
   public static REJECTED_SPACE_MESSAGE = 'there should be no spaces inside this paren.';
