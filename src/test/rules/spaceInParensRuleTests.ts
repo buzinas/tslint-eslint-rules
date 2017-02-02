@@ -17,7 +17,6 @@ function expecting( errors  ): Failure[] {
 
 ruleTester.addTestGroup('valid', 'should pass valid', [
     { code: 'foo()', options: ['always'] },
-    { code: 'foo( bar )', options: ['always'] },
     { code: 'foo\n(\nbar\n)\n', options: ['always'] },
     { code: 'foo\n(  \nbar\n )\n', options: ['always'] },
     { code: 'foo\n(\n bar  \n)\n', options: ['always'] },
@@ -41,6 +40,22 @@ ruleTester.addTestGroup('valid', 'should pass valid', [
     { code: 'var foo = `( bar )`;', options: ['never'] },
     { code: 'var foo = `( bar ${baz} )`;', options: ['never'] },
     { code: 'var foo = `(bar ${(1 + 2)})`;', options: ['never'] },
+
+    // classes
+    { code: 'class Test { foo( bar:string, asdsd:number, asd:any ) : void {} }', options: ['always'] },
+    { code: 'class Test { foo(bar:string, asdsd:number, asd:any) : void {} }', options: ['never'] },
+    { code: 'class Test { protected foo( bar:string, asdsd:number, asd:any ) : void {} }', options: ['always'] },
+    { code: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }', options: ['never'] },
+
+    // functions
+    { code: 'function foo( bar:string, asdsd:number, asd:any ) : void {}', options: ['always'] },
+    { code: 'function foo(bar:string, asdsd:number, asd:any) : void {}', options: ['never'] },
+    { code: 'function ( bar:string, asdsd:number, asd:any ) : void {}', options: ['always'] },
+    { code: 'function (bar:string, asdsd:number, asd:any) : void {}', options: ['never'] },
+
+    // constructors
+    { code: 'constructor( bar:string, asdsd:number, asd:any ){}', options: ['always'] },
+    { code: 'constructor(bar:string, asdsd:number, asd:any){}', options: ['never'] },
 
     // exceptions
     { code: 'foo({ bar: "baz" })', options: ['always', { exceptions: ['{}'] }] },
@@ -155,6 +170,82 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
             output: 'var x = (4 + 5) * 6',
             options: ['never'],
             errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 16 } ])
+        },
+
+        // classes
+        {
+            code: 'class Test { protected foo( bar:string, asdsd:number, asd:any ) : void {} }',
+            output: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }',
+            options: ['never'],
+            errors: expecting([
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 27 },
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 63 }
+            ])
+        },
+        {
+            code: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }',
+            output: 'class Test { protected foo( bar:string, asdsd:number, asd:any ) : void {} }',
+            options: ['always'],
+            errors: expecting([
+                { message: MISSING_SPACE_ERROR, line: 0, column: 27 },
+                { message: MISSING_SPACE_ERROR, line: 0, column: 61 }
+            ])
+        },
+
+        // functions
+        {
+            code: 'function foo( bar:string, asdsd:number, asd:any ) : void {}',
+            output: 'function foo(bar:string, asdsd:number, asd:any) : void {}',
+            options: ['never'],
+            errors: expecting([
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 13 },
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 49 }
+            ])
+        },
+        {
+            code: 'function foo(bar:string, asdsd:number, asd:any) : void {}',
+            output: 'function foo( bar:string, asdsd:number, asd:any ) : void {}',
+            options: ['always'],
+            errors: expecting([
+                { message: MISSING_SPACE_ERROR, line: 0, column: 13 },
+                { message: MISSING_SPACE_ERROR, line: 0, column: 47 }
+            ])
+        },
+        {
+            code: 'function ( bar:string, asdsd:number, asd:any ) : void {}',
+            output: 'function (bar:string, asdsd:number, asd:any) : void {}',
+            options: ['never'],
+            errors: expecting([
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 10 },
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 46 }
+            ])
+        },
+        {
+            code: 'function (bar:string, asdsd:number, asd:any) : void {}',
+            output: 'function ( bar:string, asdsd:number, asd:any ) : void {}',
+            options: ['always'],
+            errors: expecting([
+                { message: MISSING_SPACE_ERROR, line: 0, column: 10 },
+                { message: MISSING_SPACE_ERROR, line: 0, column: 44 }
+            ])
+        },
+        {
+            code: 'constructor( bar:string, asdsd:number, asd:any ) : void {}',
+            output: 'constructor(bar:string, asdsd:number, asd:any) : void {}',
+            options: ['never'],
+            errors: expecting([
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 12 },
+                { message: REJECTED_SPACE_ERROR, line: 0, column: 48 }
+            ])
+        },
+        {
+            code: 'constructor(bar:string, asdsd:number, asd:any) : void {}',
+            output: 'constructor( bar:string, asdsd:number, asd:any ) : void {}',
+            options: ['always'],
+            errors: expecting([
+                { message: MISSING_SPACE_ERROR, line: 0, column: 12 },
+                { message: MISSING_SPACE_ERROR, line: 0, column: 46 }
+            ])
         },
 
         // exceptions

@@ -126,14 +126,30 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     };
   }
 
+  protected findParenNodes(node: ts.Node): ts.Node[] {
+    const children = node.getChildren();
+    for (let i = 0; i < children.length; i++) {
+      if (children[i].kind === ts.SyntaxKind.OpenParenToken) {
+        return children.slice( i, i + 3 );
+      }
+    }
+    throw new Error('Unexpected error: no open parens found!');
+  }
+
   protected visitNode(node: ts.Node): void {
-    if ( node.kind === ts.SyntaxKind.CallExpression ||
+    if ( node.kind === ts.SyntaxKind.ParenthesizedExpression ||
+        node.kind === ts.SyntaxKind.ParenthesizedType ||
+        node.kind === ts.SyntaxKind.CallExpression ||
+        node.kind === ts.SyntaxKind.FunctionDeclaration ||
+        node.kind === ts.SyntaxKind.MethodDeclaration ||
         node.kind === ts.SyntaxKind.IfStatement ||
         node.kind === ts.SyntaxKind.CatchClause ||
         node.kind === ts.SyntaxKind.ForStatement ||
         node.kind === ts.SyntaxKind.ForOfStatement ||
+        node.kind === ts.SyntaxKind.ConstructSignature ||
         node.kind === ts.SyntaxKind.WhileStatement ) {
-      this.checkParanSpace( node.getChildren()[1] , node.getChildren()[2] , node.getChildren()[3] );
+      const parenNodes = this.findParenNodes(node);
+      this.checkParanSpace( parenNodes[0] , parenNodes[1] , parenNodes[2] );
     }
     if ( node.kind === ts.SyntaxKind.ParenthesizedExpression ||
         node.kind === ts.SyntaxKind.ParenthesizedType ) {
