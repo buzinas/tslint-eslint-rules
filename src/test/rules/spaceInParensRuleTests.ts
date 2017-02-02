@@ -1,7 +1,7 @@
 import { RuleTester, Failure, Position } from './ruleTester';
 const ruleTester = new RuleTester('space-in-parens');
-const MISSING_SPACE_ERROR = 'here must be a space inside this paren.';
-const REJECTED_SPACE_ERROR = 'here should be no spaces inside this paren.';
+const MISSING_SPACE_ERROR = 'there must be a space inside this paren.';
+const REJECTED_SPACE_ERROR = 'there should be no spaces inside this paren.';
 
 function expecting( errors  ): Failure[] {
     return errors.map((err) => {
@@ -15,7 +15,7 @@ function expecting( errors  ): Failure[] {
     });
 }
 
-ruleTester.addTestGroup('valid-always-explicit', 'should pass when always is on', [
+ruleTester.addTestGroup('valid', 'should pass valid', [
     { code: 'foo()', options: ['always'] },
     { code: 'foo( bar )', options: ['always'] },
     { code: 'foo\n(\nbar\n)\n', options: ['always'] },
@@ -94,7 +94,7 @@ ruleTester.addTestGroup('valid-always-explicit', 'should pass when always is on'
     { code: 'foo( { bar: "baz" } )', options: ['always', { exceptions: [] }] }
 ]);
 
-ruleTester.addTestGroup('invalid-always', 'should fail with always on', [
+ruleTester.addTestGroup('invalid', 'should fail invalid', [
 
         {
             code: 'foo( bar)',
