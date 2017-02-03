@@ -1,5 +1,5 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
-import { makeTest } from './helper';
+import { makeTest, makeFixTest } from './helper';
 
 const rule = 'object-curly-spacing';
 const scripts = {
@@ -50,11 +50,19 @@ describe(rule, function test() {
     makeTest(rule, scripts.always.invalid, false, alwaysConfig);
   });
 
+  it('should add necessary spaces when "always" with fix option', function testVariables() {
+    makeFixTest(rule, scripts.always.invalid, scripts.always.valid, alwaysConfig);
+  });
+
   it('should pass when "never" and there are not spaces inside brackets', function testVariables() {
     makeTest(rule, scripts.never.valid, true, neverConfig);
   });
 
   it('should fail when "never" and there are spaces inside brackets', function testVariables() {
     makeTest(rule, scripts.never.invalid, false, neverConfig);
+  });
+
+  it('should remove unnecessary spaces when "never" with fix option', function testVariables() {
+    makeFixTest(rule, scripts.never.invalid, scripts.never.valid, neverConfig);
   });
 });
