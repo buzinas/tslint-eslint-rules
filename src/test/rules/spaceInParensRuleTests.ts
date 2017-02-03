@@ -40,6 +40,7 @@ ruleTester.addTestGroup('valid', 'should pass valid', [
     { code: 'var foo = `( bar )`;', options: ['never'] },
     { code: 'var foo = `( bar ${baz} )`;', options: ['never'] },
     { code: 'var foo = `(bar ${(1 + 2)})`;', options: ['never'] },
+    { code: 'new MyClass( somethimg )', options: ['always'] },
 
     // classes
     { code: 'class Test { foo( bar:string, asdsd:number, asd:any ) : void {} }', options: ['always'] },
@@ -170,6 +171,18 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
             output: 'var x = (4 + 5) * 6',
             options: ['never'],
             errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 16 } ])
+        },
+        {
+            code: 'new MyClass( hey)',
+            output: 'new MyClass( hey )',
+            options: ['always'],
+            errors: expecting([ { message: MISSING_SPACE_ERROR, line: 0, column: 17 } ])
+        },
+        {
+            code: 'new MyClass( hey)',
+            output: 'new MyClass( hey )',
+            options: ['never'],
+            errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
         },
 
         // classes

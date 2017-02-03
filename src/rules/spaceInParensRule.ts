@@ -133,27 +133,13 @@ class SpaceInParensWalker extends Lint.RuleWalker {
         return children.slice( i, i + 3 );
       }
     }
-    throw new Error('Unexpected error: no open parens found!');
+    return null;
   }
 
   protected visitNode(node: ts.Node): void {
-    if ( node.kind === ts.SyntaxKind.ParenthesizedExpression ||
-        node.kind === ts.SyntaxKind.ParenthesizedType ||
-        node.kind === ts.SyntaxKind.CallExpression ||
-        node.kind === ts.SyntaxKind.FunctionDeclaration ||
-        node.kind === ts.SyntaxKind.MethodDeclaration ||
-        node.kind === ts.SyntaxKind.IfStatement ||
-        node.kind === ts.SyntaxKind.CatchClause ||
-        node.kind === ts.SyntaxKind.ForStatement ||
-        node.kind === ts.SyntaxKind.ForOfStatement ||
-        node.kind === ts.SyntaxKind.ConstructSignature ||
-        node.kind === ts.SyntaxKind.WhileStatement ) {
-      const parenNodes = this.findParenNodes(node);
+    const parenNodes = this.findParenNodes(node);
+    if (parenNodes) {
       this.checkParanSpace( parenNodes[0] , parenNodes[1] , parenNodes[2] );
-    }
-    if ( node.kind === ts.SyntaxKind.ParenthesizedExpression ||
-        node.kind === ts.SyntaxKind.ParenthesizedType ) {
-      this.checkParanSpace( node.getChildren()[0] , node.getChildren()[1] , node.getChildren()[2] );
     }
     super.visitNode(node);
   }
