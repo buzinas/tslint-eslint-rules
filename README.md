@@ -23,20 +23,22 @@ Now you can combine both worlds by using this TSLint plugin!
 npm install --save-dev tslint-eslint-rules
 ```
 
-### Configure TSLint to use `tslint-eslint-rules` folder:
+### Configure TSLint to use `tslint-eslint-rules`:
 
-In your `tslint.json` file, add the `rulesDirectory` property, e.g:
+In your `tslint.json` file, extend this package, e.g:
 
-  ```json
-  {
-    "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
-    "rules": {
-      "no-constant-condition": true
-    }
+```json
+{
+  "extends": [
+    "tslint-eslint-rules"
+  ],
+  "rules": {
+    "no-constant-condition": true
   }
-  ```
+}
+```
 
-  You can also pass an array of strings to the `rulesDirectory` property to combine this plugin with other community custom rules.
+You can also extend other tslint config packages to combine this plugin with other community custom rules.
 
 
 ### Configure your rules
