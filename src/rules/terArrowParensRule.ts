@@ -91,7 +91,7 @@ class RuleWalker extends Lint.RuleWalker {
     this.requireForBlockBody = this.asNeeded && opt[1] && opt[1].requireForBlockBody === true;
   }
 
-  protected visitArrowFunction(node: ts.FunctionLikeDeclaration) {
+  protected visitArrowFunction(node: ts.ArrowFunction): void {
     super.visitArrowFunction(node);
 
     if (node.parameters.length === 1) {
