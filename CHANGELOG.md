@@ -1,5 +1,13 @@
 # Change Log
 
+## [v3.3.0] - 2017/02/04 04:45 GMT-0600
+### Changes
+- Build errors fixed ([d163eb5])
+- TSLint extends support ([18902f1])
+
+[d163eb5]: https://github.com/buzinas/tslint-eslint-rules/commit/d163eb5aa438cce25da2624cf43c478544e7889b
+[18902f1]: https://github.com/buzinas/tslint-eslint-rules/commit/18902f10939aeb4dedbcb7334be42d462846457c
+
 ## [v3.2.3] - 2016/12/24 22:52 GMT-0600
 #### Fixes
 - handle-callback-err ([0a9a882])
@@ -214,7 +222,8 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
-[v3.2.3]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.3
+[v3.3.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.3...v3.3.0
+[v3.2.3]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.2...v3.2.3
 [v3.2.2]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.2
 [v3.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.0.0...v3.1.0
