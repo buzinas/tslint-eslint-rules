@@ -45,7 +45,7 @@ class ObjectCurlySpacingWalker extends Lint.RuleWalker {
 
   private checkSpacingInsideBraces(node: ts.Node): void {
     const text = node.getText();
-    if (text.indexOf('\n') !== -1 || text === '{}') {
+    if (text.indexOf('\n') !== -1 || /^\{\s*\}$/.test(text)) {
       // Rule does not apply when the braces span multiple lines
       return;
     }
@@ -53,19 +53,22 @@ class ObjectCurlySpacingWalker extends Lint.RuleWalker {
     const trailingSpace = text.match(/(\s{0,2})}$/)[1].length;
     if (this.always) {
       if (leadingSpace === 0) {
-        this.addFailure(this.createFailure(node.getStart(), 1, Rule.FAILURE_STRING.always.start));
+        const fix = this.createFix(this.appendText(node.getStart() + 1, ' '));
+        this.addFailure(this.createFailure(node.getStart(), 1, Rule.FAILURE_STRING.always.start, fix));
       }
       if (trailingSpace === 0) {
-        this.addFailure(this.createFailure(node.getEnd() - 1, 1, Rule.FAILURE_STRING.always.end));
+        const fix = this.createFix(this.appendText(node.getEnd() - 1, ' '));
+        this.addFailure(this.createFailure(node.getEnd() - 1, 1, Rule.FAILURE_STRING.always.end, fix));
       }
     } else {
       if (leadingSpace > 0) {
-        this.addFailure(this.createFailure(node.getStart(), 1, Rule.FAILURE_STRING.never.start));
+        const fix = this.createFix(this.deleteText(node.getStart() + 1, leadingSpace));
+        this.addFailure(this.createFailure(node.getStart(), 1, Rule.FAILURE_STRING.never.start, fix));
       }
       if (trailingSpace > 0) {
-        this.addFailure(this.createFailure(node.getEnd() - 1, 1, Rule.FAILURE_STRING.never.end));
+        const fix = this.createFix(this.deleteText(node.getEnd() - trailingSpace - 1, trailingSpace));
+        this.addFailure(this.createFailure(node.getEnd() - 1, 1, Rule.FAILURE_STRING.never.end, fix));
       }
     }
   }
-
 }
