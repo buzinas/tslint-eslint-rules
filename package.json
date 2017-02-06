@@ -1,6 +1,6 @@
 {
   "name": "tslint-eslint-rules",
-  "version": "3.2.3",
+  "version": "3.3.0",
   "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,9 @@
     "gulp-typescript": "^3.0.1",
     "typescript": "^2.0.3",
     "yargs": "^5.0.0"
+  },
+  "peerDependencies": {
+    "tslint": "^4.0.0"
   },
   "dependencies": {
     "doctrine": "^0.7.2",
