@@ -10,8 +10,8 @@ export class Rule extends Lint.Rules.AbstractRule {
     description: 'require or disallow spaces inside parentheses',
     rationale: Lint.Utils.dedent`
       This rule will enforce consistency of spacing directly inside of parentheses,
-      by disallowing or requiring one or more spaces to the right of ( and to the
-      left of ). In either case, () will still be allowed. 
+      by disallowing or requiring one or more spaces to the right of (and to the
+      left of). In either case, () will still be allowed. 
       `,
     optionsDescription: Lint.Utils.dedent`
       There are two options for this rule:
@@ -83,9 +83,9 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
     let ruleOptions = this.getOptions();
-    this.spaced = this.hasOption(ALWAYS) || ( ruleOptions && ruleOptions.length === 0);
+    this.spaced = this.hasOption(ALWAYS) || (ruleOptions && ruleOptions.length === 0);
 
-    if ( ruleOptions[1] ) {
+    if (ruleOptions[1]) {
       this.exceptionsArrayOptions = (ruleOptions.length === 2) ? ruleOptions[1].exceptions : [] ;
       if (this.exceptionsArrayOptions.length) {
         this.braceException = this.exceptionsArrayOptions.indexOf('{}') !== -1;
@@ -101,23 +101,23 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     let closers = [];
 
     if (this.braceException) {
-      openers.push( ts.SyntaxKind.OpenBraceToken );
-      closers.push( ts.SyntaxKind.CloseBraceToken );
+      openers.push(ts.SyntaxKind.OpenBraceToken);
+      closers.push(ts.SyntaxKind.CloseBraceToken);
     }
 
     if (this.bracketException) {
-      openers.push( ts.SyntaxKind.OpenBracketToken );
-      closers.push( ts.SyntaxKind.CloseBracketToken );
+      openers.push(ts.SyntaxKind.OpenBracketToken);
+      closers.push(ts.SyntaxKind.CloseBracketToken);
     }
 
     if (this.parenException) {
-      openers.push( ts.SyntaxKind.OpenParenToken );
-      closers.push( ts.SyntaxKind.CloseParenToken );
+      openers.push(ts.SyntaxKind.OpenParenToken);
+      closers.push(ts.SyntaxKind.CloseParenToken);
     }
 
     if (this.empty) {
-      openers.push( ts.SyntaxKind.CloseParenToken );
-      closers.push( ts.SyntaxKind.OpenParenToken );
+      openers.push(ts.SyntaxKind.CloseParenToken);
+      closers.push(ts.SyntaxKind.OpenParenToken);
     }
 
     return {
@@ -130,7 +130,7 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     const children = node.getChildren();
     for (let i = 0; i < children.length; i++) {
       if (children[i].kind === ts.SyntaxKind.OpenParenToken) {
-        return children.slice( i, i + 3 );
+        return children.slice(i, i + 3);
       }
     }
     return null;
@@ -139,67 +139,67 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   protected visitNode(node: ts.Node): void {
     const parenNodes = this.findParenNodes(node);
     if (parenNodes) {
-      this.checkParanSpace( parenNodes[0] , parenNodes[1] , parenNodes[2] );
+      this.checkParanSpace(parenNodes[0] , parenNodes[1] , parenNodes[2]);
     }
     super.visitNode(node);
   }
 
-  private checkParanSpace( first: ts.Node , middle: ts.Node, last: ts.Node ) {
-    if ( !first && !middle && !last ) return;
-    if ( this.shouldOpenerHaveSpace( first, middle ) ) {
-      this.addFailure(this.createFailure( first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE ));
+  private checkParanSpace(first: ts.Node , middle: ts.Node, last: ts.Node) {
+    if (!first && !middle && !last) return;
+    if (this.shouldOpenerHaveSpace(first, middle)) {
+      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE));
     }
-    if ( this.shouldOpenerRejectSpace( first, middle )) {
-      this.addFailure(this.createFailure( first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE ));
+    if (this.shouldOpenerRejectSpace(first, middle)) {
+      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE));
     }
-    if ( this.shouldCloserHaveSpace( middle, last )) {
-      this.addFailure(this.createFailure( last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE ));
+    if (this.shouldCloserHaveSpace(middle, last)) {
+      this.addFailure(this.createFailure(last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE));
     }
-    if ( this.shouldCloserRejectSpace( middle, last )) {
-      this.addFailure(this.createFailure( last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE ));
+    if (this.shouldCloserRejectSpace(middle, last)) {
+      this.addFailure(this.createFailure(last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE));
     }
   }
 
-  private shouldOpenerHaveSpace( left: ts.Node, right: ts.Node ) {
-    if ( this.isSpaceBetween( left, right) )  return false;
-    if (this.spaced) {
-      if ( right.getText().trim() === ''  ) return false;
-      return !this.isOpenerException( right.getFirstToken() );
-    }
-    return this.isOpenerException( right.getFirstToken() );
-  }
-
-  protected shouldCloserHaveSpace(left: ts.Node, right: ts.Node ) {
-    if ( left.getText().trim() === ''  ) return false;
+  private shouldOpenerHaveSpace(left: ts.Node, right: ts.Node) {
     if (this.isSpaceBetween(left, right)) return false;
-    if (this.spaced) return !this.isCloserException( left.getLastToken() );
-    return this.isCloserException( left.getLastToken() );
+    if (this.spaced) {
+      if (right.getText().trim() === '') return false;
+      return !this.isOpenerException(right.getFirstToken());
+    }
+    return this.isOpenerException(right.getFirstToken());
+  }
+
+  protected shouldCloserHaveSpace(left: ts.Node, right: ts.Node) {
+    if (left.getText().trim() === '') return false;
+    if (this.isSpaceBetween(left, right)) return false;
+    if (this.spaced) return !this.isCloserException(left.getLastToken());
+    return this.isCloserException(left.getLastToken());
   }
 
   private shouldOpenerRejectSpace(left: ts.Node, right: ts.Node) {
-    if (right.getText().trim() === '' ) return false;
+    if (right.getText().trim() === '') return false;
     if (this.isLineBreakBetween(left, right)) return false;
     if (!this.isSpaceBetween(left, right)) return false;
-    if (this.spaced) return this.isOpenerException( right.getFirstToken() );
-    return !this.isOpenerException( right.getFirstToken() );
+    if (this.spaced) return this.isOpenerException(right.getFirstToken());
+    return !this.isOpenerException(right.getFirstToken());
   }
 
   private shouldCloserRejectSpace(left: ts.Node, right: ts.Node) {
-    if (  left.getText().trim() === ''  ) return false;
+    if (left.getText().trim() === '') return false;
     if (this.isLineBreakBetween(left, right)) return false;
-    if (!this.isSpaceBetween(left, right))  return false;
-    if (this.spaced)  return this.isCloserException( left.getLastToken() );
-    return !this.isCloserException( left.getLastToken() );
+    if (!this.isSpaceBetween(left, right)) return false;
+    if (this.spaced) return this.isCloserException(left.getLastToken());
+    return !this.isCloserException(left.getLastToken());
   }
 
   protected isOpenerException(token: ts.Node) {
-    if ( !token ) return false;
-    return  this.getExceptions().openers.indexOf( token.kind ) >= 0;
+    if (!token) return false;
+    return this.getExceptions().openers.indexOf(token.kind) >= 0;
   }
 
   protected isCloserException(token: ts.Node) {
-    if ( !token ) return false;
-    return  this.getExceptions().closers.indexOf( token.kind ) >= 0;
+    if (!token) return false;
+    return this.getExceptions().closers.indexOf(token.kind) >= 0;
   }
 
   // space/line break detection helpers
