@@ -43,6 +43,18 @@ ruleTester.addTestGroup('valid', 'should pass valid', [
   { code: 'var foo = `(bar ${(1 + 2)})`;', options: ['never'] },
   { code: 'new MyClass( somethimg )', options: ['always'] },
 
+  // conditions/loops
+  { code: 'if ( true ) {}', options: ['always'] },
+  { code: 'if (true) {}', options: ['never'] },
+  { code: 'while ( true ) {}', options: ['always'] },
+  { code: 'while (true) {}', options: ['never'] },
+  { code: 'for ( let i=0; i<100; i++ ) {}', options: ['always'] },
+  { code: 'for (let i=0; i<100; i++) {}', options: ['never'] },
+  { code: 'for ( let i in foo ) {}', options: ['always'] },
+  { code: 'for (let i in foo) {}', options: ['never'] },
+  { code: 'for ( let i of foo ) {}', options: ['always'] },
+  { code: 'for (let i of foo) {}', options: ['never'] },
+
   // classes
   { code: 'class Test { foo( bar:string, asdsd:number, asd:any ) : void {} }', options: ['always'] },
   { code: 'class Test { foo(bar:string, asdsd:number, asd:any) : void {} }', options: ['never'] },
