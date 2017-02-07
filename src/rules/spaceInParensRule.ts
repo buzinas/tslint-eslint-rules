@@ -128,43 +128,41 @@ class SpaceInParensWalker extends Lint.RuleWalker {
 
   protected findParenNodes(node: ts.Node): ts.Node[] {
     const children = node.getChildren();
-    let openParneNode: ts.Node;
-    let secondOne: ts.Node;
-    let oneBeforLast: ts.Node;
-    let closeParanNode: ts.Node;
+    let first: ts.Node;
+    let second: ts.Node;
+    let penultimate: ts.Node;
+    let last: ts.Node;
     for (let i = 0; i < children.length; i++) {
       if (children[i].kind === ts.SyntaxKind.OpenParenToken) {
-        openParneNode = children[i];
-        secondOne = children[i + 1];
+        first = children[i];
+        second = children[i + 1];
       }
       if (children[i].kind === ts.SyntaxKind.CloseParenToken) {
-        oneBeforLast = children[i - 1];
-        closeParanNode = children[i];
+        penultimate = children[i - 1];
+        last = children[i];
       }
     }
-    return [ openParneNode, secondOne, oneBeforLast, closeParanNode ];
+    return [ first, second, penultimate, last ];
   }
 
   protected visitNode(node: ts.Node): void {
     const parenNodes = this.findParenNodes(node);
-    if (parenNodes) {
-      this.checkParanSpace(parenNodes[0] , parenNodes[1] , parenNodes[2], parenNodes[3]);
-    }
+    this.checkParanSpace(parenNodes[0] , parenNodes[1] , parenNodes[2], parenNodes[3]);
     super.visitNode(node);
   }
 
-  private checkParanSpace(first: ts.Node , second: ts.Node, beforeLast: ts.Node, last: ts.Node) {
-    if (!first && !second && !beforeLast && !last) return;
+  private checkParanSpace(first: ts.Node , second: ts.Node, penultimate: ts.Node, last: ts.Node) {
+    if (!first && !second && !penultimate && !last) return;
     if (this.shouldOpenerHaveSpace(first, second)) {
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE));
     }
     if (this.shouldOpenerRejectSpace(first, second)) {
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE));
     }
-    if (this.shouldCloserHaveSpace(beforeLast, last)) {
+    if (this.shouldCloserHaveSpace(penultimate, last)) {
       this.addFailure(this.createFailure(last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE));
     }
-    if (this.shouldCloserRejectSpace(beforeLast, last)) {
+    if (this.shouldCloserRejectSpace(penultimate, last)) {
       this.addFailure(this.createFailure(last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE));
     }
   }
