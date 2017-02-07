@@ -153,7 +153,7 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     super.visitNode(node);
   }
 
-private checkParanSpace(first: ts.Node , second: ts.Node, beforeLast: ts.Node, last: ts.Node) {
+  private checkParanSpace(first: ts.Node , second: ts.Node, beforeLast: ts.Node, last: ts.Node) {
     if (!first && !second && !beforeLast && !last) return;
     if (this.shouldOpenerHaveSpace(first, second)) {
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE));
