@@ -128,7 +128,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: 'foo( bar)',
     output: 'foo( bar )',
     options: ['always'],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 9 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 8 }])
   },
   {
     code: 'foo(bar)',
@@ -136,14 +136,14 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always'],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 4 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 8 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 7 }
     ])
   },
   {
     code: 'var x = ( 1 + 2) * 3',
     output: 'var x = ( 1 + 2 ) * 3',
     options: ['always'],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 16 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 15 }])
   },
   {
     code: 'var x = (1 + 2 ) * 3',
@@ -161,7 +161,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: 'bar(baz )',
     output: 'bar(baz)',
     options: ['never'],
-    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 9 } ])
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 8 } ])
   },
   {
     code: 'bar( baz )',
@@ -169,7 +169,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never'],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 4 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 10 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 9 }
     ])
   },
   {
@@ -182,17 +182,17 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: 'var x = (4 + 5 ) * 6',
     output: 'var x = (4 + 5) * 6',
     options: ['never'],
-    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 16 } ])
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 15 } ])
   },
   {
     code: 'new MyClass( hey)',
     output: 'new MyClass( hey )',
     options: ['always'],
-    errors: expecting([ { message: MISSING_SPACE_ERROR, line: 0, column: 17 } ])
+    errors: expecting([ { message: MISSING_SPACE_ERROR, line: 0, column: 16 } ])
   },
   {
     code: 'new MyClass( hey)',
-    output: 'new MyClass( hey )',
+    output: 'new MyClass(hey)',
     options: ['never'],
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
   },
@@ -204,7 +204,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never'],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 27 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 63 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 62 }
     ])
   },
   {
@@ -213,7 +213,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always'],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 27 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 61 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 60 }
     ])
   },
 
@@ -224,7 +224,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never'],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 13 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 49 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 48 }
     ])
   },
   {
@@ -233,7 +233,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always'],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 13 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 47 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 46 }
     ])
   },
   {
@@ -242,7 +242,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never'],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 10 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 46 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 45 }
     ])
   },
   {
@@ -251,7 +251,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always'],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 10 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 44 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 43 }
     ])
   },
   {
@@ -260,7 +260,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never'],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 12 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 48 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 47 }
     ])
   },
   {
@@ -269,7 +269,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always'],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 12 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 46 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 45 }
     ])
   },
 
@@ -280,7 +280,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['[]'] }],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 5 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 20 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 19 }
     ])
   },
   {
@@ -289,7 +289,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['{}'] }],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 5 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 22 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 21 }
     ])
   },
   {
@@ -298,7 +298,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never', { exceptions: ['{}'] }],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 5 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 20 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 19 }
     ])
   },
   {
@@ -307,7 +307,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never', { exceptions: ['[]'] }],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 5 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 22 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 21 }
     ])
   },
   {
@@ -320,13 +320,13 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: 'foo2( { bar: "baz" })',
     output: 'foo( { bar: "baz" } )',
     options: ['never', { exceptions: ['{}'] }],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 21 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 20 }])
   },
   {
     code: 'foo3({ bar: "baz" } )',
     output: 'foo({ bar: "baz" })',
     options: ['always', { exceptions: ['{}'] }],
-    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 21 } ])
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 20 } ])
   },
   {
     code: 'foo4({ bar: "baz" } )',
@@ -340,7 +340,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['empty'] }],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 5 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 14 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 13 }
     ])
   },
   {
@@ -349,7 +349,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['[]'] }],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 5 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 16 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 15 }
     ])
   },
   {
@@ -358,7 +358,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never', { exceptions: ['[]'] }],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 5 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 14 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 13 }
     ])
   },
   {
@@ -367,14 +367,14 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['never', { exceptions: ['()'] }],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 5 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 16 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 15 }
     ])
   },
   {
     code: 'fooe([ 1, 2 ] )',
     output: 'foo([ 1, 2 ])',
     options: ['always', { exceptions: ['[]'] }],
-    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 15 } ])
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 14 } ])
   },
   {
     code: 'foor([ 1, 2 ] )',
@@ -392,7 +392,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: 'fooy( [ 1, 2 ])',
     output: 'foo( [ 1, 2 ] )',
     options: ['never', { exceptions: ['[]'] }],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 15 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 14 }])
   },
   {
     code: '(( 1 + 2 ))',
@@ -400,7 +400,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['[]'] }],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 1 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 11 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 10 }
     ])
   },
   {
@@ -409,7 +409,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['()'] }],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 1 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 13 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 12 }
     ])
   },
   {
@@ -418,7 +418,7 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     options: ['always', { exceptions: ['[]'] }],
     errors: expecting([
     { message: MISSING_SPACE_ERROR, line: 0, column: 1 },
-    { message: MISSING_SPACE_ERROR, line: 0, column: 11 }
+    { message: MISSING_SPACE_ERROR, line: 0, column: 10 }
     ])
   },
   {
@@ -428,8 +428,8 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 1 },
     { message: REJECTED_SPACE_ERROR, line: 0, column: 3 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 11 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 13 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 10 },
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 12 }
     ])
   },
   {
@@ -439,9 +439,8 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 1 },
     { message: REJECTED_SPACE_ERROR, line: 0, column: 3 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 11 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 13 },
-    { message: REJECTED_SPACE_ERROR, line: 0, column: 13 }
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 10 },
+    { message: REJECTED_SPACE_ERROR, line: 0, column: 12 }
     ])
   },
   {
@@ -454,13 +453,13 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: '( (1 + 2))',
     output: '( (1 + 2) )',
     options: ['never', { exceptions: ['()'] }],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 10 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 9 }])
   },
   {
     code: '(( 1 + 2 ) )',
     output: '(( 1 + 2 ))',
     options: ['always', { exceptions: ['()'] }],
-    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 11 } ])
   },
   {
     code: '((1 + 2) )',
@@ -472,37 +471,37 @@ ruleTester.addTestGroup('invalid', 'should fail invalid', [
     code: 'var result = ( 1 / ( 1 + 2 ) ) + 3',
     output: 'var result = ( 1 / ( 1 + 2 )) + 3',
     options: ['always', { exceptions: ['()'] }],
-    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 30 } ])
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 29 } ])
   },
   {
     code: 'var result = (1 / (1 + 2)) + 3',
     output: 'var result = (1 / (1 + 2) ) + 3',
     options: ['never', { exceptions: ['()'] }],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 26 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 25 }])
   },
   {
     code: 'var result = ( 1 / ( 1 + 2)) + 3',
     output: 'var result = ( 1 / ( 1 + 2 )) + 3',
     options: ['always', { exceptions: ['()'] }],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 27 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 26 }])
   },
   {
     code: 'var result = (1 / (1 + 2)) + 3',
     output: 'var result = (1 / (1 + 2) ) + 3',
     options: ['never', { exceptions: ['()'] }],
-    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 26 }])
+    errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 25 }])
   },
   {
     code: 'foo\n(\nbar )\n',
     output: 'foo\n(\nbar)\n',
     options: ['never'],
-    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 2, column: 5 }])
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 2, column: 4 }])
   },
   {
     code: 'var foo = `(bar ${(1 + 2 )})`;',
     output: 'var foo = `(bar ${(1 + 2)})`;',
     options: ['never'],
-    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 26 }])
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 25 }])
   },
   {
     code: 'var foo = `(bar ${(1 + 2 )})`;',

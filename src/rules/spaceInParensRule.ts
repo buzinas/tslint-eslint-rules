@@ -153,17 +153,22 @@ class SpaceInParensWalker extends Lint.RuleWalker {
 
   private checkParanSpace(first: ts.Node , second: ts.Node, penultimate: ts.Node, last: ts.Node) {
     if (!first && !second && !penultimate && !last) return;
+
     if (this.shouldOpenerHaveSpace(first, second)) {
-      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE));
+      const fix = this.createFix(this.appendText(first.getEnd(), ' '));
+      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
     }
     if (this.shouldOpenerRejectSpace(first, second)) {
-      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE));
+      const fix = this.createFix(this.deleteText(first.getEnd(), 1));
+      this.addFailure(this.createFailure(first.getEnd(), 0 , Rule.REJECTED_SPACE_MESSAGE, fix));
     }
     if (this.shouldCloserHaveSpace(penultimate, last)) {
-      this.addFailure(this.createFailure(last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE));
+      const fix = this.createFix(this.appendText(penultimate.getEnd(), ' '));
+      this.addFailure(this.createFailure(last.getStart() , 0, Rule.MISSING_SPACE_MESSAGE, fix));
     }
     if (this.shouldCloserRejectSpace(penultimate, last)) {
-      this.addFailure(this.createFailure(last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE));
+      const fix = this.createFix(this.deleteText(penultimate.getEnd(), 1));
+      this.addFailure(this.createFailure(last.getStart() , 0, Rule.REJECTED_SPACE_MESSAGE, fix));
     }
   }
 
