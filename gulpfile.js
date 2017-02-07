@@ -68,7 +68,7 @@ gulp.task('self-lint', function selfLint() {
 
 gulp.task('build', argv.lint === false ? [] : ['lint'], function build(done) {
   var hasError = false;
-  tsProject
+  gulp
     .src([SRC_FOLDER, DEF_FOLDER])
     .pipe(sourcemaps.init())
     .pipe(tsProject())
