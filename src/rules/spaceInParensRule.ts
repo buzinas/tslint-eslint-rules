@@ -128,34 +128,43 @@ class SpaceInParensWalker extends Lint.RuleWalker {
 
   protected findParenNodes(node: ts.Node): ts.Node[] {
     const children = node.getChildren();
+    let openParneNode: ts.Node;
+    let secondOne: ts.Node;
+    let oneBeforLast: ts.Node;
+    let closeParanNode: ts.Node;
     for (let i = 0; i < children.length; i++) {
       if (children[i].kind === ts.SyntaxKind.OpenParenToken) {
-        return children.slice(i, i + 3);
+        openParneNode = children[i];
+        secondOne = children[i + 1];
+      }
+      if (children[i].kind === ts.SyntaxKind.CloseParenToken) {
+        oneBeforLast = children[i - 1];
+        closeParanNode = children[i];
       }
     }
-    return null;
+    return [ openParneNode, secondOne, oneBeforLast, closeParanNode ];
   }
 
   protected visitNode(node: ts.Node): void {
     const parenNodes = this.findParenNodes(node);
     if (parenNodes) {
-      this.checkParanSpace(parenNodes[0] , parenNodes[1] , parenNodes[2]);
+      this.checkParanSpace(parenNodes[0] , parenNodes[1] , parenNodes[2], parenNodes[3]);
     }
     super.visitNode(node);
   }
 
-  private checkParanSpace(first: ts.Node , middle: ts.Node, last: ts.Node) {
-    if (!first && !middle && !last) return;
-    if (this.shouldOpenerHaveSpace(first, middle)) {
+private checkParanSpace(first: ts.Node , second: ts.Node, beforeLast: ts.Node, last: ts.Node) {
+    if (!first && !second && !beforeLast && !last) return;
+    if (this.shouldOpenerHaveSpace(first, second)) {
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE));
     }
-    if (this.shouldOpenerRejectSpace(first, middle)) {
+    if (this.shouldOpenerRejectSpace(first, second)) {
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE));
     }
-    if (this.shouldCloserHaveSpace(middle, last)) {
+    if (this.shouldCloserHaveSpace(beforeLast, last)) {
       this.addFailure(this.createFailure(last.getEnd() , 0, Rule.MISSING_SPACE_MESSAGE));
     }
-    if (this.shouldCloserRejectSpace(middle, last)) {
+    if (this.shouldCloserRejectSpace(beforeLast, last)) {
       this.addFailure(this.createFailure(last.getEnd() , 0, Rule.REJECTED_SPACE_MESSAGE));
     }
   }
