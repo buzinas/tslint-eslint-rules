@@ -82,7 +82,7 @@ class SpaceInParensWalker extends Lint.RuleWalker {
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
-    let ruleOptions = this.getOptions();
+    const ruleOptions = this.getOptions();
     this.spaced = this.hasOption(ALWAYS) || (ruleOptions && ruleOptions.length === 0);
 
     if (ruleOptions[1]) {
@@ -97,8 +97,8 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   }
 
   private getExceptions() {
-    let openers = [];
-    let closers = [];
+    const openers = [];
+    const closers = [];
 
     if (this.braceException) {
       openers.push(ts.SyntaxKind.OpenBraceToken);
