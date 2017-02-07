@@ -281,7 +281,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[sort-vars](http://eslint.org/docs/rules/sort-vars)|sort-vars|sort variables within the same declaration block|
 |:x:|[space-before-blocks](http://eslint.org/docs/rules/space-before-blocks)|space-before-blocks|require or disallow a space before blocks|
 |:x:|[space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren)|space-before-function-paren|require or disallow a space before function opening parenthesis|
-|:x:|[space-in-parens](http://eslint.org/docs/rules/space-in-parens)|space-in-parens|require or disallow spaces inside parentheses|
+|:x:|[space-in-parens](http://eslint.org/docs/rules/space-in-parens)|[space-in-parens](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/spaceInParensRule.md)|require or disallow spaces inside parentheses|
 |:x:|[space-infix-ops](http://eslint.org/docs/rules/space-infix-ops)|space-infix-ops|require spaces around operators<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
 |:x:|[space-unary-ops](http://eslint.org/docs/rules/space-unary-ops)|space-unary-ops|require or disallow spaces before/after unary operators|
 |:ballot_box_with_check:|[spaced-comment](http://eslint.org/docs/rules/spaced-comment)|[comment-format](https://palantir.github.io/tslint/rules/comment-format)|require or disallow a space immediately following the `//` or `/*` in a comment|
