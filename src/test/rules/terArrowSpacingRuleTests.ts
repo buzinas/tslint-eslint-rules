@@ -1,7 +1,7 @@
 import { RuleTester, Failure, Position } from './ruleTester';
 // ESLint Tests: https://github.com/eslint/eslint/blob/master/lib/rules/arrow-spacing.js
 
-const ruleTester = new RuleTester('ter-arrow-spacing');
+const ruleTester = new RuleTester('ter-arrow-spacing', true);
 
 function expecting(errors: [number, number, string, boolean][]): Failure[] {
   // [line, column, 'before' | 'after', true means there should be a space]

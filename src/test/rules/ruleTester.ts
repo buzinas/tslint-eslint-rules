@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import * as Lint from 'tslint';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -111,17 +111,26 @@ interface ITest {
 
 class Test {
   private name: string;
+  private testFixer: boolean;
   public code: string;
   public output: string;
   public options: any;
   public errors: LintFailure[];
 
-  constructor(name: string, code: string, output: string, options: any, errors: LintFailure[]) {
+  constructor(
+    name: string,
+    code: string,
+    output: string,
+    options: any,
+    errors: LintFailure[],
+    testFixer: boolean = false
+  ) {
     this.name = name;
     this.code = code;
     this.output = output;
     this.options = options;
     this.errors = errors;
+    this.testFixer = testFixer;
   }
 
   public runTest(): void {
@@ -135,20 +144,28 @@ class Test {
     const linter = new Lint.Linter(options);
     linter.lint(this.name, this.code, this.options);
     const failures = JSON.parse(linter.getResult().output);
-    this.compareErrors(this.errors || [], failures.map((error: any) => {
-      const start = error.startPosition;
-      const end = error.endPosition;
-      return new LintFailure(
-        error.name,
-        error.ruleName,
-        error.failure,
-        new Position(start.line, start.character, start.position),
-        new Position(end.line, end.character, end.position)
-      );
-    }));
+    this.compareErrors(
+      this.errors || [],
+      failures.map((error: any) => {
+        const start = error.startPosition;
+        const end = error.endPosition;
+        return new LintFailure(
+          error.name,
+          error.ruleName,
+          error.failure,
+          new Position(start.line, start.character, start.position),
+          new Position(end.line, end.character, end.position)
+        );
+      }),
+      linter
+    );
   }
 
-  private compareErrors(expectedErrors: LintFailure[], foundErrors: LintFailure[]): void {
+  private compareErrors(
+    expectedErrors: LintFailure[],
+    foundErrors: LintFailure[],
+    linter: Lint.Linter
+  ): void {
     const expected = this.arrayDiff(expectedErrors, foundErrors);
     const found = this.arrayDiff(foundErrors, expectedErrors, false);
 
@@ -168,6 +185,18 @@ class Test {
       ''
     ].join('\n');
     assert(expected.length === 0 && found.length === 0, msg);
+    if (this.testFixer && this.output) {
+      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
+      const fixedCode = Lint.Fix.applyAll(this.code, fixes);
+      const fixerMsg = [
+        `Fixer output mismatch in ${this.name}:`,
+        '',
+        codeStr,
+        '',
+        '      '
+      ].join('\n');
+      expect(fixedCode).to.equal(this.output, fixerMsg);
+    }
   }
 
   private arrayDiff(source: LintFailure[], target: LintFailure[], compareToTarget: boolean = true) {
@@ -209,7 +238,13 @@ class TestGroup {
   public description: string;
   public tests: Test[];
 
-  constructor(name: string, description: string, ruleName: string, tests: (ITest | string)[]) {
+  constructor(
+    name: string,
+    description: string,
+    ruleName: string,
+    tests: (ITest | string)[],
+    testFixer: boolean = false
+  ) {
     this.name = name;
     this.ruleName = ruleName;
     this.description = description;
@@ -231,21 +266,23 @@ class TestGroup {
           error.endPosition
         );
       });
-      return new Test(codeFileName, test.code, test.output, config, failures);
+      return new Test(codeFileName, test.code, test.output, config, failures, testFixer);
     });
   }
 }
 
 class RuleTester {
   private ruleName: string;
+  private testFixer: boolean;
   private groups: TestGroup[] = [];
 
-  constructor(ruleName: string) {
+  constructor(ruleName: string, testFixer: boolean = false) {
     this.ruleName = ruleName;
+    this.testFixer = testFixer;
   }
 
   public addTestGroup(name: string, description: string, tests: (ITest | string)[]): this {
-    this.groups.push(new TestGroup(name, description, this.ruleName, tests));
+    this.groups.push(new TestGroup(name, description, this.ruleName, tests, this.testFixer));
     return this;
   }
 
@@ -280,4 +317,4 @@ export {
   TestGroup,
   RuleTester,
   readFixture,
-};
+}
