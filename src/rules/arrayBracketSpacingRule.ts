@@ -208,9 +208,9 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     const openingBracketMustBeSpaced = mustBeSpaced(firstElement);
     const closingBracketMustBeSpaced = mustBeSpaced(lastElement);
 
-    const spaceAfterOpeningBracket = this.getSpaceBetween(first, second);
+    const spaceAfterOpeningBracket = this.getSpaceBetween(first, second, false);
     const isBreakAfterOpeningBracket = this.isLineBreakBetween(first, second);
-    const spaceBeforeClosingBracket = this.getSpaceBetween(penultimate, last);
+    const spaceBeforeClosingBracket = this.getSpaceBetween(penultimate, last, true);
     const isBreakBeforeClosingBracket = this.isLineBreakBetween(penultimate, last);
 
     if (!isBreakAfterOpeningBracket) {
@@ -231,8 +231,16 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
   }
 
   // space/line break detection helpers
-  private getSpaceBetween(node: ts.TextRange, nextNode: ts.Node): number {
-    return nextNode.getStart(this.getSourceFile()) - node.end;
+  private getSpaceBetween(node: ts.TextRange, nextNode: ts.Node, trailing: boolean): number {
+    const end = nextNode.getStart(this.getSourceFile());
+    const start = node.end;
+    const text = this.getSourceFile().text.substring(start, end);
+    const m = text.match(/\/\*.*\*\//);
+    if (m) {
+      const len = m[0].length;
+      return trailing ? end - (start + m.index + len) : m.index;
+    }
+    return end - start;
   }
 
   private isLineBreakBetween(node: ts.TextRange, nextNode: ts.Node): boolean {

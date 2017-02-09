@@ -498,4 +498,34 @@ ruleTester.addTestGroup('with-types', 'should handle always and never with types
   }
 ]);
 
+ruleTester.addTestGroup('issue162', 'should handle comments', [
+  {
+    code: 'const foo = [42/* , 51 */];',
+    options: ['never']
+  },
+  {
+    code: 'const foo = [42/* , 51 */  ];',
+    output: 'const foo = [42/* , 51 */];',
+    options: ['never'],
+    errors: expecting([
+      [0, 27, false, 'before']
+    ])
+  },
+  {
+    code: 'const foo = [ /*39, */ 41, 42/* , 51 */ ];',
+    output: 'const foo = [/*39, */ 41, 42/* , 51 */];',
+    options: ['never'],
+    errors: expecting([
+      [0, 12, false, 'after'],
+      [0, 40, false, 'before']
+    ])
+  },
+  {
+    code: `const foo = [ /*
+      39, */ 41, 42/* , 51 
+      */ ];`,
+    options: ['never']
+  }
+]);
+
 ruleTester.runTests();
