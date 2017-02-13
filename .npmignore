@@ -3,6 +3,7 @@
 .vs
 dist/test
 dist/readme
+!dist/readme/rules.js
 dist/tools
 node_modules
 src
