@@ -81,36 +81,44 @@ class RuleWalker extends Lint.RuleWalker {
 
   protected visitArrowFunction(node: ts.ArrowFunction) {
     const arrow = node.equalsGreaterThanToken;
+    const arrowStart = arrow.getStart(this.srcFile);
+    const bodyStart = node.body.getStart(this.srcFile);
     const space = {
-      before: /\s/.test(this.srcText[arrow.getStart(this.srcFile) - 1]),
+      before: /\s/.test(this.srcText[arrowStart - 1]),
       after: /\s/.test(this.srcText[arrow.end])
     };
     if (this.before) {
       if (!space.before) {
-        this.report(arrow, 'Missing', 'before');
+        const fix = this.createFix(this.appendText(arrowStart, ' '));
+        this.report(arrow, 'Missing', 'before', fix);
       }
     } else {
       if (space.before) {
-        this.report(arrow, 'Unexpected', 'before');
+        const spaces = arrowStart - arrow.getFullStart();
+        const fix = this.createFix(this.deleteText(arrowStart - spaces, spaces));
+        this.report(arrow, 'Unexpected', 'before', fix);
       }
     }
     if (this.after) {
       if (!space.after) {
-        this.report(arrow, 'Missing', 'after');
+        const fix = this.createFix(this.appendText(arrow.end, ' '));
+        this.report(arrow, 'Missing', 'after', fix);
       }
     } else {
       if (space.after) {
-        this.report(arrow, 'Unexpected', 'after');
+        const fix = this.createFix(this.deleteText(arrow.end, bodyStart - arrow.end));
+        this.report(arrow, 'Unexpected', 'after', fix);
       }
     }
     super.visitArrowFunction(node);
   }
 
-  private report(arrowToken: ts.Node, status: string, place: string) {
+  private report(arrowToken: ts.Node, status: string, place: string, fix: Lint.Fix) {
     const failure = this.createFailure(
-      arrowToken.getStart(),
-      arrowToken.getWidth(),
-      `${status} space ${place} =>.`
+      arrowToken.getStart(this.srcFile),
+      arrowToken.getWidth(this.srcFile),
+      `${status} space ${place} =>.`,
+      fix
     );
     this.addFailure(failure);
   }
