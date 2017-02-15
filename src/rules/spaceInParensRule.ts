@@ -72,7 +72,6 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class SpaceInParensWalker extends Lint.RuleWalker {
-  // ** RULE IMPLEMENTATION HERE **
   private spaced: boolean;
   private exceptionsArrayOptions = [];
   private braceException: boolean;
@@ -147,11 +146,11 @@ class SpaceInParensWalker extends Lint.RuleWalker {
 
   protected visitNode(node: ts.Node): void {
     const parenNodes = this.findParenNodes(node);
-    this.checkParanSpace(parenNodes[0] , parenNodes[1] , parenNodes[2], parenNodes[3]);
+    this.checkParanSpace(parenNodes[0], parenNodes[1], parenNodes[2], parenNodes[3]);
     super.visitNode(node);
   }
 
-  private checkParanSpace(first: ts.Node , second: ts.Node, penultimate: ts.Node, last: ts.Node) {
+  private checkParanSpace(first: ts.Node, second: ts.Node, penultimate: ts.Node, last: ts.Node) {
     if (!first && !second && !penultimate && !last) return;
 
     if (this.shouldOpenerHaveSpace(first, second)) {
@@ -159,16 +158,18 @@ class SpaceInParensWalker extends Lint.RuleWalker {
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
     }
     if (this.shouldOpenerRejectSpace(first, second)) {
-      const fix = this.createFix(this.deleteText(first.getEnd(), 1));
-      this.addFailure(this.createFailure(first.getEnd(), 0 , Rule.REJECTED_SPACE_MESSAGE, fix));
+      const width = second.getStart() - first.getEnd();
+      const fix = this.createFix(this.deleteText(first.getEnd(), width));
+      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
     }
     if (this.shouldCloserHaveSpace(penultimate, last)) {
       const fix = this.createFix(this.appendText(penultimate.getEnd(), ' '));
-      this.addFailure(this.createFailure(last.getStart() , 0, Rule.MISSING_SPACE_MESSAGE, fix));
+      this.addFailure(this.createFailure(last.getStart(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
     }
     if (this.shouldCloserRejectSpace(penultimate, last)) {
-      const fix = this.createFix(this.deleteText(penultimate.getEnd(), 1));
-      this.addFailure(this.createFailure(last.getStart() , 0, Rule.REJECTED_SPACE_MESSAGE, fix));
+      const width = last.getStart() - penultimate.getEnd();
+      const fix = this.createFix(this.deleteText(penultimate.getEnd(), width));
+      this.addFailure(this.createFailure(last.getStart(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
     }
   }
 
