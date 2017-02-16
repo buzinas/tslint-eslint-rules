@@ -1552,32 +1552,9 @@ const rules: IRule[] = [
     eslintRule: 'array-bracket-spacing',
     tslintRule: 'array-bracket-spacing',
     category: 'Stylistic Issues',
-    description: 'enforce spacing inside array brackets',
+    description: 'enforce consistent spacing inside array brackets',
     eslintUrl: 'http://eslint.org/docs/rules/array-bracket-spacing',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "array-bracket-spacing": [
-        true,
-        "always",
-        {
-          "singleValue": false,
-          "objectsInArrays": false,
-          "arraysInArrays": false
-        }
-      ]
-    ~~~
-    
-    ~~~json
-    "array-bracket-spacing": [
-        true,
-        "never",
-        {
-          "singleValue": true,
-          "objectsInArrays": true,
-          "arraysInArrays": true
-        }
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
@@ -3011,7 +2988,7 @@ const rules: IRule[] = [
     eslintRule: 'prefer-arrow-callback',
     tslintRule: 'ter-prefer-arrow-callback',
     category: 'ECMAScript 6',
-    description: 'suggest using arrow functions as callbacks',
+    description: 'require arrow functions as callbacks',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-arrow-callback',
     provider: 'tslint-eslint-rules'
   },

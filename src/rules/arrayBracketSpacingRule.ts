@@ -2,13 +2,93 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 const OPTION_ALWAYS = 'always';
+const RULE_NAME = 'array-bracket-spacing';
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static FAILURE_STRING = {
-    noBeginningSpace: 'There should be no space after "["',
-    noEndingSpace: 'There should be no space before "]"',
-    requiredBeginningSpace: 'A space is required after "["',
-    requiredEndingSpace: 'A space is required before "]"'
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    description: 'enforce consistent spacing inside array brackets',
+    rationale: Lint.Utils.dedent`
+      A number of style guides require or disallow spaces between array brackets and other tokens.
+      This rule applies to both array literals and destructuring assignments (ECMAScript 6).
+      `,
+    optionsDescription: Lint.Utils.dedent`
+      The rule takes one or two options. The first is a string, which can be:
+
+      - \`"never"\` (default) disallows spaces inside array brackets
+      - \`"always"\`requires one or more spaces or newlines inside array brackets
+
+      The second option is an object for exceptions to the \`"never"\` option:
+      
+      - \`"singleValue": true\` requires one or more spaces or newlines inside brackets of array
+                                literals that contain a single element
+      - \`"objectsInArrays": true\` requires one or more spaces or newlines between brackets of
+                                    array literals and braces of their object literal elements
+                                    \`[ {\` or \`} ]\`
+      - \`"arraysInArrays": true\` requires one or more spaces or newlines between brackets of
+                                   array literals and brackets of their array literal elements
+                                   \`[ [\` or \`] ]\`
+
+      When using the \`"always"\` option the second option takes on these exceptions:
+      
+      - \`"singleValue": false\` disallows spaces inside brackets of array literals that contain a
+                                 single element
+      - \`"objectsInArrays": false\` disallows spaces between brackets of array literals and braces
+                                     of their object literal elements \`[ {\` or \`} ]\`
+      - \`"arraysInArrays": false\` disallows spaces between brackets of array literals and brackets
+                                    of their array literal elements \`[ [\` or \`] ]\`
+
+      This rule has build-in exceptions:
+      
+      - \`"never"\` (and also the exceptions to the \`"always"\` option) allows newlines inside
+                    array brackets, because this is a common pattern
+      - \`"always"\` does not require spaces or newlines in empty array literals \`[]\`
+      `,
+    options: {
+      anyOf: [
+        {
+          type: 'array',
+          items: [
+            {
+              enum: ['always', 'never']
+            }
+          ],
+          minItems: 0,
+          maxItems: 1
+        },
+        {
+          type: 'object',
+          properties: {
+            singleValue: {
+              type: 'boolean'
+            },
+            objectsInArrays: {
+              type: 'boolean'
+            },
+            arraysInArrays: {
+              type: 'boolean'
+            }
+          },
+          additionalProperties: false
+        }
+
+      ]
+    },
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "always"]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "never"]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, "never", {
+          "arraysInArrays": true
+        }]
+        `
+    ],
+    typescriptOnly: false,
+    type: 'style'
   };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
@@ -28,89 +108,151 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     const ruleOptions = this.getOptions();
     this.spaced = this.hasOption(OPTION_ALWAYS) || (ruleOptions && ruleOptions.length === 0);
 
-    if (ruleOptions[1]) {
-      this.singleValueException = typeof ruleOptions[1].singleValue !== 'undefined' && ruleOptions[1].singleValue !== this.spaced;
-      this.objectsInArraysException = typeof ruleOptions[1].objectsInArrays !== 'undefined' && ruleOptions[1].objectsInArrays !== this.spaced;
-      this.arraysInArraysException = typeof ruleOptions[1].arraysInArrays !== 'undefined' && ruleOptions[1].arraysInArrays !== this.spaced;
+    const opt = ruleOptions[1];
+    const isDef = (x: any) => typeof x !== 'undefined';
+    if (opt) {
+      this.singleValueException = isDef(opt.singleValue) && opt.singleValue !== this.spaced;
+      this.objectsInArraysException = isDef(opt.objectsInArrays) && opt.objectsInArrays !== this.spaced;
+      this.arraysInArraysException = isDef(opt.arraysInArrays) && opt.arraysInArrays !== this.spaced;
     }
+  }
+
+  private report(start: number, msg: string, fix: Lint.Fix): void {
+    this.addFailure(this.createFailure(start, 1, msg, fix));
+  }
+
+  private reportNoBeginningSpace(token: ts.Node, space: number) {
+    const start = token.getStart(this.getSourceFile());
+    const fix = this.createFix(this.deleteText(start + 1, space));
+    this.report(start, 'There should be no space after "["', fix);
+  }
+
+  private reportRequiredBeginningSpace(token: ts.Node) {
+    const start = token.getStart(this.getSourceFile());
+    const fix = this.createFix(this.appendText(start + 1, ' '));
+    this.report(start, 'A space is required after "["', fix);
+  }
+
+  private reportRequiredEndingSpace(token: ts.Node) {
+    const start = token.getStart(this.getSourceFile());
+    const fix = this.createFix(this.appendText(start, ' '));
+    this.report(start, 'A space is required before "]"', fix);
+  }
+
+  private reportNoEndingSpace(token: ts.Node, space: number) {
+    const start = token.getStart(this.getSourceFile());
+    const fix = this.createFix(this.deleteText(start - space, space));
+    this.report(start, 'There should be no space before "]"', fix);
   }
 
   protected visitNode(node: ts.Node): void {
     if (node.kind === ts.SyntaxKind.ArrayBindingPattern) {
-      this.validateSquareBrackets(node);
+      this.validateArraySpacing(node, (node as ts.ArrayBindingPattern).elements);
     }
     super.visitNode(node);
   }
 
   protected visitArrayLiteralExpression(node: ts.ArrayLiteralExpression): void {
-    this.validateSquareBrackets(node);
+    this.validateArraySpacing(node, node.elements);
     super.visitArrayLiteralExpression(node);
   }
 
-  private validateSquareBrackets(node: ts.Node): void {
-    const children = node.getChildren();
-    const isSpaceAfterOpeningBracket = this.isSpaceBetween(children[0], children[1]);
-    const isBreakAfterOpeningBracket = this.isLineBreakBetween(children[0], children[1]);
-    const isSpaceBeforeClosingBracket = this.isSpaceBetween(children[children.length - 2], children[children.length - 1]);
-    const isBreakBeforeClosingBracket = this.isLineBreakBetween(children[children.length - 2], children[children.length - 1]);
+  private isObjectType(node: ts.Node): boolean {
+    return node && node.kind === ts.SyntaxKind.ObjectLiteralExpression;
+  }
 
-    const syntaxList = node.getChildren()[1];
-    const itemsInArrayPattern = syntaxList.getChildren().filter(child => child.kind !== ts.SyntaxKind.CommaToken);
+  private isArrayType(node: ts.Node): boolean {
+    if (node) {
+      if (node.kind === ts.SyntaxKind.ArrayLiteralExpression) {
+        return true;
+      }
+      const firstChild = node.getChildAt(0);
+      if (firstChild && firstChild.kind === ts.SyntaxKind.ArrayBindingPattern) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-    if (this.spaced && itemsInArrayPattern.length === 0) {
+  private validateArraySpacing(node: ts.Node, elements: ts.NodeArray<ts.Node>): void {
+    if (this.spaced && elements.length === 0) {
       return;
     }
 
-    const openingBracketMustBeSpaced =
-      (this.singleValueException && itemsInArrayPattern.length === 1) ||
-        (this.arraysInArraysException && itemsInArrayPattern[0] && itemsInArrayPattern[0].kind === ts.SyntaxKind.ArrayLiteralExpression) ||
-        (this.objectsInArraysException && itemsInArrayPattern[0] && itemsInArrayPattern[0].kind === ts.SyntaxKind.ObjectLiteralExpression)
-        ? !this.spaced : this.spaced;
+    // An array only contains 3 children: `[`, `SyntaxList`, `]`
+    const first = node.getChildAt(0);
+    const last = node.getChildAt(2);
+    const firstElement = elements[0];
+    const lastElement = elements[elements.length - 1];
+    let second = firstElement || last;
+    let penultimate: ts.TextRange = lastElement || first;
 
-    const closingBracketMustBeSpaced =
-      (this.singleValueException
-        && itemsInArrayPattern.length === 1) ||
-        (this.arraysInArraysException &&
-          itemsInArrayPattern[itemsInArrayPattern.length - 1] &&
-          itemsInArrayPattern[itemsInArrayPattern.length - 1].kind === ts.SyntaxKind.ArrayLiteralExpression) ||
-        (this.objectsInArraysException
-          && itemsInArrayPattern[itemsInArrayPattern.length - 1]
-          && itemsInArrayPattern[itemsInArrayPattern.length - 1].kind === ts.SyntaxKind.ObjectLiteralExpression)
-        ? !this.spaced : this.spaced;
+    if (second.pos === second.end) {
+      // Special case when we skip the first element. This is to make the second token be the
+      // CommaToken which is contained in the SyntaxList
+      second = node.getChildAt(1).getChildAt(1);
+    }
+
+    if (elements.hasTrailingComma) {
+      // Making sure that the penultimate marks the trailing comma and not the element before
+      // the trailing comma
+      penultimate = elements;
+    }
+
+    const mustBeSpaced = (token: ts.Node): boolean => (
+      this.singleValueException && elements.length === 1 ||
+      this.objectsInArraysException && this.isObjectType(token) ||
+      this.arraysInArraysException && this.isArrayType(token)
+    ) ? !this.spaced : this.spaced;
+
+    const openingBracketMustBeSpaced = mustBeSpaced(firstElement);
+    const closingBracketMustBeSpaced = mustBeSpaced(lastElement);
+
+    const spaceAfterOpeningBracket = this.getSpaceBetween(first, second, false);
+    const isBreakAfterOpeningBracket = this.isLineBreakBetween(first, second);
+    const spaceBeforeClosingBracket = this.getSpaceBetween(penultimate, last, true);
+    const isBreakBeforeClosingBracket = this.isLineBreakBetween(penultimate, last);
 
     if (!isBreakAfterOpeningBracket) {
-      if (openingBracketMustBeSpaced && !isSpaceAfterOpeningBracket) {
-        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.requiredBeginningSpace));
-      }
-      if (!openingBracketMustBeSpaced && isSpaceAfterOpeningBracket) {
-        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.noBeginningSpace));
+      if (openingBracketMustBeSpaced && !spaceAfterOpeningBracket) {
+        this.reportRequiredBeginningSpace(first);
+      } else if (!openingBracketMustBeSpaced && spaceAfterOpeningBracket) {
+        this.reportNoBeginningSpace(first, spaceAfterOpeningBracket);
       }
     }
 
-    if (!isBreakBeforeClosingBracket) {
-      if (closingBracketMustBeSpaced && !isSpaceBeforeClosingBracket) {
-        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.requiredEndingSpace));
-      }
-      if (!closingBracketMustBeSpaced && isSpaceBeforeClosingBracket) {
-        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.noEndingSpace));
+    if (first !== penultimate && !isBreakBeforeClosingBracket) {
+      if (closingBracketMustBeSpaced && !spaceBeforeClosingBracket) {
+        this.reportRequiredEndingSpace(last);
+      } else if (!closingBracketMustBeSpaced && spaceBeforeClosingBracket) {
+        this.reportNoEndingSpace(last, spaceBeforeClosingBracket);
       }
     }
   }
 
   // space/line break detection helpers
-  private isSpaceBetween(node: ts.Node, nextNode: ts.Node): boolean {
-    return nextNode.getStart() - node.getEnd() > 0;
+  private getSpaceBetween(node: ts.TextRange, nextNode: ts.Node, trailing: boolean): number {
+    const end = nextNode.getStart(this.getSourceFile());
+    const start = node.end;
+    const text = this.getSourceFile().text.substring(start, end);
+    const m = text.match(/\/\*.*\*\//);
+    if (m) {
+      const len = m[0].length;
+      return trailing ? end - (start + m.index + len) : m.index;
+    }
+    return end - start;
   }
 
-  private isLineBreakBetween(node: ts.Node, nextNode: ts.Node): boolean {
+  private isLineBreakBetween(node: ts.TextRange, nextNode: ts.Node): boolean {
     return this.getEndPosition(node).line !== this.getStartPosition(nextNode).line;
   }
 
   private getStartPosition(node: ts.Node) {
-    return node.getSourceFile().getLineAndCharacterOfPosition(node.getStart());
+    const srcFile = this.getSourceFile();
+    return srcFile.getLineAndCharacterOfPosition(node.getStart(srcFile));
   }
 
-  private getEndPosition(node: ts.Node) {
-    return node.getSourceFile().getLineAndCharacterOfPosition(node.getEnd());
+  private getEndPosition(node: ts.TextRange) {
+    return this.getSourceFile().getLineAndCharacterOfPosition(node.end);
   }
 }
