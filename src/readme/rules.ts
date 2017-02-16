@@ -2726,26 +2726,13 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'space-in-parens',
     tslintRule: 'space-in-parens',
     category: 'Stylistic Issues',
     description: 'require or disallow spaces inside parentheses',
     eslintUrl: 'http://eslint.org/docs/rules/space-in-parens',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "space-in-parens": [
-        true,
-        "always"
-      ]
-    ~~~
-    
-    ~~~json
-    "space-in-parens": [
-        true,
-        "never"
-      ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
