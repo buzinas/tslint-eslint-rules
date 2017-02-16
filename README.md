@@ -131,7 +131,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[no-implicit-coercion](http://eslint.org/docs/rules/no-implicit-coercion)|no-implicit-coercion|disallow the type conversions with shorter notations|
 |:x:|[no-implicit-globals](http://eslint.org/docs/rules/no-implicit-globals)|no-implicit-globals|disallow var and named functions in global scope|
 |:x:|[no-implied-eval](http://eslint.org/docs/rules/no-implied-eval)|no-implied-eval|disallow use of `eval()`-like methods|
-|:x:|[no-invalid-this](http://eslint.org/docs/rules/no-invalid-this)|no-invalid-this|disallow `this` keywords outside of classes or class-like objects|
+|:ballot_box_with_check:|[no-invalid-this](http://eslint.org/docs/rules/no-invalid-this)|[no-invalid-this](https://palantir.github.io/tslint/rules/no-invalid-this)|disallow `this` keywords outside of classes or class-like objects|
 |:x:|[no-iterator](http://eslint.org/docs/rules/no-iterator)|no-iterator|disallow Usage of `__iterator__` property|
 |:ballot_box_with_check:|[no-labels](http://eslint.org/docs/rules/no-labels)|[label-position](https://palantir.github.io/tslint/rules/label-position)|disallow use of labeled statements|
 |:x:|[no-lone-blocks](http://eslint.org/docs/rules/no-lone-blocks)|no-lone-blocks|disallow unnecessary nested blocks|
