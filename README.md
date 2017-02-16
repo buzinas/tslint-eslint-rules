@@ -217,7 +217,7 @@ These rules are purely matters of style and are quite subjective.
 
 | :grey_question: | ESLint | TSLint | Description |
 | :---            | :---:  | :---:  | :---        |
-|:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md)|enforce spacing inside array brackets|
+|:white_check_mark:|[array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing)|[array-bracket-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/arrayBracketSpacingRule.md)|enforce consistent spacing inside array brackets|
 |:white_check_mark:|[block-spacing](http://eslint.org/docs/rules/block-spacing)|[block-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/blockSpacingRule.md)|disallow or enforce spaces inside of single line blocks|
 |:white_check_mark:|[brace-style](http://eslint.org/docs/rules/brace-style)|[brace-style](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/braceStyleRule.md)|enforce one true brace style|
 |:ballot_box_with_check:|[camelcase](http://eslint.org/docs/rules/camelcase)|[variable-name](http://palantir.github.io/tslint/rules/variable-name)|require camel case names|
@@ -309,7 +309,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[no-useless-constructor](http://eslint.org/docs/rules/no-useless-constructor)|no-useless-constructor|disallow unnecessary constructor|
 |:ballot_box_with_check:|[no-var](http://eslint.org/docs/rules/no-var)|[no-var-keyword](http://palantir.github.io/tslint/rules/no-var-keyword)|require `let` or `const` instead of `var`|
 |:ballot_box_with_check:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|[object-literal-shorthand](https://palantir.github.io/tslint/rules/object-literal-shorthand)|require method and property shorthand syntax for object literals|
-|:white_check_mark:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[ter-prefer-arrow-callback](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferArrowCallbackRule.md)|suggest using arrow functions as callbacks|
+|:white_check_mark:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[ter-prefer-arrow-callback](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferArrowCallbackRule.md)|require arrow functions as callbacks|
 |:ballot_box_with_check:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|[prefer-const](https://palantir.github.io/tslint/rules/prefer-const)|suggest using `const` declaration for variables that are never modified after declared|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|

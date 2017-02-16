@@ -29,7 +29,7 @@ export class Rule extends Lint.Rules.AbstractRule {
                                    array literals and brackets of their array literal elements
                                    \`[ [\` or \`] ]\`
 
-      When using the \`"always"\` option the second takes on these exceptions:
+      When using the \`"always"\` option the second option takes on these exceptions:
       
       - \`"singleValue": false\` disallows spaces inside brackets of array literals that contain a
                                  single element

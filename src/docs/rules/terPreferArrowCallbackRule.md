@@ -3,7 +3,7 @@
 [![rule_source](https://img.shields.io/badge/%F0%9F%93%8F%20rule-source-green.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/rules/terPreferArrowCallbackRule.ts)
 [![test_source](https://img.shields.io/badge/%F0%9F%93%98%20test-source-blue.svg)](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/test/rules/terPreferArrowCallbackRuleTests.ts)
 
-suggest using arrow functions as callbacks
+require arrow functions as callbacks
 
 #### Rationale
 
