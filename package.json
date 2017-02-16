@@ -31,6 +31,7 @@
     "gulp-spawn-mocha": "^2.2.2",
     "gulp-tslint": "^7.0.0",
     "gulp-typescript": "^3.0.1",
+    "tslint": "^4.0.0",
     "typescript": "^2.0.3",
     "yargs": "^5.0.0"
   },
@@ -38,7 +39,6 @@
     "tslint": "^4.0.0"
   },
   "dependencies": {
-    "doctrine": "^0.7.2",
-    "tslint": "^4.0.0"
+    "doctrine": "^0.7.2"
   }
 }
