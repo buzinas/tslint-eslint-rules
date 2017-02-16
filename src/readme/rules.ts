@@ -788,16 +788,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-invalid-this',
     tslintRule: 'no-invalid-this',
     category: 'Best Practices',
     description: 'disallow `this` keywords outside of classes or class-like objects',
     eslintUrl: 'http://eslint.org/docs/rules/no-invalid-this',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-invalid-this": true
-    ~~~`
+    tslintUrl: 'https://palantir.github.io/tslint/rules/no-invalid-this',
+    provider: 'native'
   },
   {
     available: false,
