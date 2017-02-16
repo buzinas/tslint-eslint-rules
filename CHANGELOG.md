@@ -1,7 +1,28 @@
 # Change Log
 
+## [v3.4.0] - 2017/02/16 15:40 GMT-0600
+#### Fixes
+- array-bracket-spacing handles comments ([9c551d7])
+
+#### Rules Added
+- [space-in-parens](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/spaceInParensRule.md)
+
+#### Fixers Added
+- object-curly-spacing ([ec81eb4])
+- array-bracket-spacing ([3c689ff])
+- space-in-parens ([cd50170])
+
+#### Other Changes
+
+`tslint` is no longer a `dependency`. Instead it is a `peerDependency` and `devDependency`.
+
+[ec81eb4]: https://github.com/buzinas/tslint-eslint-rules/commit/ec81eb457aa1758dbc35fd4ea01519fc934e1259
+[3c689ff]: https://github.com/buzinas/tslint-eslint-rules/commit/3c689ffa23b36870e9fae8bb04ccdbe51cbf04c7
+[cd50170]: https://github.com/buzinas/tslint-eslint-rules/commit/cd50170f658c62062dff3fa60d501cebccd98d9e
+[9c551d7]: https://github.com/buzinas/tslint-eslint-rules/commit/9c551d7eaaa55289cc326e16e804d702c36cc3a1
+
 ## [v3.3.0] - 2017/02/04 04:45 GMT-0600
-### Changes
+#### Changes
 - Build errors fixed ([d163eb5])
 - TSLint extends support ([18902f1])
 
@@ -222,6 +243,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v3.4.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.3.0...v3.4.0
 [v3.3.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.3...v3.3.0
 [v3.2.3]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.2...v3.2.3
 [v3.2.2]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.0...v3.2.2
