@@ -1,27 +1,39 @@
-import { RuleTester, Failure, Position, dedent } from './ruleTester';
+/// <reference path='../../../typings/mocha/mocha.d.ts' />
+import { makeTest } from './helper';
 
-const ruleTester = new RuleTester('sort-imports');
+const rule = 'sort-imports';
+const scripts = {
+  defaultMemberOrder: {
+    valid: [
+      `import "test"`,
 
-function expecting(errors: string[]]): Failure[] {
-  return errors.map((err) => {
-    let message = '';
-    return {
-      failure: message,
-      startPosition: new Position(err[0]),
-      endPosition: new Position()
-    };
-  });
-}
+      `import "test"
+      import {foo} from "bar"`,
 
-ruleTester.addTestGroup('group-name', 'should ...', [
-  {
-    code: dedent`
-     // code goes here
-     `,
-    options: [],
-    errors: expecting([
-    ])
+      `import {foo} from "bar"`,
+
+      `import "blah";
+      import * as bah from "buz";
+      import {foo, gar} from "bar";
+      import {fuz} from "baz";
+      import a = b.blah`
+
+    ],
+    invalid: [
+      `import {foo} from "bar";
+      import {bar, baz} from "buz";`
+    ]
   }
-]);
+};
 
-ruleTester.runTests();
+describe(rule, function test() {
+  const defaultMemberOrderConfig = { rules: { 'sort-imports': true } };
+
+  it('should pass when "defaultMemberOrder"', function testVariables() {
+    makeTest(rule, scripts.defaultMemberOrder.valid, true, defaultMemberOrderConfig);
+  });
+
+  it('should fail when "defaultMemberOrder"', function testVariables() {
+    makeTest(rule, scripts.defaultMemberOrder.invalid, false, defaultMemberOrderConfig);
+  });
+});

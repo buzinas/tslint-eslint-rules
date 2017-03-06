@@ -104,6 +104,17 @@ class RuleWalker extends Lint.RuleWalker {
   }
 
   private _validateMemberSort(node: ts.NamedImports) {
+    // Cheesing array compare
+    const imports: string[] = node.elements.map(e => e.getText());
+    const importReduction = imports.reduce((prev, current) => prev + current);
+    const sortedImports = imports.sort();
+    const sortedReduction = sortedImports.reduce((prev, current) => prev + current);
+
+    if (importReduction !== sortedReduction) {
+      this.addFailureAtNode(
+        node,
+        'Member imports should be sorted.');
+    }
   }
 
   private _validateOrder(node: ts.ImportDeclaration | ts.ImportEqualsDeclaration) {
@@ -114,6 +125,13 @@ class RuleWalker extends Lint.RuleWalker {
     if (index !== -1) {
       if (this.expectedOrder[this.currentImportIndex] !== importData.memberSyntaxType) {
         this.currentImportIndex = index;
+        this.currentSortValue = '';
+      } else if (this.currentSortValue > importData.sortValue) {
+        this.addFailureAtNode(
+          node,
+          `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue}"`);
+      } else {
+        this.currentSortValue = importData.sortValue;
       }
     } else {
       this.addFailureAtNode(
@@ -128,13 +146,15 @@ class RuleWalker extends Lint.RuleWalker {
     if (node.kind === ts.SyntaxKind.ImportEqualsDeclaration) {
       const aliasMatch = /\bimport\s+(\w+)\s*=.+/g.exec(nodeText);
       return {
-        memberSyntaxType: MemberSyntaxType.Single,
+        memberSyntaxType: MemberSyntaxType.Alias,
         sortValue: aliasMatch[1]
       };
     } else {
-      const singleMatch = /\bimport\s+({?([^,]+?)}?)\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
+      const singleMatch = /\bimport\s+({?([^,\*]+?)}?)\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
       const multipleMatch = /\bimport\s+{(?:\s*(.+)\s*,)\s*.+}\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
       const noneMatch = /\bimport\s+[\'"]([^"\']+)["\']/g.exec(nodeText);
+      const allMatch = /\bimport\s+\*\s+as\s+(.+)\s+from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
+
       if (singleMatch !== null) {
         return {
           memberSyntaxType: MemberSyntaxType.Single,
@@ -149,6 +169,11 @@ class RuleWalker extends Lint.RuleWalker {
         return {
           memberSyntaxType: MemberSyntaxType.None,
           sortValue: noneMatch[1]
+        };
+      } else if (allMatch !== null) {
+        return {
+          memberSyntaxType: MemberSyntaxType.All,
+          sortValue: allMatch[1]
         };
       }
     }
