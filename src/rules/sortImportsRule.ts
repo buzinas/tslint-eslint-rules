@@ -150,7 +150,7 @@ class RuleWalker extends Lint.RuleWalker {
         sortValue: aliasMatch[1]
       };
     } else {
-      const singleMatch = /\bimport\s+({?([^,\*]+?)}?)\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
+      const singleMatch = /\bimport\s+({?([^,{}\*]+?)}?)\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
       const multipleMatch = /\bimport\s+{(?:\s*(.+)\s*,)\s*.+}\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
       const noneMatch = /\bimport\s+[\'"]([^"\']+)["\']/g.exec(nodeText);
       const allMatch = /\bimport\s+\*\s+as\s+(.+)\s+from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
@@ -175,6 +175,9 @@ class RuleWalker extends Lint.RuleWalker {
           memberSyntaxType: MemberSyntaxType.All,
           sortValue: allMatch[1]
         };
+      }
+      else {
+        this.addFailureAtNode(node, 'Could not determine import type');
       }
     }
   }
