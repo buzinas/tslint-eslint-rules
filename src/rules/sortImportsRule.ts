@@ -8,7 +8,7 @@ const RULE_NAME = 'sort-imports';
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
-    description: 'Requires that imports be sorted per ESLint rules.',
+    description: 'enforce sorting import declarations within module',
     descriptionDetails: Lint.Utils.dedent`
             Enforce a consistent ordering for ES6-style imports:
             By default, the order is
@@ -51,8 +51,13 @@ export class Rule extends Lint.Rules.AbstractRule {
         "${RULE_NAME}": [true]
         `,
       Lint.Utils.dedent`
-        "${RULE_NAME}": [true, {
-        }]
+        "${RULE_NAME}": [true, { 'ignore-case' }]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, { 'ignore-member-sort' }]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, { 'member-syntax-sort-order': ['all', 'single', 'multiple', 'none', 'alias'] }]
         `
     ],
     typescriptOnly: false,
@@ -77,15 +82,23 @@ class RuleWalker extends Lint.RuleWalker {
 
   private currentImportIndex = 0;
   private currentSortValue: string;
+  private caseConverter: (s: string) => string;
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
 
     const optionSet = this.getOptions()[0] || {};
 
-    this.ignoreCase = optionSet['ignore-case'];
-    this.ignoreMemberSort = optionSet['ignore-member-sort'];
+    // this.ignoreCase = optionSet['ignore-case'];
+    this.ignoreCase = this.hasOption('ignore-case');
+    this.ignoreMemberSort = this.hasOption('ignore-member-sort');
     this.expectedOrder = this._processMemberSyntaxSortOrder(optionSet['member-syntax-sort-order']);
+
+    if (this.ignoreCase) {
+      this.caseConverter = s => s.toUpperCase();
+    } else {
+      this.caseConverter = s => s;
+    }
   }
 
   public visitNode(node: ts.Node) {
@@ -105,7 +118,7 @@ class RuleWalker extends Lint.RuleWalker {
 
   private _validateMemberSort(node: ts.NamedImports) {
     // Cheesing array compare
-    const imports: string[] = node.elements.map(e => e.getText());
+    const imports: string[] = node.elements.map(e => this.caseConverter(e.getText()));
     const importReduction = imports.reduce((prev, current) => prev + current);
     const sortedImports = imports.sort();
     const sortedReduction = sortedImports.reduce((prev, current) => prev + current);
@@ -125,18 +138,20 @@ class RuleWalker extends Lint.RuleWalker {
     if (index !== -1) {
       if (this.expectedOrder[this.currentImportIndex] !== importData.memberSyntaxType) {
         this.currentImportIndex = index;
-        this.currentSortValue = '';
-      } else if (this.currentSortValue > importData.sortValue) {
+        this.currentSortValue = this.caseConverter(importData.sortValue);
+      } else if (this.currentSortValue > this.caseConverter(importData.sortValue)) {
         this.addFailureAtNode(
           node,
           `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue}"`);
       } else {
-        this.currentSortValue = importData.sortValue;
+        this.currentSortValue = this.caseConverter(importData.sortValue);
       }
     } else {
+      const currentSyntaxType = MemberSyntaxType[MemberSyntaxType[importData.memberSyntaxType]];
+      const previousSyntaxType = MemberSyntaxType[MemberSyntaxType[this.expectedOrder[this.currentImportIndex]]];
       this.addFailureAtNode(
         node,
-        `All imports of type ${importData} must occur before all imports of type ${this.expectedOrder[this.currentImportIndex]}`);
+        `All imports of type ${currentSyntaxType} must occur before all imports of type ${previousSyntaxType}`);
     }
   }
 
@@ -151,7 +166,7 @@ class RuleWalker extends Lint.RuleWalker {
       };
     } else {
       const singleMatch = /\bimport\s+({?([^,{}\*]+?)}?)\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
-      const multipleMatch = /\bimport\s+{(?:\s*(.+)\s*,)\s*.+}\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
+      const multipleMatch = /\bimport\s*{?\s*([^{}\'",]+?)\s*,(?:\s*.+\s*,\s*)*\s*.+\s*}?\s*from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
       const noneMatch = /\bimport\s+[\'"]([^"\']+)["\']/g.exec(nodeText);
       const allMatch = /\bimport\s+\*\s+as\s+(.+)\s+from\s+[\'"](?:[^"\']+)["\']/g.exec(nodeText);
 
@@ -187,7 +202,7 @@ class RuleWalker extends Lint.RuleWalker {
     if (Array.isArray(sortOption) && typeof sortOption[0] === 'string' && sortOption.length === 5) {
       const order: MemberSyntaxType[] = [];
       const usedOptions = {};
-      for (let t in sortOption) {
+      sortOption.forEach(function (t) {
         if (usedOptions[t] !== undefined) {
           // Warning: we have seen this one already - skip
         } else {
@@ -210,7 +225,8 @@ class RuleWalker extends Lint.RuleWalker {
               break;
           }
         }
-      }
+      });
+      return order;
     } else {
       return defaultOrder;
     }

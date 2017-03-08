@@ -29,8 +29,10 @@ const scripts = {
         `import A from 'bar';
            import {b, c} from 'foo'`,
         rules: {
-          'sort-imports': true,
-          memberSyntaxSortOrder: ['single', 'multiple', 'none', 'all', 'alias']
+          'sort-imports': [
+            true,
+            { 'member-syntax-sort-order': ['single', 'multiple', 'none', 'all', 'alias'] }
+          ]
         }
       },
       {
@@ -68,8 +70,8 @@ const scripts = {
         `import a from 'foo';
         import B from 'bar';`,
         rules: {
-          'sort-imports': true,
-          'ignore-case': true
+          'sort-imports': [true,
+            'ignore-case']
         }
       },
       {
@@ -79,29 +81,28 @@ const scripts = {
       {
         code: `import {b, A, C, d} from 'foo';`,
         rules: {
-          'sort-imports': true,
-          'ignore-member-sort': true
+          'sort-imports': [true,
+            'ignore-member-sort']
         }
       },
       {
         code: `import {B, a, C, d} from 'foo';`,
         rules: {
-          'sort-imports': true,
-          'ignore-member-sort': true
+          'sort-imports': [true,
+            'ignore-member-sort']
         }
       },
       {
         code: `import {a, B, c, D} from 'foo';`,
         rules: {
-          'sort-imports': true,
-          'ignore-case': true
+          'sort-imports': [true,
+            'ignore-case']
         }
       },
-      // Not supporting this format at this time.
-      // {
-      //   code:
-      //   `import a, * as b from 'foo';`
-      // },
+      {
+        code:
+        `import a, * as b from 'foo';`
+      },
       {
         code:
         `import * as a from 'foo';
@@ -118,68 +119,105 @@ const scripts = {
         `import 'foo';
         import bar from 'bar';`,
         rules: {
-          'sort-imports': true,
-          'ignore-case': true
+          'sort-imports': [true,
+            'ignore-case']
         }
       },
       {
         code:
         `import React, {Component} from 'react';`
       }
-    ]
-  },
-  defaultMemberOrder: {
-    valid: [
-      {
-        code:
-        `import "test"`
-      },
-      {
-        code:
-        `import "test"
-       import {foo} from "bar"`
-      },
-      {
-        code:
-        `import {foo} from "bar"`
-      }
-      ,
-      {
-        code:
-        `import "blah";
-       import * as bah from "buz";
-       import {foo, gar} from "bar";
-       import {fuz} from "baz";
-       import a = b.blah`
-      }
     ],
     invalid: [
       {
         code:
-        `import {foo} from "bar";
-      import {bar, baz} from "buz";`
+        `import a from 'foo';
+        import A from 'bar';`
+      },
+      {
+        code:
+        `import b from 'foo';
+        import a from 'bar';`
+      },
+      {
+        code:
+        `import {b, c} from 'foo';
+        import {a, d} from 'bar';`
+      },
+      {
+        code:
+        `import * as foo from 'foo'
+        import * as bar from 'bar';`
+      },
+      {
+        code:
+        `import a from 'foo';
+        import {b, c} from 'bar';`
+      },
+      {
+        code:
+        `import a from 'foo';
+        import * as b from 'bar';`
+      },
+      {
+        code:
+        `import a from 'foo';
+        import 'bar';`
+      },
+      {
+        code:
+        `import b from 'bar';
+        import * as a from 'foo';`,
+        rules: {
+          'sort-imports': [
+            true,
+            { 'member-syntax-sort-order': ['all', 'single', 'multiple', 'none', 'alias'] }
+          ]
+        }
+      },
+      {
+        code: `import {b, a, d, c} from 'foo';`
+      },
+      {
+        code: `import {a, B, c, D} from 'foo';`
+      },
+      {
+        code: `import {zzzzz, /* comment */ aaaaa} from 'foo';`
+      },
+      {
+        code: `import {zzzzz /* comment */, aaaaa} from 'foo';`
+      },
+      {
+        code: `import {/* comment */ zzzzz, aaaaa} from 'foo';`
+      },
+      {
+        code: `import {zzzzz, aaaaa /* comment */} from 'foo';`
+      },
+      {
+        code: `
+              import {
+                boop,
+                foo,
+                zoo,
+                baz as qux,
+                bar,
+                beep
+              } from 'foo';
+            `
       }
     ]
   }
 };
 
 describe(ruleName, function test() {
-  const defaultMemberOrderConfig = { rules: { 'sort-imports': true } };
+  const defaultConfig = { rules: { 'sort-imports': true } };
 
-  it('should pass valid ESLint default setting parity tests', function testVariables() {
-    makeTest(ruleName, scripts.eslintParityDefaults.valid, true, defaultMemberOrderConfig);
+  it('should pass valid ESLint parity tests', function testVariables() {
+    makeTest(ruleName, scripts.eslintParityDefaults.valid, true, defaultConfig);
   });
 
-  // it('should fail invalid ESLint default setting parity tests', function testVariables() {
-  //   makeTest(ruleName, scripts.eslintParityDefaults.invalid, false, defaultMemberOrderConfig);
-  // });
-
-  it('should pass when "defaultMemberOrder"', function testVariables() {
-    makeTest(ruleName, scripts.defaultMemberOrder.valid, true, defaultMemberOrderConfig);
-  });
-
-  it('should fail when "defaultMemberOrder"', function testVariables() {
-    makeTest(ruleName, scripts.defaultMemberOrder.invalid, false, defaultMemberOrderConfig);
+  it('should fail invalid ESLint parity tests', function testVariables() {
+    makeTest(ruleName, scripts.eslintParityDefaults.invalid, false, defaultConfig);
   });
 });
 
@@ -193,7 +231,7 @@ function makeTest(rule: string, codeFragment: Array<{ code: string, rules?: {} }
   }
 
   codeFragment.forEach((code) => {
-    const res = testScript(rule, code.code, code.rules || defaultConfig);
+    const res = testScript(rule, code.code, code.rules ? { rules: code.rules } : defaultConfig);
     expect(res).to.equal(expected, code.code);
   });
 }
