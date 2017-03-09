@@ -147,11 +147,11 @@ class RuleWalker extends Lint.RuleWalker {
         this.currentSortValue = this.caseConverter(importData.sortValue);
       }
     } else {
-      const currentSyntaxType = MemberSyntaxType[MemberSyntaxType[importData.memberSyntaxType]];
-      const previousSyntaxType = MemberSyntaxType[MemberSyntaxType[this.expectedOrder[this.currentImportIndex]]];
+      const currentSyntaxType = MemberSyntaxType[importData.memberSyntaxType];
+      const previousSyntaxType = MemberSyntaxType[this.expectedOrder[this.currentImportIndex]];
       this.addFailureAtNode(
         node,
-        `All imports of type ${currentSyntaxType} must occur before all imports of type ${previousSyntaxType}`);
+        `All imports of type "${currentSyntaxType}" must occur before all imports of type "${previousSyntaxType}"`);
     }
   }
 
