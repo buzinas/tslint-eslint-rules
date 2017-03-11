@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Lint from 'tslint';
 import * as ts from 'typescript';
 
@@ -9,22 +7,20 @@ export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
     description: 'enforce sorting import declarations within module',
-    descriptionDetails: Lint.Utils.dedent`
-            Enforce a consistent ordering for ES6-style imports:
-            By default, the order is
-            [none, all, multiple, single, alias]
-
-            e.g.
-            import 'module-without-export';
-            import * as foo from 'foo';
-            import * as bar from 'bar';
-            import {alpha, beta} from 'alpha';
-            import {delta, gamma} from 'delta';
-            import {a} from 'baz';
-            import {b} from 'qux';
-            import c = foo.bar.baz;
+    rationale: Lint.Utils.dedent`
+            When declaring multiple imports, a sorted list of import declarations make it easier for developers to read the code and find necessary imports later. This rule is purely a matter of style.
+            
+            This rule checks all import declarations and verifies that all imports are first sorted by the used member syntax and then alphabetically by the first member or alias name.
             `,
     optionsDescription: Lint.Utils.dedent`
+      - \`"ignore-case"\` does case-insensitive comparisons (default: \`false\`)
+      - \`"ignore-member-sort"\` allows members in multiple type imports to occur in any order (default: \`false\`)
+      - \`"member-syntax-sort-order"\` (default: \`["none", "all", "multiple", "single", "alias"]\`); all 5 items must be present in the array, but you can change the order: 
+        - \`none\` = import module without exported bindings.
+        - \`all\` = import all members provided by exported bindings.
+        - \`multiple\` = import multiple members.
+        - \`single\` = import a single member.
+        - \`alias\` = creates an alias for a member.
       `,
     options: {
       type: 'object',
@@ -51,13 +47,13 @@ export class Rule extends Lint.Rules.AbstractRule {
         "${RULE_NAME}": [true]
         `,
       Lint.Utils.dedent`
-        "${RULE_NAME}": [true, { 'ignore-case' }]
+        "${RULE_NAME}": [true, { "ignore-case" }]
         `,
       Lint.Utils.dedent`
-        "${RULE_NAME}": [true, { 'ignore-member-sort' }]
+        "${RULE_NAME}": [true, { "ignore-member-sort" }]
         `,
       Lint.Utils.dedent`
-        "${RULE_NAME}": [true, { 'member-syntax-sort-order': ['all', 'single', 'multiple', 'none', 'alias'] }]
+        "${RULE_NAME}": [true, { "member-syntax-sort-order": ["all", "single", "multiple", "none", "alias"] }]
         `
     ],
     typescriptOnly: false,
@@ -81,7 +77,7 @@ class RuleWalker extends Lint.RuleWalker {
   private expectedOrder: MemberSyntaxType[];
 
   private currentImportIndex = 0;
-  private currentSortValue: string;
+  private currentSortValue: {sortValue: string, originalValue: string};
   private caseConverter: (s: string) => string;
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
@@ -138,13 +134,17 @@ class RuleWalker extends Lint.RuleWalker {
     if (index !== -1) {
       if (this.expectedOrder[this.currentImportIndex] !== importData.memberSyntaxType) {
         this.currentImportIndex = index;
-        this.currentSortValue = this.caseConverter(importData.sortValue);
-      } else if (this.currentSortValue > this.caseConverter(importData.sortValue)) {
+        this.currentSortValue = {
+          sortValue: this.caseConverter(importData.sortValue),
+          originalValue: importData.sortValue};
+      } else if (this.currentSortValue.sortValue > this.caseConverter(importData.sortValue)) {
         this.addFailureAtNode(
           node,
-          `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue}"`);
+          `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue.originalValue}"`);
       } else {
-        this.currentSortValue = this.caseConverter(importData.sortValue);
+        this.currentSortValue = {
+          sortValue: this.caseConverter(importData.sortValue),
+          originalValue: importData.sortValue};
       }
     } else {
       const currentSyntaxType = MemberSyntaxType[importData.memberSyntaxType];

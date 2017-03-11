@@ -6,10 +6,22 @@
 enforce sorting import declarations within module
 
 #### Rationale
-undefined
+
+When declaring multiple imports, a sorted list of import declarations make it easier for developers to read the code and find necessary imports later. This rule is purely a matter of style.
+
+This rule checks all import declarations and verifies that all imports are first sorted by the used member syntax and then alphabetically by the first member or alias name.
+
 ### Config
 
-      
+- `"ignore-case"` does case-insensitive comparisons (default: `false`)
+- `"ignore-member-sort"` allows members in multiple type imports to occur in any order (default: `false`)
+- `"member-syntax-sort-order"` (default: `["none", "all", "multiple", "single", "alias"]`); all 5 items must be present in the array, but you can change the order: 
+  - `none` = import module without exported bindings.
+  - `all` = import all members provided by exported bindings.
+  - `multiple` = import multiple members.
+  - `single` = import a single member.
+  - `alias` = creates an alias for a member.
+
 #### Examples
 
 ```json
@@ -17,15 +29,15 @@ undefined
 ```
 
 ```json
-"sort-imports": [true, { 'ignore-case' }]
+"sort-imports": [true, { "ignore-case" }]
 ```
 
 ```json
-"sort-imports": [true, { 'ignore-member-sort' }]
+"sort-imports": [true, { "ignore-member-sort" }]
 ```
 
 ```json
-"sort-imports": [true, { 'member-syntax-sort-order': ['all', 'single', 'multiple', 'none', 'alias'] }]
+"sort-imports": [true, { "member-syntax-sort-order": ["all", "single", "multiple", "none", "alias"] }]
 ```
 #### Schema
 
