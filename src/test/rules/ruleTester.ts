@@ -243,7 +243,8 @@ class TestGroup {
     description: string,
     ruleName: string,
     tests: (ITest | string)[],
-    testFixer: boolean = false
+    testFixer: boolean = false,
+    groupConfig: any = null
   ) {
     this.name = name;
     this.ruleName = ruleName;
@@ -252,10 +253,15 @@ class TestGroup {
       const config: any = { rules: { [ruleName]: true } };
       const codeFileName = `${name}-${index}.ts`;
       if (typeof test === 'string') {
+        if (groupConfig) {
+          config.rules[ruleName] = [true, ...groupConfig];
+        }
         return new Test(codeFileName, test, undefined, config, []);
       }
       if (test.options) {
         config.rules[ruleName] = [true, ...test.options];
+      } else if (groupConfig) {
+        config.rules[ruleName] = [true, ...groupConfig];
       }
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(
@@ -283,6 +289,26 @@ class RuleTester {
 
   public addTestGroup(name: string, description: string, tests: (ITest | string)[]): this {
     this.groups.push(new TestGroup(name, description, this.ruleName, tests, this.testFixer));
+    return this;
+  }
+
+  /**
+   * Appends a test group to run under a configuration. This configuration can be overwritten
+   * by providing a configuration in the test.
+   *
+   * @param name Test identifier
+   * @param description Test description
+   * @param groupConfig The configuration for the group
+   * @param tests A list of string or ITest objects.
+   * @return {RuleTester}
+   */
+  public addTestGroupWithConfig(
+    name: string,
+    description: string,
+    groupConfig: any,
+    tests: (ITest | string)[]
+  ): this {
+    this.groups.push(new TestGroup(name, description, this.ruleName, tests, this.testFixer, groupConfig));
     return this;
   }
 
