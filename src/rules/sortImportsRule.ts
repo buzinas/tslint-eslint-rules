@@ -8,14 +8,17 @@ export class Rule extends Lint.Rules.AbstractRule {
     ruleName: RULE_NAME,
     description: 'enforce sorting import declarations within module',
     rationale: Lint.Utils.dedent`
-            When declaring multiple imports, a sorted list of import declarations make it easier for developers to read the code and find necessary imports later. This rule is purely a matter of style.
+            When declaring multiple imports, a sorted list of import declarations make it easier for developers to 
+            read the code and find necessary imports later. This rule is purely a matter of style.
             
-            This rule checks all import declarations and verifies that all imports are first sorted by the used member syntax and then alphabetically by the first member or alias name.
+            This rule checks all import declarations and verifies that all imports are first sorted by the used member 
+            syntax and then alphabetically by the first member or alias name.
             `,
     optionsDescription: Lint.Utils.dedent`
       - \`"ignore-case"\` does case-insensitive comparisons (default: \`false\`)
       - \`"ignore-member-sort"\` allows members in multiple type imports to occur in any order (default: \`false\`)
-      - \`"member-syntax-sort-order"\` (default: \`["none", "all", "multiple", "single", "alias"]\`); all 5 items must be present in the array, but you can change the order: 
+      - \`"member-syntax-sort-order"\` (default: \`["none", "all", "multiple", "single", "alias"]\`); all 5 items must be 
+      present in the array, but you can change the order: 
         - \`none\` = import module without exported bindings.
         - \`all\` = import all members provided by exported bindings.
         - \`multiple\` = import multiple members.
@@ -89,7 +92,7 @@ class RuleWalker extends Lint.RuleWalker {
     this.ignoreCase = this.hasOption('ignore-case');
     this.ignoreMemberSort = this.hasOption('ignore-member-sort');
     this.expectedOrder = this._processMemberSyntaxSortOrder(optionSet['member-syntax-sort-order']);
-    this.currentSortValue = {sortValue: '', originalValue: ''};
+    this.currentSortValue = { sortValue: '', originalValue: '' };
 
     if (this.ignoreCase) {
       this.caseConverter = s => s.toUpperCase();
@@ -203,7 +206,7 @@ class RuleWalker extends Lint.RuleWalker {
     if (Array.isArray(sortOption) && typeof sortOption[0] === 'string' && sortOption.length === 5) {
       const order: MemberSyntaxType[] = [];
       const usedOptions = {};
-      sortOption.forEach(function (t) {
+      sortOption.forEach((t) => {
         if (usedOptions[t] !== undefined) {
           // Warning: we have seen this one already - skip
         } else {

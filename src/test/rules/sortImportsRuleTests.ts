@@ -19,7 +19,7 @@ function expecting(errors): Failure[] {
 }
 
 function formatString(input: string, ...args): string {
-  return input.replace(/\{\{|\}\}|\{(\d+)\}/g, function (m, n) {
+  return input.replace(/\{\{|\}\}|\{(\d+)\}/g, (m, n) => {
     if (m === '{{') { return '{'; }
     if (m === '}}') { return '}'; }
     return args[n];
