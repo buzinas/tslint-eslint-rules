@@ -255,7 +255,10 @@ class RuleWalker extends Lint.RuleWalker {
           info.isRecursive = true;
         }
       } else if (
-        node.kind === ts.SyntaxKind.PropertyAccessExpression &&
+        (
+          node.kind === ts.SyntaxKind.PropertyAccessExpression ||
+          node.kind === ts.SyntaxKind.MetaProperty
+        ) &&
         checkMetaProperty(node as ts.PropertyAccessExpression, 'new', 'target')
       ) {
         info.hasMeta = true;
