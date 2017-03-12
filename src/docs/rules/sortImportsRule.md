@@ -20,7 +20,7 @@ This rule checks all import declarations and verifies that all imports are first
   - `all` = import all members provided by exported bindings.
   - `multiple` = import multiple members.
   - `single` = import a single member.
-  - `alias` = creates an alias for a member.
+  - `alias` = creates an alias for a member. This is unique to TER and not in ESLint's `sort-imports`.
 
 #### Examples
 
