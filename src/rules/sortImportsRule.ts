@@ -20,7 +20,7 @@ export class Rule extends Lint.Rules.AbstractRule {
         - \`all\` = import all members provided by exported bindings.
         - \`multiple\` = import multiple members.
         - \`single\` = import a single member.
-        - \`alias\` = creates an alias for a member.
+        - \`alias\` = creates an alias for a member. This is unique to TER and not in ESLint's \`sort-imports\`.
       `,
     options: {
       type: 'object',
@@ -89,6 +89,7 @@ class RuleWalker extends Lint.RuleWalker {
     this.ignoreCase = this.hasOption('ignore-case');
     this.ignoreMemberSort = this.hasOption('ignore-member-sort');
     this.expectedOrder = this._processMemberSyntaxSortOrder(optionSet['member-syntax-sort-order']);
+    this.currentSortValue = {sortValue: '', originalValue: ''};
 
     if (this.ignoreCase) {
       this.caseConverter = s => s.toUpperCase();
@@ -122,7 +123,7 @@ class RuleWalker extends Lint.RuleWalker {
     if (importReduction !== sortedReduction) {
       this.addFailureAtNode(
         node,
-        'Member imports should be sorted.');
+        'Member imports must be sorted alphabetically.');
     }
   }
 
