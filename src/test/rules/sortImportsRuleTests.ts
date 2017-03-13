@@ -159,7 +159,7 @@ ruleTester.addTestGroup('invalid', 'should fail ESLint invalid tests', [
   },
   {
     code: `import {zzzzz, /* comment */ aaaaa} from 'foo';`,
-    errors: expecting([[MEMBER_SORT_ERROR,  0, 7, 35]])
+    errors: expecting([[MEMBER_SORT_ERROR, 0, 7, 35]])
   },
   {
     code: `import {zzzzz /* comment */, aaaaa} from 'foo';`,
