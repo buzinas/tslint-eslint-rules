@@ -192,4 +192,30 @@ ruleTester.addTestGroup('invalid', 'should fail ESLint invalid tests', [
   }
 ]);
 
+ruleTester.addTestGroup('alias', 'should pass alias tests', [
+  `import a = A.a;`,
+  dedent`
+    import x from 'foo';
+    import y = x.y;`,
+  {
+    code: dedent`
+      import x = y.x;
+      import a from 'foo';`,
+    errors: expecting([[TYPE_ORDER_ERROR('Single', 'Alias'), 2, 0, 20]])
+  },
+  {
+    code: dedent`
+      import x = y.x;
+      import a from 'foo';`,
+    options: [{ 'member-syntax-sort-order': ['alias', 'all', 'single', 'multiple', 'none'] }]
+  },
+  {
+    code: dedent`
+      import a from 'foo';
+      import x = y.x;`,
+    options: [{ 'member-syntax-sort-order': ['alias', 'all', 'single', 'multiple', 'none'] }],
+    errors: expecting([[TYPE_ORDER_ERROR('Alias', 'Single'), 2, 0, 15]])
+  }
+]);
+
 ruleTester.runTests();
