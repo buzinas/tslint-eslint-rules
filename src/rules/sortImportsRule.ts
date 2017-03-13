@@ -69,6 +69,14 @@ export class Rule extends Lint.Rules.AbstractRule {
   }
 }
 
+enum MemberSyntaxType {
+  None,
+  All,
+  Multiple,
+  Single,
+  Alias
+}
+
 interface ImportMetadata {
   memberSyntaxType: MemberSyntaxType;
   sortValue: string;
@@ -80,7 +88,7 @@ class RuleWalker extends Lint.RuleWalker {
   private expectedOrder: MemberSyntaxType[];
 
   private currentImportIndex = 0;
-  private currentSortValue: {sortValue: string, originalValue: string};
+  private currentSortValue: { sortValue: string, originalValue: string };
   private caseConverter: (s: string) => string;
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
@@ -91,7 +99,7 @@ class RuleWalker extends Lint.RuleWalker {
     // this.ignoreCase = optionSet['ignore-case'];
     this.ignoreCase = this.hasOption('ignore-case');
     this.ignoreMemberSort = this.hasOption('ignore-member-sort');
-    this.expectedOrder = this._processMemberSyntaxSortOrder(optionSet['member-syntax-sort-order']);
+    this.expectedOrder = RuleWalker._processMemberSyntaxSortOrder(optionSet['member-syntax-sort-order']);
     this.currentSortValue = { sortValue: '', originalValue: '' };
 
     if (this.ignoreCase) {
@@ -140,7 +148,8 @@ class RuleWalker extends Lint.RuleWalker {
         this.currentImportIndex = index;
         this.currentSortValue = {
           sortValue: this.caseConverter(importData.sortValue),
-          originalValue: importData.sortValue};
+          originalValue: importData.sortValue
+        };
       } else if (this.currentSortValue.sortValue > this.caseConverter(importData.sortValue)) {
         this.addFailureAtNode(
           node,
@@ -148,7 +157,8 @@ class RuleWalker extends Lint.RuleWalker {
       } else {
         this.currentSortValue = {
           sortValue: this.caseConverter(importData.sortValue),
-          originalValue: importData.sortValue};
+          originalValue: importData.sortValue
+        };
       }
     } else {
       const currentSyntaxType = MemberSyntaxType[importData.memberSyntaxType];
@@ -201,9 +211,17 @@ class RuleWalker extends Lint.RuleWalker {
     }
   }
 
-  private _processMemberSyntaxSortOrder(sortOption: string[]): MemberSyntaxType[] {
+  private static _processMemberSyntaxSortOrder(sortOption: string[]): MemberSyntaxType[] {
     const defaultOrder = [MemberSyntaxType.None, MemberSyntaxType.All, MemberSyntaxType.Multiple, MemberSyntaxType.Single, MemberSyntaxType.Alias];
     if (Array.isArray(sortOption) && typeof sortOption[0] === 'string' && sortOption.length === 5) {
+      const memberSyntaxTypeMap = {
+        none: MemberSyntaxType.None,
+        all: MemberSyntaxType.All,
+        multiple: MemberSyntaxType.Multiple,
+        single: MemberSyntaxType.Single,
+        alias: MemberSyntaxType.Alias
+      };
+
       const order: MemberSyntaxType[] = [];
       const usedOptions = {};
       sortOption.forEach((t) => {
@@ -211,22 +229,8 @@ class RuleWalker extends Lint.RuleWalker {
           // Warning: we have seen this one already - skip
         } else {
           usedOptions[t] = t;
-          switch (t) {
-            case 'none':
-              order.push(MemberSyntaxType.None);
-              break;
-            case 'all':
-              order.push(MemberSyntaxType.All);
-              break;
-            case 'multiple':
-              order.push(MemberSyntaxType.Multiple);
-              break;
-            case 'single':
-              order.push(MemberSyntaxType.Single);
-              break;
-            case 'alias':
-              order.push(MemberSyntaxType.Alias);
-              break;
+          if (memberSyntaxTypeMap[t]) {
+            order.push(memberSyntaxTypeMap[t]);
           }
         }
       });
@@ -235,12 +239,4 @@ class RuleWalker extends Lint.RuleWalker {
       return defaultOrder;
     }
   }
-}
-
-enum MemberSyntaxType {
-  None,
-  All,
-  Multiple,
-  Single,
-  Alias
 }
