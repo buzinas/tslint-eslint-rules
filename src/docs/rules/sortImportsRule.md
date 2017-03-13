@@ -70,3 +70,6 @@ This rule checks all import declarations and verifies that all imports are first
 }
 ```
 <!-- End:AutoDoc -->
+#### TSLint Rule: [`ordered-imports`]
+
+[`ordered-imports`]: https://palantir.github.io/tslint/rules/ordered-imports/

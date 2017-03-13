@@ -8,12 +8,12 @@ export class Rule extends Lint.Rules.AbstractRule {
     ruleName: RULE_NAME,
     description: 'enforce sorting import declarations within module',
     rationale: Lint.Utils.dedent`
-            When declaring multiple imports, a sorted list of import declarations make it easier for developers to 
-            read the code and find necessary imports later. This rule is purely a matter of style.
-            
-            This rule checks all import declarations and verifies that all imports are first sorted by the used member 
-            syntax and then alphabetically by the first member or alias name.
-            `,
+      When declaring multiple imports, a sorted list of import declarations make it easier for developers to 
+      read the code and find necessary imports later. This rule is purely a matter of style.
+      
+      This rule checks all import declarations and verifies that all imports are first sorted by the used member 
+      syntax and then alphabetically by the first member or alias name.
+      `,
     optionsDescription: Lint.Utils.dedent`
       - \`"ignore-case"\` does case-insensitive comparisons (default: \`false\`)
       - \`"ignore-member-sort"\` allows members in multiple type imports to occur in any order (default: \`false\`)
@@ -96,7 +96,6 @@ class RuleWalker extends Lint.RuleWalker {
 
     const optionSet = this.getOptions()[0] || {};
 
-    // this.ignoreCase = optionSet['ignore-case'];
     this.ignoreCase = this.hasOption('ignore-case');
     this.ignoreMemberSort = this.hasOption('ignore-member-sort');
     this.expectedOrder = RuleWalker._processMemberSyntaxSortOrder(optionSet['member-syntax-sort-order']);
@@ -140,32 +139,35 @@ class RuleWalker extends Lint.RuleWalker {
 
   private _validateOrder(node: ts.ImportDeclaration | ts.ImportEqualsDeclaration) {
     const importData = this._determineImportType(node);
-
-    // See if the import type is still available
-    const index = this.expectedOrder.indexOf(importData.memberSyntaxType, this.currentImportIndex);
-    if (index !== -1) {
-      if (this.expectedOrder[this.currentImportIndex] !== importData.memberSyntaxType) {
-        this.currentImportIndex = index;
-        this.currentSortValue = {
-          sortValue: this.caseConverter(importData.sortValue),
-          originalValue: importData.sortValue
-        };
-      } else if (this.currentSortValue.sortValue > this.caseConverter(importData.sortValue)) {
+    if (importData) {
+      // See if the import type is still available
+      const index = this.expectedOrder.indexOf(importData.memberSyntaxType, this.currentImportIndex);
+      if (index !== -1) {
+        if (this.expectedOrder[this.currentImportIndex] !== importData.memberSyntaxType) {
+          this.currentImportIndex = index;
+          this.currentSortValue = {
+            sortValue: this.caseConverter(importData.sortValue),
+            originalValue: importData.sortValue
+          };
+        } else if (this.currentSortValue.sortValue > this.caseConverter(importData.sortValue)) {
+          this.addFailureAtNode(
+            node,
+            `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue.originalValue}"`);
+        } else {
+          this.currentSortValue = {
+            sortValue: this.caseConverter(importData.sortValue),
+            originalValue: importData.sortValue
+          };
+        }
+      } else {
+        const currentSyntaxType = MemberSyntaxType[importData.memberSyntaxType];
+        const previousSyntaxType = MemberSyntaxType[this.expectedOrder[this.currentImportIndex]];
         this.addFailureAtNode(
           node,
-          `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue.originalValue}"`);
-      } else {
-        this.currentSortValue = {
-          sortValue: this.caseConverter(importData.sortValue),
-          originalValue: importData.sortValue
-        };
+          `All imports of type "${currentSyntaxType}" must occur before all imports of type "${previousSyntaxType}"`);
       }
     } else {
-      const currentSyntaxType = MemberSyntaxType[importData.memberSyntaxType];
-      const previousSyntaxType = MemberSyntaxType[this.expectedOrder[this.currentImportIndex]];
-      this.addFailureAtNode(
-        node,
-        `All imports of type "${currentSyntaxType}" must occur before all imports of type "${previousSyntaxType}"`);
+      this.addFailureAtNode(node, 'Could not determine import type');
     }
   }
 
@@ -206,9 +208,7 @@ class RuleWalker extends Lint.RuleWalker {
           sortValue: allMatch[1]
         };
       }
-      else {
-        this.addFailureAtNode(node, 'Could not determine import type');
-      }
+
       return result;
     }
   }

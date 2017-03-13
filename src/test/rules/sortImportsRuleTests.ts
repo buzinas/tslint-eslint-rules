@@ -29,8 +29,7 @@ ruleTester.addTestGroup('valid', 'should pass ESLint valid tests', [
     import * as B from 'foo';
     import {a, b} from 'bar';`,
   {
-    code:
-    dedent`
+    code: dedent`
       import A from 'bar';
       import {b, c} from 'foo'`,
     options: [{ 'member-syntax-sort-order': ['single', 'multiple', 'none', 'all', 'alias'] }]
@@ -59,10 +58,7 @@ ruleTester.addTestGroup('valid', 'should pass ESLint valid tests', [
       import B from 'bar';`,
     options: ['ignore-case']
   },
-  {
-    code:
-    `import {a, b, c, d} from 'foo';`
-  },
+  `import {a, b, c, d} from 'foo';`,
   {
     code: `import {b, A, C, d} from 'foo';`,
     options: ['ignore-member-sort']
@@ -75,21 +71,14 @@ ruleTester.addTestGroup('valid', 'should pass ESLint valid tests', [
     code: `import {a, B, c, D} from 'foo';`,
     options: ['ignore-case']
   },
-  {
-    code:
-    `import a, * as b from 'foo';`
-  },
-  {
-    code: dedent`
-      import * as a from 'foo';
+  `import a, * as b from 'foo';`,
+  dedent`
+    import * as a from 'foo';
 
-      import b from 'bar';`
-  },
-  {
-    code: dedent`
-      import * as bar from 'bar';
-      import * as foo from 'foo';`
-  },
+    import b from 'bar';`,
+  dedent`
+    import * as bar from 'bar';
+    import * as foo from 'foo';`,
   {
     code: dedent`
       import 'foo';
@@ -175,15 +164,15 @@ ruleTester.addTestGroup('invalid', 'should fail ESLint invalid tests', [
   },
   {
     code: dedent`
-              import {
-                boop,
-                foo,
-                zoo,
-                baz as qux,
-                bar,
-                beep
-              } from 'foo';
-            `,
+      import {
+        boop,
+        foo,
+        zoo,
+        baz as qux,
+        bar,
+        beep
+      } from 'foo';
+    `,
     errors: [{
       failure: MEMBER_SORT_ERROR,
       startPosition: new Position(1, 7),
