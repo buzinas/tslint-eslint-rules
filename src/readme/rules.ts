@@ -2635,12 +2635,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'sort-imports',
-    tslintRule: 'ordered-imports',
+    tslintRule: 'sort-imports',
     category: 'Stylistic Issues',
     description: 'enforce sorting import declarations within module',
     eslintUrl: 'http://eslint.org/docs/rules/sort-imports',
-    tslintUrl: 'https://palantir.github.io/tslint/rules/ordered-imports',
-    provider: 'native'
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
