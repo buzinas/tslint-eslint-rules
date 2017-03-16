@@ -564,7 +564,7 @@ ruleTester.addTestGroupWithConfig(
          * @param {string} a desc
          */
          function foo(a){var t = false; if(t) {return t;}}`,
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: dedent`
@@ -573,7 +573,7 @@ ruleTester.addTestGroupWithConfig(
          * @param {string} a desc
          */
          function foo(a){var t = false; if(t) {return null;}}`,
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: dedent`
@@ -582,25 +582,19 @@ ruleTester.addTestGroupWithConfig(
          * @param {string} a desc
          @returns {MyClass}*/
          function foo(a){var t = false; if(t) {process(t);}}`,
-      errors: expecting([
-        'unexpected @returns tag; function has no return statement',
-        'use @return instead'
-      ])
+      errors: expecting(['unexpected @returns tag; function has no return statement'])
     },
     {
       code: '/** foo */ var foo = () => bar();',
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: '/** foo */ var foo = () => { return bar(); };',
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: '/** @returns {object} foo */ var foo = () => { bar(); };',
-      errors: expecting([
-        'unexpected @returns tag; function has no return statement',
-        'use @return instead'
-      ])
+      errors: expecting(['unexpected @returns tag; function has no return statement'])
     }
   ]
 );
@@ -646,5 +640,82 @@ ruleTester.addTestGroupWithConfig(
     }
   ]
 );
+
+ruleTester.addTestGroup('issue178', 'issue 178 - Should not crash with incorrect jsdoc', [
+  {
+    code: dedent`
+      /**
+      * @return string
+      */
+      function foo() { return ''; }
+      `,
+    options: {}, // Somehow the regex pattern we used before still lingers here, may be due
+                 // to the static variables on the Rule definition.
+    errors: expecting(['missing JSDoc return type'])
+  },
+  {
+    code: dedent`
+      /**
+      * @return {string}
+      */
+      function foo() { return ''; }
+      `,
+    errors: expecting(['missing JSDoc return description'])
+  },
+  {
+    code: dedent`
+      /**
+      * @return {some_type} some description
+      */
+      function foo() { return ''; }
+      `
+  }
+]);
+
+ruleTester.addTestGroup('ret-type', 'should handle requireReturnType option', [
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param {string} a desc
+       * @return some string
+       */
+       function foo(a) { return '' }`,
+    errors: expecting(['missing JSDoc return type'])
+  },
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param {string} a desc
+       * @return some string
+       */
+       function foo(a) { return '' }`,
+    options: { requireReturnType: false }
+  }
+]);
+
+ruleTester.addTestGroup('param-type', 'should handle requireParamType option', [
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param a desc
+       * @return {string} some string
+       */
+       function foo(a) { return '' }`,
+    errors: expecting(["missing JSDoc parameter type for 'a'"])
+  },
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param a desc
+       * @return {string} some string
+       */
+       function foo(a) { return '' }`,
+    options: { requireParamType: false }
+  }
+]);
 
 ruleTester.runTests();

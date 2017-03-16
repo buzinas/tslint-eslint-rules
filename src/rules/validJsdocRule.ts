@@ -2,6 +2,9 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 import * as doctrine from 'doctrine';
 
+const RULE_NAME = 'valid-jsdoc';
+let OPTIONS: any;
+
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = {
     missingBrace: 'JSDoc type missing brace',
@@ -20,23 +23,121 @@ export class Rule extends Lint.Rules.AbstractRule {
     invalidRegexDescription: (error: string) => `configured matchDescription is an invalid RegExp. Error: ${error}`
   };
 
-  public static prefer: Object = {};
-  public static requireReturn: boolean = true;
-  public static requireParamDescription: boolean = true;
-  public static requireReturnDescription: boolean = true;
-  public static matchDescription: string;
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    hasFix: false,
+    description: 'enforce valid JSDoc comments',
+    rationale: Lint.Utils.dedent`
+      [JSDoc](http://usejsdoc.org/) generates application programming interface (API) documentation
+      from specially-formatted comments in JavaScript code. So does [typedoc](http://typedoc.org/).
+
+      If comments are invalid because of typing mistakes, then documentation will be incomplete.
+
+      If comments are inconsistent because they are not updated when function definitions are
+      modified, then readers might become confused.
+      `,
+    optionsDescription: Lint.Utils.dedent`
+      This rule has an object option:
+
+      * \`"prefer"\` enforces consistent documentation tags specified by an object whose properties
+                     mean instead of key use value (for example, \`"return": "returns"\` means
+                     instead of \`@return\` use \`@returns\`)
+      * \`"preferType"\` enforces consistent type strings specified by an object whose properties
+                         mean instead of key use value (for example, \`"object": "Object"\` means
+                         instead of \`object\` use \`Object\`)
+      * \`"requireReturn"\` requires a return tag:
+        * \`true\` (default) *even if* the function or method does not have a return statement
+                   (this option value does not apply to constructors)
+        * \`false\` *if and only if* the function or method has a return statement (this option
+                    value does apply to constructors)
+      * \`"requireParamType"\`: \`false\` allows missing type in param tags
+      * \`"requireReturnType"\`: \`false\` allows missing type in return tags
+      * \`"matchDescription"\` specifies (as a string) a regular expression to match the description
+                               in each JSDoc comment (for example, \`".+"\` requires a description;
+                               this option does not apply to descriptions in parameter or return
+                               tags)
+      * \`"requireParamDescription"\`: \`false\` allows missing description in parameter tags
+      * \`"requireReturnDescription"\`: \`false\` allows missing description in return tags
+      `,
+    options: {
+      type: 'object',
+      properties: {
+        prefer: {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        },
+        preferType: {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        },
+        requireReturn: {
+          type: 'boolean'
+        },
+        requireParamDescription: {
+          type: 'boolean'
+        },
+        requireReturnDescription: {
+          type: 'boolean'
+        },
+        matchDescription: {
+          type: 'string'
+        },
+        requireParamType: {
+          type: 'boolean'
+        },
+        requireReturnType: {
+          type: 'boolean'
+        }
+      },
+      additionalProperties: false
+    },
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, {
+          "prefer": {
+            "return": "returns"
+          },
+          "requireReturn": false,
+          "requireParamDescription": true,
+          "requireReturnDescription": true,
+          "matchDescription": "^[A-Z][A-Za-z0-9\\\\s]*[.]$"
+        }]
+        `
+    ],
+    typescriptOnly: false,
+    type: 'maintainability'
+  };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     let opts = this.getOptions().ruleArguments;
+    OPTIONS = {
+      prefer: {},
+      requireReturn: true,
+      requireParamType: true,
+      requireReturnType: true,
+      requireParamDescription: true,
+      requireReturnDescription: true,
+      matchDescription: ''
+    };
+
     if (opts && opts.length > 0) {
       if (opts[0].prefer) {
-        Rule.prefer = opts[0].prefer;
+        OPTIONS.prefer = opts[0].prefer;
       }
 
-      Rule.requireReturn = opts[0].requireReturn !== false;
-      Rule.requireParamDescription = opts[0].requireParamDescription !== false;
-      Rule.requireReturnDescription = opts[0].requireReturnDescription !== false;
-      Rule.matchDescription = opts[0].matchDescription;
+      OPTIONS.requireReturn = opts[0].requireReturn !== false;
+      OPTIONS.requireParamType = opts[0].requireParamType !== false;
+      OPTIONS.requireReturnType = opts[0].requireReturnType !== false;
+      OPTIONS.requireParamDescription = opts[0].requireParamDescription !== false;
+      OPTIONS.requireReturnDescription = opts[0].requireReturnDescription !== false;
+      OPTIONS.matchDescription = opts[0].matchDescription;
     }
 
     const walker = new ValidJsdocWalker(sourceFile, this.getOptions());
@@ -141,7 +242,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
   }
 
   private isValidReturnType(tag: doctrine.IJSDocTag) {
-    return tag.type.name === 'void' || tag.type.type === 'UndefinedLiteral';
+    return tag.type && (tag.type.name === 'void' || tag.type.type === 'UndefinedLiteral');
   }
 
   private getJSDocComment(node: ts.Node) {
@@ -209,11 +310,11 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
         case 'param':
         case 'arg':
         case 'argument':
-          if (!tag.type) {
+          if (!tag.type && OPTIONS.requireParamType) {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingParameterType(tag.name)));
           }
 
-          if (!tag.description && Rule.requireParamDescription) {
+          if (!tag.description && OPTIONS.requireParamDescription) {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingParameterDescription(tag.name)));
           }
 
@@ -228,15 +329,15 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
         case 'returns':
           hasReturns = true;
 
-          if (!Rule.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
+          if (!OPTIONS.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.unexpectedTag(tag.title)));
           }
           else {
-            if (!tag.type) {
+            if (!tag.type && OPTIONS.requireReturnType) {
               this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnType));
             }
 
-            if (!this.isValidReturnType(tag) && !tag.description && Rule.requireReturnDescription) {
+            if (!this.isValidReturnType(tag) && !tag.description && OPTIONS.requireReturnDescription) {
               this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnDescription));
             }
           }
@@ -252,16 +353,16 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
       }
 
       // check prefer (we need to ensure it has the property and not inherit from Object - e.g: constructor)
-      let title = Rule.prefer[tag.title];
-      if (Rule.prefer.hasOwnProperty(tag.title) && tag.title !== title) {
+      let title = OPTIONS.prefer[tag.title];
+      if (OPTIONS.prefer.hasOwnProperty(tag.title) && tag.title !== title) {
         this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.prefer(title)));
       }
     }
 
     // check for functions missing @returns
     if (!isOverride && !hasReturns && !hasConstructor && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
-      if (Rule.requireReturn || fn.returnPresent) {
-        this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(Rule.prefer['returns'])));
+      if (OPTIONS.requireReturn || fn.returnPresent) {
+        this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(OPTIONS.prefer['returns'])));
       }
     }
 
@@ -283,9 +384,9 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
       });
     }
 
-    if (Rule.matchDescription) {
+    if (OPTIONS.matchDescription) {
       try {
-        const regex = new RegExp(Rule.matchDescription);
+        const regex = new RegExp(OPTIONS.matchDescription);
         if (!regex.test(jsdoc.description)) {
           this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.wrongDescription));
         }
