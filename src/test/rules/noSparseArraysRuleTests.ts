@@ -1,27 +1,29 @@
-/// <reference path='../../../typings/mocha/mocha.d.ts' />
-import { makeTest } from './helper';
+import { RuleTester, Failure, Position } from './ruleTester';
 
-const rule = 'no-sparse-arrays';
-const scripts = {
-  valid: [
-    'const items = [];',
-    'const colors = [ "red", "blue", ];',
-    'const arr = new Array(23);'
-  ],
-  invalid: [
-    'const items = [,,];',
-    'const arr = [,];',
-    'const colors = [ "red",, "blue" ];',
-    'const foo = ["tire", 1, , "small ball"];'
-  ]
-};
+const ruleTester = new RuleTester('no-sparse-arrays');
 
-describe(rule, function test() {
-  it('should pass when using valid arrays or trailing comma', function testValid() {
-    makeTest(rule, scripts.valid, true);
+function expecting(errors: [number, number][]): Failure[] {
+  // [line, column]
+  return errors.map((err) => {
+    return {
+      failure: 'unexpected comma in middle of array',
+      startPosition: new Position(err[0], err[1]),
+      endPosition: new Position()
+    };
   });
+}
 
-  it('should fail when using double comma in arrays', function testInvalid() {
-    makeTest(rule, scripts.invalid, false);
-  });
-});
+ruleTester.addTestGroup('valid', 'should pass when using valid arrays or trailing comma', [
+  'const items = [];',
+  'const colors = [ "red", "blue", ];',
+  'const arr = new Array(23);'
+]);
+
+ruleTester.addTestGroup('invalid', 'should fail when using double comma in arrays', [
+  { code: 'const items = [,,];', errors: expecting([[0, 14]])},
+  { code: 'const arr = [,];', errors: expecting([[0, 12]])},
+  { code: 'const colors = [ "red",, "blue" ];', errors: expecting([[0, 15]])},
+  { code: 'const foo = ["tire", 1, , "small ball"];', errors: expecting([[0, 12]])}
+]);
+
+ruleTester.runTests();
