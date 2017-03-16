@@ -12,6 +12,7 @@ const RULE_NAME = '${ruleKebabName}';
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
+    hasFix: false,
     description: '',
     rationale: Lint.Utils.dedent\`
       \`,

@@ -2,6 +2,8 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 import * as doctrine from 'doctrine';
 
+const RULE_NAME = 'valid-jsdoc';
+
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = {
     missingBrace: 'JSDoc type missing brace',
@@ -18,6 +20,94 @@ export class Rule extends Lint.Rules.AbstractRule {
     missingParam: (name: string) => `missing JSDoc for parameter '${name}'`,
     wrongDescription: 'JSDoc description does not satisfy the regex pattern',
     invalidRegexDescription: (error: string) => `configured matchDescription is an invalid RegExp. Error: ${error}`
+  };
+
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    hasFix: false,
+    description: 'enforce valid JSDoc comments',
+    rationale: Lint.Utils.dedent`
+      [JSDoc](http://usejsdoc.org/) generates application programming interface (API) documentation
+      from specially-formatted comments in JavaScript code. So does [typedoc](http://typedoc.org/).
+
+      If comments are invalid because of typing mistakes, then documentation will be incomplete.
+
+      If comments are inconsistent because they are not updated when function definitions are
+      modified, then readers might become confused.
+      `,
+    optionsDescription: Lint.Utils.dedent`
+      This rule has an object option:
+
+      * \`"prefer"\` enforces consistent documentation tags specified by an object whose properties
+                     mean instead of key use value (for example, \`"return": "returns"\` means
+                     instead of \`@return\` use \`@returns\`)
+      * \`"preferType"\` enforces consistent type strings specified by an object whose properties
+                         mean instead of key use value (for example, \`"object": "Object"\` means
+                         instead of \`object\` use \`Object\`)
+      * \`"requireReturn"\` requires a return tag:
+        * \`true\` (default) *even if* the function or method does not have a return statement
+                   (this option value does not apply to constructors)
+        * \`false\` *if and only if* the function or method has a return statement (this option
+                    value does apply to constructors)
+      * \`"requireReturnType"\`: \`false\` allows missing type in return tags
+      * \`"matchDescription"\` specifies (as a string) a regular expression to match the description
+                               in each JSDoc comment (for example, \`".+"\` requires a description;
+                               this option does not apply to descriptions in parameter or return
+                               tags)
+      * \`"requireParamDescription"\`: \`false\` allows missing description in parameter tags
+      * \`"requireReturnDescription"\`: \`false\` allows missing description in return tags
+      `,
+    options: {
+      type: 'object',
+      properties: {
+        prefer: {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        },
+        preferType: {
+          type: 'object',
+          additionalProperties: {
+            type: 'string'
+          }
+        },
+        requireReturn: {
+          type: 'boolean'
+        },
+        requireParamDescription: {
+          type: 'boolean'
+        },
+        requireReturnDescription: {
+          type: 'boolean'
+        },
+        matchDescription: {
+          type: 'string'
+        },
+        requireReturnType: {
+          type: 'boolean'
+        }
+      },
+      additionalProperties: false
+    },
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true]
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, {
+          "prefer": {
+            "return": "returns"
+          },
+          "requireReturn": false,
+          "requireParamDescription": true,
+          "requireReturnDescription": true,
+          "matchDescription": "^[A-Z][A-Za-z0-9\\\\s]*[.]$"
+        }]
+        `
+    ],
+    typescriptOnly: false,
+    type: 'maintainability'
   };
 
   public static prefer: Object = {};

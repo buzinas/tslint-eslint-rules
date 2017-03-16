@@ -383,23 +383,9 @@ const rules: IRule[] = [
     eslintRule: 'valid-jsdoc',
     tslintRule: 'valid-jsdoc',
     category: 'Possible Errors',
-    description: 'Ensure JSDoc comments are valid',
+    description: 'enforce valid JSDoc comments',
     eslintUrl: 'http://eslint.org/docs/rules/valid-jsdoc',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "valid-jsdoc": [
-      true,
-      {
-        "prefer": {
-          "return": "returns"
-        },
-        "requireReturn": false,
-        "requireParamDescription": true,
-        "requireReturnDescription": true,
-        "matchDescription": "^[A-Z][A-Za-z0-9\\\\s]*[.]$"
-      }
-    ]
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
