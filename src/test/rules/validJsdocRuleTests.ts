@@ -678,4 +678,50 @@ ruleTester.addTestGroup('issue178', 'issue 178 - Should not crash with incorrect
   }
 ]);
 
+ruleTester.addTestGroup('ret-type', 'should handle requireReturnType option', [
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param {string} a desc
+       * @return some string
+       */
+       function foo(a) { return '' }`,
+    errors: expecting(['missing JSDoc return type'])
+  },
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param {string} a desc
+       * @return some string
+       */
+       function foo(a) { return '' }`,
+    options: { requireReturnType: false }
+  }
+]);
+
+ruleTester.addTestGroup('param-type', 'should handle requireParamType option', [
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param a desc
+       * @return {string} some string
+       */
+       function foo(a) { return '' }`,
+    errors: expecting(["missing JSDoc parameter type for 'a'"])
+  },
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @param a desc
+       * @return {string} some string
+       */
+       function foo(a) { return '' }`,
+    options: { requireParamType: false }
+  }
+]);
+
 ruleTester.runTests();

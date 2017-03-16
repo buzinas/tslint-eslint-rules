@@ -49,6 +49,7 @@ export class Rule extends Lint.Rules.AbstractRule {
                    (this option value does not apply to constructors)
         * \`false\` *if and only if* the function or method has a return statement (this option
                     value does apply to constructors)
+      * \`"requireParamType"\`: \`false\` allows missing type in param tags
       * \`"requireReturnType"\`: \`false\` allows missing type in return tags
       * \`"matchDescription"\` specifies (as a string) a regular expression to match the description
                                in each JSDoc comment (for example, \`".+"\` requires a description;
@@ -84,6 +85,9 @@ export class Rule extends Lint.Rules.AbstractRule {
         matchDescription: {
           type: 'string'
         },
+        requireParamType: {
+          type: 'boolean'
+        },
         requireReturnType: {
           type: 'boolean'
         }
@@ -112,6 +116,8 @@ export class Rule extends Lint.Rules.AbstractRule {
 
   public static prefer: Object = {};
   public static requireReturn: boolean = true;
+  public static requireParamType: boolean = true;
+  public static requireReturnType: boolean = true;
   public static requireParamDescription: boolean = true;
   public static requireReturnDescription: boolean = true;
   public static matchDescription: string;
@@ -124,6 +130,8 @@ export class Rule extends Lint.Rules.AbstractRule {
       }
 
       Rule.requireReturn = opts[0].requireReturn !== false;
+      Rule.requireParamType = opts[0].requireParamType !== false;
+      Rule.requireReturnType = opts[0].requireReturnType !== false;
       Rule.requireParamDescription = opts[0].requireParamDescription !== false;
       Rule.requireReturnDescription = opts[0].requireReturnDescription !== false;
       Rule.matchDescription = opts[0].matchDescription;
@@ -299,7 +307,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
         case 'param':
         case 'arg':
         case 'argument':
-          if (!tag.type) {
+          if (!tag.type && Rule.requireParamType) {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingParameterType(tag.name)));
           }
 
@@ -322,7 +330,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.unexpectedTag(tag.title)));
           }
           else {
-            if (!tag.type) {
+            if (!tag.type && Rule.requireReturnType) {
               this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnType));
             }
 
