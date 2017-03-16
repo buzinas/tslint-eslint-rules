@@ -1,59 +1,60 @@
-/// <reference path='../../../typings/mocha/mocha.d.ts' />
-import { makeTest } from './helper';
+import { RuleTester, Failure, Position } from './ruleTester';
 
-const rule = 'block-spacing';
-const scripts = {
-  always: {
-    valid: [
-      `function foo() { return true; }`,
-      `if (foo) { bar = 0; }`,
-      `switch (myVar) { case 1: return true; }`,
-      `function foo() {}`,
-      `function foo() { }`
-    ],
-    invalid: [
-      `function foo() {return true;}`,
-      `if (foo) { bar = 0;}`,
-      `switch (myVar) { case 1: return true;}`,
-      `switch (myVar) {case 1: return true; }`,
-      `switch (myVar) {case 1: return true;}`
-    ]
-  },
-  never: {
-    valid: [
-      `function foo() {return true;}`,
-      `if (foo) {bar = 0;}`,
-      `switch (myVar) {case 1: return true;}`,
-      `function foo() {}`,
-      `function foo() { }`
-    ],
-    invalid: [
-      `function foo() { return true; }`,
-      `if (foo) { bar = 0;}`,
-      `switch (myVar) { case 1: return true;}`,
-      `switch (myVar) {case 1: return true; }`,
-      `switch (myVar) { case 1: return true; }`
-    ]
-  }
-};
+const ruleTester = new RuleTester('block-spacing');
 
-describe(rule, function test() {
-  const alwaysConfig = { rules: { 'block-spacing': [true, 'always'] } };
-  const neverConfig = { rules: { 'block-spacing': [true, 'never'] } };
-
-  it('should pass when "always" and there are spaces inside brackets', function testVariables() {
-    makeTest(rule, scripts.always.valid, true, alwaysConfig);
+// Only checking if there should be a space or not
+function expecting(errors: boolean[]): Failure[] {
+  // true means there should be a space
+  return errors.map((err) => {
+    const status = err ? 'Requires a space' : 'Unexpected space(s)';
+    return {
+      failure: status,
+      startPosition: new Position(),
+      endPosition: new Position()
+    };
   });
+}
 
-  it('should fail when "always" and there are not spaces inside brackets', function testVariables() {
-    makeTest(rule, scripts.always.invalid, false, alwaysConfig);
-  });
+ruleTester.addTestGroup('always-valid', 'passes with "always" and there are spaces inside brackets', [
+  `function foo() { return true; }`,
+  `if (foo) { bar = 0; }`,
+  `switch (myVar) { case 1: return true; }`,
+  `function foo() {}`,
+  `function foo() { }`
+]);
 
-  it('should pass when "never" and there are not spaces inside brackets', function testVariables() {
-    makeTest(rule, scripts.never.valid, true, neverConfig);
-  });
+ruleTester.addTestGroup('always-invalid', 'fails with "always" and missing spaces inside brackets', [
+  { code: `function foo() {return true;}`, errors: expecting([true]) },
+  { code: `if (foo) { bar = 0;}`, errors: expecting([true]) },
+  { code: `switch (myVar) { case 1: return true;}`, errors: expecting([true]) },
+  { code: `switch (myVar) {case 1: return true; }`, errors: expecting([true]) },
+  { code: `switch (myVar) {case 1: return true;}`, errors: expecting([true]) }
+]);
 
-  it('should fail when "never" and there are spaces inside brackets', function testVariables() {
-    makeTest(rule, scripts.never.invalid, false, neverConfig);
-  });
-});
+ruleTester.addTestGroupWithConfig(
+  'never-valid',
+  'passes with "never" and missing spaces inside brackets',
+  ['never'],
+  [
+    `function foo() {return true;}`,
+    `if (foo) {bar = 0;}`,
+    `switch (myVar) {case 1: return true;}`,
+    `function foo() {}`,
+    `function foo() { }`
+  ]
+);
+
+ruleTester.addTestGroupWithConfig(
+  'never-invalid',
+  'fails with "never" and there are spaces inside brackets',
+  ['never'],
+  [
+    { code: `function foo() { return true; }`, errors: expecting([false]) },
+    { code: `if (foo) { bar = 0;}`, errors: expecting([false]) },
+    { code: `switch (myVar) { case 1: return true;}`, errors: expecting([false]) },
+    { code: `switch (myVar) {case 1: return true; }`, errors: expecting([false]) },
+    { code: `switch (myVar) { case 1: return true; }`, errors: expecting([false]) }
+  ]
+);
+
+ruleTester.runTests();

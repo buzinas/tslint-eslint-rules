@@ -14,7 +14,7 @@ export class Rule extends Lint.Rules.AbstractRule {
     missingReturnDescription: 'missing JSDoc return description',
     prefer: (name: string) => `use @${name} instead`,
     missingReturn: (param: string) => `missing JSDoc @${param || 'returns'} for function`,
-    wrongParam: (expected: string, actual: string) => `expected JSDoc for '${expected}'' but found '${actual}'`,
+    wrongParam: (expected: string, actual: string) => `expected JSDoc for '${expected}' but found '${actual}'`,
     missingParam: (name: string) => `missing JSDoc for parameter '${name}'`,
     wrongDescription: 'JSDoc description does not satisfy the regex pattern',
     invalidRegexDescription: (error: string) => `configured matchDescription is an invalid RegExp. Error: ${error}`
