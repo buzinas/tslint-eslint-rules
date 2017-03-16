@@ -2892,6 +2892,18 @@ ruleTester.addTestGroup('methods', 'should handle methods body and parameters', 
             bar();
         }
       }`,
+    output: dedent`
+      class A {
+        constructor(
+          aaa,
+          bbb,
+          ccc,
+          ddd
+        )
+        {
+            bar();
+        }
+      }`,
     options: [2, { FunctionExpression: { parameters: 1, body: 2 } }],
     errors: expecting([
       [3, 4, 3],
