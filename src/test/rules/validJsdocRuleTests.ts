@@ -564,7 +564,7 @@ ruleTester.addTestGroupWithConfig(
          * @param {string} a desc
          */
          function foo(a){var t = false; if(t) {return t;}}`,
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: dedent`
@@ -573,7 +573,7 @@ ruleTester.addTestGroupWithConfig(
          * @param {string} a desc
          */
          function foo(a){var t = false; if(t) {return null;}}`,
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: dedent`
@@ -582,25 +582,19 @@ ruleTester.addTestGroupWithConfig(
          * @param {string} a desc
          @returns {MyClass}*/
          function foo(a){var t = false; if(t) {process(t);}}`,
-      errors: expecting([
-        'unexpected @returns tag; function has no return statement',
-        'use @return instead'
-      ])
+      errors: expecting(['unexpected @returns tag; function has no return statement'])
     },
     {
       code: '/** foo */ var foo = () => bar();',
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: '/** foo */ var foo = () => { return bar(); };',
-      errors: expecting(['missing JSDoc @return for function'])
+      errors: expecting(['missing JSDoc @returns for function'])
     },
     {
       code: '/** @returns {object} foo */ var foo = () => { bar(); };',
-      errors: expecting([
-        'unexpected @returns tag; function has no return statement',
-        'use @return instead'
-      ])
+      errors: expecting(['unexpected @returns tag; function has no return statement'])
     }
   ]
 );

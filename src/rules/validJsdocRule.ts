@@ -3,6 +3,7 @@ import * as Lint from 'tslint';
 import * as doctrine from 'doctrine';
 
 const RULE_NAME = 'valid-jsdoc';
+let OPTIONS: any;
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = {
@@ -114,27 +115,29 @@ export class Rule extends Lint.Rules.AbstractRule {
     type: 'maintainability'
   };
 
-  public static prefer: Object = {};
-  public static requireReturn: boolean = true;
-  public static requireParamType: boolean = true;
-  public static requireReturnType: boolean = true;
-  public static requireParamDescription: boolean = true;
-  public static requireReturnDescription: boolean = true;
-  public static matchDescription: string;
-
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     let opts = this.getOptions().ruleArguments;
+    OPTIONS = {
+      prefer: {},
+      requireReturn: true,
+      requireParamType: true,
+      requireReturnType: true,
+      requireParamDescription: true,
+      requireReturnDescription: true,
+      matchDescription: ''
+    };
+
     if (opts && opts.length > 0) {
       if (opts[0].prefer) {
-        Rule.prefer = opts[0].prefer;
+        OPTIONS.prefer = opts[0].prefer;
       }
 
-      Rule.requireReturn = opts[0].requireReturn !== false;
-      Rule.requireParamType = opts[0].requireParamType !== false;
-      Rule.requireReturnType = opts[0].requireReturnType !== false;
-      Rule.requireParamDescription = opts[0].requireParamDescription !== false;
-      Rule.requireReturnDescription = opts[0].requireReturnDescription !== false;
-      Rule.matchDescription = opts[0].matchDescription;
+      OPTIONS.requireReturn = opts[0].requireReturn !== false;
+      OPTIONS.requireParamType = opts[0].requireParamType !== false;
+      OPTIONS.requireReturnType = opts[0].requireReturnType !== false;
+      OPTIONS.requireParamDescription = opts[0].requireParamDescription !== false;
+      OPTIONS.requireReturnDescription = opts[0].requireReturnDescription !== false;
+      OPTIONS.matchDescription = opts[0].matchDescription;
     }
 
     const walker = new ValidJsdocWalker(sourceFile, this.getOptions());
@@ -307,11 +310,11 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
         case 'param':
         case 'arg':
         case 'argument':
-          if (!tag.type && Rule.requireParamType) {
+          if (!tag.type && OPTIONS.requireParamType) {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingParameterType(tag.name)));
           }
 
-          if (!tag.description && Rule.requireParamDescription) {
+          if (!tag.description && OPTIONS.requireParamDescription) {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingParameterDescription(tag.name)));
           }
 
@@ -326,15 +329,15 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
         case 'returns':
           hasReturns = true;
 
-          if (!Rule.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
+          if (!OPTIONS.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.unexpectedTag(tag.title)));
           }
           else {
-            if (!tag.type && Rule.requireReturnType) {
+            if (!tag.type && OPTIONS.requireReturnType) {
               this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnType));
             }
 
-            if (!this.isValidReturnType(tag) && !tag.description && Rule.requireReturnDescription) {
+            if (!this.isValidReturnType(tag) && !tag.description && OPTIONS.requireReturnDescription) {
               this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnDescription));
             }
           }
@@ -350,16 +353,16 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
       }
 
       // check prefer (we need to ensure it has the property and not inherit from Object - e.g: constructor)
-      let title = Rule.prefer[tag.title];
-      if (Rule.prefer.hasOwnProperty(tag.title) && tag.title !== title) {
+      let title = OPTIONS.prefer[tag.title];
+      if (OPTIONS.prefer.hasOwnProperty(tag.title) && tag.title !== title) {
         this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.prefer(title)));
       }
     }
 
     // check for functions missing @returns
     if (!isOverride && !hasReturns && !hasConstructor && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
-      if (Rule.requireReturn || fn.returnPresent) {
-        this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(Rule.prefer['returns'])));
+      if (OPTIONS.requireReturn || fn.returnPresent) {
+        this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(OPTIONS.prefer['returns'])));
       }
     }
 
@@ -381,9 +384,9 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
       });
     }
 
-    if (Rule.matchDescription) {
+    if (OPTIONS.matchDescription) {
       try {
-        const regex = new RegExp(Rule.matchDescription);
+        const regex = new RegExp(OPTIONS.matchDescription);
         if (!regex.test(jsdoc.description)) {
           this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.wrongDescription));
         }
