@@ -10,7 +10,7 @@ const options: Lint.ILinterOptions = {
 };
 
 /**
- * @deprecated
+ * @deprecated Use ruleTester
  */
 export function testScript(rule: string, scriptText: string, config: Object): boolean {
   const linter = new Lint.Linter(options);
@@ -22,7 +22,7 @@ export function testScript(rule: string, scriptText: string, config: Object): bo
 }
 
 /**
- * @deprecated
+ * @deprecated Use ruleTester
  */
 export function makeTest(rule: string, scripts: Array<string>, expected: boolean, config?: { rules: {} }) {
   if (!config) {
