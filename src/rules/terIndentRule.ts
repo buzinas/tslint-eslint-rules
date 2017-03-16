@@ -40,6 +40,7 @@ function isOneOf(node: ts.Node, kinds: string[]) {
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
+    hasFix: true,
     description: 'enforce consistent indentation',
     rationale: Lint.Utils.dedent`
       Using only one of tabs or spaces for indentation leads to more consistent editor behavior,
@@ -316,7 +317,10 @@ class IndentWalker extends Lint.RuleWalker {
     }
     const msg = this.createErrorMessage(needed, gottenSpaces, gottenTabs);
     const width = gottenSpaces + gottenTabs;
-    this.addFailure(this.createFailure((loc !== undefined ? loc : node.getStart()) - width, width, msg));
+    const start = (loc !== undefined ? loc : node.getStart()) - width;
+    const desiredIndent = ((indentType === 'space' ? ' ' : '\t') as any).repeat(needed);
+    const fix = this.createFix(this.createReplacement(start, width, desiredIndent));
+    this.addFailure(this.createFailure(start, width, msg, fix));
   }
 
   /**
@@ -390,6 +394,7 @@ class IndentWalker extends Lint.RuleWalker {
     const tabs = indentChars.filter(char => char === '\t').length;
 
     return {
+      contentStart: pos + spaces + tabs + 1,
       firstInLine: spaces + tabs === str.length || this._firstInLineCommentHelper(node),
       space: spaces,
       tab: tabs,
@@ -406,7 +411,7 @@ class IndentWalker extends Lint.RuleWalker {
       (actualIndent.goodChar !== neededIndent || actualIndent.badChar !== 0) &&
       actualIndent.firstInLine
     ) {
-      this.report(node, neededIndent, actualIndent.space, actualIndent.tab);
+      this.report(node, neededIndent, actualIndent.space, actualIndent.tab, actualIndent.contentStart);
     }
 
     if (isKind(node, 'IfStatement')) {
@@ -556,7 +561,7 @@ class IndentWalker extends Lint.RuleWalker {
     const startIndent = this.getNodeIndent(node);
     const firstInLine = startIndent.firstInLine;
     if (firstInLine && (startIndent.goodChar !== firstLineIndent || startIndent.badChar !== 0)) {
-      this.report(node, firstLineIndent, startIndent.space, startIndent.tab);
+      this.report(node, firstLineIndent, startIndent.space, startIndent.tab, startIndent.contentStart);
     }
   }
 

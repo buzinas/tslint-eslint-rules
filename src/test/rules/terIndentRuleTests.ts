@@ -3,7 +3,7 @@ import { RuleTester, Failure, Position, dedent, readFixture } from './ruleTester
 // TODO: Split tests into better categories for easy finding
 
 type NumStr = number | string;
-const ruleTester = new RuleTester('ter-indent');
+const ruleTester = new RuleTester('ter-indent', true);
 
 function expecting(errors: [[number, NumStr, NumStr]], indentType: string = 'space'): Failure[] {
   return errors.map((err) => {
@@ -3293,6 +3293,11 @@ ruleTester.addTestGroup('interfaces', 'should check indentation on interfaces', 
         a: number;
       }
       `,
+    output: dedent`
+      interface Foo {
+          a: number;
+      }
+      `,
     errors: expecting([[2, 4, 2]])
   },
   {
@@ -3303,6 +3308,14 @@ ruleTester.addTestGroup('interfaces', 'should check indentation on interfaces', 
              c: string;
            };
         }
+      `,
+    output: dedent`
+      interface Foo extends Bar {
+          a: number;
+          b: {
+              c: string;
+          };
+      }
       `,
     errors: expecting([
       [2, 4, 2],
