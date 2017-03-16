@@ -30,6 +30,7 @@ This rule has an object option:
              (this option value does not apply to constructors)
   * `false` *if and only if* the function or method has a return statement (this option
               value does apply to constructors)
+* `"requireParamType"`: `false` allows missing type in param tags
 * `"requireReturnType"`: `false` allows missing type in return tags
 * `"matchDescription"` specifies (as a string) a regular expression to match the description
                          in each JSDoc comment (for example, `".+"` requires a description;
@@ -84,6 +85,9 @@ This rule has an object option:
     },
     "matchDescription": {
       "type": "string"
+    },
+    "requireParamType": {
+      "type": "boolean"
     },
     "requireReturnType": {
       "type": "boolean"
