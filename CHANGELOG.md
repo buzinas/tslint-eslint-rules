@@ -1,5 +1,27 @@
 # Change Log
 
+## [v3.5.0] - 2017/03/16 15:20 GMT-0600
+#### Fixes
+- valid-jsdoc crashed with missing return type ([de16445])
+
+#### Features
+- valid-jsdoc added option to omitt return and parameters type ([b81e671])
+
+#### Rules Added
+- [sort-imports](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/sortImportsRule.md)
+
+#### Fixers Added
+- ter-indent ([b76ee05])
+
+#### Other Changes
+
+`tslint` peer dependency updated to 4.5.0
+
+[de16445]: https://github.com/buzinas/tslint-eslint-rules/commit/de164458164116b1743d0cdc57fcfbcd6a4109c4
+[b76ee05]: https://github.com/buzinas/tslint-eslint-rules/commit/b76ee05033a273bdf61b6ee7465290ad8c4a73f1
+[b81e671]: https://github.com/buzinas/tslint-eslint-rules/commit/b81e67141abf76f976ab399a0f16f50e971891b8
+
+
 ## [v3.4.0] - 2017/02/16 15:40 GMT-0600
 #### Fixes
 - array-bracket-spacing handles comments ([9c551d7])
@@ -21,6 +43,7 @@
 [cd50170]: https://github.com/buzinas/tslint-eslint-rules/commit/cd50170f658c62062dff3fa60d501cebccd98d9e
 [9c551d7]: https://github.com/buzinas/tslint-eslint-rules/commit/9c551d7eaaa55289cc326e16e804d702c36cc3a1
 
+
 ## [v3.3.0] - 2017/02/04 04:45 GMT-0600
 #### Changes
 - Build errors fixed ([d163eb5])
@@ -28,6 +51,7 @@
 
 [d163eb5]: https://github.com/buzinas/tslint-eslint-rules/commit/d163eb5aa438cce25da2624cf43c478544e7889b
 [18902f1]: https://github.com/buzinas/tslint-eslint-rules/commit/18902f10939aeb4dedbcb7334be42d462846457c
+
 
 ## [v3.2.3] - 2016/12/24 22:52 GMT-0600
 #### Fixes
@@ -243,6 +267,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v3.5.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.4.0...v3.5.0
 [v3.4.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.3.0...v3.4.0
 [v3.3.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.3...v3.3.0
 [v3.2.3]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.2...v3.2.3

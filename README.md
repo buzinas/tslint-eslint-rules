@@ -93,7 +93,7 @@ The following rules point out areas where you might have made mistakes.
 |:no_entry_sign:|[no-unreachable](http://eslint.org/docs/rules/no-unreachable)|Not applicable|disallow unreachable statements after a return, throw, continue, or break statement (recommended)|
 |:ballot_box_with_check:|[no-unsafe-finally](http://eslint.org/docs/rules/no-unsafe-finally)|[no-unsafe-finally](https://palantir.github.io/tslint/rules/no-unsafe-finally)|disallow control flow statements in finally blocks (recommended)|
 |:ballot_box_with_check:|[use-isnan](http://eslint.org/docs/rules/use-isnan)|[use-isnan](https://palantir.github.io/tslint/rules/use-isnan)|disallow comparisons with the value `NaN` (recommended)|
-|:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validJsdocRule.md)|Ensure JSDoc comments are valid|
+|:white_check_mark:|[valid-jsdoc](http://eslint.org/docs/rules/valid-jsdoc)|[valid-jsdoc](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validJsdocRule.md)|enforce valid JSDoc comments|
 |:white_check_mark:|[valid-typeof](http://eslint.org/docs/rules/valid-typeof)|[valid-typeof](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/validTypeofRule.md)|Ensure that the results of typeof are compared against a valid string (recommended)|
 
 ### Best Practices
@@ -277,7 +277,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[require-jsdoc](http://eslint.org/docs/rules/require-jsdoc)|require-jsdoc|Require JSDoc comment|
 |:ballot_box_with_check:|[semi](http://eslint.org/docs/rules/semi)|[semicolon](http://palantir.github.io/tslint/rules/semicolon)|require or disallow use of semicolons instead of ASI|
 |:x:|[semi-spacing](http://eslint.org/docs/rules/semi-spacing)|semi-spacing|enforce spacing before and after semicolons|
-|:ballot_box_with_check:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|[ordered-imports](https://palantir.github.io/tslint/rules/ordered-imports)|enforce sorting import declarations within module|
+|:white_check_mark:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|[sort-imports](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/sortImportsRule.md)|enforce sorting import declarations within module|
 |:x:|[sort-vars](http://eslint.org/docs/rules/sort-vars)|sort-vars|sort variables within the same declaration block|
 |:x:|[space-before-blocks](http://eslint.org/docs/rules/space-before-blocks)|space-before-blocks|require or disallow a space before blocks|
 |:x:|[space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren)|space-before-function-paren|require or disallow a space before function opening parenthesis|
