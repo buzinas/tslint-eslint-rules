@@ -141,7 +141,7 @@ class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
   }
 
   private isValidReturnType(tag: doctrine.IJSDocTag) {
-    return tag.type.name === 'void' || tag.type.type === 'UndefinedLiteral';
+    return tag.type && (tag.type.name === 'void' || tag.type.type === 'UndefinedLiteral');
   }
 
   private getJSDocComment(node: ts.Node) {

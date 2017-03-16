@@ -647,4 +647,35 @@ ruleTester.addTestGroupWithConfig(
   ]
 );
 
+ruleTester.addTestGroup('issue178', 'issue 178 - Should not crash with incorrect jsdoc', [
+  {
+    code: dedent`
+      /**
+      * @return string
+      */
+      function foo() { return ''; }
+      `,
+    options: {}, // Somehow the regex pattern we used before still lingers here, may be due
+                 // to the static variables on the Rule definition.
+    errors: expecting(['missing JSDoc return type'])
+  },
+  {
+    code: dedent`
+      /**
+      * @return {string}
+      */
+      function foo() { return ''; }
+      `,
+    errors: expecting(['missing JSDoc return description'])
+  },
+  {
+    code: dedent`
+      /**
+      * @return {some_type} some description
+      */
+      function foo() { return ''; }
+      `
+  }
+]);
+
 ruleTester.runTests();
