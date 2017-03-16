@@ -20,10 +20,10 @@ ruleTester.addTestGroup('valid', 'should pass when using valid arrays or trailin
 ]);
 
 ruleTester.addTestGroup('invalid', 'should fail when using double comma in arrays', [
-  { code: 'const items = [,,];', errors: expecting([[0, 14]])},
-  { code: 'const arr = [,];', errors: expecting([[0, 12]])},
-  { code: 'const colors = [ "red",, "blue" ];', errors: expecting([[0, 15]])},
-  { code: 'const foo = ["tire", 1, , "small ball"];', errors: expecting([[0, 12]])}
+  { code: 'const items = [,,];', errors: expecting([[0, 14]]) },
+  { code: 'const arr = [,];', errors: expecting([[0, 12]]) },
+  { code: 'const colors = [ "red",, "blue" ];', errors: expecting([[0, 15]]) },
+  { code: 'const foo = ["tire", 1, , "small ball"];', errors: expecting([[0, 12]]) }
 ]);
 
 ruleTester.runTests();

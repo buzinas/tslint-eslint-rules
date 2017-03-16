@@ -19,8 +19,8 @@ ruleTester.addTestGroup('valid', 'should pass when not using multiple spaces in 
 ]);
 
 ruleTester.addTestGroup('invalid', 'should fail when using multiple spaces in regular expressions', [
-  { code: 'var foo = /bar    baz/;', errors: expecting([[0, 10, 4]])},
-  { code: 'var foo = /bar      baz/;', errors: expecting([[0, 10, 6]])}
+  { code: 'var foo = /bar    baz/;', errors: expecting([[0, 10, 4]]) },
+  { code: 'var foo = /bar      baz/;', errors: expecting([[0, 10, 6]]) }
 ]);
 
 ruleTester.runTests();
