@@ -207,4 +207,23 @@ ruleTester.addTestGroup('alias', 'should pass alias tests', [
   }
 ]);
 
+ruleTester.addTestGroup('substring', 'imports that are a subset of other imports should come first', [
+  dedent`
+    import {Foo} from 'bar';
+    import {Fooz} from 'buz';`,
+  {
+    code: dedent`
+      import {Fooz} from 'buz';,
+      import {Foo} from 'bar';
+      `,
+    errors: expecting([[ALPHA_ORDER_ERROR('Foo', 'Fooz'), 2, 0, 24]])
+  },
+  dedent`
+    import 'foo';
+    import 'fooz'`,
+  dedent`
+    import {Foo, Gar} from 'a';
+    import {Fooz, Garz} from 'b';`
+]);
+
 ruleTester.runTests();
