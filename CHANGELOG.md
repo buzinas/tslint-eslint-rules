@@ -1,5 +1,12 @@
 # Change Log
 
+## [v3.5.1] - 2017/03/17 23:00 GMT-0600
+#### Fixes
+- sort-imports bug in simple type imports ([3d57149])
+
+[3d57149]: https://github.com/buzinas/tslint-eslint-rules/commit/3d571494aa5642f19f856fc361d5723a1b792e4a
+
+
 ## [v3.5.0] - 2017/03/16 15:20 GMT-0600
 #### Fixes
 - valid-jsdoc crashed with missing return type ([de16445])
@@ -267,6 +274,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v3.5.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.0...v3.5.1
 [v3.5.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.4.0...v3.5.0
 [v3.4.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.3.0...v3.4.0
 [v3.3.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.2.3...v3.3.0
