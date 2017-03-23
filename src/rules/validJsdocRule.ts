@@ -150,7 +150,7 @@ declare interface IReturnPresent {
   returnPresent: boolean;
 }
 
-class ValidJsdocWalker extends Lint.SkippableTokenAwareRuleWalker {
+class ValidJsdocWalker extends Lint.RuleWalker {
   private fns: Array<IReturnPresent> = [];
 
   protected visitSourceFile(node: ts.SourceFile) {
