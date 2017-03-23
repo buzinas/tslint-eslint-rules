@@ -39,6 +39,7 @@
     "tslint": "^4.5.0"
   },
   "dependencies": {
-    "doctrine": "^0.7.2"
+    "doctrine": "^0.7.2",
+    "tsutils": "^1.4.0"
   }
 }
