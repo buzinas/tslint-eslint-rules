@@ -219,7 +219,7 @@ describe(rule, function test() {
   it('should pass for literals in loops when checkLoops is false', function testCheckLoopsFalse() {
     const config = {
       rules: new Map<string, Partial<IOptions>>([
-        ['no-constant-condition', [{ checkLoops: false }]]
+        ['no-constant-condition', { ruleArguments: [{ checkLoops: false }] }]
       ]),
       rulesDirectory: [],
       extends: [],
