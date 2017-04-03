@@ -262,14 +262,14 @@ class TestGroup {
       const codeFileName = `${name}-${index}.ts`;
       if (typeof test === 'string') {
         if (groupConfig) {
-          config.rules.set(ruleName, { ruleArguments: [true, ...groupConfig] });
+          config.rules.set(ruleName, { ruleArguments: groupConfig });
         }
         return new Test(codeFileName, test, undefined, config, []);
       }
       if (test.options) {
-        config.rules.set(ruleName, { ruleArguments: [true, ...test.options] });
+        config.rules.set(ruleName, { ruleArguments: test.options });
       } else if (groupConfig) {
-        config.rules.set(ruleName, { ruleArguments: [true, ...groupConfig] });
+        config.rules.set(ruleName, { ruleArguments: groupConfig });
       }
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(

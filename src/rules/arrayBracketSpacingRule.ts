@@ -108,7 +108,7 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     const ruleOptions = this.getOptions();
     this.spaced = this.hasOption(OPTION_ALWAYS) || (ruleOptions && ruleOptions.length === 0);
 
-    const opt = ruleOptions[2];
+    const opt = ruleOptions[1];
     const isDef = (x: any) => typeof x !== 'undefined';
     if (opt) {
       this.singleValueException = isDef(opt.singleValue) && opt.singleValue !== this.spaced;
