@@ -319,7 +319,7 @@ class IndentWalker extends Lint.RuleWalker {
     const width = gottenSpaces + gottenTabs;
     const start = (loc !== undefined ? loc : node.getStart()) - width;
     const desiredIndent = ((indentType === 'space' ? ' ' : '\t') as any).repeat(needed);
-    const fix = this.createFix(this.createReplacement(start, width, desiredIndent));
+    const fix = this.createReplacement(start, width, desiredIndent);
     this.addFailure(this.createFailure(start, width, msg, fix));
   }
 

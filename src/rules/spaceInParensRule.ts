@@ -154,21 +154,21 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     if (!first && !second && !penultimate && !last) return;
 
     if (this.shouldOpenerHaveSpace(first, second)) {
-      const fix = this.createFix(this.appendText(first.getEnd(), ' '));
+      const fix = Lint.Replacement.appendText(first.getEnd(), ' ');
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
     }
     if (this.shouldOpenerRejectSpace(first, second)) {
       const width = second.getStart() - first.getEnd();
-      const fix = this.createFix(this.deleteText(first.getEnd(), width));
+      const fix = Lint.Replacement.deleteText(first.getEnd(), width);
       this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
     }
     if (this.shouldCloserHaveSpace(penultimate, last)) {
-      const fix = this.createFix(this.appendText(penultimate.getEnd(), ' '));
+      const fix = Lint.Replacement.appendText(penultimate.getEnd(), ' ');
       this.addFailure(this.createFailure(last.getStart(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
     }
     if (this.shouldCloserRejectSpace(penultimate, last)) {
       const width = last.getStart() - penultimate.getEnd();
-      const fix = this.createFix(this.deleteText(penultimate.getEnd(), width));
+      const fix = Lint.Replacement.deleteText(penultimate.getEnd(), width);
       this.addFailure(this.createFailure(last.getStart(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
     }
   }

@@ -123,25 +123,25 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
 
   private reportNoBeginningSpace(token: ts.Node, space: number) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.deleteText(start + 1, space));
+    const fix = Lint.Replacement.deleteText(start + 1, space);
     this.report(start, 'There should be no space after "["', fix);
   }
 
   private reportRequiredBeginningSpace(token: ts.Node) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.appendText(start + 1, ' '));
+    const fix = Lint.Replacement.appendText(start + 1, ' ');
     this.report(start, 'A space is required after "["', fix);
   }
 
   private reportRequiredEndingSpace(token: ts.Node) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.appendText(start, ' '));
+    const fix = Lint.Replacement.appendText(start, ' ');
     this.report(start, 'A space is required before "]"', fix);
   }
 
   private reportNoEndingSpace(token: ts.Node, space: number) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.deleteText(start - space, space));
+    const fix = Lint.Replacement.deleteText(start - space, space);
     this.report(start, 'There should be no space before "]"', fix);
   }
 

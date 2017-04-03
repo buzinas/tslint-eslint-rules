@@ -187,7 +187,7 @@ class Test {
     assert(expected.length === 0 && found.length === 0, msg);
     if (this.testFixer && this.output) {
       const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
-      const fixedCode = Lint.Fix.applyAll(this.code, fixes);
+      const fixedCode = Lint.Replacement.applyFixes(this.code, fixes);
       const fixerMsg = [
         `Fixer output mismatch in ${this.name}:`,
         '',
