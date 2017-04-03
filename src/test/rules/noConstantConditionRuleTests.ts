@@ -1,5 +1,6 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
 import { makeTest } from './helper';
+import { IOptions } from 'tslint';
 
 const rule = 'no-constant-condition';
 const scripts = {
@@ -217,7 +218,12 @@ describe(rule, function test() {
 
   it('should pass for literals in loops when checkLoops is false', function testCheckLoopsFalse() {
     const config = {
-      rules: { 'no-constant-condition': [true, { checkLoops: false }] }
+      rules: new Map<string, Partial<IOptions>>([
+        ['no-constant-condition', [true, { checkLoops: false }]]
+      ]),
+      rulesDirectory: [],
+      extends: [],
+      jsRules: new Map<string, Partial<IOptions>>()
     };
 
     makeTest(rule, scripts.forLiterals, true, config);

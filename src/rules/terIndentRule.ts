@@ -214,7 +214,7 @@ class IndentWalker extends Lint.RuleWalker {
         arguments: DEFAULT_PARAMETER_INDENT
       }
     };
-    const firstParam = this.getOptions()[0];
+    const firstParam = this.getOptions()[1];
     if (firstParam === 'tab') {
       indentSize = 1;
       indentType = 'tab';
@@ -222,7 +222,7 @@ class IndentWalker extends Lint.RuleWalker {
       indentSize = firstParam || 4;
       indentType = 'space';
     }
-    const userOptions = this.getOptions()[1];
+    const userOptions = this.getOptions()[2];
     if (userOptions) {
       OPTIONS.SwitchCase = userOptions.SwitchCase || 0;
 

@@ -2,6 +2,7 @@ import { assert, expect } from 'chai';
 import * as Lint from 'tslint';
 import * as fs from 'fs';
 import * as path from 'path';
+import { IOptions } from 'tslint';
 
 const dedent = Lint.Utils.dedent;
 const empty = '░';
@@ -114,14 +115,14 @@ class Test {
   private testFixer: boolean;
   public code: string;
   public output: string;
-  public options: any;
+  public options: Lint.Configuration.IConfigurationFile;
   public errors: LintFailure[];
 
   constructor(
     name: string,
     code: string,
     output: string,
-    options: any,
+    options: Lint.Configuration.IConfigurationFile,
     errors: LintFailure[],
     testFixer: boolean = false
   ) {
@@ -250,18 +251,25 @@ class TestGroup {
     this.ruleName = ruleName;
     this.description = description;
     this.tests = tests.map((test: ITest | string, index) => {
-      const config: any = { rules: { [ruleName]: true } };
+      const config: Lint.Configuration.IConfigurationFile = {
+        rules: new Map<string, Partial<IOptions>>([
+          [ruleName, true]
+        ]),
+        jsRules: new Map<string, Partial<IOptions>>(),
+        rulesDirectory: ['dist/rules/'],
+        extends: []
+      };
       const codeFileName = `${name}-${index}.ts`;
       if (typeof test === 'string') {
         if (groupConfig) {
-          config.rules[ruleName] = [true, ...groupConfig];
+          config.rules.set(ruleName, { ruleArguments: [true, ...groupConfig] });
         }
         return new Test(codeFileName, test, undefined, config, []);
       }
       if (test.options) {
-        config.rules[ruleName] = [true, ...test.options];
+        config.rules.set(ruleName, { ruleArguments: [true, ...test.options] });
       } else if (groupConfig) {
-        config.rules[ruleName] = [true, ...groupConfig];
+        config.rules.set(ruleName, { ruleArguments: [true, ...groupConfig] });
       }
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(
@@ -342,5 +350,5 @@ export {
   Failure,
   TestGroup,
   RuleTester,
-  readFixture,
-}
+  readFixture
+};

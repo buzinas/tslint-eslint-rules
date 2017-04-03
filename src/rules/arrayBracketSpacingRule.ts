@@ -19,7 +19,7 @@ export class Rule extends Lint.Rules.AbstractRule {
       - \`"always"\`requires one or more spaces or newlines inside array brackets
 
       The second option is an object for exceptions to the \`"never"\` option:
-      
+
       - \`"singleValue": true\` requires one or more spaces or newlines inside brackets of array
                                 literals that contain a single element
       - \`"objectsInArrays": true\` requires one or more spaces or newlines between brackets of
@@ -30,7 +30,7 @@ export class Rule extends Lint.Rules.AbstractRule {
                                    \`[ [\` or \`] ]\`
 
       When using the \`"always"\` option the second option takes on these exceptions:
-      
+
       - \`"singleValue": false\` disallows spaces inside brackets of array literals that contain a
                                  single element
       - \`"objectsInArrays": false\` disallows spaces between brackets of array literals and braces
@@ -39,7 +39,7 @@ export class Rule extends Lint.Rules.AbstractRule {
                                     of their array literal elements \`[ [\` or \`] ]\`
 
       This rule has build-in exceptions:
-      
+
       - \`"never"\` (and also the exceptions to the \`"always"\` option) allows newlines inside
                     array brackets, because this is a common pattern
       - \`"always"\` does not require spaces or newlines in empty array literals \`[]\`
@@ -108,7 +108,7 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     const ruleOptions = this.getOptions();
     this.spaced = this.hasOption(OPTION_ALWAYS) || (ruleOptions && ruleOptions.length === 0);
 
-    const opt = ruleOptions[1];
+    const opt = ruleOptions[2];
     const isDef = (x: any) => typeof x !== 'undefined';
     if (opt) {
       this.singleValueException = isDef(opt.singleValue) && opt.singleValue !== this.spaced;

@@ -1,5 +1,6 @@
 /// <reference path='../../../typings/mocha/mocha.d.ts' />
 import { makeTest } from './helper';
+import { IOptions } from 'tslint';
 
 const rule = 'no-inner-declarations';
 const scripts = {
@@ -44,34 +45,50 @@ const scripts = {
 
 describe(rule, function test() {
   it('should pass when not using inner declaration functions', function testValidFunctions() {
-    makeTest(rule, scripts.validFunctions, true, {
-      rules: {
-        [rule]: [true, 'functions']
-      }
-    });
+    const config = {
+      rules: new Map<string, Partial<IOptions>>([
+        [rule, [true, 'functions']]
+      ]),
+      rulesDirectory: [],
+      extends: [],
+      jsRules: new Map<string, Partial<IOptions>>()
+    };
+    makeTest(rule, scripts.validFunctions, true, config);
   });
 
   it('should pass when not using inner declaration functions and variables', function testValidFunctionsAndVariables() {
-    makeTest(rule, scripts.validBoth, true, {
-      rules: {
-        [rule]: [true, 'both']
-      }
-    });
+    const config = {
+      rules: new Map<string, Partial<IOptions>>([
+        [rule, [true, 'both']]
+      ]),
+      rulesDirectory: [],
+      extends: [],
+      jsRules: new Map<string, Partial<IOptions>>()
+    };
+    makeTest(rule, scripts.validBoth, true, config);
   });
 
   it('should fail when using inner declaration functions', function testInvalidFunctions() {
-    makeTest(rule, scripts.invalidFunctions, false, {
-      rules: {
-        [rule]: [true, 'functions']
-      }
-    });
+    const config = {
+      rules: new Map<string, Partial<IOptions>>([
+        [rule, [true, 'functions']]
+      ]),
+      rulesDirectory: [],
+      extends: [],
+      jsRules: new Map<string, Partial<IOptions>>()
+    };
+    makeTest(rule, scripts.invalidFunctions, false, config);
   });
 
   it('should fail when using inner declaration functions or variables', function testInvalidFunctionsAndVariables() {
-    makeTest(rule, scripts.invalidBoth, false, {
-      rules: {
-        [rule]: [true, 'both']
-      }
-    });
+    const config = {
+      rules: new Map<string, Partial<IOptions>>([
+        [rule, [true, 'both']]
+      ]),
+      rulesDirectory: [],
+      extends: [],
+      jsRules: new Map<string, Partial<IOptions>>()
+    };
+    makeTest(rule, scripts.invalidBoth, false, config);
   });
 });
