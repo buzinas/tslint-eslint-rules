@@ -47,7 +47,7 @@ describe(rule, function test() {
   it('should pass when not using inner declaration functions', function testValidFunctions() {
     const config = {
       rules: new Map<string, Partial<IOptions>>([
-        [rule, [true, 'functions']]
+        [rule, { ruleArguments: ['functions']}]
       ]),
       rulesDirectory: [],
       extends: [],
@@ -59,7 +59,7 @@ describe(rule, function test() {
   it('should pass when not using inner declaration functions and variables', function testValidFunctionsAndVariables() {
     const config = {
       rules: new Map<string, Partial<IOptions>>([
-        [rule, [true, 'both']]
+        [rule, { ruleArguments: ['both']}]
       ]),
       rulesDirectory: [],
       extends: [],
@@ -71,7 +71,7 @@ describe(rule, function test() {
   it('should fail when using inner declaration functions', function testInvalidFunctions() {
     const config = {
       rules: new Map<string, Partial<IOptions>>([
-        [rule, [true, 'functions']]
+        [rule, { ruleArguments: ['functions']}]
       ]),
       rulesDirectory: [],
       extends: [],
@@ -83,7 +83,7 @@ describe(rule, function test() {
   it('should fail when using inner declaration functions or variables', function testInvalidFunctionsAndVariables() {
     const config = {
       rules: new Map<string, Partial<IOptions>>([
-        [rule, [true, 'both']]
+        [rule, { ruleArguments: ['both']}]
       ]),
       rulesDirectory: [],
       extends: [],
