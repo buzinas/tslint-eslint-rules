@@ -262,14 +262,17 @@ class TestGroup {
       const codeFileName = `${name}-${index}.ts`;
       if (typeof test === 'string') {
         if (groupConfig) {
-          config.rules.set(ruleName, { ruleArguments: groupConfig });
+          const ruleArgs = Array.isArray(groupConfig) ? groupConfig : [groupConfig];
+          config.rules.set(ruleName, { ruleArguments: ruleArgs });
         }
         return new Test(codeFileName, test, undefined, config, []);
       }
       if (test.options) {
-        config.rules.set(ruleName, { ruleArguments: test.options });
+        const ruleArgs = Array.isArray(test.options) ? test.options : [test.options];
+        config.rules.set(ruleName, { ruleArguments: ruleArgs });
       } else if (groupConfig) {
-        config.rules.set(ruleName, { ruleArguments: groupConfig });
+        const ruleArgs = Array.isArray(groupConfig) ? groupConfig : [groupConfig];
+        config.rules.set(ruleName, { ruleArguments: ruleArgs });
       }
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(

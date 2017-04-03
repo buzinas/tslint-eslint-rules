@@ -34,7 +34,7 @@ export function makeTest(rule: string, scripts: Array<string>, expected: boolean
       jsRules: new Map<string, Partial<IOptions>>()
     };
 
-    config.rules[rule] = true;
+    config.rules.set(rule, true);
   }
 
   scripts.forEach((code) => {
