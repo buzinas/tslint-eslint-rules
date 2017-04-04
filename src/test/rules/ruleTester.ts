@@ -2,7 +2,6 @@ import { assert, expect } from 'chai';
 import * as Lint from 'tslint';
 import * as fs from 'fs';
 import * as path from 'path';
-import { IOptions } from 'tslint';
 
 const dedent = Lint.Utils.dedent;
 const empty = '░';
@@ -252,10 +251,10 @@ class TestGroup {
     this.description = description;
     this.tests = tests.map((test: ITest | string, index) => {
       const config: Lint.Configuration.IConfigurationFile = {
-        rules: new Map<string, Partial<IOptions>>([
+        rules: new Map<string, Partial<Lint.IOptions>>([
           [ruleName, true]
         ]),
-        jsRules: new Map<string, Partial<IOptions>>(),
+        jsRules: new Map<string, Partial<Lint.IOptions>>(),
         rulesDirectory: ['dist/rules/'],
         extends: []
       };
