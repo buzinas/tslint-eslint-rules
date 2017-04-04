@@ -1,7 +1,6 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
 import { expect } from 'chai';
 import * as Lint from 'tslint';
-import { IOptions } from 'tslint';
 
 const options: Lint.ILinterOptions = {
   fix: false,
@@ -29,12 +28,12 @@ export function makeTest(rule: string, scripts: Array<string>, expected: boolean
   if (!config) {
     config = {
       rulesDirectory: [],
-      rules: new Map<string, Partial<IOptions>>(),
+      rules: new Map<string, Partial<Lint.IOptions>>([
+        [rule, true]
+      ]),
       extends: [],
-      jsRules: new Map<string, Partial<IOptions>>()
+      jsRules: new Map<string, Partial<Lint.IOptions>>()
     };
-
-    config.rules.set(rule, true);
   }
 
   scripts.forEach((code) => {

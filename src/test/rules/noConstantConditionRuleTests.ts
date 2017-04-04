@@ -217,6 +217,7 @@ describe(rule, function test() {
   });
 
   it('should pass for literals in loops when checkLoops is false', function testCheckLoopsFalse() {
+    // TODO: This configuration will go away once we start using the ruleTester
     const config = {
       rules: new Map<string, Partial<IOptions>>([
         ['no-constant-condition', { ruleArguments: [{ checkLoops: false }] }]
