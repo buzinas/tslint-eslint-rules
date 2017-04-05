@@ -1,6 +1,6 @@
 {
   "name": "tslint-eslint-rules",
-  "version": "3.5.1",
+  "version": "4.0.0",
   "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
   "scripts": {
