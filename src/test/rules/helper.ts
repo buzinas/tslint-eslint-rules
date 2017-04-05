@@ -12,9 +12,9 @@ const options: Lint.ILinterOptions = {
 /**
  * @deprecated Use ruleTester
  */
-export function testScript(rule: string, scriptText: string, config: Lint.Configuration.IConfigurationFile): boolean {
+export function testScript(rule: string, scriptText: string, config: any): boolean {
   const linter = new Lint.Linter(options);
-  linter.lint(`${rule}.ts`, scriptText, config);
+  linter.lint(`${rule}.ts`, scriptText, Lint.Configuration.parseConfigFile(config));
 
   const failures = JSON.parse(linter.getResult().output);
 
@@ -24,16 +24,13 @@ export function testScript(rule: string, scriptText: string, config: Lint.Config
 /**
  * @deprecated Use ruleTester
  */
-export function makeTest(rule: string, scripts: Array<string>, expected: boolean, config?: Lint.Configuration.IConfigurationFile) {
+export function makeTest(rule: string, scripts: Array<string>, expected: boolean, config?: { rules: {} }) {
   if (!config) {
     config = {
-      rulesDirectory: [],
-      rules: new Map<string, Partial<Lint.IOptions>>([
-        [rule, true]
-      ]),
-      extends: [],
-      jsRules: new Map<string, Partial<Lint.IOptions>>()
+      rules: {}
     };
+
+    config.rules[rule] = true;
   }
 
   scripts.forEach((code) => {

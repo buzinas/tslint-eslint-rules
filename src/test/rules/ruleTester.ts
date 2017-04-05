@@ -250,29 +250,21 @@ class TestGroup {
     this.ruleName = ruleName;
     this.description = description;
     this.tests = tests.map((test: ITest | string, index) => {
-      const config: Lint.Configuration.IConfigurationFile = {
-        rules: new Map<string, Partial<Lint.IOptions>>([
-          [ruleName, true]
-        ]),
-        jsRules: new Map<string, Partial<Lint.IOptions>>(),
-        rulesDirectory: ['dist/rules/'],
-        extends: []
-      };
+      const config: any = { rules: { [ruleName]: true } };
       const codeFileName = `${name}-${index}.ts`;
       if (typeof test === 'string') {
         if (groupConfig) {
-          const ruleArgs = Array.isArray(groupConfig) ? groupConfig : [groupConfig];
-          config.rules.set(ruleName, { ruleArguments: ruleArgs });
+          config.rules[ruleName] = [true, ...groupConfig];
         }
-        return new Test(codeFileName, test, undefined, config, []);
+        const configFile = Lint.Configuration.parseConfigFile(config);
+        return new Test(codeFileName, test, undefined, configFile, []);
       }
       if (test.options) {
-        const ruleArgs = Array.isArray(test.options) ? test.options : [test.options];
-        config.rules.set(ruleName, { ruleArguments: ruleArgs });
+        config.rules[ruleName] = [true, ...test.options];
       } else if (groupConfig) {
-        const ruleArgs = Array.isArray(groupConfig) ? groupConfig : [groupConfig];
-        config.rules.set(ruleName, { ruleArguments: ruleArgs });
+        config.rules[ruleName] = [true, ...groupConfig];
       }
+      const configFile = Lint.Configuration.parseConfigFile(config);
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(
           codeFileName,
@@ -282,7 +274,7 @@ class TestGroup {
           error.endPosition
         );
       });
-      return new Test(codeFileName, test.code, test.output, config, failures, testFixer);
+      return new Test(codeFileName, test.code, test.output, configFile, failures, testFixer);
     });
   }
 }
