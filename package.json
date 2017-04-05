@@ -24,6 +24,7 @@
   "author": "Vitor Buzinaro <buzinas@buzinas.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^7.0.12",
     "chai": "^3.5.0",
     "es6-promise": "^4.0.4",
     "gulp": "^3.9.1",
@@ -31,12 +32,12 @@
     "gulp-spawn-mocha": "^2.2.2",
     "gulp-tslint": "^7.0.0",
     "gulp-typescript": "^3.0.1",
-    "tslint": "^4.0.0",
-    "typescript": "^2.0.3",
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.0",
     "yargs": "^5.0.0"
   },
   "peerDependencies": {
-    "tslint": "^4.5.0"
+    "tslint": "^5.0.0"
   },
   "dependencies": {
     "doctrine": "^0.7.2",

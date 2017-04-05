@@ -53,20 +53,20 @@ class ObjectCurlySpacingWalker extends Lint.RuleWalker {
     const trailingSpace = text.match(/(\s{0,2})}$/)[1].length;
     if (this.always) {
       if (leadingSpace === 0) {
-        const fix = this.createFix(this.appendText(node.getStart() + 1, ' '));
+        const fix = Lint.Replacement.appendText(node.getStart() + 1, ' ');
         this.addFailure(this.createFailure(node.getStart(), 1, Rule.FAILURE_STRING.always.start, fix));
       }
       if (trailingSpace === 0) {
-        const fix = this.createFix(this.appendText(node.getEnd() - 1, ' '));
+        const fix = Lint.Replacement.appendText(node.getEnd() - 1, ' ');
         this.addFailure(this.createFailure(node.getEnd() - 1, 1, Rule.FAILURE_STRING.always.end, fix));
       }
     } else {
       if (leadingSpace > 0) {
-        const fix = this.createFix(this.deleteText(node.getStart() + 1, leadingSpace));
+        const fix = Lint.Replacement.deleteText(node.getStart() + 1, leadingSpace);
         this.addFailure(this.createFailure(node.getStart(), 1, Rule.FAILURE_STRING.never.start, fix));
       }
       if (trailingSpace > 0) {
-        const fix = this.createFix(this.deleteText(node.getEnd() - trailingSpace - 1, trailingSpace));
+        const fix = Lint.Replacement.deleteText(node.getEnd() - trailingSpace - 1, trailingSpace);
         this.addFailure(this.createFailure(node.getEnd() - 1, 1, Rule.FAILURE_STRING.never.end, fix));
       }
     }

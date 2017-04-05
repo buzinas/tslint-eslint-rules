@@ -19,7 +19,7 @@ export class Rule extends Lint.Rules.AbstractRule {
       - \`"always"\`requires one or more spaces or newlines inside array brackets
 
       The second option is an object for exceptions to the \`"never"\` option:
-      
+
       - \`"singleValue": true\` requires one or more spaces or newlines inside brackets of array
                                 literals that contain a single element
       - \`"objectsInArrays": true\` requires one or more spaces or newlines between brackets of
@@ -30,7 +30,7 @@ export class Rule extends Lint.Rules.AbstractRule {
                                    \`[ [\` or \`] ]\`
 
       When using the \`"always"\` option the second option takes on these exceptions:
-      
+
       - \`"singleValue": false\` disallows spaces inside brackets of array literals that contain a
                                  single element
       - \`"objectsInArrays": false\` disallows spaces between brackets of array literals and braces
@@ -39,7 +39,7 @@ export class Rule extends Lint.Rules.AbstractRule {
                                     of their array literal elements \`[ [\` or \`] ]\`
 
       This rule has build-in exceptions:
-      
+
       - \`"never"\` (and also the exceptions to the \`"always"\` option) allows newlines inside
                     array brackets, because this is a common pattern
       - \`"always"\` does not require spaces or newlines in empty array literals \`[]\`
@@ -123,25 +123,25 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
 
   private reportNoBeginningSpace(token: ts.Node, space: number) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.deleteText(start + 1, space));
+    const fix = Lint.Replacement.deleteText(start + 1, space);
     this.report(start, 'There should be no space after "["', fix);
   }
 
   private reportRequiredBeginningSpace(token: ts.Node) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.appendText(start + 1, ' '));
+    const fix = Lint.Replacement.appendText(start + 1, ' ');
     this.report(start, 'A space is required after "["', fix);
   }
 
   private reportRequiredEndingSpace(token: ts.Node) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.appendText(start, ' '));
+    const fix = Lint.Replacement.appendText(start, ' ');
     this.report(start, 'A space is required before "]"', fix);
   }
 
   private reportNoEndingSpace(token: ts.Node, space: number) {
     const start = token.getStart(this.getSourceFile());
-    const fix = this.createFix(this.deleteText(start - space, space));
+    const fix = Lint.Replacement.deleteText(start - space, space);
     this.report(start, 'There should be no space before "]"', fix);
   }
 

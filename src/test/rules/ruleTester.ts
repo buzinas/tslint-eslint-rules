@@ -114,14 +114,14 @@ class Test {
   private testFixer: boolean;
   public code: string;
   public output: string;
-  public options: any;
+  public options: Lint.Configuration.IConfigurationFile;
   public errors: LintFailure[];
 
   constructor(
     name: string,
     code: string,
     output: string,
-    options: any,
+    options: Lint.Configuration.IConfigurationFile,
     errors: LintFailure[],
     testFixer: boolean = false
   ) {
@@ -187,7 +187,7 @@ class Test {
     assert(expected.length === 0 && found.length === 0, msg);
     if (this.testFixer && this.output) {
       const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
-      const fixedCode = Lint.Fix.applyAll(this.code, fixes);
+      const fixedCode = Lint.Replacement.applyFixes(this.code, fixes);
       const fixerMsg = [
         `Fixer output mismatch in ${this.name}:`,
         '',
@@ -250,18 +250,28 @@ class TestGroup {
     this.ruleName = ruleName;
     this.description = description;
     this.tests = tests.map((test: ITest | string, index) => {
-      const config: any = { rules: { [ruleName]: true } };
+      const config: Lint.Configuration.IConfigurationFile = {
+        rules: new Map<string, Partial<Lint.IOptions>>([
+          [ruleName, true]
+        ]),
+        jsRules: new Map<string, Partial<Lint.IOptions>>(),
+        rulesDirectory: ['dist/rules/'],
+        extends: []
+      };
       const codeFileName = `${name}-${index}.ts`;
       if (typeof test === 'string') {
         if (groupConfig) {
-          config.rules[ruleName] = [true, ...groupConfig];
+          const ruleArgs = Array.isArray(groupConfig) ? groupConfig : [groupConfig];
+          config.rules.set(ruleName, { ruleArguments: ruleArgs });
         }
         return new Test(codeFileName, test, undefined, config, []);
       }
       if (test.options) {
-        config.rules[ruleName] = [true, ...test.options];
+        const ruleArgs = Array.isArray(test.options) ? test.options : [test.options];
+        config.rules.set(ruleName, { ruleArguments: ruleArgs });
       } else if (groupConfig) {
-        config.rules[ruleName] = [true, ...groupConfig];
+        const ruleArgs = Array.isArray(groupConfig) ? groupConfig : [groupConfig];
+        config.rules.set(ruleName, { ruleArguments: ruleArgs });
       }
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(
@@ -342,5 +352,5 @@ export {
   Failure,
   TestGroup,
   RuleTester,
-  readFixture,
-}
+  readFixture
+};
