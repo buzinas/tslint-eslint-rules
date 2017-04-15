@@ -9,12 +9,15 @@ const scripts = {
     'var regex = RegExp("x1f")',
     'new RegExp("[")',
     'RegExp("[")',
-    'new (function foo(){})("\\x1f")'
+    'new (function foo(){})("\\x1f")',
+    'var regex = /\\\\x20/;',
+    'var regex = new RegExp("\\x20");'
   ],
   'invalid': [
     'var regex = /\\\u001f/',
     'var regex = new RegExp("\\x1f")',
-    'var regex = RegExp("\\x1f")'
+    'var regex = RegExp("\\x1f")',
+    'var regex = /\\\\x1f/;'
   ]
 };
 
