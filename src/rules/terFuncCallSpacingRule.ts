@@ -6,6 +6,7 @@ const ALWAYS = 'always';
 
 const MISSING_SPACE = 'Missing space between function name and paren.';
 const UNEXPECTED_SPACE = 'Unexpected space between function name and paren.';
+const UNEXPECTED_NEWLINE = 'Unexpected newline between function name and paren.';
 
 interface WalkerOptions {
   expectSpace: boolean;
@@ -138,12 +139,22 @@ class RuleWalker extends Lint.AbstractWalker<WalkerOptions> {
     if (this.options.spacePattern.test(whitespace)) {
       if (!this.options.expectSpace) {
         const fix = Lint.Replacement.deleteText(start, whitespace.length);
-        this.addFailureAt(start, whitespace.length, UNEXPECTED_SPACE, fix);
+        const failureMessage = this.failureMessageForUnexpectedWhitespace(whitespace);
+        this.addFailureAt(start, whitespace.length, failureMessage, fix);
       }
     }
     else if (this.options.expectSpace) {
       const fix = Lint.Replacement.appendText(start, ' ');
       this.addFailureAt(start, 1, MISSING_SPACE, fix);
+    }
+  }
+  
+  private failureMessageForUnexpectedWhitespace(whitespace: string): string {
+    if (/[\r\n]/.test(whitespace)) {
+      return UNEXPECTED_NEWLINE;
+    }
+    else {
+      return UNEXPECTED_SPACE;
     }
   }
 }
