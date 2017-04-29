@@ -7,6 +7,11 @@ const ALWAYS = 'always';
 const MISSING_SPACE = 'Missing space between function name and paren.';
 const UNEXPECTED_SPACE = 'Unexpected space between function name and paren.';
 
+interface WalkerOptions {
+  expectSpace: boolean;
+  spacePattern: RegExp;
+}
+
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
@@ -59,69 +64,84 @@ export class Rule extends Lint.Rules.AbstractRule {
   };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-    const walker = new RuleWalker(sourceFile, this.getOptions());
+    const options = {
+      expectSpace: false,
+      spacePattern: /\s/
+    };
+    
+    let userOptions = this.getOptions().ruleArguments;
+    if (userOptions[0] === ALWAYS) {
+      options.expectSpace = true;
+      if (userOptions[1] !== undefined && userOptions[1].allowNewlines) {
+        options.spacePattern = /[ \t\r\n\u2028\u2029]/;
+      }
+      else {
+        options.spacePattern = /[ \t]/;
+      }
+    }
+    
+    const walker = new RuleWalker(sourceFile, RULE_NAME, options);
     return this.applyWithWalker(walker);
   }
 }
 
-class RuleWalker extends Lint.RuleWalker {
-  private sourceText: string;
-  private expectSpace: boolean;
-  private spacePattern: RegExp;
-
-  constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
-    super(sourceFile, options);
+class RuleWalker extends Lint.AbstractWalker<WalkerOptions> {
+  sourceText: string;
+  
+  constructor(sourceFile: ts.SourceFile, ruleName: string, options: WalkerOptions) {
+    super(sourceFile, ruleName, options);
     this.sourceText = sourceFile.getFullText();
-    this.expectSpace = false;
-
-    let userOptions = options.ruleArguments;
-    if (userOptions[0] === ALWAYS) {
-      this.expectSpace = true;
-      if (userOptions[1] !== undefined && userOptions[1].allowNewlines) {
-        this.spacePattern = /[ \t\r\n\u2028\u2029]/;
+  }
+  
+  public walk(sourceFile: ts.SourceFile) {
+    const cb = (node: ts.Node) => {
+      if (node.kind === ts.SyntaxKind.NewExpression) {
+        this.visitNewExpression(node as ts.NewExpression);
       }
-      else {
-        this.spacePattern = /[ \t]/;
+      else if(node.kind === ts.SyntaxKind.CallExpression) {
+        this.visitCallExpression(node as ts.CallExpression);
       }
-    }
-    else {
-      this.spacePattern = /\s/;
-    }
+      else if (node.kind >= ts.SyntaxKind.FirstTypeNode && node.kind <= ts.SyntaxKind.LastTypeNode) {
+        return;
+      }
+
+      return ts.forEachChild(node, cb);
+    };
+
+    return ts.forEachChild(sourceFile, cb);
   }
 
-  protected visitNewExpression(node: ts.NewExpression) {
-    this.checkWhitespaceForNode(node);
-    super.visitNewExpression(node);
+  private visitNewExpression(node: ts.NewExpression) {
+    this.checkWhitespaceAfterExpression(node.expression, node.typeArguments, node.arguments);
   }
 
-  protected visitCallExpression(node: ts.CallExpression) {
-    this.checkWhitespaceForNode(node);
-    super.visitCallExpression(node);
+  private visitCallExpression(node: ts.CallExpression) {
+    this.checkWhitespaceAfterExpression(node.expression, node.typeArguments, node.arguments);
   }
 
-  private checkWhitespaceForNode(node: ts.NewExpression | ts.CallExpression) {
-    if (node.arguments !== undefined) {
+  private checkWhitespaceAfterExpression(expression: ts.LeftHandSideExpression, typeArguments?: ts.NodeArray<ts.TypeNode>, funcArguments?: ts.NodeArray<ts.Expression>) {
+    if (funcArguments !== undefined) {
       let start;
-      if (node.typeArguments !== undefined) {
-        start = node.typeArguments.end + 1;
+      if (typeArguments !== undefined) {
+        start = typeArguments.end + 1;
       }
       else {
-        start = node.expression.getEnd();
+        start = expression.getEnd();
       }
-      this.checkWhitespaceBetween(start, node.arguments.pos - 1);
+      this.checkWhitespaceBetween(start, funcArguments.pos - 1);
     }
   }
 
   private checkWhitespaceBetween(start: number, end: number) {
     let whitespace = this.sourceText.substring(start, end);
-
-    if (this.spacePattern.test(whitespace)) {
-      if (!this.expectSpace) {
+  
+    if (this.options.spacePattern.test(whitespace)) {
+      if (!this.options.expectSpace) {
         const fix = Lint.Replacement.deleteText(start, whitespace.length);
         this.addFailureAt(start, whitespace.length, UNEXPECTED_SPACE, fix);
       }
     }
-    else if (this.expectSpace) {
+    else if (this.options.expectSpace) {
       const fix = Lint.Replacement.appendText(start, ' ');
       this.addFailureAt(start, 1, MISSING_SPACE, fix);
     }
