@@ -1,6 +1,6 @@
 import { RuleTester, Failure, Position, dedent } from './ruleTester';
 
-const ruleTester = new RuleTester('func-call-spacing');
+const ruleTester = new RuleTester('ter-func-call-spacing');
 
 function expecting(errors: [number, number, boolean][]): Failure[] {
   return errors.map((err) => {

@@ -1706,7 +1706,7 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'func-call-spacing',
-    tslintRule: 'func-call-spacing',
+    tslintRule: 'ter-func-call-spacing',
     category: 'Stylistic Issues',
     description: 'require or disallow spacing between function identifiers and their invocations',
     eslintUrl: 'http://eslint.org/docs/rules/func-call-spacing',

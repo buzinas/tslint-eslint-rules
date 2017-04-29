@@ -1,7 +1,7 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
-const RULE_NAME = 'func-call-spacing';
+const RULE_NAME = 'ter-func-call-spacing';
 const ALWAYS = 'always';
 
 const MISSING_SPACE = 'Missing space between function name and paren.';
