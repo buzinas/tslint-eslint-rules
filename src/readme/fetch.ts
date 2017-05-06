@@ -107,5 +107,5 @@ function compareToTSLint() {
 
 export {
   compareToESLint,
-  compareToTSLint,
+  compareToTSLint
 };

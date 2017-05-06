@@ -156,5 +156,5 @@ function updateRuleFiles(cb: Function) {
 export {
   formatUsage,
   updateReadme,
-  updateRuleFiles,
+  updateRuleFiles
 };

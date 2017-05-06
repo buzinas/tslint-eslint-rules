@@ -11,7 +11,7 @@ export class Rule extends Lint.Rules.AbstractRule {
     rationale: Lint.Utils.dedent`
       This rule will enforce consistency of spacing directly inside of parentheses,
       by disallowing or requiring one or more spaces to the right of (and to the
-      left of). In either case, () will still be allowed. 
+      left of). In either case, () will still be allowed.
       `,
     optionsDescription: Lint.Utils.dedent`
       There are two options for this rule:

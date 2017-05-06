@@ -16,7 +16,7 @@ export class Rule extends Lint.Rules.AbstractRule {
     optionsDescription: Lint.Utils.dedent`
       The rule takes a string option: the name of the error parameter. The default is
       \`"err"\`.
-      
+
       Sometimes the name of the error variable is not consistent across the project, so you need a
       more flexible configuration to ensure that the rule reports all unhandled errors.
 
@@ -33,7 +33,7 @@ export class Rule extends Lint.Rules.AbstractRule {
         \`anyError\`, \`some_err\` will match).
 
       In addition to the string we may specify an options object with the following property:
-      
+
       - \`allowProperties\`: (\`true\` by default) When this is set to \`false\` the rule will not
         report unhandled errors as long as the error object is handled without accessing any of its
         properties at least once. For instance, \`(err) => console.log(err.stack)\` would report an

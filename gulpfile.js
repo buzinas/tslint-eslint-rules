@@ -51,7 +51,7 @@ gulp.task('lint', function lint() {
   return gulp
     .src(SRC_FOLDER)
     .pipe(tslint({
-      formatter: 'verbose',
+      formatter: 'stylish',
     }))
     .pipe(tslint.report());
 });
