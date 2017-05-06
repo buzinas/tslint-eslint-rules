@@ -282,14 +282,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-irregular-whitespace',
-    tslintRule: 'no-irregular-whitespace',
+    tslintRule: 'ter-no-irregular-whitespace',
     category: 'Possible Errors',
-    description: 'disallow irregular whitespace outside of strings and comments (recommended)',
+    description: 'disallow irregular whitespace (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-irregular-whitespace',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-irregular-whitespace": true
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
@@ -328,14 +325,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-sparse-arrays',
-    tslintRule: 'no-sparse-arrays',
+    tslintRule: 'ter-no-sparse-arrays',
     category: 'Possible Errors',
     description: 'disallow sparse arrays (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-sparse-arrays',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-sparse-arrays": true
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
@@ -1374,13 +1368,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-unused-vars',
-    tslintRule: 'Not applicable',
+    tslintRule: 'no-unused-variable',
     category: 'Variables',
-    description: '[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).',
+    description: 'disallow unused variables (recommended).',
     eslintUrl: 'http://eslint.org/docs/rules/no-unused-vars',
-    provider: 'Not applicable'
+    tslintUrl: 'https://palantir.github.io/tslint/rules/no-unused-variable/',
+    provider: 'native'
   },
   {
     available: true,

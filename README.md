@@ -84,11 +84,11 @@ The following rules point out areas where you might have made mistakes.
 |:no_entry_sign:|[no-func-assign](http://eslint.org/docs/rules/no-func-assign)|Not applicable|disallow overwriting functions written as function declarations (recommended)|
 |:white_check_mark:|[no-inner-declarations](http://eslint.org/docs/rules/no-inner-declarations)|[no-inner-declarations](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noInnerDeclarationsRule.md)|disallow function or variable declarations in nested blocks (recommended)|
 |:white_check_mark:|[no-invalid-regexp](http://eslint.org/docs/rules/no-invalid-regexp)|[no-invalid-regexp](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noInvalidRegexpRule.md)|disallow invalid regular expression strings in the `RegExp` constructor (recommended)|
-|:white_check_mark:|[no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace)|[no-irregular-whitespace](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noIrregularWhitespaceRule.md)|disallow irregular whitespace outside of strings and comments (recommended)|
+|:white_check_mark:|[no-irregular-whitespace](http://eslint.org/docs/rules/no-irregular-whitespace)|[ter-no-irregular-whitespace](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoIrregularWhitespaceRule.md)|disallow irregular whitespace (recommended)|
 |:no_entry_sign:|[no-negated-in-lhs](http://eslint.org/docs/rules/no-negated-in-lhs)|Not applicable|disallow negation of the left operand of an `in` expression (recommended)|
 |:no_entry_sign:|[no-obj-calls](http://eslint.org/docs/rules/no-obj-calls)|Not applicable|disallow the use of object properties of the global object (`Math` and `JSON`) as functions (recommended)|
 |:white_check_mark:|[no-regex-spaces](http://eslint.org/docs/rules/no-regex-spaces)|[no-regex-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noRegexSpacesRule.md)|disallow multiple spaces in a regular expression literal (recommended)|
-|:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[no-sparse-arrays](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noSparseArraysRule.md)|disallow sparse arrays (recommended)|
+|:white_check_mark:|[no-sparse-arrays](http://eslint.org/docs/rules/no-sparse-arrays)|[ter-no-sparse-arrays](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoSparseArraysRule.md)|disallow sparse arrays (recommended)|
 |:white_check_mark:|[no-unexpected-multiline](http://eslint.org/docs/rules/no-unexpected-multiline)|[no-unexpected-multiline](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noUnexpectedMultilineRule.md)|Avoid code that looks like two expressions but is actually one|
 |:no_entry_sign:|[no-unreachable](http://eslint.org/docs/rules/no-unreachable)|Not applicable|disallow unreachable statements after a return, throw, continue, or break statement (recommended)|
 |:ballot_box_with_check:|[no-unsafe-finally](http://eslint.org/docs/rules/no-unsafe-finally)|[no-unsafe-finally](https://palantir.github.io/tslint/rules/no-unsafe-finally)|disallow control flow statements in finally blocks (recommended)|
@@ -191,7 +191,7 @@ These rules have to do with variable declarations.
 |:no_entry_sign:|[no-undef](http://eslint.org/docs/rules/no-undef)|Not applicable|disallow use of undeclared variables unless mentioned in a `/*global */` block (recommended)|
 |:x:|[no-undef-init](http://eslint.org/docs/rules/no-undef-init)|no-undef-init|disallow use of undefined when initializing variables|
 |:x:|[no-undefined](http://eslint.org/docs/rules/no-undefined)|no-undefined|disallow use of `undefined` variable|
-|:no_entry_sign:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|Not applicable|[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).|
+|:ballot_box_with_check:|[no-unused-vars](http://eslint.org/docs/rules/no-unused-vars)|[no-unused-variable](https://palantir.github.io/tslint/rules/no-unused-variable/)|disallow unused variables (recommended).|
 |:ballot_box_with_check:|[no-use-before-define](http://eslint.org/docs/rules/no-use-before-define)|[no-use-before-declare](http://palantir.github.io/tslint/rules/no-use-before-declare)|disallow use of variables before they are defined|
 
 ### Node.js and CommonJS

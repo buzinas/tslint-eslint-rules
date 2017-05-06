@@ -50,7 +50,7 @@ export class Rule extends Lint.Rules.AbstractRule {
       The string 'tab' or an integer indicating the number of spaces to use per tab.
 
       An object may be provided to fine tune the indentation rules:
-            
+
         * \`"SwitchCase"\` (default: 0) enforces indentation level for \`case\` clauses in
                            \`switch\` statements
         * \`"VariableDeclarator"\` (default: 1) enforces indentation level for \`var\` declarators;
@@ -173,7 +173,7 @@ export class Rule extends Lint.Rules.AbstractRule {
               "body": 1
             }
           }
-        ]      
+        ]
         `
     ],
     typescriptOnly: false,
@@ -799,7 +799,8 @@ class IndentWalker extends Lint.RuleWalker {
 
       nodeIndent = this.getNodeIndent(parent).goodChar;
       if (parentVarNode && this.getLine(parentVarNode) !== nodeLine) {
-        if (!isKind(parent, 'VariableDeclaration') || parentVarNode === parentVarNode.parent.declarations[0]) {
+        // TODO: parentVarNode.parent can be a CatchClause and this one may not have a declarations list
+        if (!isKind(parent, 'VariableDeclaration') || parentVarNode === (parentVarNode.parent as ts.VariableDeclarationList).declarations[0]) {
           const parentVarLine = this.getLine(parentVarNode);
           const parentLine = this.getLine(parent);
           if (isKind(parent, 'VariableDeclaration') && parentVarLine === parentLine) {
