@@ -226,6 +226,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing)|computed-property-spacing|require or disallow padding inside computed properties|
 |:x:|[consistent-this](http://eslint.org/docs/rules/consistent-this)|consistent-this|enforce consistent naming when capturing the current execution context|
 |:ballot_box_with_check:|[eol-last](http://eslint.org/docs/rules/eol-last)|[eofline](https://palantir.github.io/tslint/rules/eofline)|enforce newline at the end of file, with no multiple empty lines|
+|:white_check_mark:|[func-call-spacing](http://eslint.org/docs/rules/func-call-spacing)|[ter-func-call-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terFuncCallSpacingRule.md)|require or disallow spacing between function identifiers and their invocations|
 |:x:|[func-names](http://eslint.org/docs/rules/func-names)|func-names|require function expressions to have a name|
 |:x:|[func-style](http://eslint.org/docs/rules/func-style)|func-style|enforce use of function declarations or expressions|
 |:x:|[id-blacklist](http://eslint.org/docs/rules/id-blacklist)|id-blacklist|disallow certain identifiers to prevent them being used|
