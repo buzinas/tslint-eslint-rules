@@ -16,14 +16,14 @@ export class Rule extends Lint.Rules.AbstractRule {
     description: 'require arrow functions as callbacks',
     rationale: Lint.Utils.dedent`
       Arrow functions are suited to callbacks, because:
-      
+
       * \`this\` keywords in arrow functions bind to the upper scope’s.
       * The notation of the arrow function is shorter than function expression’s.
       `,
     optionsDescription: Lint.Utils.dedent`
       This rule takes one optional argument, an object which is an options object. This object
       may specify the following properties:
-      
+
       * \`"allowNamedFunctions"\` (default false) When set to \`true\`, the rule doesn't warn on
                                   named functions used as callback.
       * \`"allowUnboundThis"\` (default true) When set to \`false\`, this option allows the use of

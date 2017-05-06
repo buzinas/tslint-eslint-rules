@@ -1,7 +1,26 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
+const RULE_NAME = 'ter-no-irregular-whitespace';
+
 export class Rule extends Lint.Rules.AbstractRule {
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    description: 'disallow irregular whitespace (recommended)',
+    rationale: Lint.Utils.dedent`
+      Invalid or irregular whitespace causes issues with ECMAScript 5 parsers and also makes code
+      harder to debug in a similar nature to mixed tabs and spaces.
+      `,
+    optionsDescription: '',
+    options: {},
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true]
+        `
+    ],
+    typescriptOnly: false,
+    type: 'typescript'
+  };
   public static RULE_NAME = 'ter-no-irregular-whitespace';
   public static FAILURE_STRING = 'irregular whitespace not allowed';
 
