@@ -20,8 +20,8 @@ function requestFromGithub(path, callback) {
   };
   https.get(options, (resp) => {
     resp.setEncoding('utf8');
-    const buffer = [];
-    resp.on('data', (chunk) => {
+    const buffer: string[] = [];
+    resp.on('data', (chunk: string) => {
       buffer.push(chunk);
     });
     resp.on('end', () => {
@@ -43,7 +43,7 @@ function compareToESLint() {
       const esRules = Object.keys(ruleESMap);
       const missing = arrayDiff(rules.map(x => toCamelCase(x)), esRules);
       const deprecated = arrayDiff(esRules, rules.map(x => toCamelCase(x)));
-      const buffer = [];
+      const buffer: string[] = [];
 
       if (missing.length) {
         buffer.push('Missing ESLint rules (http://eslint.org/docs/rules):');
@@ -88,7 +88,7 @@ function compareToTSLint() {
 
       const tsRules = Object.keys(ruleTSMap);
       const missing = arrayDiff(rules, tsRules);
-      const buffer = [];
+      const buffer: string[] = [];
 
       if (missing.length) {
         buffer.push('Missing TSLint rules (http://palantir.github.io/tslint/rules):');

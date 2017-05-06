@@ -8,8 +8,8 @@ function formatUsage(usage) {
 }
 
 function createRuleTable() {
-  const buffer = [];
-  let category = null;
+  const buffer: string[] = [];
+  let category = '';
   rules.forEach((rule) => {
     if (category !== rule.category) {
       category = rule.category;
@@ -108,10 +108,10 @@ ${rule.description}${usage}${note}
 `;
 }
 
-function updateRuleFile(name: string, rule: IRule) {
+function updateRuleFile(name: string, rule: IRule): Promise<void> {
   const baseUrl = 'https://github.com/buzinas/tslint-eslint-rules/blob/master';
   const docFileName = `src/docs/rules/${name}Rule.md`;
-  return new Promise((fulfill, reject) => {
+  return new Promise<void>((fulfill, reject) => {
     fs.readFile(docFileName, 'utf8', (readErr, data) => {
       rule.tslintUrl = rule.tslintUrl || `${baseUrl}/${docFileName}`;
       let content = readErr || !data ? '<!-- Start:AutoDoc\n End:AutoDoc -->' : data;
@@ -142,7 +142,7 @@ function updateRuleFiles(cb: Function) {
   const ruleNames = allFiles
     .filter(name => /\.ts$/.test(name))
     .map(name => name.substr(0, name.length - 7));
-  const allPromises = [];
+  const allPromises: Promise<void>[] = [];
   ruleNames.forEach((name) => {
     allPromises.push(updateRuleFile(name, ruleTSMap[name]));
   });

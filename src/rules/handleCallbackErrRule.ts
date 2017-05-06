@@ -128,7 +128,8 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
    * Pops a function scope from the stack.
    */
   private exitScope(): IFunctionScope {
-    return this.stack.pop();
+    // There will an item to pop because this method is called after `enterScope`.
+    return this.stack.pop()!;
   }
 
   protected visitSourceFile(node: ts.SourceFile) {
@@ -188,8 +189,9 @@ class ErrCallbackHandlerWalker extends Lint.RuleWalker {
     // Only execute when inside a function scope and dealing with an identifier.
     if (
       this.stack.length > 0 &&
-      node.parent.kind !== ts.SyntaxKind.Parameter &&
-      node.kind === ts.SyntaxKind.Identifier
+      node.kind === ts.SyntaxKind.Identifier &&
+      node.parent &&
+      node.parent.kind !== ts.SyntaxKind.Parameter
     ) {
       let doCheck = false;
       const inPropertyAccess = this.isPropAccess(node.parent);
