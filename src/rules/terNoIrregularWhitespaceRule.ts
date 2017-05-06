@@ -2,7 +2,7 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 export class Rule extends Lint.Rules.AbstractRule {
-  public static RULE_NAME = 'no-irregular-whitespace';
+  public static RULE_NAME = 'ter-no-irregular-whitespace';
   public static FAILURE_STRING = 'irregular whitespace not allowed';
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
