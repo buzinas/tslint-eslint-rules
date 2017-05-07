@@ -226,7 +226,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
   }
 
   private addReturn(node: ts.ReturnStatement) {
-    let parent: ts.Node = node;
+    let parent: ts.Node | undefined = node;
     let nodes = this.fns.map(fn => fn.node);
 
     while (parent && nodes.indexOf(parent) === -1)
@@ -254,7 +254,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     ];
 
     if (!/^\/\*\*/.test(node.getFullText().trim())) {
-      if (ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
+      if (node.parent && ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
         return this.getJSDocComment(node.parent);
       }
       return {};
@@ -360,7 +360,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     }
 
     // check for functions missing @returns
-    if (!isOverride && !hasReturns && !hasConstructor && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
+    if (!isOverride && !hasReturns && !hasConstructor && node.parent && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
       if (OPTIONS.requireReturn || fn.returnPresent) {
         this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(OPTIONS.prefer['returns'])));
       }

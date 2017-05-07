@@ -7,7 +7,7 @@
     "importHelpers": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "removeComments": true
   }
 }

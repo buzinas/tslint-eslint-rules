@@ -274,7 +274,7 @@ class TestGroup {
           error.endPosition
         );
       });
-      return new Test(codeFileName, test.code, test.output, configFile, failures, testFixer);
+      return new Test(codeFileName, test.code, test.output || '', configFile, failures, testFixer);
     });
   }
 }

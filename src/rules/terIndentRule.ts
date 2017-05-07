@@ -708,7 +708,7 @@ class IndentWalker extends Lint.RuleWalker {
    * Returns the expected indentation for the case statement.
    */
   private expectedCaseIndent(node: ts.Node, switchIndent?: number) {
-    const switchNode = (node.kind === ts.SyntaxKind.SwitchStatement) ? node : node.parent;
+    const switchNode = (node.kind === ts.SyntaxKind.SwitchStatement) ? node : node.parent!;
     const line = this.getLine(switchNode);
     let caseIndent;
 
@@ -814,7 +814,7 @@ class IndentWalker extends Lint.RuleWalker {
         if (!isKind(parent, 'VariableDeclaration') || parentVarNode === (parentVarNode.parent as ts.VariableDeclarationList).declarations[0]) {
           const parentVarLine = this.getLine(parentVarNode);
           const parentLine = this.getLine(parent);
-          if (isKind(parent, 'VariableDeclaration') && parentVarLine === parentLine) {
+          if (isKind(parent, 'VariableDeclaration') && parentVarLine === parentLine && parentVarNode.parent) {
             varKind = parentVarNode.parent.getFirstToken().getText();
             nodeIndent = nodeIndent + (indentSize * OPTIONS.VariableDeclarator[varKind]);
           } else if (
@@ -849,10 +849,10 @@ class IndentWalker extends Lint.RuleWalker {
     }
 
     /*
-       * Check if the node is a multiple variable declaration; if so, then
-       * make sure indentation takes that into account.
-       */
-    if (parentVarNode && this.isNodeInVarOnTop(node, parentVarNode)) {
+     * Check if the node is a multiple variable declaration; if so, then
+     * make sure indentation takes that into account.
+     */
+    if (parentVarNode && this.isNodeInVarOnTop(node, parentVarNode) && parentVarNode.parent) {
       varKind = parentVarNode.parent.getFirstToken().getText();
       elementsIndent += indentSize * OPTIONS.VariableDeclarator[varKind];
     }
@@ -933,6 +933,10 @@ class IndentWalker extends Lint.RuleWalker {
    * followed by ';'
    */
   private checkLastReturnStatementLineIndent(node: ts.ReturnStatement, firstLineIndent) {
+    if (!node.expression) {
+      return;
+    }
+
     const lastToken = node.expression.getLastToken();
 
     const endIndex = lastToken.getStart();
@@ -1192,7 +1196,7 @@ class IndentWalker extends Lint.RuleWalker {
   }
 
   protected visitReturnStatement(node: ts.ReturnStatement) {
-    if (this.isSingleLineNode(node)) {
+    if (this.isSingleLineNode(node) || !node.expression) {
       return;
     }
 
