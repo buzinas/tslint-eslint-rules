@@ -27,13 +27,20 @@ class NoExtraBooleanCastWalker extends Lint.RuleWalker {
   }
 
   private validateNoExtraBoolean(node: ts.PrefixUnaryExpression) {
+    if (!node.parent || !node.parent.parent) {
+      return;
+    }
+
     const parent = node.parent;
     let grandparent = parent.parent;
 
     // Exit early if it's guaranteed not to match
-    if (node.operator !== ts.SyntaxKind.ExclamationToken ||
+    if (
+      node.operator !== ts.SyntaxKind.ExclamationToken ||
       parent.kind !== ts.SyntaxKind.PrefixUnaryExpression ||
-      (parent as ts.PrefixUnaryExpression).operator !== ts.SyntaxKind.ExclamationToken) {
+      (parent as ts.PrefixUnaryExpression).operator !== ts.SyntaxKind.ExclamationToken ||
+      !grandparent
+    ) {
       return;
     }
 
@@ -42,28 +49,25 @@ class NoExtraBooleanCastWalker extends Lint.RuleWalker {
       grandparent = grandparent.parent;
     }
 
+    if (!grandparent) {
+      return;
+    }
+
     if (grandparent.kind === ts.SyntaxKind.IfStatement) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.if));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.DoStatement) {
+    } else if (grandparent.kind === ts.SyntaxKind.DoStatement) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.do));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.WhileStatement) {
+    } else if (grandparent.kind === ts.SyntaxKind.WhileStatement) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.while));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.ConditionalExpression && parent === (grandparent as ts.ConditionalExpression).condition) {
+    } else if (grandparent.kind === ts.SyntaxKind.ConditionalExpression && parent === (grandparent as ts.ConditionalExpression).condition) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.ternaryif));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.ForStatement && parent === (grandparent as ts.ForStatement).condition) {
+    } else if (grandparent.kind === ts.SyntaxKind.ForStatement && parent === (grandparent as ts.ForStatement).condition) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.for));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.PrefixUnaryExpression && (grandparent as ts.PrefixUnaryExpression).operator === ts.SyntaxKind.ExclamationToken) {
+    } else if (grandparent.kind === ts.SyntaxKind.PrefixUnaryExpression && (grandparent as ts.PrefixUnaryExpression).operator === ts.SyntaxKind.ExclamationToken) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.unaryCast));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.CallExpression && /^Boolean/.test(grandparent.getText())) {
+    } else if (grandparent.kind === ts.SyntaxKind.CallExpression && /^Boolean/.test(grandparent.getText())) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.objectCast));
-    }
-    else if (grandparent.kind === ts.SyntaxKind.NewExpression && /^new Boolean/.test(grandparent.getText())) {
+    } else if (grandparent.kind === ts.SyntaxKind.NewExpression && /^new Boolean/.test(grandparent.getText())) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING.newCast));
     }
   }

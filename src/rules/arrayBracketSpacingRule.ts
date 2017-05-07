@@ -236,7 +236,7 @@ class ArrayBracketSpacingWalker extends Lint.RuleWalker {
     const start = node.end;
     const text = this.getSourceFile().text.substring(start, end);
     const m = text.match(/\/\*.*\*\//);
-    if (m && m.index >= 0) {
+    if (m && typeof m.index === 'number') {
       const len = m[0].length;
       return trailing ? end - (start + m.index + len) : m.index;
     }

@@ -73,7 +73,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class SpaceInParensWalker extends Lint.RuleWalker {
   private spaced: boolean;
-  private exceptionsArrayOptions = [];
+  private exceptionsArrayOptions: string[] = [];
   private braceException: boolean;
   private bracketException: boolean;
   private parenException: boolean;
@@ -96,8 +96,8 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   }
 
   private getExceptions() {
-    const openers = [];
-    const closers = [];
+    const openers: ts.SyntaxKind[] = [];
+    const closers: ts.SyntaxKind[] = [];
 
     if (this.braceException) {
       openers.push(ts.SyntaxKind.OpenBraceToken);
