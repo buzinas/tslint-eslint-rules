@@ -683,7 +683,7 @@ class IndentWalker extends Lint.RuleWalker {
     // check if the node is inside a variable
     const parentVarNode = this.getVariableDeclaratorNode(node);
 
-    if (parentVarNode && this.isNodeInVarOnTop(node, parentVarNode)) {
+    if (parentVarNode && this.isNodeInVarOnTop(node, parentVarNode) && parentVarNode.parent) {
       const varKind = parentVarNode.parent.getFirstToken().getText();
       indent += indentSize * OPTIONS.VariableDeclarator[varKind];
     }

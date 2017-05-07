@@ -32,7 +32,7 @@ class NoExtraSemiWalker extends Lint.RuleWalker {
   }
 
   private visitEmptyStatement(node: ts.Statement) {
-    if (this.ALLOWED_PARENT_TYPES.indexOf(node.parent.kind) === -1) {
+    if (node.parent && this.ALLOWED_PARENT_TYPES.indexOf(node.parent.kind) === -1) {
       this.validateNoExtraSemi(node);
     }
   }

@@ -175,7 +175,7 @@ class RuleWalker extends Lint.RuleWalker {
     const nodeText = node.getFullText();
 
     if (node.kind === ts.SyntaxKind.ImportEqualsDeclaration) {
-      const aliasMatch = /\bimport\s+(\w+)\s*=.+/g.exec(nodeText);
+      const aliasMatch = /\bimport\s+(\w+)\s*=.+/g.exec(nodeText)!;
       return {
         memberSyntaxType: MemberSyntaxType.Alias,
         sortValue: aliasMatch[1]

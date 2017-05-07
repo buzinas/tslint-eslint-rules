@@ -38,7 +38,7 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
   private exceptions: Object = {};
   private src: string;
   private targets: number[] = [];
-  private lastNode: ts.Node = null;
+  private lastNode: ts.Node;
   private targetNode = {};
   private targetIndex = 0;
 

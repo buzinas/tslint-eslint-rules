@@ -49,8 +49,9 @@ class ObjectCurlySpacingWalker extends Lint.RuleWalker {
       // Rule does not apply when the braces span multiple lines
       return;
     }
-    const leadingSpace = text.match(/^\{(\s{0,2})/)[1].length;
-    const trailingSpace = text.match(/(\s{0,2})}$/)[1].length;
+    // We have matching braces, lets find out number of leading and trailing spaces
+    const leadingSpace = text.match(/^\{(\s{0,2})/)![1].length;
+    const trailingSpace = text.match(/(\s{0,2})}$/)![1].length;
     if (this.always) {
       if (leadingSpace === 0) {
         const fix = Lint.Replacement.appendText(node.getStart() + 1, ' ');
