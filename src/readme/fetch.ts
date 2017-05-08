@@ -2,15 +2,15 @@ import { Promise } from 'es6-promise';
 import * as https from 'https';
 import { ruleTSMap, ruleESMap, toCamelCase } from './rules';
 
-function camelCaseToDash(str) {
+function camelCaseToDash(str: string) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-function arrayDiff(source, target) {
+function arrayDiff(source: string[], target: string[]) {
   return source.filter(item => target.indexOf(item) === -1);
 }
 
-function requestFromGithub(path, callback) {
+function requestFromGithub(path: string, callback: (data: any) => void) {
   const options = {
     path,
     host: 'api.github.com',

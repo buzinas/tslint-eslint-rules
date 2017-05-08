@@ -38,7 +38,7 @@ function assign(target: any, ...sources: any[]): any {
   return target;
 }
 
-function isKind(node: ts.Node, kind: string) {
+function isKind<T extends ts.Node>(node: ts.Node, kind: string): node is T {
   return node.kind === ts.SyntaxKind[kind];
 }
 
@@ -290,7 +290,7 @@ class IndentWalker extends Lint.RuleWalker {
    * actualSpaces: The actual number of indentation spaces that were found on this line
    * actualTabs: The actual number of indentation tabs that were found on this line
    */
-  private createErrorMessage(expectedAmount, actualSpaces, actualTabs) {
+  private createErrorMessage(expectedAmount: number, actualSpaces: number, actualTabs: number): string {
     const expectedStatement = `${expectedAmount} ${indentType}${expectedAmount === 1 ? '' : 's'}`;
     const foundSpacesWord = `space${actualSpaces === 1 ? '' : 's'}`;
     const foundTabsWord = `tab${actualTabs === 1 ? '' : 's'}`;
@@ -318,7 +318,7 @@ class IndentWalker extends Lint.RuleWalker {
    * gottenSpaces: Indentation space count in the actual node/code
    * gottenTabs: Indentation tab count in the actual node/code
    */
-  private report(node: ts.Node, needed, gottenSpaces, gottenTabs, loc?) {
+  private report(node: ts.Node, needed: number, gottenSpaces: number, gottenTabs: number, loc?: number) {
     if (gottenSpaces && gottenTabs) {
       // Don't report lines that have both spaces and tabs to avoid conflicts with rules that
       // report a mix of tabs and spaces.
@@ -412,7 +412,7 @@ class IndentWalker extends Lint.RuleWalker {
     };
   }
 
-  private checkNodeIndent(node: ts.Node, neededIndent: number) {
+  private checkNodeIndent(node: ts.Node, neededIndent: number): void {
     const actualIndent = this.getNodeIndent(node);
     if (
       !isKind(node, 'ArrayLiteralExpression') &&
@@ -423,8 +423,8 @@ class IndentWalker extends Lint.RuleWalker {
       this.report(node, neededIndent, actualIndent.space, actualIndent.tab, actualIndent.contentStart);
     }
 
-    if (isKind(node, 'IfStatement')) {
-      const elseStatement = (node as ts.IfStatement).elseStatement;
+    if (isKind<ts.IfStatement>(node, 'IfStatement')) {
+      const elseStatement = node.elseStatement;
       if (elseStatement) {
         const elseKeyword = node.getChildren().filter(ch => isKind(ch, 'ElseKeyword')).shift()!;
         this.checkNodeIndent(elseKeyword, neededIndent);
@@ -432,8 +432,8 @@ class IndentWalker extends Lint.RuleWalker {
           this.checkNodeIndent(elseStatement, neededIndent);
         }
       }
-    } else if (isKind(node, 'TryStatement')) {
-      const handler = (node as ts.TryStatement).catchClause;
+    } else if (isKind<ts.TryStatement>(node, 'TryStatement')) {
+      const handler = node.catchClause;
       if (handler) {
         const catchKeyword = handler.getChildren().filter(ch => isKind(ch, 'CatchKeyword')).shift()!;
         this.checkNodeIndent(catchKeyword, neededIndent);
@@ -442,7 +442,7 @@ class IndentWalker extends Lint.RuleWalker {
         }
       }
 
-      const finalizer = (node as ts.TryStatement).finallyBlock;
+      const finalizer = node.finallyBlock;
       if (finalizer) {
         const finallyKeyword = node.getChildren().filter(ch => isKind(ch, 'FinallyKeyword')).shift()!;
         this.checkNodeIndent(finallyKeyword, neededIndent);
@@ -453,7 +453,7 @@ class IndentWalker extends Lint.RuleWalker {
     }
   }
 
-  private isSingleLineNode(node): boolean {
+  private isSingleLineNode(node: ts.Node): boolean {
     // Note: all the tests would pass using `node.getFullText()` but we should only use this for
     // the syntax list nodes, otherwise nodes which are single line may say they are multiline
     // and this will make us do unnecessary checks.
@@ -464,7 +464,7 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check indentation for blocks
    */
-  private blockIndentationCheck(node: ts.Node): void {
+  private blockIndentationCheck(node: ts.BlockLike): void {
     if (this.isSingleLineNode(node)) {
       return;
     }
@@ -502,17 +502,17 @@ class IndentWalker extends Lint.RuleWalker {
       'SourceFile'
     ];
     if (node.parent && isOneOf(node.parent, statementsWithProperties) && this.isNodeBodyBlock(node)) {
-      indent = this.getNodeIndent(node.parent).goodChar;
+      indent = this.getNodeIndent(node.parent!).goodChar;
     } else if (node.parent && isKind(node.parent, 'CatchClause')) {
       indent = this.getNodeIndent(node.parent.parent!).goodChar;
     } else {
       indent = this.getNodeIndent(node).goodChar;
     }
 
-    if (isKind(node, 'IfStatement') && !isKind(node['thenStatement'], 'Block')) {
-      nodesToCheck = [node['thenStatement']];
+    if (isKind<ts.IfStatement>(node, 'IfStatement') && !isKind<ts.Block>(node.thenStatement, 'Block')) {
+      nodesToCheck = [node.thenStatement];
     } else {
-      if (node.kind === ts.SyntaxKind.Block) {
+      if (isKind<ts.Block>(node, 'Block')) {
         nodesToCheck = node.getChildren()[1].getChildren();
       } else if (
         node.parent &&
@@ -525,7 +525,9 @@ class IndentWalker extends Lint.RuleWalker {
       ) {
         nodesToCheck = node.getChildren();
       } else {
-        nodesToCheck = [(node as ts.IterationStatement).statement];
+        // TODO: previously we had it as ts.IterationStatement, need to find out what type of node
+        // we have here. Doing `any` for now.
+        nodesToCheck = [(node as any).statement];
       }
     }
     this.checkNodeIndent(node, indent);
@@ -534,10 +536,10 @@ class IndentWalker extends Lint.RuleWalker {
       this.checkNodesIndent(nodesToCheck, indent + indentSize);
     }
 
-    if (isKind(node, 'Block')) {
+    if (isKind<ts.Block>(node, 'Block')) {
       this.checkLastNodeLineIndent(node, indent);
-    } else if (this.isNodeBodyBlock(node)) {
-      this.checkLastNodeLineIndent(node.parent, indent);
+    } else if (node.parent && this.isNodeBodyBlock(node)) {
+      this.checkLastNodeLineIndent(node.parent!, indent);
     }
   }
 
@@ -554,20 +556,23 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check if the node or node body is a BlockStatement or not
    */
-  private isNodeBodyBlock(node): boolean {
+  private isNodeBodyBlock(node: ts.Node): node is ts.BlockLike {
     const hasBlock = [
       'ClassDeclaration',
       'ClassExpression',
       'InterfaceDeclaration',
       'TypeLiteral'
     ];
-    return isKind(node, 'Block') || (isKind(node, 'SyntaxList') && isOneOf(node.parent, hasBlock));
+    return isKind<ts.Block>(node, 'Block') || (
+      isKind<ts.SyntaxList>(node, 'SyntaxList') &&
+      isOneOf(node.parent!, hasBlock)
+    );
   }
 
   /**
    * Check that the start of the node has the correct level of indentation.
    */
-  private checkFirstNodeLineIndent(node, firstLineIndent): void {
+  private checkFirstNodeLineIndent(node: ts.Node, firstLineIndent: number): void {
     const startIndent = this.getNodeIndent(node);
     const firstInLine = startIndent.firstInLine;
     if (firstInLine && (startIndent.goodChar !== firstLineIndent || startIndent.badChar !== 0)) {
@@ -578,7 +583,7 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check last line of the node has the correct level of indentation.
    */
-  private checkLastNodeLineIndent(node, lastLineIndent) {
+  private checkLastNodeLineIndent(node: ts.Node, lastLineIndent: number): void {
     const lastToken = node.getLastToken();
     const endIndent = this.getNodeIndent(lastToken);
     const firstInLine = endIndent.firstInLine;
@@ -590,40 +595,42 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check to see if the node function is a file level IIFE
    */
-  private isOuterIIFE(node): boolean {
-    let parent = node.parent;
+  private isOuterIIFE(node: ts.FunctionExpression): boolean {
+    if (!node.parent) return false;
+    let parent = node.parent as ts.ParenthesizedExpression;
     let expressionIsNode = parent.expression !== node;
     if (isKind(parent, 'ParenthesizedExpression')) {
-      parent = parent.parent;
+      parent = parent.parent as ts.ParenthesizedExpression;
     }
-    let stmt = parent.parent;
 
     // Verify that the node is an IIEF
     if (!isKind(parent, 'CallExpression') || expressionIsNode) {
       return false;
     }
 
-    // Navigate legal ancestors to determine whether this IIEF is outer
-    while (
-      isKind(stmt, 'PrefixUnaryExpression') && (
-        stmt.operator === ts.SyntaxKind.ExclamationToken ||
-        stmt.operator === ts.SyntaxKind.TildeToken ||
-        stmt.operator === ts.SyntaxKind.PlusToken ||
-        stmt.operator === ts.SyntaxKind.MinusToken
-      ) ||
-      isKind(stmt, 'BinaryExpression') ||
-      isKind(stmt, 'SyntaxList') ||
-      isKind(stmt, 'VariableDeclaration') ||
-      isKind(stmt, 'VariableDeclarationList') ||
-      isKind(stmt, 'ParenthesizedExpression')
-    ) {
-      stmt = stmt.parent;
-    }
+    let stmt: ts.Node = parent;
+    let condition: boolean;
+    do {
+      stmt = stmt.parent!;
+      condition = (
+        isKind<ts.PrefixUnaryExpression>(stmt, 'PrefixUnaryExpression') && (
+          stmt.operator === ts.SyntaxKind.ExclamationToken ||
+          stmt.operator === ts.SyntaxKind.TildeToken ||
+          stmt.operator === ts.SyntaxKind.PlusToken ||
+          stmt.operator === ts.SyntaxKind.MinusToken
+        ) ||
+        isKind(stmt, 'BinaryExpression') ||
+        isKind(stmt, 'SyntaxList') ||
+        isKind(stmt, 'VariableDeclaration') ||
+        isKind(stmt, 'VariableDeclarationList') ||
+        isKind(stmt, 'ParenthesizedExpression')
+      );
+    } while (condition);
 
     return ((
-      isKind(stmt, 'ExpressionStatement') ||
-      isKind(stmt, 'VariableStatement')) &&
-      stmt.parent && isKind(stmt.parent, 'SourceFile')
+      isKind<ts.ExpressionStatement>(stmt, 'ExpressionStatement') ||
+      isKind<ts.VariableStatement>(stmt, 'VariableStatement')) &&
+      !!stmt.parent && isKind(stmt.parent, 'SourceFile')
     );
   }
 
@@ -644,12 +651,12 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check indent for function block content
    */
-  private checkIndentInFunctionBlock(node): void {
-    const calleeNode = node.parent; // FunctionExpression
+  private checkIndentInFunctionBlock(node: ts.BlockLike): void {
+    const calleeNode = node.parent as ts.FunctionExpression;
     let indent = this.getNodeIndent(calleeNode).goodChar;
 
-    if (calleeNode.parent.kind === ts.SyntaxKind.CallExpression) {
-      const calleeParent = calleeNode.parent;
+    if (calleeNode.parent && calleeNode.parent.kind === ts.SyntaxKind.CallExpression) {
+      const calleeParent = calleeNode.parent as ts.CallExpression;
 
       if (calleeNode.kind !== ts.SyntaxKind.FunctionExpression && calleeNode.kind !== ts.SyntaxKind.ArrowFunction) {
         if (calleeParent && this.getLine(calleeParent) < this.getLine(node)) {
@@ -958,25 +965,25 @@ class IndentWalker extends Lint.RuleWalker {
 
   protected visitClassDeclaration(node: ts.ClassDeclaration) {
     const len = node.getChildCount();
-    this.blockIndentationCheck(node.getChildAt(len - 2));
+    this.blockIndentationCheck(node.getChildAt(len - 2) as ts.BlockLike);
     super.visitClassDeclaration(node);
   }
 
   protected visitClassExpression(node: ts.ClassExpression) {
     const len = node.getChildCount();
-    this.blockIndentationCheck(node.getChildAt(len - 2));
+    this.blockIndentationCheck(node.getChildAt(len - 2) as ts.BlockLike);
     super.visitClassExpression(node);
   }
 
   protected visitInterfaceDeclaration(node: ts.InterfaceDeclaration) {
     const len = node.getChildCount();
-    this.blockIndentationCheck(node.getChildAt(len - 2));
+    this.blockIndentationCheck(node.getChildAt(len - 2) as ts.BlockLike);
     super.visitInterfaceDeclaration(node);
   }
 
   protected visitTypeLiteral(node: ts.TypeLiteralNode) {
     const len = node.getChildCount();
-    this.blockIndentationCheck(node.getChildAt(len - 2));
+    this.blockIndentationCheck(node.getChildAt(len - 2) as ts.BlockLike);
     super.visitTypeLiteral(node);
   }
 
@@ -988,8 +995,9 @@ class IndentWalker extends Lint.RuleWalker {
   protected visitIfStatement(node: ts.IfStatement) {
     const thenLine = this.getLine(node.thenStatement);
     const line = this.getLine(node);
-    if (node.thenStatement.kind !== ts.SyntaxKind.Block && thenLine > line) {
-      this.blockIndentationCheck(node);
+    if (!isKind<ts.Block>(node.thenStatement, 'Block') && thenLine > line) {
+      // TODO: Check this one very carefully
+      this.blockIndentationCheck(node as any);
     }
     super.visitIfStatement(node);
   }

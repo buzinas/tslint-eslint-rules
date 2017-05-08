@@ -13,6 +13,11 @@ function expecting(errors): Failure[] {
         endPosition: new Position(err.line, err.column)
       };
     }
+    return {
+      failure: err.message,
+      startPosition: new Position(),
+      endPosition: new Position()
+    };
   });
 }
 
