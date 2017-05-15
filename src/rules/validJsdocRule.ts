@@ -261,10 +261,11 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     }
 
     let comments = node.getFullText();
-    comments = comments.substring(comments.indexOf('/**'));
+    let offset = comments.indexOf('/**');
+    comments = comments.substring(offset);
     comments = comments.substring(0, comments.indexOf('*/') + 2);
 
-    let start = node.pos;
+    let start = node.pos + offset;
     let width = comments.length;
 
     if (!/^\/\*\*/.test(comments) || !/\*\/$/.test(comments)) {
