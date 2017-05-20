@@ -464,7 +464,7 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check indentation for blocks
    */
-  private blockIndentationCheck(node: ts.BlockLike): void {
+  private blockIndentationCheck(node: ts.BlockLike | ts.IterationStatement): void {
     if (this.isSingleLineNode(node)) {
       return;
     }
@@ -477,7 +477,8 @@ class IndentWalker extends Lint.RuleWalker {
       'ArrowFunction'
     ];
     if (node.parent && isOneOf(node.parent, functionLike)) {
-      this.checkIndentInFunctionBlock(node);
+      // TODO: nope, can't figure this last check, shutting it down for now.
+      this.checkIndentInFunctionBlock(node as any);
       return;
     }
 
@@ -799,7 +800,7 @@ class IndentWalker extends Lint.RuleWalker {
       return;
     }
 
-    let elements = isKind(node, 'ObjectLiteralExpression') ? node['properties'] : node['elements'];
+    let elements: ts.Node[] = isKind(node, 'ObjectLiteralExpression') ? node['properties'] : node['elements'];
 
     // filter out empty elements, an example would be [ , 2]
     elements = elements.filter(elem => elem.getText() !== '');
@@ -897,20 +898,20 @@ class IndentWalker extends Lint.RuleWalker {
    * @param {ASTNode} varNode variable declaration node to check against
    * @returns {boolean} True if all the above condition satisfy
    */
-  protected isNodeInVarOnTop(node: ts.Node, varNode) {
+  protected isNodeInVarOnTop(node: ts.Node, varNode: ts.VariableDeclaration) {
     const nodeLine = this.getLine(node);
-    const parentLine = this.getLine(varNode.parent);
+    const parentLine = this.getLine(varNode.parent!);
     return varNode &&
       parentLine === nodeLine &&
-      varNode.parent.declarations.length > 1;
+      (varNode.parent! as ts.VariableDeclarationList).declarations.length > 1;
   }
 
   /**
    * Check and decide whether to check for indentation for blockless nodes
    * Scenarios are for or while statements without braces around them
    */
-  private blockLessNodes(node) {
-    if (!isKind(node.statement, 'Block')) {
+  private blockLessNodes(node: ts.IterationStatement): void {
+    if (!isKind<ts.Block>(node.statement, 'Block')) {
       this.blockIndentationCheck(node);
     }
   }
@@ -939,7 +940,7 @@ class IndentWalker extends Lint.RuleWalker {
    * This function for more complicated return statement case, where closing parenthesis may be
    * followed by ';'
    */
-  private checkLastReturnStatementLineIndent(node: ts.ReturnStatement, firstLineIndent) {
+  private checkLastReturnStatementLineIndent(node: ts.ReturnStatement, firstLineIndent: number): void {
     if (!node.expression) {
       return;
     }

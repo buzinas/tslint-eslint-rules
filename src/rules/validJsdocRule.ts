@@ -150,6 +150,12 @@ declare interface IReturnPresent {
   returnPresent: boolean;
 }
 
+interface IJSComment {
+  comments?: string;
+  start?: number;
+  width?: number;
+}
+
 class ValidJsdocWalker extends Lint.RuleWalker {
   private fns: Array<IReturnPresent> = [];
 
@@ -245,7 +251,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     return tag.type && (tag.type.name === 'void' || tag.type.type === 'UndefinedLiteral');
   }
 
-  private getJSDocComment(node: ts.Node) {
+  private getJSDocComment(node: ts.Node): IJSComment {
     const ALLOWED_PARENTS = [
       ts.SyntaxKind.BinaryExpression,
       ts.SyntaxKind.VariableDeclaration,
@@ -257,7 +263,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
       if (node.parent && ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
         return this.getJSDocComment(node.parent);
       }
-      return {};
+      return { comments: undefined, start: undefined, width: undefined };
     }
 
     let comments = node.getFullText();
@@ -268,7 +274,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     let width = comments.length;
 
     if (!/^\/\*\*/.test(comments) || !/\*\/$/.test(comments)) {
-      return {};
+      return { comments: undefined, start: undefined, width: undefined };
     }
 
     return { comments, start, width };
@@ -277,7 +283,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
   private checkJSDoc(node: ts.Node) {
     const { comments, start, width } = this.getJSDocComment(node);
 
-    if (!comments)
+    if (!comments || start === undefined || width === undefined)
       return;
 
     let jsdoc: doctrine.IJSDocComment;

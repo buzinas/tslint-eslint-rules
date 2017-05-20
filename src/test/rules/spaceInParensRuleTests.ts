@@ -4,7 +4,7 @@ const ruleTester = new RuleTester('space-in-parens', true);
 const MISSING_SPACE_ERROR = 'there must be a space inside this paren.';
 const REJECTED_SPACE_ERROR = 'there should be no spaces inside this paren.';
 
-function expecting(errors): Failure[] {
+function expecting(errors: { message: string; line: number; column: number }[]): Failure[] {
   return errors.map((err) => {
     if (err.message && err.column) {
       return {

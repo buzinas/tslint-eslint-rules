@@ -7,7 +7,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

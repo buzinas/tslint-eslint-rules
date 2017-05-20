@@ -62,13 +62,13 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
     this.lastNode = sourceFile.getLastToken();
   }
 
-  private inRange(x, range) {
+  private inRange(x: number, range: [number, number]): boolean {
     return x >= range[0] && x <= range[1];
   }
 
-  private warn(value, pos, node) {
+  private warn(value: string, pos: number, node: ts.Node): void {
     const msg = `Multiple spaces found before '${value}'.`;
-    const exceptionName = this.EXCEPTION_MAP[node.parent.kind];
+    const exceptionName = this.EXCEPTION_MAP[node.parent!.kind];
 
     let report = true;
     const start: number = node.getFullStart() - 1;
@@ -84,9 +84,9 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
     // Sneaky property assignments may have many nested children. Lets check if one of
     // the parents is one of those.
     if (previousChar === ':') {
-      let crt = node.parent;
+      let crt = node.parent!;
       while (crt.kind !== ts.SyntaxKind.SourceFile) {
-        crt = crt.parent;
+        crt = crt.parent!;
         if (crt.kind === ts.SyntaxKind.PropertyAssignment) {
           if (this.exceptions['PropertyAssignment']) {
             report = false;
@@ -102,7 +102,7 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
   }
 
   protected walkChildren(node: ts.Node): void {
-    const range = [node.getStart(), node.getEnd()];
+    const range: [number, number] = [node.getStart(), node.getEnd()];
     for (let i = this.targetIndex, len = this.targets.length, target; i < len; i++) {
       target = this.targets[i];
       if (this.inRange(target, range)) {

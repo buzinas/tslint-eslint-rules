@@ -95,7 +95,7 @@ class RuleWalker extends Lint.AbstractWalker<WalkerOptions> {
   }
 
   public walk(sourceFile: ts.SourceFile) {
-    const cb = (node: ts.Node) => {
+    const cb = (node: ts.Node): void => {
       if (node.kind === ts.SyntaxKind.NewExpression) {
         this.visitNewExpression(node as ts.NewExpression);
       }

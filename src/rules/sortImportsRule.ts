@@ -207,6 +207,12 @@ class RuleWalker extends Lint.RuleWalker {
           memberSyntaxType: MemberSyntaxType.All,
           sortValue: allMatch[1]
         };
+      } else {
+        // TODO: Made up value, are we guaranteed to always hit one of the if statements?
+        result = {
+          memberSyntaxType: MemberSyntaxType.None,
+          sortValue: ''
+        };
       }
 
       return result;

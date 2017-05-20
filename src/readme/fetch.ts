@@ -37,12 +37,12 @@ function compareToESLint() {
   return new Promise((fulfill) => {
     requestFromGithub('/repos/eslint/eslint/contents/lib/rules', (data) => {
       const rules = data
-        .filter(obj => obj.name.endsWith('.js'))
-        .map(obj => obj.name.substring(0, obj.name.length - 3));
+        .filter((obj: any) => obj.name.endsWith('.js'))
+        .map((obj: any) => obj.name.substring(0, obj.name.length - 3));
 
       const esRules = Object.keys(ruleESMap);
-      const missing = arrayDiff(rules.map(x => toCamelCase(x)), esRules);
-      const deprecated = arrayDiff(esRules, rules.map(x => toCamelCase(x)));
+      const missing = arrayDiff(rules.map((x: string) => toCamelCase(x)), esRules);
+      const deprecated = arrayDiff(esRules, rules.map((x: string) => toCamelCase(x)));
       const buffer: string[] = [];
 
       if (missing.length) {
@@ -74,11 +74,11 @@ function compareToTSLint() {
   return new Promise((fulfill) => {
     requestFromGithub('/repos/palantir/tslint/contents/src/rules', (data) => {
       const rules = data
-        .filter(obj => obj.name.endsWith('.ts'))
-        .map(obj => obj.name.substring(0, obj.name.length - 7));
+        .filter((obj: any) => obj.name.endsWith('.ts'))
+        .map((obj: any) => obj.name.substring(0, obj.name.length - 7));
 
       const notInUse = require('../../src/readme/unusedTSLintRules.json');
-      notInUse.forEach((name) => {
+      notInUse.forEach((name: string) => {
         const camel = toCamelCase(name);
         const index = rules.indexOf(camel);
         if (index > -1) {

@@ -74,7 +74,7 @@ function stripTrailingComment(line: string, comment: INode) {
 /**
  * A reducer to group an AST node by line number, both start and end.
  */
-function groupByLineNumber(acc, node: INode) {
+function groupByLineNumber(acc: INode[][], node: INode) {
   const startLoc = node.start;
   const endLoc = node.end;
 

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { IRule, categories, rules, ruleTSMap, toCamelCase } from './rules';
 
-function formatUsage(usage) {
+function formatUsage(usage: string): string {
   return usage.replace(/~~~/g, '```').replace(/(^[ \t]*\n)/gm, '\n').replace(/^    /mg, '');
 }
 
@@ -77,7 +77,7 @@ function createRuleContent(rule: IRule) {
       console.warn(`           ${metaData.description} !== ${rule.description}`);
     }
     const examples = metaData.optionExamples.map(
-      x => ['```json', x, '```'].join('')
+      (x: string) => ['```json', x, '```'].join('')
     ).join('\n\n');
     const schema = [
       '```json',
