@@ -718,4 +718,28 @@ ruleTester.addTestGroup('param-type', 'should handle requireParamType option', [
   }
 ]);
 
+ruleTester.addTestGroup('error-location', 'error location should span the comment', [
+  {
+    code: dedent`
+      /**
+       * Class
+       */
+      class Foo {
+
+        /**
+         * Function
+         */
+        public bar(x: any): void {
+        }
+
+      }`,
+    options: { requireReturn: false },
+    errors: [{
+      failure: "missing JSDoc for parameter 'x'",
+      startPosition: new Position(6, 2),
+      endPosition: new Position(8, 5)
+    }]
+  }
+]);
+
 ruleTester.runTests();
