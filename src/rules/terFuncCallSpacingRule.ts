@@ -69,7 +69,7 @@ export class Rule extends Lint.Rules.AbstractRule {
       expectSpace: false,
       spacePattern: /\s/
     };
-    
+
     let userOptions = this.getOptions().ruleArguments;
     if (userOptions[0] === ALWAYS) {
       options.expectSpace = true;
@@ -80,26 +80,26 @@ export class Rule extends Lint.Rules.AbstractRule {
         options.spacePattern = /[ \t]/;
       }
     }
-    
+
     const walker = new RuleWalker(sourceFile, RULE_NAME, options);
     return this.applyWithWalker(walker);
   }
 }
 
 class RuleWalker extends Lint.AbstractWalker<WalkerOptions> {
-  sourceText: string;
-  
+  private sourceText: string;
+
   constructor(sourceFile: ts.SourceFile, ruleName: string, options: WalkerOptions) {
     super(sourceFile, ruleName, options);
     this.sourceText = sourceFile.getFullText();
   }
-  
+
   public walk(sourceFile: ts.SourceFile) {
-    const cb = (node: ts.Node) => {
+    const cb = (node: ts.Node): void => {
       if (node.kind === ts.SyntaxKind.NewExpression) {
         this.visitNewExpression(node as ts.NewExpression);
       }
-      else if(node.kind === ts.SyntaxKind.CallExpression) {
+      else if (node.kind === ts.SyntaxKind.CallExpression) {
         this.visitCallExpression(node as ts.CallExpression);
       }
       else if (node.kind >= ts.SyntaxKind.FirstTypeNode && node.kind <= ts.SyntaxKind.LastTypeNode) {
@@ -135,7 +135,7 @@ class RuleWalker extends Lint.AbstractWalker<WalkerOptions> {
 
   private checkWhitespaceBetween(start: number, end: number) {
     let whitespace = this.sourceText.substring(start, end);
-  
+
     if (this.options.spacePattern.test(whitespace)) {
       if (!this.options.expectSpace) {
         const fix = Lint.Replacement.deleteText(start, whitespace.length);
@@ -148,7 +148,7 @@ class RuleWalker extends Lint.AbstractWalker<WalkerOptions> {
       this.addFailureAt(start, 1, MISSING_SPACE, fix);
     }
   }
-  
+
   private failureMessageForUnexpectedWhitespace(whitespace: string): string {
     if (/[\r\n]/.test(whitespace)) {
       return UNEXPECTED_NEWLINE;

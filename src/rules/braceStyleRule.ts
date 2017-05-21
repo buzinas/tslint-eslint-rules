@@ -120,7 +120,8 @@ class BraceStyleWalker extends Lint.RuleWalker {
     const openingCurlyBrace = blockChildren.filter(ch => ch.kind === ts.SyntaxKind.OpenBraceToken).shift();
     const closingCurlyBrace = blockChildren.filter(ch => ch.kind === ts.SyntaxKind.CloseBraceToken).pop();
     const syntaxList = blockChildren.filter(ch => ch.kind === ts.SyntaxKind.SyntaxList).shift();
-    const blockPreviousNode = block.parent.getChildren()[block.parent.getChildren().indexOf(block) - 1];
+    const parentChildren = block.parent ? block.parent.getChildren() : [];
+    const blockPreviousNode = parentChildren[parentChildren.indexOf(block) - 1];
 
     if (!openingCurlyBrace || !closingCurlyBrace || !syntaxList || !blockPreviousNode) {
       return;
@@ -165,9 +166,11 @@ class BraceStyleWalker extends Lint.RuleWalker {
     let position = children.indexOf(node) - 1;
     while (position >= 0) { // is first child always block or catch clause?
       if (children[position].kind === ts.SyntaxKind.Block || children[position].kind === ts.SyntaxKind.CatchClause) {
-        return children[position];
+        break;
       }
       position -= 1;
     }
+    return children[position];
   }
+
 }

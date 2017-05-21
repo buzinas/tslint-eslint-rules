@@ -20,9 +20,9 @@ export class Rule extends Lint.Rules.AbstractRule {
     optionsDescription: Lint.Utils.dedent`
       This rule takes an object argument with \`before\` and \`after\` properties, each with a
       Boolean value.
-      
+
       The default configuration is \`{ "before": true, "after": true }\`.
-      
+
       \`true\` means there should be one or more spaces and \`false\` means no spaces.
       `,
     options: {

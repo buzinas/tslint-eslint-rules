@@ -150,6 +150,12 @@ declare interface IReturnPresent {
   returnPresent: boolean;
 }
 
+interface IJSComment {
+  comments?: string;
+  start?: number;
+  width?: number;
+}
+
 class ValidJsdocWalker extends Lint.RuleWalker {
   private fns: Array<IReturnPresent> = [];
 
@@ -226,7 +232,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
   }
 
   private addReturn(node: ts.ReturnStatement) {
-    let parent: ts.Node = node;
+    let parent: ts.Node | undefined = node;
     let nodes = this.fns.map(fn => fn.node);
 
     while (parent && nodes.indexOf(parent) === -1)
@@ -245,7 +251,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     return tag.type && (tag.type.name === 'void' || tag.type.type === 'UndefinedLiteral');
   }
 
-  private getJSDocComment(node: ts.Node) {
+  private getJSDocComment(node: ts.Node): IJSComment {
     const ALLOWED_PARENTS = [
       ts.SyntaxKind.BinaryExpression,
       ts.SyntaxKind.VariableDeclaration,
@@ -254,7 +260,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     ];
 
     if (!/^\/\*\*/.test(node.getFullText().trim())) {
-      if (ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
+      if (node.parent && ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
         return this.getJSDocComment(node.parent);
       }
       return {};
@@ -278,7 +284,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
   private checkJSDoc(node: ts.Node) {
     const { comments, start, width } = this.getJSDocComment(node);
 
-    if (!comments)
+    if (!comments || start === undefined || width === undefined)
       return;
 
     let jsdoc: doctrine.IJSDocComment;
@@ -361,7 +367,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     }
 
     // check for functions missing @returns
-    if (!isOverride && !hasReturns && !hasConstructor && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
+    if (!isOverride && !hasReturns && !hasConstructor && node.parent && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
       if (OPTIONS.requireReturn || fn.returnPresent) {
         this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(OPTIONS.prefer['returns'])));
       }

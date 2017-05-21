@@ -522,7 +522,7 @@ ruleTester.addTestGroup('issue162', 'should handle comments', [
   },
   {
     code: `const foo = [ /*
-      39, */ 41, 42/* , 51 
+      39, */ 41, 42/* , 51
       */ ];`,
     options: ['never']
   }

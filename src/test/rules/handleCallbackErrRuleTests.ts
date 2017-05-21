@@ -314,7 +314,7 @@ ruleTester.addTestGroup('eslint-invalid', 'should fail eslint invalid tests', [
           getEvenMoreDataWith(moreData, function(err, allOfTheThings) {
             if (err) {}
           });
-        }); 
+        });
       });`,
     errors: [error]
   },

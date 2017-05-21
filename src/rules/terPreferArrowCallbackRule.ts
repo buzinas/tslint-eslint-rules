@@ -81,7 +81,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 function checkMetaProperty(node: ts.PropertyAccessExpression, name: string, prop: string) {
-  return node.parent.getFirstToken().getText() === name && node.name.text === prop;
+  return node.parent && node.parent.getFirstToken().getText() === name && node.name.text === prop;
 }
 
 interface ICallbackInfo {
@@ -94,7 +94,7 @@ function getCallbackInfo(func: ts.FunctionExpression): ICallbackInfo {
   let node = func as ts.Node;
   let parent = node.parent;
 
-  while (node) {
+  while (node && parent) {
     switch (parent.kind) {
       case ts.SyntaxKind.BinaryExpression:
       case ts.SyntaxKind.ConditionalExpression:
@@ -103,6 +103,7 @@ function getCallbackInfo(func: ts.FunctionExpression): ICallbackInfo {
         if (
           (parent as ts.PropertyAccessExpression).name.kind === ts.SyntaxKind.Identifier &&
           (parent as ts.PropertyAccessExpression).name.text === 'bind' &&
+          parent.parent &&
           parent.parent.kind === ts.SyntaxKind.CallExpression &&
           (parent.parent as ts.CallExpression).expression === parent
         ) {
@@ -127,7 +128,7 @@ function getCallbackInfo(func: ts.FunctionExpression): ICallbackInfo {
     }
 
     node = parent;
-    parent = parent.parent;
+    parent = node.parent;
   }
 
   throw new Error('unreachable');
@@ -180,7 +181,7 @@ class RuleWalker extends Lint.RuleWalker {
    * Pops a function scope from the stack.
    */
   private exitScope(): IFunctionScope {
-    return this.stack.pop();
+    return this.stack.pop()!;
   }
 
   private exitFunctionExpression(node: ts.FunctionExpression) {
@@ -242,7 +243,7 @@ class RuleWalker extends Lint.RuleWalker {
   protected visitNode(node: ts.Node) {
     const info = this.stack[this.stack.length - 1];
     // Making sure we are in a function body
-    if (info && node.parent.kind !== ts.SyntaxKind.FunctionExpression) {
+    if (info && node.parent && node.parent.kind !== ts.SyntaxKind.FunctionExpression) {
       if (node.kind === ts.SyntaxKind.ThisKeyword) {
         info.hasThis = true;
       } else if (node.kind === ts.SyntaxKind.SuperKeyword) {

@@ -186,7 +186,7 @@ class Test {
     ].join('\n');
     assert(expected.length === 0 && found.length === 0, msg);
     if (this.testFixer && this.output) {
-      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
+      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix()!);
       const fixedCode = Lint.Replacement.applyFixes(this.code, fixes);
       const fixerMsg = [
         `Fixer output mismatch in ${this.name}:`,
@@ -257,7 +257,7 @@ class TestGroup {
           config.rules[ruleName] = [true, ...groupConfig];
         }
         const configFile = Lint.Configuration.parseConfigFile(config);
-        return new Test(codeFileName, test, undefined, configFile, []);
+        return new Test(codeFileName, test, '', configFile, []);
       }
       if (test.options) {
         config.rules[ruleName] = [true, ...test.options];
@@ -274,7 +274,7 @@ class TestGroup {
           error.endPosition
         );
       });
-      return new Test(codeFileName, test.code, test.output, configFile, failures, testFixer);
+      return new Test(codeFileName, test.code, test.output || '', configFile, failures, testFixer);
     });
   }
 }

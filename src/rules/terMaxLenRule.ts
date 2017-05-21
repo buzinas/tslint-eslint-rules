@@ -74,7 +74,7 @@ function stripTrailingComment(line: string, comment: INode) {
 /**
  * A reducer to group an AST node by line number, both start and end.
  */
-function groupByLineNumber(acc, node: INode) {
+function groupByLineNumber(acc: INode[][], node: INode) {
   const startLoc = node.start;
   const endLoc = node.end;
 
@@ -356,7 +356,7 @@ class MaxLenWalker extends Lint.RuleWalker {
     const tabWidth = this.getOption(TAB_WIDTH) || 4;
     const maxCommentLength = this.getOption(COMMENTS);
 
-    const comments = ignoreComments || maxCommentLength || ignoreTrailingComments ? this.comments : [];
+    const comments: INode[] = ignoreComments || maxCommentLength || ignoreTrailingComments ? this.comments : [];
 
     let commentsIndex = 0;
     const stringsByLine = this.strings.reduce(groupByLineNumber, {});
@@ -375,7 +375,7 @@ class MaxLenWalker extends Lint.RuleWalker {
        * comments to check.
        */
       if (commentsIndex < comments.length) {
-        let comment = null;
+        let comment: INode;
 
         // iterate over comments until we find one past the current line
         do {
@@ -408,7 +408,7 @@ class MaxLenWalker extends Lint.RuleWalker {
         continue;
       }
 
-      let ruleFailure: Lint.RuleFailure;
+      let ruleFailure: Lint.RuleFailure | null = null;
       if (lineIsComment && exceedLineLimit(lineLength, maxCommentLength, source[to - 2])) {
         ruleFailure = new Lint.RuleFailure(
           sourceFile, from, to - 1,
