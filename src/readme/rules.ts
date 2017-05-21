@@ -214,7 +214,7 @@ const rules: IRule[] = [
       "functions"
     ]
     ~~~
-    
+
     ~~~json
     "no-extra-parens": [
       true,
@@ -282,14 +282,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-irregular-whitespace',
-    tslintRule: 'no-irregular-whitespace',
+    tslintRule: 'ter-no-irregular-whitespace',
     category: 'Possible Errors',
-    description: 'disallow irregular whitespace outside of strings and comments (recommended)',
+    description: 'disallow irregular whitespace (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-irregular-whitespace',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-irregular-whitespace": true
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: false,
@@ -328,14 +325,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-sparse-arrays',
-    tslintRule: 'no-sparse-arrays',
+    tslintRule: 'ter-no-sparse-arrays',
     category: 'Possible Errors',
     description: 'disallow sparse arrays (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-sparse-arrays',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-sparse-arrays": true
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
@@ -503,7 +497,7 @@ const rules: IRule[] = [
         "object"
       ]
     ~~~
-    
+
     ~~~json
     "dot-location": [
         true,
@@ -988,7 +982,7 @@ const rules: IRule[] = [
         "except-parens"
       ]
     ~~~
-    
+
     ~~~json
      "no-return-assign": [
         true,
@@ -1208,14 +1202,14 @@ const rules: IRule[] = [
         "inside"
       ]
     ~~~
-    
+
     ~~~json
     "wrap-iife": [
         true,
         "outside"
       ]
     ~~~
-    
+
     ~~~json
     "wrap-iife": [
         true,
@@ -1237,7 +1231,7 @@ const rules: IRule[] = [
         "never"
       ]
     ~~~
-    
+
     ~~~json
     "yoda": [
         true,
@@ -1271,7 +1265,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "init-declarations": [
         true,
@@ -1374,13 +1368,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-unused-vars',
-    tslintRule: 'Not applicable',
+    tslintRule: 'no-unused-variable',
     category: 'Variables',
-    description: '[**DEPRECATED**: [no-unused-variable](https://github.com/palantir/tslint/issues/1481)] disallow declaration of variables that are not used in the code (recommended).',
+    description: 'disallow unused variables (recommended).',
     eslintUrl: 'http://eslint.org/docs/rules/no-unused-vars',
-    provider: 'Not applicable'
+    tslintUrl: 'https://palantir.github.io/tslint/rules/no-unused-variable/',
+    provider: 'native'
   },
   {
     available: true,
@@ -1554,7 +1549,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "block-spacing": [
         true,
@@ -1579,7 +1574,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "brace-style": [
         true,
@@ -1589,7 +1584,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "brace-style": [
         true,
@@ -1648,7 +1643,7 @@ const rules: IRule[] = [
         "first"
       ]
     ~~~
-    
+
     ~~~json
     "comma-style": [
         true,
@@ -1670,7 +1665,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "computed-property-spacing": [
         true,
@@ -1704,6 +1699,15 @@ const rules: IRule[] = [
     provider: 'native'
   },
   {
+    available: true,
+    eslintRule: 'func-call-spacing',
+    tslintRule: 'ter-func-call-spacing',
+    category: 'Stylistic Issues',
+    description: 'require or disallow spacing between function identifiers and their invocations',
+    eslintUrl: 'http://eslint.org/docs/rules/func-call-spacing',
+    provider: 'tslint-eslint-rules'
+  },
+  {
     available: false,
     eslintRule: 'func-names',
     tslintRule: 'func-names',
@@ -1732,7 +1736,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "func-style": [
         true,
@@ -1777,7 +1781,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "id-length": [
         true,
@@ -1831,7 +1835,7 @@ const rules: IRule[] = [
         "prefer-double"
       ]
     ~~~
-    
+
     ~~~json
     "jsx-quotes": [
         true,
@@ -1932,7 +1936,7 @@ const rules: IRule[] = [
         10
       ]
     ~~~
-    
+
     ~~~json
     "max-depth": [
         true,
@@ -1991,7 +1995,7 @@ const rules: IRule[] = [
         2
       ]
     ~~~
-    
+
     ~~~json
     "max-params": [
         true,
@@ -2018,7 +2022,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "max-statements": [
         true,
@@ -2045,7 +2049,7 @@ const rules: IRule[] = [
         1
       ]
     ~~~
-    
+
     ~~~json
     "max-statements-per-line": [
         true,
@@ -2090,7 +2094,7 @@ const rules: IRule[] = [
         "never"
       ]
     ~~~
-    
+
     ~~~json
     "newline-after-var": [
         true,
@@ -2200,7 +2204,7 @@ const rules: IRule[] = [
     usage: `~~~json
     "indent": "spaces"
     ~~~
-    
+
     ~~~json
     "indent": "tabs"
     ~~~`,
@@ -2368,7 +2372,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "object-curly-spacing": [
         true,
@@ -2391,7 +2395,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "one-var": [
         true,
@@ -2413,7 +2417,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "one-var-declaration-per-line": [
         true,
@@ -2435,7 +2439,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "operator-assignment": [
         true,
@@ -2460,7 +2464,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "operator-linebreak": [
         true,
@@ -2470,7 +2474,7 @@ const rules: IRule[] = [
         }
       ]
     ~~~
-    
+
     ~~~json
     "operator-linebreak": [
         true,
@@ -2495,7 +2499,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "padded-blocks": [
         true,
@@ -2528,7 +2532,7 @@ const rules: IRule[] = [
         "single"
       ]
     ~~~
-    
+
     ~~~json
     "quotes": [
         true,
@@ -2536,14 +2540,14 @@ const rules: IRule[] = [
         "avoid-escape"
       ]
     ~~~
-    
+
     ~~~json
     "quotes": [
         true,
         "double"
       ]
     ~~~
-    
+
     ~~~json
     "quotes": [
         true,
@@ -2551,14 +2555,14 @@ const rules: IRule[] = [
         "avoid-escape"
       ]
     ~~~
-    
+
     ~~~json
     "quotes": [
         true,
         "backtick"
       ]
     ~~~
-    
+
     ~~~json
     "quotes": [
         true,
@@ -2658,14 +2662,14 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "space-before-blocks": [
         true,
         "never"
       ]
     ~~~
-    
+
     ~~~json
     "space-before-blocks": [
         true,
@@ -2690,14 +2694,14 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "space-before-function-paren": [
         true,
         "never"
       ]
     ~~~
-    
+
     ~~~json
     "space-before-function-paren": [
         true,
@@ -3075,7 +3079,7 @@ const rules: IRule[] = [
         "always"
       ]
     ~~~
-    
+
     ~~~json
     "template-curly-spacing": [
         true,
@@ -3097,7 +3101,7 @@ const rules: IRule[] = [
   }
 ];
 
-function toCamelCase(str) {
+function toCamelCase(str: string): string {
   const words = str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1));
   words[0] = words[0].toLowerCase();
   return words.join('');
@@ -3118,5 +3122,5 @@ export {
   rules,
   ruleTSMap,
   ruleESMap,
-  toCamelCase,
+  toCamelCase
 };

@@ -1,9 +1,17 @@
 {
   "compilerOptions": {
+    "lib": ["es2015"],
     "target": "es5",
     "module": "commonjs",
+    "importHelpers": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "pretty": true,
     "removeComments": true
   }
 }

@@ -11,7 +11,7 @@ export class Rule extends Lint.Rules.AbstractRule {
     rationale: Lint.Utils.dedent`
       This rule will enforce consistency of spacing directly inside of parentheses,
       by disallowing or requiring one or more spaces to the right of (and to the
-      left of). In either case, () will still be allowed. 
+      left of). In either case, () will still be allowed.
       `,
     optionsDescription: Lint.Utils.dedent`
       There are two options for this rule:
@@ -73,7 +73,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class SpaceInParensWalker extends Lint.RuleWalker {
   private spaced: boolean;
-  private exceptionsArrayOptions = [];
+  private exceptionsArrayOptions: string[] = [];
   private braceException: boolean;
   private bracketException: boolean;
   private parenException: boolean;
@@ -96,8 +96,8 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   }
 
   private getExceptions() {
-    const openers = [];
-    const closers = [];
+    const openers: ts.SyntaxKind[] = [];
+    const closers: ts.SyntaxKind[] = [];
 
     if (this.braceException) {
       openers.push(ts.SyntaxKind.OpenBraceToken);
@@ -125,12 +125,12 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     };
   }
 
-  protected findParenNodes(node: ts.Node): ts.Node[] {
+  protected findParenNodes(node: ts.Node): (ts.Node | undefined)[] {
     const children = node.getChildren();
-    let first: ts.Node;
-    let second: ts.Node;
-    let penultimate: ts.Node;
-    let last: ts.Node;
+    let first;
+    let second;
+    let penultimate;
+    let last;
     for (let i = 0; i < children.length; i++) {
       if (children[i].kind === ts.SyntaxKind.OpenParenToken) {
         first = children[i];
@@ -150,26 +150,28 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     super.visitNode(node);
   }
 
-  private checkParanSpace(first: ts.Node, second: ts.Node, penultimate: ts.Node, last: ts.Node) {
-    if (!first && !second && !penultimate && !last) return;
-
-    if (this.shouldOpenerHaveSpace(first, second)) {
-      const fix = this.createFix(this.appendText(first.getEnd(), ' '));
-      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
+  private checkParanSpace(first?: ts.Node, second?: ts.Node, penultimate?: ts.Node, last?: ts.Node) {
+    if (first && second) {
+      if (this.shouldOpenerHaveSpace(first, second)) {
+        const fix = Lint.Replacement.appendText(first.getEnd(), ' ');
+        this.addFailure(this.createFailure(first.getEnd(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
+      }
+      if (this.shouldOpenerRejectSpace(first, second)) {
+        const width = second.getStart() - first.getEnd();
+        const fix = Lint.Replacement.deleteText(first.getEnd(), width);
+        this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
+      }
     }
-    if (this.shouldOpenerRejectSpace(first, second)) {
-      const width = second.getStart() - first.getEnd();
-      const fix = this.createFix(this.deleteText(first.getEnd(), width));
-      this.addFailure(this.createFailure(first.getEnd(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
-    }
-    if (this.shouldCloserHaveSpace(penultimate, last)) {
-      const fix = this.createFix(this.appendText(penultimate.getEnd(), ' '));
-      this.addFailure(this.createFailure(last.getStart(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
-    }
-    if (this.shouldCloserRejectSpace(penultimate, last)) {
-      const width = last.getStart() - penultimate.getEnd();
-      const fix = this.createFix(this.deleteText(penultimate.getEnd(), width));
-      this.addFailure(this.createFailure(last.getStart(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
+    if (penultimate && last) {
+      if (this.shouldCloserHaveSpace(penultimate, last)) {
+        const fix = Lint.Replacement.appendText(penultimate.getEnd(), ' ');
+        this.addFailure(this.createFailure(last.getStart(), 0, Rule.MISSING_SPACE_MESSAGE, fix));
+      }
+      if (this.shouldCloserRejectSpace(penultimate, last)) {
+        const width = last.getStart() - penultimate.getEnd();
+        const fix = Lint.Replacement.deleteText(penultimate.getEnd(), width);
+        this.addFailure(this.createFailure(last.getStart(), 0, Rule.REJECTED_SPACE_MESSAGE, fix));
+      }
     }
   }
 

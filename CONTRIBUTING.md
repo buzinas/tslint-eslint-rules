@@ -18,12 +18,10 @@ the issue easier and quicker.
 
  * tslint and typescript version.
 
-       ```sh
-$ tslint --version
-4.0.0
-$ tsc --version
-Version 2.0.10
-       ```
+       $ tslint --version
+       4.5.1
+       $ tsc --version
+       Version 2.2.1
 
  * `tslint.json` configuration.
  * typescript code being linted.

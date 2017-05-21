@@ -12,9 +12,9 @@ const options: Lint.ILinterOptions = {
 /**
  * @deprecated Use ruleTester
  */
-export function testScript(rule: string, scriptText: string, config: Object): boolean {
+export function testScript(rule: string, scriptText: string, config: any): boolean {
   const linter = new Lint.Linter(options);
-  linter.lint(`${rule}.ts`, scriptText, config);
+  linter.lint(`${rule}.ts`, scriptText, Lint.Configuration.parseConfigFile(config));
 
   const failures = JSON.parse(linter.getResult().output);
 

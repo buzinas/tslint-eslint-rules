@@ -1,7 +1,7 @@
 import { Failure, Position, RuleTester, dedent } from './ruleTester';
 
-const ALPHA_ORDER_ERROR = (x, y) => `All imports of the same type must be sorted alphabetically. "${x}" must come before "${y}"`;
-const TYPE_ORDER_ERROR = (x, y) => `All imports of type "${x}" must occur before all imports of type "${y}"`;
+const ALPHA_ORDER_ERROR = (x: string, y: string) => `All imports of the same type must be sorted alphabetically. "${x}" must come before "${y}"`;
+const TYPE_ORDER_ERROR = (x: string, y: string) => `All imports of type "${x}" must occur before all imports of type "${y}"`;
 const MEMBER_SORT_ERROR = 'Member imports must be sorted alphabetically.';
 
 function expecting(errors: [string, number, number, number][]): Failure[] {

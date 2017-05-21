@@ -115,14 +115,14 @@ class Test {
   private testFixer: boolean;
   public code: string;
   public output: string;
-  public options: any;
+  public options: Lint.Configuration.IConfigurationFile;
   public errors: LintFailure[];
 
   constructor(
     name: string,
     code: string,
     output: string,
-    options: any,
+    options: Lint.Configuration.IConfigurationFile,
     errors: LintFailure[],
     testFixer: boolean = false
   ) {
@@ -190,8 +190,8 @@ class Test {
     ].join('\n');
     assert(expected.length === 0 && found.length === 0, msg);
     if (this.testFixer && this.output) {
-      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix());
-      const fixedCode = Lint.Fix.applyAll(this.code, fixes);
+      const fixes = linter.getResult().failures.filter(f => f.hasFix()).map(f => f.getFix()!);
+      const fixedCode = Lint.Replacement.applyFixes(this.code, fixes);
       const fixerMsg = [
         `Fixer output mismatch in ${this.name}:`,
         '',
@@ -260,13 +260,15 @@ class TestGroup {
         if (groupConfig) {
           config.rules[ruleName] = [true, ...groupConfig];
         }
-        return new Test(codeFileName, test, undefined, config, []);
+        const configFile = Lint.Configuration.parseConfigFile(config);
+        return new Test(codeFileName, test, '', configFile, []);
       }
       if (test.options) {
         config.rules[ruleName] = [true, ...test.options];
       } else if (groupConfig) {
         config.rules[ruleName] = [true, ...groupConfig];
       }
+      const configFile = Lint.Configuration.parseConfigFile(config);
       const failures: LintFailure[] = (test.errors || []).map((error) => {
         return new LintFailure(
           codeFileName,
@@ -276,7 +278,7 @@ class TestGroup {
           error.endPosition
         );
       });
-      return new Test(codeFileName, test.code, test.output, config, failures, testFixer);
+      return new Test(codeFileName, test.code, test.output || '', configFile, failures, testFixer);
     });
   }
 }
@@ -357,5 +359,5 @@ export {
   Failure,
   TestGroup,
   RuleTester,
-  readFixture,
-}
+  readFixture
+};

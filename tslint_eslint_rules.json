@@ -1,5 +1,5 @@
 {
-  "rulesDirectory": "dist/rules",
+  "rulesDirectory": "./dist/rules",
   "rules": {
     "no-irregular-whitespace": true,
     "ter-arrow-body-style": [true, "as-needed", {

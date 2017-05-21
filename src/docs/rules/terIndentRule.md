@@ -15,7 +15,7 @@ cleaner diffs in version control, and easier programmatic manipulation.
 The string 'tab' or an integer indicating the number of spaces to use per tab.
 
 An object may be provided to fine tune the indentation rules:
-      
+
   * `"SwitchCase"` (default: 0) enforces indentation level for `case` clauses in
                      `switch` statements
   * `"VariableDeclarator"` (default: 1) enforces indentation level for `var` declarators;
@@ -62,7 +62,7 @@ An object may be provided to fine tune the indentation rules:
       "body": 1
     }
   }
-]      
+]
 ```
 #### Schema
 

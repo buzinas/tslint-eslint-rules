@@ -22,7 +22,7 @@ class ValidTypeofWalker extends Lint.RuleWalker {
   }
 
   private validateTypeOf(node: ts.TypeOfExpression) {
-    if (node.parent.kind === ts.SyntaxKind.BinaryExpression) {
+    if (node.parent && node.parent.kind === ts.SyntaxKind.BinaryExpression) {
       const parent = (node.parent as ts.BinaryExpression);
       if (this.OPERATORS.indexOf(parent.operatorToken.kind) !== -1) {
         const sibling = parent.left === node ? parent.right : parent.left;

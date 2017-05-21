@@ -34,7 +34,7 @@
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,
-    "no-consecutive-blank-lines": true,
+    "no-consecutive-blank-lines": [true],
     "no-console": [
       false
     ],
@@ -43,7 +43,7 @@
     "no-duplicate-variable": true,
     "no-empty": true,
     "no-eval": true,
-    "no-inferrable-types": false,
+    "no-inferrable-types": [false],
     "no-internal-module": true,
     "no-require-imports": false,
     "no-shadowed-variable": true,

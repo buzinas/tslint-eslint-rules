@@ -107,12 +107,12 @@ class RuleWalker extends Lint.RuleWalker {
         return;
       }
 
+      const returnExpression = (blockBody[0] as ts.ReturnStatement).expression;
       if (
         this.asNeeded &&
         this.requireReturnForObjectLiteral &&
         blockBody[0].kind === ts.SyntaxKind.ReturnStatement &&
-        (blockBody[0] as ts.ReturnStatement).expression &&
-        this.isObjectLiteral((blockBody[0] as ts.ReturnStatement).expression)
+        (returnExpression && this.isObjectLiteral(returnExpression))
       ) {
         return;
       }

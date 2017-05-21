@@ -1,6 +1,6 @@
 import { RuleTester, Failure, Position } from './ruleTester';
 
-const ruleTester = new RuleTester('no-sparse-arrays');
+const ruleTester = new RuleTester('ter-no-sparse-arrays');
 
 function expecting(errors: [number, number][]): Failure[] {
   // [line, column]

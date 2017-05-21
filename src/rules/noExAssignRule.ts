@@ -13,14 +13,14 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class NoExAssignWalker extends Lint.RuleWalker {
   private isInCatchClause = false;
-  private variableNode: ts.VariableDeclaration = null;
+  private variableNode?: ts.VariableDeclaration;
 
   protected visitCatchClause(node: ts.CatchClause) {
     this.variableNode = node.variableDeclaration;
     this.isInCatchClause = true;
     super.visitCatchClause(node);
     this.isInCatchClause = false;
-    this.variableNode = null;
+    delete this.variableNode;
   }
 
   protected visitBinaryExpression(node: ts.BinaryExpression) {
@@ -29,12 +29,15 @@ class NoExAssignWalker extends Lint.RuleWalker {
         return;
       }
 
-      if (node.left.kind === ts.SyntaxKind.Identifier && this.variableNode.name.getText() === node.left.getText()) {
+      if (
+        this.variableNode &&
+        this.variableNode.name.getText() === node.left.getText() &&
+        node.left.kind === ts.SyntaxKind.Identifier
+      ) {
         this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
-      }
-      else if (node.left.kind === ts.SyntaxKind.ArrayLiteralExpression) {
+      } else if (node.left.kind === ts.SyntaxKind.ArrayLiteralExpression) {
         const els = (node.left as ts.ArrayLiteralExpression).elements;
-        if (els.some(el => el.getText() === this.variableNode.getText())) {
+        if (els.some(el => !!this.variableNode && el.getText() === this.variableNode.getText())) {
           this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
         }
       }

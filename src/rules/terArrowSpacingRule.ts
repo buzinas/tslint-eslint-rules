@@ -20,9 +20,9 @@ export class Rule extends Lint.Rules.AbstractRule {
     optionsDescription: Lint.Utils.dedent`
       This rule takes an object argument with \`before\` and \`after\` properties, each with a
       Boolean value.
-      
+
       The default configuration is \`{ "before": true, "after": true }\`.
-      
+
       \`true\` means there should be one or more spaces and \`false\` means no spaces.
       `,
     options: {
@@ -89,24 +89,24 @@ class RuleWalker extends Lint.RuleWalker {
     };
     if (this.before) {
       if (!space.before) {
-        const fix = this.createFix(this.appendText(arrowStart, ' '));
+        const fix = Lint.Replacement.appendText(arrowStart, ' ');
         this.report(arrow, 'Missing', 'before', fix);
       }
     } else {
       if (space.before) {
         const spaces = arrowStart - arrow.getFullStart();
-        const fix = this.createFix(this.deleteText(arrowStart - spaces, spaces));
+        const fix = Lint.Replacement.deleteText(arrowStart - spaces, spaces);
         this.report(arrow, 'Unexpected', 'before', fix);
       }
     }
     if (this.after) {
       if (!space.after) {
-        const fix = this.createFix(this.appendText(arrow.end, ' '));
+        const fix = Lint.Replacement.appendText(arrow.end, ' ');
         this.report(arrow, 'Missing', 'after', fix);
       }
     } else {
       if (space.after) {
-        const fix = this.createFix(this.deleteText(arrow.end, bodyStart - arrow.end));
+        const fix = Lint.Replacement.deleteText(arrow.end, bodyStart - arrow.end);
         this.report(arrow, 'Unexpected', 'after', fix);
       }
     }

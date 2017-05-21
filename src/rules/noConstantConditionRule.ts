@@ -66,7 +66,7 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
     this.isInConditional = false;
   }
 
-  private isConstant(node: ts.Node) {
+  private isConstant(node: ts.Node): boolean {
     switch (node.kind) {
       // ESLint Literal
       case ts.SyntaxKind.StringLiteral:

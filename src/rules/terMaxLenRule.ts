@@ -9,6 +9,7 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
+import { forEachTokenWithTrivia } from 'tsutils';
 import { IDisabledInterval } from 'tslint/lib/language/rule/rule';
 
 const RULE_NAME = 'ter-max-len';
@@ -73,7 +74,7 @@ function stripTrailingComment(line: string, comment: INode) {
 /**
  * A reducer to group an AST node by line number, both start and end.
  */
-function groupByLineNumber(acc, node: INode) {
+function groupByLineNumber(acc: INode[][], node: INode) {
   const startLoc = node.start;
   const endLoc = node.end;
 
@@ -249,7 +250,7 @@ interface INode {
   kind: number;
 }
 
-class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
+class MaxLenWalker extends Lint.RuleWalker {
   private ignoredIntervals: IDisabledInterval[] = [];
   private optionsObj: { [key: string]: any } = {};
   private comments: INode[] = [];
@@ -301,25 +302,17 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
   public visitSourceFile(node: ts.SourceFile) {
     super.visitSourceFile(node);
 
-    Lint.scanAllTokens(ts.createScanner(ts.ScriptTarget.ES5, false, ts.LanguageVariant.Standard, node.text), (scanner: ts.Scanner) => {
-      const token = scanner.getToken();
-      const startPos = scanner.getStartPos();
-      if (this.getSkipEndFromStart(startPos)) {
-        // tokens to skip are places where the scanner gets confused about what the token is, without the proper context
-        // (specifically, regex, identifiers, and templates). So skip those tokens.
-        scanner.setTextPos(this.getSkipEndFromStart(startPos));
-        return;
-      }
-
+    forEachTokenWithTrivia(node, (text, token, range) => {
       if (
         token === ts.SyntaxKind.SingleLineCommentTrivia ||
         token === ts.SyntaxKind.MultiLineCommentTrivia
       ) {
-        this.comments.push(this.getINode(token, scanner.getTokenText(), startPos));
+        this.comments.push(this.getINode(token, text.substring(range.pos, range.end), range.pos));
       } else if (token === ts.SyntaxKind.FirstTemplateToken) {
-        this.templates.push(this.getINode(token, scanner.getTokenText(), startPos));
+        this.templates.push(this.getINode(token, text.substring(range.pos, range.end), range.pos));
       }
     });
+
     // We should have all the ignored intervals, comments, strings, templates, etc...
     // lets find those long lines
     this.findFailures(node);
@@ -363,7 +356,7 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
     const tabWidth = this.getOption(TAB_WIDTH) || 4;
     const maxCommentLength = this.getOption(COMMENTS);
 
-    const comments = ignoreComments || maxCommentLength || ignoreTrailingComments ? this.comments : [];
+    const comments: INode[] = ignoreComments || maxCommentLength || ignoreTrailingComments ? this.comments : [];
 
     let commentsIndex = 0;
     const stringsByLine = this.strings.reduce(groupByLineNumber, {});
@@ -382,7 +375,7 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
        * comments to check.
        */
       if (commentsIndex < comments.length) {
-        let comment = null;
+        let comment: INode;
 
         // iterate over comments until we find one past the current line
         do {
@@ -415,7 +408,7 @@ class MaxLenWalker extends Lint.SkippableTokenAwareRuleWalker {
         continue;
       }
 
-      let ruleFailure: Lint.RuleFailure;
+      let ruleFailure: Lint.RuleFailure | null = null;
       if (lineIsComment && exceedLineLimit(lineLength, maxCommentLength, source[to - 2])) {
         ruleFailure = new Lint.RuleFailure(
           sourceFile, from, to - 1,

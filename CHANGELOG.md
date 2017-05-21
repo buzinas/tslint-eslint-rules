@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.0.0] - April 4, 2017
+### Upgraded to [TSLint 5.0](https://github.com/palantir/tslint/releases/tag/5.0.0)
+
+
 ## [v3.5.1] - 2017/03/17 23:00 GMT-0600
 #### Fixes
 - sort-imports bug in simple type imports ([3d57149])
@@ -274,6 +278,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v4.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.1...v4.0.0
 [v3.5.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.0...v3.5.1
 [v3.5.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.4.0...v3.5.0
 [v3.4.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.3.0...v3.4.0
