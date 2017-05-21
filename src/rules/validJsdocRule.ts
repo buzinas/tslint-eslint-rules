@@ -263,7 +263,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
       if (node.parent && ALLOWED_PARENTS.indexOf(node.parent.kind) !== -1) {
         return this.getJSDocComment(node.parent);
       }
-      return { comments: undefined, start: undefined, width: undefined };
+      return {};
     }
 
     let comments = node.getFullText();
@@ -275,7 +275,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     let width = comments.length;
 
     if (!/^\/\*\*/.test(comments) || !/\*\/$/.test(comments)) {
-      return { comments: undefined, start: undefined, width: undefined };
+      return {};
     }
 
     return { comments, start, width };
