@@ -2,7 +2,7 @@ import { assert, expect } from 'chai';
 import * as Lint from 'tslint';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as benchMark from 'benchmark';
+import * as BenchMark from 'benchmark';
 
 const dedent = Lint.Utils.dedent;
 const empty = '░';
@@ -335,7 +335,7 @@ class RuleTester {
               if (runIndex || singleTest.num === index) {
                 test.runTest();
                 if (benchmark) {
-                  const suite = new benchMark.Suite();
+                  const suite = new BenchMark.Suite();
                   suite
                     .add(`      [${index}]:`, () => test.runTest(true))
                     .on('cycle', (event: any) => console.log(String(event.target)))
