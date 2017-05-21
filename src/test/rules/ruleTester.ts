@@ -327,7 +327,7 @@ class RuleTester {
       this.groups.forEach((group) => {
         if (runGroup || group.name === singleTest.group) {
           it(`${group.name} - ${group.description}`, () => {
-            if (benchMark) {
+            if (benchmark) {
               console.log('');
             }
             group.tests.forEach((test, index) => {
@@ -337,7 +337,7 @@ class RuleTester {
                   const suite = new benchMark.Suite();
                   suite
                     .add(`      [${index}]:`, () => test.runTest(true))
-                    .on('cycle', (event) => console.log(String(event.target)))
+                    .on('cycle', (event: any) => console.log(String(event.target)))
                     .run({ async: false });
                 }
               }
