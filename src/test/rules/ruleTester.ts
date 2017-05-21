@@ -145,6 +145,7 @@ class Test {
     const linter = new Lint.Linter(options);
     linter.lint(this.name, this.code, this.options);
 
+    // May need to exit early when doing benchmarks since we only care about the linting process.
     if (skipErrorCheck) return;
 
     const failures = JSON.parse(linter.getResult().output);
