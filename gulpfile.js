@@ -38,12 +38,15 @@ gulp.task('fetch', ['build'], function fetch(gulpCallBack) {
 
 gulp.task('new-rule', ['build'], function newRule(done) {
   var newRule = require('./dist/tools/newRule');
-  if (argv.rule) {
-    newRule.writeNewRule(argv.rule);
-    newRule.writeNewRuleTests(argv.rule);
-    done();
-  } else {
+  const ruleName = argv.rule;
+  if (!ruleName) {
     done('missing `--rule` option');
+  } else if (!ruleName.startsWith('ter-')) {
+    done('rule name is missing the `ter-` prefix');
+  } else {
+    newRule.writeNewRule(ruleName);
+    newRule.writeNewRuleTests(ruleName);
+    done();
   }
 });
 

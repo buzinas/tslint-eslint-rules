@@ -19,9 +19,9 @@ the issue easier and quicker.
  * tslint and typescript version.
 
        $ tslint --version
-       4.5.1
+       5.2.0
        $ tsc --version
-       Version 2.2.1
+       Version 2.3.2
 
  * `tslint.json` configuration.
  * typescript code being linted.
@@ -34,12 +34,15 @@ If you are not yet familiar with the way Github works (forking, pull requests, e
 check out this [article about forking](https://help.github.com/articles/fork-a-repo/). To get
 started on a new rule or fix/improve some existing rule you can follow the instructions below.
 
-- Create a branch with the rule name, e.g. `no-if-usage`.
+- Pick the rule name you will be working on and add the `ter` prefix. For instance, if you will be
+  working on the `no-tabs` rule, then the rule name will be `ter-no-tabs`. This is to avoid future
+  name collision with native rules provided by `TSLint`.
+- Create a branch with the rule name, e.g. `ter-indent`.
 - If you haven't, run `npm install` to download the project dependencies.
 - Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convention:
-  - Name: rule-name (hyphenated, e.g: no-if-usage)
-  - Rule File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: noIfUsageRule.ts)
-  - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix, e.g: noIfUsageRuleTests.ts)
+  - Name: rule-name (hyphenated, e.g: `ter-no-if-usage`)
+  - Rule File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: `terNoIfUsageRule.ts`)
+  - Test File: ruleNameRuleTests.ts (camelCased and with the `RuleTests` suffix, e.g: `terNoIfUsageRuleTests.ts`)
 
   This step can be done automatically by running
 
@@ -47,9 +50,9 @@ started on a new rule or fix/improve some existing rule you can follow the instr
   gulp new-rule --rule rule-name
   ```
 
-  This will generate a the rule template and test template in the appropiate directories.
+  This will generate a the rule template and test template in the appropriate directories.
 
-- Check if your rule is passing with `gulp test --single rule-name` (hyphenated, e.g no-inner-declarations)
+- Check if your rule is passing with `gulp test --single rule-name` (hyphenated, e.g ter-arrow-spacing)
   - During development you may have some linting errors that won't let you run the test. You can
     disable the linting process with the `--no-lint` flag: `gulp test --single rule-name --no-lint`.
   - If you are using the `RuleTester` utility as in the `ter-indent` rule tests you can specify a
