@@ -11,6 +11,7 @@ var Promise = require('es6-promise').Promise;
 
 var SINGLE_TEST = argv.single ? parseTestName(argv.single) : null;
 process.env.SINGLE_TEST = JSON.stringify(SINGLE_TEST);
+process.env.BENCHMARK = argv.benchmark;
 
 var SRC_FOLDER = SINGLE_TEST ? singleRule(SINGLE_TEST.name) : 'src/**/*.ts';
 var TEST_FOLDER = SINGLE_TEST ? singleTest(SINGLE_TEST.name) : 'dist/test/**/*.js';
@@ -94,9 +95,10 @@ gulp.task('build', argv.lint === false ? [] : ['lint'], function build(done) {
 });
 
 gulp.task('test', ['build'], function test() {
+  var opt = argv.benchmark ? { 'noTimeouts': true } : {};
   return gulp
     .src(TEST_FOLDER)
-    .pipe(mocha());
+    .pipe(mocha(opt));
 });
 
 gulp.task('watch', function watch() {

@@ -2,6 +2,7 @@ import { assert, expect } from 'chai';
 import * as Lint from 'tslint';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as BenchMark from 'benchmark';
 
 const dedent = Lint.Utils.dedent;
 const empty = '░';
@@ -133,7 +134,7 @@ class Test {
     this.testFixer = testFixer;
   }
 
-  public runTest(): void {
+  public runTest(skipErrorCheck: boolean = false): void {
     const options: Lint.ILinterOptions = {
       fix: false,
       formatter: 'json',
@@ -143,6 +144,10 @@ class Test {
 
     const linter = new Lint.Linter(options);
     linter.lint(this.name, this.code, this.options);
+
+    // May need to exit early when doing benchmarks since we only care about the linting process.
+    if (skipErrorCheck) return;
+
     const failures = JSON.parse(linter.getResult().output);
     this.compareErrors(
       this.errors || [],
@@ -318,13 +323,24 @@ class RuleTester {
     const singleTest = JSON.parse(process.env.SINGLE_TEST || 'null');
     const runGroup = singleTest === null || singleTest.group === null;
     const runIndex = singleTest === null || singleTest.num === null;
+    const benchmark = process.env.BENCHMARK !== 'undefined';
     describe(this.ruleName, () => {
       this.groups.forEach((group) => {
         if (runGroup || group.name === singleTest.group) {
-          it(group.description, () => {
+          it(`${group.name} - ${group.description}`, () => {
+            if (benchmark) {
+              console.log('');
+            }
             group.tests.forEach((test, index) => {
               if (runIndex || singleTest.num === index) {
                 test.runTest();
+                if (benchmark) {
+                  const suite = new BenchMark.Suite();
+                  suite
+                    .add(`      [${index}]:`, () => test.runTest(true))
+                    .on('cycle', (event: any) => console.log(String(event.target)))
+                    .run({ async: false });
+                }
               }
             });
           });
