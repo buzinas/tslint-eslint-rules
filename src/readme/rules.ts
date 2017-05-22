@@ -3101,9 +3101,11 @@ const rules: IRule[] = [
   }
 ];
 
-function toCamelCase(str: string): string {
+function toCamelCase(str: string, pascal: boolean = false): string {
   const words = str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1));
-  words[0] = words[0].toLowerCase();
+  if (!pascal) {
+    words[0] = words[0].toLowerCase();
+  }
   return words.join('');
 }
 
