@@ -9,7 +9,7 @@ require or disallow spaces inside parentheses
 
 This rule will enforce consistency of spacing directly inside of parentheses,
 by disallowing or requiring one or more spaces to the right of (and to the
-left of). In either case, () will still be allowed. 
+left of). In either case, () will still be allowed.
 
 ### Config
 

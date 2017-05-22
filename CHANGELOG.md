@@ -1,5 +1,24 @@
 # Change Log
 
+## [v4.1.0] - May 21, 2017
+#### Fixes
+- valid-jsdoc reported at wrong location ([82a3ca75])
+
+#### Rules Added
+- [ter-func-call-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terFuncCallSpacingRule.md)
+
+#### Name Change
+The following rule names have been renamed since they are no longer accessible with TSLint 5.0.
+
+- `no-irregular-whitespace` changed to `ter-no-irregular-whitespace`
+- `no-sparse-arrays` changed to `ter-no-sparse-arrays`
+
+#### Removed
+- `use-isnan`: This rule is now provided by TSLint.
+
+[82a3ca75]: https://github.com/buzinas/tslint-eslint-rules/commit/82a3ca75678240976d868498407b3763ff57419c
+
+
 ## [v4.0.0] - April 4, 2017
 ### Upgraded to [TSLint 5.0](https://github.com/palantir/tslint/releases/tag/5.0.0)
 
@@ -278,6 +297,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v4.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.0.0...v4.1.0
 [v4.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.1...v4.0.0
 [v3.5.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.0...v3.5.1
 [v3.5.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.4.0...v3.5.0
