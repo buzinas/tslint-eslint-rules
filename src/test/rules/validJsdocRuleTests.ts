@@ -641,6 +641,26 @@ ruleTester.addTestGroupWithConfig(
   ]
 );
 
+ruleTester.addTestGroupWithConfig(
+  'issue227',
+  'issue 227 - Should not complain about return in abstract method',
+  {
+    requireReturn: true
+  },
+  [
+    {
+      code: dedent`
+        class Foo {
+          /**
+           * @return {string} string
+           */
+          public abstract foo(): string;
+        }
+        `
+    }
+  ]
+);
+
 ruleTester.addTestGroup('issue178', 'issue 178 - Should not crash with incorrect jsdoc', [
   {
     code: dedent`

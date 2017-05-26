@@ -311,6 +311,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     let hasReturns = false;
     let hasConstructor = false;
     let isOverride = false;
+    let isAbstract = false;
 
     for (let tag of jsdoc.tags) {
       switch (tag.title) {
@@ -336,7 +337,9 @@ class ValidJsdocWalker extends Lint.RuleWalker {
         case 'returns':
           hasReturns = true;
 
-          if (!OPTIONS.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
+          isAbstract = Lint.hasModifier(fn.node.modifiers, ts.SyntaxKind.AbstractKeyword);
+
+          if (!isAbstract && !OPTIONS.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.unexpectedTag(tag.title)));
           }
           else {
