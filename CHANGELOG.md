@@ -1,5 +1,12 @@
 # Change Log
 
+## [v4.1.1] - May 26, 2017
+#### Fixes
+- valid-jsdoc reported missing return with abstract methods ([3bd2dafb])
+
+[3bd2dafb]: https://github.com/buzinas/tslint-eslint-rules/commit/3bd2dafb22174d2912f1a9b73ca917abe52107fc
+
+
 ## [v4.1.0] - May 21, 2017
 #### Fixes
 - valid-jsdoc reported at wrong location ([82a3ca75])
@@ -297,6 +304,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v4.1.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.0...v4.1.1
 [v4.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.0.0...v4.1.0
 [v4.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.1...v4.0.0
 [v3.5.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.0...v3.5.1
