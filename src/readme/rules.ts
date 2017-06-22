@@ -1652,9 +1652,9 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'computed-property-spacing',
-    tslintRule: 'computed-property-spacing',
+    tslintRule: 'ter-computed-property-spacing',
     category: 'Stylistic Issues',
     description: 'require or disallow padding inside computed properties',
     eslintUrl: 'http://eslint.org/docs/rules/computed-property-spacing',
