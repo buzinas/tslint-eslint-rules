@@ -339,7 +339,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
 
           isAbstract = Lint.hasModifier(fn.node.modifiers, ts.SyntaxKind.AbstractKeyword);
 
-          if (!isAbstract && !OPTIONS.requireReturn && !fn.returnPresent && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
+          if (!isAbstract && !OPTIONS.requireReturn && !fn.returnPresent && tag.type && tag.type.name !== 'void' && tag.type.name !== 'undefined') {
             this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.unexpectedTag(tag.title)));
           }
           else {

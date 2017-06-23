@@ -692,6 +692,28 @@ ruleTester.addTestGroup('issue178', 'issue 178 - Should not crash with incorrect
   }
 ]);
 
+ruleTester.addTestGroupWithConfig(
+  'issue238',
+  "issue 238 - Cannot read property 'name' of null",
+  {
+    requireReturn: false,
+    requireReturnType: false
+  },
+  [
+    {
+      code: dedent`
+        class MyPage {
+          /**
+           * Navigate to the page
+           * @returns a promise for the browser's navigation
+           */
+          public async navigateTo() { }
+        }
+        `
+    }
+  ]
+);
+
 ruleTester.addTestGroup('ret-type', 'should handle requireReturnType option', [
   {
     code: dedent`
