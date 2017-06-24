@@ -784,4 +784,151 @@ ruleTester.addTestGroup('error-location', 'error location should span the commen
   }
 ]);
 
+ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "never" or "void" should not require @returns', [
+  {
+    code: dedent`
+      /**
+       * Has void return type.
+       */
+      function throwError(): void {
+        throw new Error('Foo');
+      }
+      `,
+    options: { requireReturn: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Has never return type.
+       */
+      function throwError(): never {
+        throw new Error('Foo');
+      }
+      `,
+    options: { requireReturn: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Returns result of never function, is void type, and does not have returns tag.
+       */
+      function callInfinite(): void {
+        return neverReturn();
+      }
+
+      /**
+       * Has never return type.
+       */
+      function neverReturn(): never {
+        while (true) {};
+      }
+      `,
+    options: { requireReturn: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Returns result of never function, is never type, and does not have returns tag.
+       */
+      function callInfinite(): never {
+        return neverReturn();
+      }
+
+      /**
+       * Has never return type.
+       */
+      function neverReturn(): never {
+        while (true) {};
+      }
+      `,
+    options: { requireReturn: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Returns result of never function, is void type, but has returns tag.
+       * @returns something
+       */
+      function callInfinite(): void {
+        return neverReturn();
+      }
+
+      /**
+       * Has never return type.
+       */
+      function neverReturn(): never {
+        while (true) {};
+      }
+      `,
+    options: { requireReturn: false, requireReturnType: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Returns result of never function, is never type, but has returns tag.
+       * @returns something
+       */
+      function callInfinite(): never {
+        return neverReturn();
+      }
+
+      /**
+       * Has never return type.
+       */
+      function neverReturn(): never {
+        while (true) {};
+      }
+      `,
+    options: { requireReturn: false, requireReturnType: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Is void type, but requires returns tag.
+       * @returns something
+       */
+      function callInfinite(): void {
+        return neverReturn();
+      }
+
+      /**
+       * Has never return type.
+       * @returns something
+       */
+      function neverReturn(): never {
+        while (true) {};
+      }
+      `,
+    options: { requireReturn: true, requireReturnType: false },
+    errors: []
+  },
+  {
+    code: dedent`
+      /**
+       * Is never type, but requires returns tag.
+       * @returns something
+       */
+      function callInfinite(): never {
+        return neverReturn();
+      }
+
+      /**
+       * Has never return type.
+       * @returns something
+       */
+      function neverReturn(): never {
+        while (true) {};
+      }
+      `,
+    options: { requireReturn: true, requireReturnType: false },
+    errors: []
+  }
+]);
+
 ruleTester.runTests();
