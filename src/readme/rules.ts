@@ -2991,6 +2991,14 @@ const rules: IRule[] = [
   },
   {
     available: false,
+    eslintRule: 'prefer-destructuring',
+    tslintRule: 'prefer-destructuring',
+    category: 'ECMAScript 6',
+    description: 'require using destructuring when assigning to variables from arrays and objects',
+    eslintUrl: 'http://eslint.org/docs/rules/prefer-destructuring'
+  },
+  {
+    available: false,
     eslintRule: 'prefer-reflect',
     tslintRule: 'prefer-reflect',
     category: 'ECMAScript 6',
