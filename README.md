@@ -58,6 +58,9 @@ Please refer to the following icons as they provide the status of the rule.
 | :white_check_mark:      | The rule is available via tslint-eslint-rules. |
 | :x:                     | The rule is currently unavailable. |
 
+<!-- WARNING!
+Do **not** edit this table directly. It is automatically generated.
+-->
 <!-- Start:AutoTable:: Modify `src/readme/rules.ts` and run `gulp readme` to update block -->
 
 ### Possible Errors
