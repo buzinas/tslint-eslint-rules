@@ -48,7 +48,7 @@ function updateReadme(cb: Function) {
       createRuleTable() +
       '<!-- End:AutoTable -->'
     );
-    fs.writeFile('README.md', content, 'utf8', (writeErr) => {
+    fs.writeFile('README.md', content, { encoding: 'utf8' }, (writeErr) => {
       if (writeErr) {
         return console.error(writeErr);
       }
@@ -123,7 +123,7 @@ function updateRuleFile(name: string, rule: IRule): Promise<void> {
           '\n<!-- End:AutoDoc -->' + (readErr ? '\n' : '')
         ].join('')
       );
-      fs.writeFile(docFileName, content, 'utf8', (writeErr) => {
+      fs.writeFile(docFileName, content, { encoding: 'utf8' }, (writeErr) => {
         if (writeErr) {
           return reject(writeErr);
         }

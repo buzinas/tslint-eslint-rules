@@ -44,6 +44,6 @@
   "dependencies": {
     "doctrine": "^0.7.2",
     "tslib": "^1.0.0",
-    "tsutils": "^1.4.0"
+    "tsutils": "^2.4.0"
   }
 }
