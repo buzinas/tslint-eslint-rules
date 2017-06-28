@@ -226,7 +226,7 @@ These rules are purely matters of style and are quite subjective.
 |:ballot_box_with_check:|[camelcase](http://eslint.org/docs/rules/camelcase)|[variable-name](http://palantir.github.io/tslint/rules/variable-name)|require camel case names|
 |:x:|[comma-spacing](http://eslint.org/docs/rules/comma-spacing)|comma-spacing|enforce spacing before and after comma|
 |:x:|[comma-style](http://eslint.org/docs/rules/comma-style)|comma-style|enforce one true comma style|
-|:x:|[computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing)|computed-property-spacing|require or disallow padding inside computed properties|
+|:white_check_mark:|[computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing)|[ter-computed-property-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terComputedPropertySpacingRule.md)|require or disallow padding inside computed properties|
 |:x:|[consistent-this](http://eslint.org/docs/rules/consistent-this)|consistent-this|enforce consistent naming when capturing the current execution context|
 |:ballot_box_with_check:|[eol-last](http://eslint.org/docs/rules/eol-last)|[eofline](https://palantir.github.io/tslint/rules/eofline)|enforce newline at the end of file, with no multiple empty lines|
 |:white_check_mark:|[func-call-spacing](http://eslint.org/docs/rules/func-call-spacing)|[ter-func-call-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terFuncCallSpacingRule.md)|require or disallow spacing between function identifiers and their invocations|
@@ -315,7 +315,7 @@ These rules are only relevant to ES6 environments.
 |:ballot_box_with_check:|[object-shorthand](http://eslint.org/docs/rules/object-shorthand)|[object-literal-shorthand](https://palantir.github.io/tslint/rules/object-literal-shorthand)|require method and property shorthand syntax for object literals|
 |:white_check_mark:|[prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)|[ter-prefer-arrow-callback](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferArrowCallbackRule.md)|require arrow functions as callbacks|
 |:ballot_box_with_check:|[prefer-const](http://eslint.org/docs/rules/prefer-const)|[prefer-const](https://palantir.github.io/tslint/rules/prefer-const)|suggest using `const` declaration for variables that are never modified after declared|
-|:x:|[prefer-destructuring](http://eslint.org/docs/rules/prefer-destructuring)|prefer-destructuring|prefer destructuring from arrays and objects|
+|:x:|[prefer-destructuring](http://eslint.org/docs/rules/prefer-destructuring)|prefer-destructuring|require using destructuring when assigning to variables from arrays and objects|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|
 |:x:|[prefer-spread](http://eslint.org/docs/rules/prefer-spread)|prefer-spread|suggest using the spread operator instead of `.apply()`.|
