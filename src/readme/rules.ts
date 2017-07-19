@@ -91,10 +91,7 @@ const rules: IRule[] = [
     category: 'Possible Errors',
     description: 'disallow use of constant expressions in conditions (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-constant-condition',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-constant-condition": true
-    ~~~`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,

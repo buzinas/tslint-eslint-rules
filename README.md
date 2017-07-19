@@ -223,7 +223,7 @@ These rules are purely matters of style and are quite subjective.
 |:ballot_box_with_check:|[camelcase](http://eslint.org/docs/rules/camelcase)|[variable-name](http://palantir.github.io/tslint/rules/variable-name)|require camel case names|
 |:x:|[comma-spacing](http://eslint.org/docs/rules/comma-spacing)|comma-spacing|enforce spacing before and after comma|
 |:x:|[comma-style](http://eslint.org/docs/rules/comma-style)|comma-style|enforce one true comma style|
-|:x:|[computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing)|computed-property-spacing|require or disallow padding inside computed properties|
+|:white_check_mark:|[computed-property-spacing](http://eslint.org/docs/rules/computed-property-spacing)|[ter-computed-property-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terComputedPropertySpacingRule.md)|require or disallow padding inside computed properties|
 |:x:|[consistent-this](http://eslint.org/docs/rules/consistent-this)|consistent-this|enforce consistent naming when capturing the current execution context|
 |:ballot_box_with_check:|[eol-last](http://eslint.org/docs/rules/eol-last)|[eofline](https://palantir.github.io/tslint/rules/eofline)|enforce newline at the end of file, with no multiple empty lines|
 |:white_check_mark:|[func-call-spacing](http://eslint.org/docs/rules/func-call-spacing)|[ter-func-call-spacing](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terFuncCallSpacingRule.md)|require or disallow spacing between function identifiers and their invocations|

@@ -5,10 +5,36 @@
 
 disallow use of constant expressions in conditions (recommended)
 
-### Usage
+#### Rationale
+
+A constant expression (for example, a literal) as a test condition might be a typo or
+development trigger for a specific behavior. For example, the following code looks as if it is
+not ready for production.
+
+### Config
+
+- `"checkLoops"` Setting this option to `false` allows constant expressions in loops (default: `true`).
+
+#### Examples
 
 ```json
 "no-constant-condition": true
 ```
 
+```json
+"no-constant-condition": [true, { "checkLoops": false }]
+```
+#### Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "checkLoops": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}
+```
 <!-- End:AutoDoc -->

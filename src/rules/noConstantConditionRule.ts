@@ -2,8 +2,42 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 import { isAssignmentToken } from '../support/token';
 
+const RULE_NAME = 'no-constant-condition';
+
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = 'unexpected constant condition';
+
+  public static metadata: Lint.IRuleMetadata = {
+    ruleName: RULE_NAME,
+    description: 'disallow use of constant expressions in conditions (recommended)',
+    rationale: Lint.Utils.dedent`
+      A constant expression (for example, a literal) as a test condition might be a typo or
+      development trigger for a specific behavior. For example, the following code looks as if it is
+      not ready for production.
+      `,
+    optionsDescription: Lint.Utils.dedent`
+      - \`"checkLoops"\` Setting this option to \`false\` allows constant expressions in loops (default: \`true\`).
+      `,
+    options: {
+      type: 'object',
+      properties: {
+        checkLoops: {
+          type: 'boolean'
+        }
+      },
+      additionalProperties: false
+    },
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": true
+        `,
+      Lint.Utils.dedent`
+        "${RULE_NAME}": [true, { "checkLoops": false }]
+        `
+    ],
+    typescriptOnly: false,
+    type: 'functionality'
+  };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new NoConstantConditionWalker(sourceFile, this.getOptions());
