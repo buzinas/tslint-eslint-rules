@@ -261,8 +261,8 @@ class TestGroup {
         if (groupConfig) {
           config.rules[ruleName] = [true, ...groupConfig];
         }
-        const configFile = Lint.Configuration.parseConfigFile(config);
-        return new Test(codeFileName, test, '', configFile, []);
+        const configuration = Lint.Configuration.parseConfigFile(config);
+        return new Test(codeFileName, test, '', configuration, []);
       }
       if (test.options) {
         config.rules[ruleName] = [true, ...test.options];
