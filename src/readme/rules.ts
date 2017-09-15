@@ -2777,6 +2777,18 @@ const rules: IRule[] = [
   },
   {
     available: true,
+    eslintRule: 'no-tabs',
+    tslintRule: 'ter-no-tabs',
+    category: 'Stylistic Issues',
+    description: 'disallow all tabs',
+    eslintUrl: 'https://eslint.org/docs/rules/no-tabs',
+    provider: 'tslint-eslint-rules',
+    usage: `~~~json
+    "ter-no-tabs": true
+    ~~~`
+  },
+  {
+    available: true,
     eslintRule: 'arrow-body-style',
     tslintRule: 'ter-arrow-body-style',
     category: 'ECMAScript 6',

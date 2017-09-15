@@ -1,10 +1,9 @@
 {
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
+  "tslint.configFile": "tslint.json",
   "tslint.enable": true,
+  "tslint.rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
   "files.eol": "\n",
-  "tslint.options": {
-    "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules"
-  },
   "files.insertFinalNewline": true
 }
