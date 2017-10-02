@@ -39,7 +39,8 @@
     "yargs": "^5.0.0"
   },
   "peerDependencies": {
-    "tslint": "^5.0.0"
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.0"
   },
   "dependencies": {
     "doctrine": "^0.7.2",
