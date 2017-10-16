@@ -708,7 +708,7 @@ class IndentWalker extends Lint.RuleWalker {
   /**
    * Check indent for nodes list.
    */
-  protected checkNodesIndent(nodes: ts.Node[], indent: number): void {
+  protected checkNodesIndent(nodes: ReadonlyArray<ts.Node>, indent: number): void {
     nodes.forEach(node => this.checkNodeIndent(node, indent));
   }
 
