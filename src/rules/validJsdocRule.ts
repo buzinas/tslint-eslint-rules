@@ -148,6 +148,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 declare interface IReturnPresent {
   node: ts.Node;
   returnPresent: boolean;
+  isVoidOrNever: boolean;
 }
 
 interface IJSComment {
@@ -221,6 +222,8 @@ class ValidJsdocWalker extends Lint.RuleWalker {
 
   private startFunction(node: ts.Node) {
     let returnPresent = false;
+    let isVoidOrNever = false;
+    let returnType: ts.TypeNode | undefined;
 
     if (node.kind === ts.SyntaxKind.ArrowFunction && (node as ts.ArrowFunction).body.kind !== ts.SyntaxKind.Block)
       returnPresent = true;
@@ -228,7 +231,18 @@ class ValidJsdocWalker extends Lint.RuleWalker {
     if (this.isTypeClass(node))
       returnPresent = true;
 
-    this.fns.push({ node, returnPresent });
+    returnType = (node as ts.SignatureDeclaration).type;
+
+    if (returnType !== undefined) {
+      switch (returnType.kind) {
+        case ts.SyntaxKind.VoidKeyword:
+        case ts.SyntaxKind.NeverKeyword:
+          isVoidOrNever = true;
+          break;
+      }
+    }
+
+    this.fns.push({ node, returnPresent, isVoidOrNever });
   }
 
   private addReturn(node: ts.ReturnStatement) {
@@ -371,7 +385,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
 
     // check for functions missing @returns
     if (!isOverride && !hasReturns && !hasConstructor && node.parent && node.parent.kind !== ts.SyntaxKind.GetKeyword && !this.isTypeClass(node)) {
-      if (OPTIONS.requireReturn || fn.returnPresent) {
+      if (OPTIONS.requireReturn || (fn.returnPresent && !fn.isVoidOrNever)) {
         this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturn(OPTIONS.prefer['returns'])));
       }
     }
