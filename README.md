@@ -290,6 +290,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[space-unary-ops](http://eslint.org/docs/rules/space-unary-ops)|space-unary-ops|require or disallow spaces before/after unary operators|
 |:ballot_box_with_check:|[spaced-comment](http://eslint.org/docs/rules/spaced-comment)|[comment-format](https://palantir.github.io/tslint/rules/comment-format)|require or disallow a space immediately following the `//` or `/*` in a comment|
 |:x:|[wrap-regex](http://eslint.org/docs/rules/wrap-regex)|wrap-regex|require regex literals to be wrapped in parentheses|
+|:white_check_mark:|[no-tabs](https://eslint.org/docs/rules/no-tabs)|[ter-no-tabs](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoTabsRule.md)|disallow all tabs|
 
 ### ECMAScript 6
 
