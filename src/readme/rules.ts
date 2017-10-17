@@ -873,11 +873,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-new',
-    tslintRule: 'no-unused-new',
+    tslintRule: 'no-unused-expression',
     category: 'Best Practices',
     description: 'disallow use of the `new` operator when not part of an assignment or comparison',
     eslintUrl: 'http://eslint.org/docs/rules/no-new',
-    tslintUrl: 'https://palantir.github.io/tslint/rules/no-unused-new',
+    tslintUrl: 'https://palantir.github.io/tslint/rules/no-unused-expression',
     provider: 'native'
   },
   {

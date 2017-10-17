@@ -143,7 +143,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:white_check_mark:|[no-multi-spaces](http://eslint.org/docs/rules/no-multi-spaces)|[no-multi-spaces](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/noMultiSpacesRule.md)|disallow use of multiple spaces|
 |:x:|[no-multi-str](http://eslint.org/docs/rules/no-multi-str)|no-multi-str|disallow use of multiline strings|
 |:no_entry_sign:|[no-native-reassign](http://eslint.org/docs/rules/no-native-reassign)|Not applicable|disallow reassignments of native objects|
-|:ballot_box_with_check:|[no-new](http://eslint.org/docs/rules/no-new)|[no-unused-new](https://palantir.github.io/tslint/rules/no-unused-new)|disallow use of the `new` operator when not part of an assignment or comparison|
+|:ballot_box_with_check:|[no-new](http://eslint.org/docs/rules/no-new)|[no-unused-expression](https://palantir.github.io/tslint/rules/no-unused-expression)|disallow use of the `new` operator when not part of an assignment or comparison|
 |:x:|[no-new-func](http://eslint.org/docs/rules/no-new-func)|no-new-func|disallow use of new operator for `Function` object|
 |:ballot_box_with_check:|[no-new-wrappers](http://eslint.org/docs/rules/no-new-wrappers)|[no-construct](https://palantir.github.io/tslint/rules/no-construct)|disallows creating new instances of `String`,`Number`, and `Boolean`|
 |:no_entry_sign:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
