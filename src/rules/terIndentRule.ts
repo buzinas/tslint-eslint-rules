@@ -391,7 +391,7 @@ class IndentWalker extends Lint.RuleWalker {
       return this.getNodeIndent(node.parent);
     }
 
-    const endIndex = node.getStart();
+    const endIndex = node.getStart(this.srcFile);
     let pos = endIndex - 1;
     while (pos > 0 && this.srcText.charAt(pos) !== '\n') {
       pos -= 1;
@@ -1159,9 +1159,11 @@ class IndentWalker extends Lint.RuleWalker {
       const indent = this.getLineAndCharacter(node.arguments[0]).character;
       this.checkNodesIndent(node.arguments.slice(1), indent);
     } else if (OPTIONS.CallExpression.arguments !== null) {
+      const openParen = node.getChildAt(node.getChildCount(this.srcFile) - 3, this.srcFile);
+      const openParenIndent = this.getNodeIndent(openParen);
       this.checkNodesIndent(
         node.arguments,
-        this.getNodeIndent(node).goodChar + indentSize * OPTIONS.CallExpression.arguments
+        openParenIndent.goodChar + indentSize * OPTIONS.CallExpression.arguments
       );
     }
     super.visitCallExpression(node);

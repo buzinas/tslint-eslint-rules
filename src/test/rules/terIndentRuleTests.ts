@@ -3349,4 +3349,63 @@ ruleTester.addTestGroup('interfaces', 'should check indentation on interfaces', 
   }
 ]);
 
+ruleTester.addTestGroupWithConfig(
+  'issue-254',
+  'reporting as a false positive',
+  [
+    2,
+    {
+      'SwitchCase': 1,
+      'MemberExpression': 1,
+      'FunctionDeclaration': {
+        'parameters': 1
+      },
+      'FunctionExpression': {
+        'parameters': 1
+      },
+      'CallExpression': {
+        arguments: 1
+      }
+    }
+  ],
+  [
+    {
+      code: dedent`
+      foo = this.actions$
+        .ofType(
+          'foo',
+          'bar'
+        );
+      `
+    },
+    {
+      code: dedent`
+      foo = this
+        .actions$
+        .ofType(
+          'foo',
+          'bar'
+        );
+      `
+    },
+    {
+      code: dedent`
+      foo = this.actions$.ofType(
+        'foo',
+        'bar'
+      );
+      `
+    },
+    {
+      code: dedent`
+      foo = this.actions$.ofType
+        (
+          'foo',
+          'bar'
+        );
+      `
+    }
+  ]
+);
+
 ruleTester.runTests();
