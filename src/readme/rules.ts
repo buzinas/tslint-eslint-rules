@@ -2192,22 +2192,11 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'no-mixed-spaces-and-tabs',
-    tslintRule: 'indent',
+    tslintRule: 'ter-no-mixed-spaces-and-tabs',
     category: 'Stylistic Issues',
     description: 'disallow mixed spaces and tabs for indentation (recommended)',
     eslintUrl: 'http://eslint.org/docs/rules/no-mixed-spaces-and-tabs',
-    tslintUrl: 'http://palantir.github.io/tslint/rules/indent',
-    provider: 'native',
-    usage: `~~~json
-    "indent": "spaces"
-    ~~~
-
-    ~~~json
-    "indent": "tabs"
-    ~~~`,
-    note: `When using TSLint \`indent\` rule, it will enforce the consistent use of the chosen
-    indentation. The ESLint rule allows an option for Smart Tabs, but there are some open issues,
-    and we're not going to support this.`
+    provider: 'tslint-eslint-rules'
   },
   {
     available: true,
