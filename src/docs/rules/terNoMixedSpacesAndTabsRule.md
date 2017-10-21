@@ -33,19 +33,19 @@ allow mixing tabs and spaces if tabs are used for indentation and spaces for ali
 #### Examples
 
 ```json
-"ter-no-mixed-spaces-and-tabs": { type: OPTION_USE_TABS } ]
+"ter-no-mixed-spaces-and-tabs": { "type": "tabs" } ]
 ```
 
 ```json
-"ter-no-mixed-spaces-and-tabs": { type: OPTION_USE_SPACES } ]
+"ter-no-mixed-spaces-and-tabs": { "type": "spaces" } ]
 ```
 
 ```json
-"ter-no-mixed-spaces-and-tabs": { smartTabs: true } ]
+"ter-no-mixed-spaces-and-tabs": { "smartTabs": true } ]
 ```
 
 ```json
-"ter-no-mixed-spaces-and-tabs": { type: OPTION_USE_TABS, smartTabs: true } ]
+"ter-no-mixed-spaces-and-tabs": { "type": "tabs", "smartTabs": true } ]
 ```
 #### Schema
 

@@ -60,16 +60,16 @@ export class Rule extends Lint.Rules.AbstractRule {
     },
     optionExamples: [
       Lint.Utils.dedent`
-      "${RULE_NAME}": { type: OPTION_USE_TABS } ]
+      "${RULE_NAME}": { "type": "${OPTION_USE_TABS}" } ]
       `,
       Lint.Utils.dedent`
-      "${RULE_NAME}": { type: OPTION_USE_SPACES } ]
+      "${RULE_NAME}": { "type": "${OPTION_USE_SPACES}" } ]
       `,
       Lint.Utils.dedent`
-      "${RULE_NAME}": { smartTabs: true } ]
+      "${RULE_NAME}": { "smartTabs": true } ]
       `,
       Lint.Utils.dedent`
-      "${RULE_NAME}": { type: OPTION_USE_TABS, smartTabs: true } ]
+      "${RULE_NAME}": { "type": "${OPTION_USE_TABS}", "smartTabs": true } ]
       `
     ],
     type: 'maintainability',
@@ -80,9 +80,8 @@ export class Rule extends Lint.Rules.AbstractRule {
     if (!mixed) {
       return `${expected} indentation expected`;
     }
-    else {
-      return `indentation has mixed tabs and spaces`;
-    }
+
+    return `indentation has mixed tabs and spaces`;
   }
 
   private formatOptions(ruleArguments: any[]): ITerNoMixedSpacesAndTabsRuleOptions {
@@ -109,12 +108,16 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 function walk(ctx: Lint.WalkContext<ITerNoMixedSpacesAndTabsRuleOptions>): void {
   const { sourceFile, options: { tabs, smartTabs } } = ctx;
-  const regExp =
-    tabs === true ?
-      new RegExp(`\ ${smartTabs ? '\\t' : ''}`) :
-      tabs === false ?
-      new RegExp(`\\t`) :
-      new RegExp(`${smartTabs ? '' : '\\t |'} \\t`);
+  let regExp: RegExp;
+  if (tabs === true) {
+    regExp = new RegExp(`\ ${smartTabs ? '\\t' : ''}`);
+  }
+  else if (tabs === false) {
+    regExp = new RegExp(`\\t`);
+  }
+  else {
+    regExp = new RegExp(`${smartTabs ? '' : '\\t |'} \\t`);
+  }
   const failure = Rule.FAILURE_STRING(tabs ? 'tab' : 'space', typeof tabs === 'undefined');
 
   for (const { pos, contentLength } of getLineRanges(sourceFile)) {
