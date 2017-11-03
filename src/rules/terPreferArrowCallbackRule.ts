@@ -144,8 +144,6 @@ interface IFunctionScope {
 }
 
 class RuleWalker extends Lint.RuleWalker {
-  private srcFile: ts.SourceFile;
-  private srcText: string;
   private stack: IFunctionScope[] = [];
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
@@ -159,8 +157,6 @@ class RuleWalker extends Lint.RuleWalker {
       OPTIONS.allowUnboundThis = userOptions.allowUnboundThis !== false;
       OPTIONS.allowNamedFunctions = userOptions.allowNamedFunctions;
     }
-    this.srcFile = sourceFile;
-    this.srcText = sourceFile.getFullText();
   }
 
   /**

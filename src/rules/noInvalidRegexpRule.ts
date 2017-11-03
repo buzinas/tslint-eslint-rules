@@ -26,9 +26,8 @@ class NoInvalidRegexpWalker extends Lint.RuleWalker {
         const expr = (args[0] as ts.StringLiteral).text;
         const flags = args.length > 1 && args[1].kind === ts.SyntaxKind.StringLiteral ? (args[1] as ts.StringLiteral).text : undefined;
 
-        let regex: RegExp;
         try {
-          regex = new RegExp(expr, flags);
+          (() => new RegExp(expr, flags))();
         }
         catch (e) {
           this.addFailure(this.createFailure(node.getStart(), node.getWidth(), e.message));
