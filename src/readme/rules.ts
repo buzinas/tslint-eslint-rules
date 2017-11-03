@@ -2472,7 +2472,7 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'padded-blocks',
     tslintRule: 'padded-blocks',
     category: 'Stylistic Issues',
