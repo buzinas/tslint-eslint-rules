@@ -163,7 +163,7 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       }
 
       // tslint:disable-next-line triple-equals
-      if (lastChildLine == undefined || lastChildLine < lastChildLine) {
+      if (lastChildLine == undefined || lastCommentLine > lastChildLine) {
         lastChildLine = lastCommentLine;
         lastChildPosition = comments[comments.length - 1].end;
       }
@@ -173,15 +173,6 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     const openPadded = openLine !== firstChildLine && (firstChildLine == undefined ? (closeLine - openLine > 1) : (firstChildLine! - 1) !== openLine);
     const closePadded = closeLine !== lastChildLine && (lastChildLine == undefined ? (closeLine - openLine > 1) : (lastChildLine! + 1) !== closeLine);
     // tslint:enable triple-equals
-
-    // this.sourceFile.getText().split('\n').forEach((line, i) => console.log(`${i}| ${line}`));
-    // console.log(openLine);
-    // console.log(firstChildLine);
-    // console.log(lastChildLine);
-    // console.log(closeLine);
-    // console.log(openPadded);
-    // console.log(closePadded);
-    // console.log('--');
 
     if (openPadded === closePadded) {
       if (paddingAllowed && !openPadded) {

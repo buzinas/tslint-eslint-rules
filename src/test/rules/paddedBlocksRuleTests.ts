@@ -83,6 +83,27 @@ ruleTester.addTestGroup('always-fail', 'should fail non-padded blocks', [
     errors: expecting([
       [FAILURE_STRING.always, [0, 10], [2, 1]]
     ])
+  },
+  {
+    code: fixtures.notPadded.ifEmpty,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 7], [1, 1]]
+    ])
+  },
+  {
+    code: fixtures.notPadded.ifComment,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 7], [3, 1]]
+    ])
+  },
+  {
+    code: fixtures.notPadded.switch,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 11], [3, 1]]
+    ])
   }
 ]);
 
@@ -121,6 +142,27 @@ ruleTester.addTestGroup('never-fail', 'should fail padded blocks', [
     options: ['never'],
     errors: expecting([
       [FAILURE_STRING.never, [0, 10], [4, 1]]
+    ])
+  },
+  {
+    code: fixtures.padded.ifEmpty,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [0, 7], [2, 1]]
+    ])
+  },
+  {
+    code: fixtures.padded.ifComment,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [0, 7], [5, 1]]
+    ])
+  },
+  {
+    code: fixtures.padded.switch,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [0, 11], [5, 1]]
     ])
   }
 ]);
