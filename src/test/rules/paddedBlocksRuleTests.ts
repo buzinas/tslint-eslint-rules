@@ -14,43 +14,100 @@ function expecting(errors: [string, [number, number], [number, number]][]): Fail
   });
 }
 
+const fixtures = {
+  // If statements
+  // -- Padded
+  ifPadded: 'if (a) {\n\nb();\n\n}',
+  ifPaddedElsePadded: 'if (a) {\n\nb();\n\n} else {\n\nb();\n\n}',
+  ifCommentPadded: 'if (a) {\n\n// Comment\nb();\n\n}', // TODO
+  ifEmptyPadded: 'if (a) {\n\n}', // TODO
+  // -- !Padded
+  if: 'if (a) {\nb();\n}',
+  ifElse: 'if (a) {\nb();\n} else {\nb();\n}',
+  ifComment: 'if (a) {\n// Comment\nb();\n}', // TODO
+  ifEmpty: 'if (a) {\n}', // TODO
+  // -- Mixed
+  ifPaddedElse: 'if (a) {\n\nb();\n\n} else {\nb();\n}',
+  ifElsePadded: 'if (a) {\nb();\n} else {\n\nb();\n\n}',
+
+  // Class declarations
+  // -- Padded
+  classPadded: 'class Foo {\n\npublic a: any;\n\n}',
+  // -- !Padded
+  class: 'class Foo {\npublic a: any;\n}'
+};
+
 ruleTester.addTestGroup('always-pass', 'should pass padded blocks', [
-  { code: 'if (a) {\n\nb();\n\n}', options: ['always'] },
-  { code: 'if (a) {\n\nb();\n\n} else {\n\nb();\n\n}', options: ['always'] }
+  { code: fixtures.ifPadded, options: ['always'] },
+  { code: fixtures.ifPaddedElsePadded, options: ['always'] },
+  // { code: fixtures.ifCommentPadded, options: ['always'] },
+  { code: fixtures.classPadded, options: ['always']}
 ]);
 
 ruleTester.addTestGroup('never-pass', 'should pass non-padded blocks', [
-  { code: 'if (a) {\nb();\n}', options: ['never'] },
-  { code: 'if (a) {\nb();\n} else {\nb();\n}', options: ['never'] }
+  { code: fixtures.if, options: ['never'] },
+  { code: fixtures.ifElse, options: ['never'] },
+  // { code: fixtures.ifComment, options: ['never'] },
+  { code: fixtures.class, options: ['never']}
 ]);
 
 ruleTester.addTestGroup('always-fail', 'should fail non-padded blocks', [
   {
-    code: 'if (a) {\nb();\n}',
+    code: fixtures.if,
     options: ['always'],
     errors: expecting([
       [FAILURE_STRING.always, [0, 7], [2, 0]]
     ])
   },
   {
-    code: 'if (a) {\n\nb();\n\n} else {\nb()\n}',
+    code: fixtures.ifElse,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 7], [2, 0]],
+      [FAILURE_STRING.always, [2, 7], [4, 0]]
+    ])
+  },
+  {
+    code: fixtures.ifPaddedElse,
     options: ['always'],
     errors: expecting([
       [FAILURE_STRING.always, [4, 7], [6, 0]]
+    ])
+  },
+  {
+    code: fixtures.ifElsePadded,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 7], [2, 0]]
     ])
   }
 ]);
 
 ruleTester.addTestGroup('never-fail', 'should fail padded blocks', [
   {
-    code: 'if (a) {\n\nb();\n\n}',
+    code: fixtures.ifPadded,
     options: ['never'],
     errors: expecting([
       [FAILURE_STRING.never, [0, 7], [4, 0]]
     ])
   },
   {
-    code: 'if (a) {\nb();\n} else {\n\nb()\n\n}',
+    code: fixtures.ifPaddedElsePadded,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [0, 7], [4, 0]],
+      [FAILURE_STRING.never, [4, 7], [8, 0]]
+    ])
+  },
+  {
+    code: fixtures.ifPaddedElse,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [0, 7], [4, 0]]
+    ])
+  },
+  {
+    code: fixtures.ifElsePadded,
     options: ['never'],
     errors: expecting([
       [FAILURE_STRING.never, [2, 7], [6, 0]]
