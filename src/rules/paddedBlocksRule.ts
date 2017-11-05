@@ -102,7 +102,9 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       if (ts.isIfStatement(node)) {
         this.checkPadding(node.thenStatement);
         if (node.elseStatement) this.checkPadding(node.elseStatement);
-      } else if (ts.isClassDeclaration(node) || ts.isSwitchStatement(node) || ts.isBlock(node)) {
+      } else if (ts.isSwitchStatement(node)) {
+        this.checkPadding(node.caseBlock);
+      } else if (ts.isClassDeclaration(node) || ts.isBlock(node)) {
         this.checkPadding(node);
       }
     });
