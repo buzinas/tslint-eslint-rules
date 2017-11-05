@@ -98,22 +98,16 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   public walk(sourceFile: ts.SourceFile) {
     sourceFile.forEachChild(node => {
       if (ts.isIfStatement(node)) {
-        this.checkNode(node.thenStatement);
-        if (node.elseStatement) this.checkNode(node.elseStatement);
+        this.checkPadding(node.thenStatement);
+        if (node.elseStatement) this.checkPadding(node.elseStatement);
       } else if (ts.isClassDeclaration(node) || ts.isSwitchStatement(node) || ts.isBlock(node)) {
-        this.checkNode(node);
+        this.checkPadding(node);
       }
     });
   }
 
-  private checkNode(node: ts.Node): void {
-    const parts = this.getParts(node);
-
-    this.checkPadding(parts.openBrace!.getStart(), parts.closeBrace!.getEnd(), parts.body!);
-  }
-
-  private getParts(node: ts.Node): { openBrace: ts.Node | undefined, body: ts.Node | undefined, closeBrace: ts.Node | undefined } {
-    let openBrace, body, closeBrace;
+  private getParts(node: ts.Node): { openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node } {
+    let openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node;
 
     node.getChildren().forEach(child => {
       if (child.kind === ts.SyntaxKind.OpenBraceToken) {
@@ -126,24 +120,28 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     });
 
     return {
-      openBrace,
-      body,
-      closeBrace
+      openBrace: openBrace!,
+      body: body!,
+      closeBrace: closeBrace!
     };
   }
 
-  private checkPadding(openPosition: number, closePosition: number, body: ts.Node): void {
+  private checkPadding(node: ts.Node): void {
+    const {openBrace, body, closeBrace} = this.getParts(node);
+
     const firstChild = body.getChildAt(0);
     const lastChild = body.getChildAt(body.getChildCount() - 1);
 
+    const openPosition = openBrace.getStart();
+    const closePosition = closeBrace.getEnd();
     const openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
     const closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
     const firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChild.getStart()).line;
     const lastChildLine = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChild.getEnd()).line;
 
     // tslint:disable triple-equals
-    const openPadded = openLine !== firstChildLine && (firstChild == undefined || (firstChildLine! - 1) !== openLine);
-    const closePadded = closeLine !== lastChildLine && (lastChild == undefined || (lastChildLine! + 1) !== closeLine);
+    const openPadded = openLine !== firstChildLine && (firstChild == undefined ? (closeLine - openLine > 1) : (firstChildLine! - 1) !== openLine);
+    const closePadded = closeLine !== lastChildLine && (lastChild == undefined ? (closeLine - openLine > 1) : (lastChildLine! + 1) !== closeLine);
     // tslint:enable triple-equals
 
     // this.sourceFile.getText().split('\n').forEach((line, i) => console.log(`${i}| ${line}`));
