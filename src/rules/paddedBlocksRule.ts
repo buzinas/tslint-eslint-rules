@@ -98,31 +98,38 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   public walk(sourceFile: ts.SourceFile) {
     sourceFile.forEachChild(node => {
       if (ts.isIfStatement(node)) {
-        this.checkStatement(node.thenStatement);
-        if (node.elseStatement) this.checkStatement(node.elseStatement);
-      } else if (ts.isClassDeclaration(node)) {
-        this.checkClass(node);
-      } else if (ts.isSwitchStatement(node)) {
-        this.checkStatement(node);
-      } else if (ts.isBlock(node)) {
-        this.checkStatement(node);
+        this.checkNode(node.thenStatement);
+        if (node.elseStatement) this.checkNode(node.elseStatement);
+      } else if (ts.isClassDeclaration(node) || ts.isSwitchStatement(node) || ts.isBlock(node)) {
+        this.checkNode(node);
       }
     });
   }
 
-  private checkClass(classNode: ts.ClassDeclaration): void {
-    const openBrace = classNode.getChildren().find(child => child.kind === ts.SyntaxKind.OpenBraceToken)!;
-    const body = classNode.getChildren().find(child => child.kind === ts.SyntaxKind.SyntaxList);
-    const closeBrace = classNode.getChildren().find(child => child.kind === ts.SyntaxKind.CloseBraceToken)!;
+  private checkNode(node: ts.Node): void {
+    const parts = this.getParts(node);
 
-    this.checkPadding(openBrace.getStart(), closeBrace.getEnd(), body, body);
+    this.checkPadding(parts.openBrace!.getStart(), parts.closeBrace!.getEnd(), parts.body, parts.body);
   }
 
-  private checkStatement(statement: ts.Statement): void {
-    const firstChild = statement.getChildren()[1];
-    const lastChild = statement.getChildren()[statement.getChildCount() - 2];
+  private getParts(node: ts.Node): { openBrace: ts.Node | undefined, body: ts.Node | undefined, closeBrace: ts.Node | undefined } {
+    let openBrace, body, closeBrace;
 
-    this.checkPadding(statement.getStart(), statement.getEnd(), firstChild, lastChild);
+    node.getChildren().forEach(child => {
+      if (child.kind === ts.SyntaxKind.OpenBraceToken) {
+        openBrace = child;
+      } else if (child.kind === ts.SyntaxKind.SyntaxList) {
+        body = child;
+      } else if (child.kind === ts.SyntaxKind.CloseBraceToken) {
+        closeBrace = child;
+      }
+    });
+
+    return {
+      openBrace,
+      body,
+      closeBrace
+    };
   }
 
   private checkPadding(openPosition: number, closePosition: number, firstChild: ts.Node | undefined, lastChild: ts.Node | undefined): void {
@@ -135,6 +142,15 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     const openPadded = openLine !== firstChildLine && (firstChild == undefined || (firstChildLine! - 1) !== openLine);
     const closePadded = closeLine !== lastChildLine && (lastChild == undefined || (lastChildLine! + 1) !== closeLine);
     // tslint:enable triple-equals
+
+    // this.sourceFile.getText().split('\n').forEach((line, i) => console.log(`${i}| ${line}`));
+    // console.log(openLine);
+    // console.log(firstChildLine);
+    // console.log(lastChildLine);
+    // console.log(closeLine);
+    // console.log(openPadded);
+    // console.log(closePadded);
+    // console.log('--');
 
     if (openPadded === closePadded) {
       if (this.options.blocks && !openPadded) {
