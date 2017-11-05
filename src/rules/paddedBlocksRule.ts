@@ -109,7 +109,7 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   private checkNode(node: ts.Node): void {
     const parts = this.getParts(node);
 
-    this.checkPadding(parts.openBrace!.getStart(), parts.closeBrace!.getEnd(), parts.body, parts.body);
+    this.checkPadding(parts.openBrace!.getStart(), parts.closeBrace!.getEnd(), parts.body!);
   }
 
   private getParts(node: ts.Node): { openBrace: ts.Node | undefined, body: ts.Node | undefined, closeBrace: ts.Node | undefined } {
@@ -132,7 +132,10 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     };
   }
 
-  private checkPadding(openPosition: number, closePosition: number, firstChild: ts.Node | undefined, lastChild: ts.Node | undefined): void {
+  private checkPadding(openPosition: number, closePosition: number, body: ts.Node): void {
+    const firstChild = body.getChildAt(0);
+    const lastChild = body.getChildAt(body.getChildCount() - 1);
+
     const openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
     const closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
     const firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChild.getStart()).line;
