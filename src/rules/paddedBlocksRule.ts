@@ -100,12 +100,14 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   public walk(sourceFile: ts.SourceFile) {
     sourceFile.forEachChild(node => {
       if (ts.isIfStatement(node)) {
-        this.checkPadding(node.thenStatement);
-        if (node.elseStatement) this.checkPadding(node.elseStatement);
+        this.checkPadding(node.thenStatement, this.options.blocks);
+        if (node.elseStatement) this.checkPadding(node.elseStatement, this.options.blocks);
       } else if (ts.isSwitchStatement(node)) {
-        this.checkPadding(node.caseBlock);
-      } else if (ts.isClassDeclaration(node) || ts.isBlock(node)) {
-        this.checkPadding(node);
+        this.checkPadding(node.caseBlock, this.options.switches);
+      } else if ( ts.isClassDeclaration(node)) {
+        this.checkPadding(node, this.options.classes);
+      } else if (ts.isBlock(node)) {
+        this.checkPadding(node, this.options.blocks);
       }
     });
   }
@@ -130,7 +132,7 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     };
   }
 
-  private checkPadding(node: ts.Node): void {
+  private checkPadding(node: ts.Node, paddingAllowed: boolean): void {
     const {openBrace, body, closeBrace} = this.getParts(node);
 
     const firstChild = body.getChildAt(0);
@@ -182,17 +184,17 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     // console.log('--');
 
     if (openPadded === closePadded) {
-      if (this.options.blocks && !openPadded) {
+      if (paddingAllowed && !openPadded) {
         this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.always);
-      } else if (!this.options.blocks && openPadded) {
+      } else if (!paddingAllowed && openPadded) {
         this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.never);
       }
     } else {
       // tslint:disable triple-equals
-      if (this.options.blocks ? !openPadded : openPadded) {
-        this.addFailure(openPosition, firstChildPosition != undefined ? firstChildPosition : closePosition, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
-      } else if (this.options.blocks ? !closePadded : closePadded) {
-        this.addFailure(lastChildPosition != undefined ? lastChildPosition : closePosition, closePosition - 1, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+      if (paddingAllowed ? !openPadded : openPadded) {
+        this.addFailure(openPosition, firstChildPosition != undefined ? firstChildPosition : closePosition, paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+      } else if (paddingAllowed ? !closePadded : closePadded) {
+        this.addFailure(lastChildPosition != undefined ? lastChildPosition : closePosition, closePosition - 1, paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
       }
       // tslint:enable triple-equals
     }
