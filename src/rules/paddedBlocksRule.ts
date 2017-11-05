@@ -100,35 +100,53 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       if (ts.isIfStatement(node)) {
         this.checkStatement(node.thenStatement);
         if (node.elseStatement) this.checkStatement(node.elseStatement);
+      } else if (ts.isClassDeclaration(node)) {
+        this.checkClass(node);
+      } else if (ts.isSwitchStatement(node)) {
+        this.checkStatement(node);
+      } else if (ts.isBlock(node)) {
+        this.checkStatement(node);
       }
     });
+  }
+
+  private checkClass(classNode: ts.ClassDeclaration): void {
+    const openBrace = classNode.getChildren().find(child => child.kind === ts.SyntaxKind.OpenBraceToken)!;
+    const body = classNode.getChildren().find(child => child.kind === ts.SyntaxKind.SyntaxList);
+    const closeBrace = classNode.getChildren().find(child => child.kind === ts.SyntaxKind.CloseBraceToken)!;
+
+    this.checkPadding(openBrace.getStart(), closeBrace.getEnd(), body, body);
   }
 
   private checkStatement(statement: ts.Statement): void {
     const firstChild = statement.getChildren()[1];
     const lastChild = statement.getChildren()[statement.getChildCount() - 2];
 
-    const openBrace = this.sourceFile.getLineAndCharacterOfPosition(statement.getStart()).line;
-    const firstToken = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChild.getStart()).line;
-    const lastToken = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChild.getStart()).line;
-    const closeBrace = this.sourceFile.getLineAndCharacterOfPosition(statement.getEnd() - 1).line;
+    this.checkPadding(statement.getStart(), statement.getEnd(), firstChild, lastChild);
+  }
+
+  private checkPadding(openPosition: number, closePosition: number, firstChild: ts.Node | undefined, lastChild: ts.Node | undefined): void {
+    const openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
+    const closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
+    const firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChild.getStart()).line;
+    const lastChildLine = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChild.getEnd()).line;
 
     // tslint:disable triple-equals
-    const openPadded = openBrace !== firstToken && (firstToken == undefined || (firstToken - 1) !== openBrace);
-    const closePadded = closeBrace !== lastToken && (lastToken == undefined || (lastToken + 1) !== closeBrace);
+    const openPadded = openLine !== firstChildLine && (firstChild == undefined || (firstChildLine! - 1) !== openLine);
+    const closePadded = closeLine !== lastChildLine && (lastChild == undefined || (lastChildLine! + 1) !== closeLine);
     // tslint:enable triple-equals
 
     if (openPadded === closePadded) {
       if (this.options.blocks && !openPadded) {
-        this.addFailure(statement.getStart(), statement.getEnd() - 1, Rule.FAILURE_STRING.always);
+        this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.always);
       } else if (!this.options.blocks && openPadded) {
-        this.addFailure(statement.getStart(), statement.getEnd() - 1, Rule.FAILURE_STRING.never);
+        this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.never);
       }
     } else {
       if (this.options.blocks ? !openPadded : openPadded) {
-        this.addFailure(statement.getStart(), (firstChild || statement).getStart(), this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+        this.addFailure(openPosition, firstChild ? firstChild.getStart() : closePosition, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
       } else if (this.options.blocks ? !closePadded : closePadded) {
-        this.addFailure(lastChild ? lastChild.getStart() : (statement.getEnd() - 1), statement.getEnd() - 1, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+        this.addFailure(lastChild ? lastChild.getEnd() : closePosition, closePosition - 1, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
       }
     }
   }

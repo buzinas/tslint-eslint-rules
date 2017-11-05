@@ -56,29 +56,36 @@ ruleTester.addTestGroup('always-fail', 'should fail non-padded blocks', [
     code: fixtures.if,
     options: ['always'],
     errors: expecting([
-      [FAILURE_STRING.always, [0, 7], [2, 0]]
+      [FAILURE_STRING.always, [0, 7], [2, 1]]
     ])
   },
   {
     code: fixtures.ifElse,
     options: ['always'],
     errors: expecting([
-      [FAILURE_STRING.always, [0, 7], [2, 0]],
-      [FAILURE_STRING.always, [2, 7], [4, 0]]
+      [FAILURE_STRING.always, [0, 7], [2, 1]],
+      [FAILURE_STRING.always, [2, 7], [4, 1]]
     ])
   },
   {
     code: fixtures.ifPaddedElse,
     options: ['always'],
     errors: expecting([
-      [FAILURE_STRING.always, [4, 7], [6, 0]]
+      [FAILURE_STRING.always, [4, 7], [6, 1]]
     ])
   },
   {
     code: fixtures.ifElsePadded,
     options: ['always'],
     errors: expecting([
-      [FAILURE_STRING.always, [0, 7], [2, 0]]
+      [FAILURE_STRING.always, [0, 7], [2, 1]]
+    ])
+  },
+  {
+    code: fixtures.class,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 10], [2, 1]]
     ])
   }
 ]);
@@ -88,29 +95,36 @@ ruleTester.addTestGroup('never-fail', 'should fail padded blocks', [
     code: fixtures.ifPadded,
     options: ['never'],
     errors: expecting([
-      [FAILURE_STRING.never, [0, 7], [4, 0]]
+      [FAILURE_STRING.never, [0, 7], [4, 1]]
     ])
   },
   {
     code: fixtures.ifPaddedElsePadded,
     options: ['never'],
     errors: expecting([
-      [FAILURE_STRING.never, [0, 7], [4, 0]],
-      [FAILURE_STRING.never, [4, 7], [8, 0]]
+      [FAILURE_STRING.never, [0, 7], [4, 1]],
+      [FAILURE_STRING.never, [4, 7], [8, 1]]
     ])
   },
   {
     code: fixtures.ifPaddedElse,
     options: ['never'],
     errors: expecting([
-      [FAILURE_STRING.never, [0, 7], [4, 0]]
+      [FAILURE_STRING.never, [0, 7], [4, 1]]
     ])
   },
   {
     code: fixtures.ifElsePadded,
     options: ['never'],
     errors: expecting([
-      [FAILURE_STRING.never, [2, 7], [6, 0]]
+      [FAILURE_STRING.never, [2, 7], [6, 1]]
+    ])
+  },
+  {
+    code: fixtures.classPadded,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [0, 10], [4, 1]]
     ])
   }
 ]);
