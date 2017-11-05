@@ -18,14 +18,14 @@ const fixtures = {
   padded: {
     if: 'if (a) {\n\nb();\n\n}',
     ifElse: 'if (a) {\n\nb();\n\n} else {\n\nb();\n\n}',
-    // ifComment: 'if (a) {\n\n// Comment\nb();\n\n}', // TODO
+    ifComment: 'if (a) {\n\n// Comment\nb();\n\n}',
     ifEmpty: 'if (a) {\n\n}',
     class: 'class Foo {\n\npublic a: any;\n\n}'
   },
   notPadded: {
     if: 'if (a) {\nb();\n}',
     ifElse: 'if (a) {\nb();\n} else {\nb();\n}',
-    // ifComment: 'if (a) {\n// Comment\nb();\n}', // TODO
+    ifComment: 'if (a) {\n// Comment\nb();\n}',
     ifEmpty: 'if (a) {\n}',
     class: 'class Foo {\npublic a: any;\n}'
   },

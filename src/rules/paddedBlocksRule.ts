@@ -1,6 +1,8 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
+import {forEachComment} from 'tsutils';
+
 const RULE_NAME = 'padded-blocks';
 const OPTION_ALWAYS = 'always';
 interface ITerPaddedBlocksOptions {
@@ -134,14 +136,38 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
 
     const openPosition = openBrace.getStart();
     const closePosition = closeBrace.getEnd();
+    let firstChildPosition = firstChild && firstChild.getStart();
+    let lastChildPosition = lastChild && lastChild.getEnd();
     const openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
     const closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
-    const firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChild.getStart()).line;
-    const lastChildLine = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChild.getEnd()).line;
+    let firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChildPosition).line;
+    let lastChildLine = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChildPosition).line;
+
+    const comments: ts.CommentRange[] = [];
+    forEachComment(node, (_fullText, comment) => {
+      comments.push(comment);
+    });
+
+    if (comments.length > 0) {
+      const firstCommentLine = this.sourceFile.getLineAndCharacterOfPosition(comments[0].pos).line;
+      const lastCommentLine = this.sourceFile.getLineAndCharacterOfPosition(comments[comments.length - 1].end).line;
+
+      // tslint:disable-next-line triple-equals
+      if (firstChildLine == undefined || firstCommentLine < firstChildLine) {
+        firstChildLine = firstCommentLine;
+        firstChildPosition = comments[0].pos;
+      }
+
+      // tslint:disable-next-line triple-equals
+      if (lastChildLine == undefined || lastChildLine < lastChildLine) {
+        lastChildLine = lastCommentLine;
+        lastChildPosition = comments[comments.length - 1].end;
+      }
+    }
 
     // tslint:disable triple-equals
-    const openPadded = openLine !== firstChildLine && (firstChild == undefined ? (closeLine - openLine > 1) : (firstChildLine! - 1) !== openLine);
-    const closePadded = closeLine !== lastChildLine && (lastChild == undefined ? (closeLine - openLine > 1) : (lastChildLine! + 1) !== closeLine);
+    const openPadded = openLine !== firstChildLine && (firstChildLine == undefined ? (closeLine - openLine > 1) : (firstChildLine! - 1) !== openLine);
+    const closePadded = closeLine !== lastChildLine && (lastChildLine == undefined ? (closeLine - openLine > 1) : (lastChildLine! + 1) !== closeLine);
     // tslint:enable triple-equals
 
     // this.sourceFile.getText().split('\n').forEach((line, i) => console.log(`${i}| ${line}`));
@@ -160,11 +186,13 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
         this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.never);
       }
     } else {
+      // tslint:disable triple-equals
       if (this.options.blocks ? !openPadded : openPadded) {
-        this.addFailure(openPosition, firstChild ? firstChild.getStart() : closePosition, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+        this.addFailure(openPosition, firstChildPosition != undefined ? firstChildPosition : closePosition, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
       } else if (this.options.blocks ? !closePadded : closePadded) {
-        this.addFailure(lastChild ? lastChild.getEnd() : closePosition, closePosition - 1, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+        this.addFailure(lastChildPosition != undefined ? lastChildPosition : closePosition, closePosition - 1, this.options.blocks ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
       }
+      // tslint:enable triple-equals
     }
   }
 }
