@@ -33,7 +33,8 @@ const fixtures = {
   },
   mixed: {
     ifPaddedElse: 'if (a) {\n\nb();\n\n} else {\nb();\n}',
-    ifElsePadded: 'if (a) {\nb();\n} else {\n\nb();\n\n}'
+    ifElsePadded: 'if (a) {\nb();\n} else {\n\nb();\n\n}',
+    ifNestedPadded: 'if (a) {\nif (b) {\n\nc();\n\n}\n}'
   }
 };
 
@@ -104,6 +105,13 @@ ruleTester.addTestGroup('always-fail', 'should fail non-padded blocks', [
     errors: expecting([
       [FAILURE_STRING.always, [0, 11], [3, 1]]
     ])
+  },
+  {
+    code: fixtures.mixed.ifNestedPadded,
+    options: ['always'],
+    errors: expecting([
+      [FAILURE_STRING.always, [0, 7], [6, 1]]
+    ])
   }
 ]);
 
@@ -163,6 +171,13 @@ ruleTester.addTestGroup('never-fail', 'should fail padded blocks', [
     options: ['never'],
     errors: expecting([
       [FAILURE_STRING.never, [0, 11], [5, 1]]
+    ])
+  },
+  {
+    code: fixtures.mixed.ifNestedPadded,
+    options: ['never'],
+    errors: expecting([
+      [FAILURE_STRING.never, [1, 7], [5, 1]]
     ])
   }
 ]);

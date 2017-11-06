@@ -98,18 +98,18 @@ export class Rule extends Lint.Rules.AbstractRule {
 
 class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   public walk(sourceFile: ts.SourceFile) {
-    sourceFile.forEachChild(node => {
-      if (ts.isIfStatement(node)) {
-        this.checkPadding(node.thenStatement, this.options.blocks);
-        if (node.elseStatement) this.checkPadding(node.elseStatement, this.options.blocks);
-      } else if (ts.isSwitchStatement(node)) {
-        this.checkPadding(node.caseBlock, this.options.switches);
-      } else if ( ts.isClassDeclaration(node)) {
-        this.checkPadding(node, this.options.classes);
-      } else if (ts.isBlock(node)) {
-        this.checkPadding(node, this.options.blocks);
-      }
-    });
+    sourceFile.forEachChild(node => this.processNode(node));
+  }
+
+  private processNode(node: ts.Node): void {
+    switch (node.kind) {
+      case ts.SyntaxKind.Block:
+      case ts.SyntaxKind.ClassDeclaration:
+      case ts.SyntaxKind.CaseBlock:
+        this.checkPadding(node);
+    }
+
+    node.forEachChild(child => this.processNode(child));
   }
 
   private getParts(node: ts.Node): { openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node } {
@@ -132,7 +132,15 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     };
   }
 
-  private checkPadding(node: ts.Node, paddingAllowed: boolean): void {
+  private checkPadding(node: ts.Node): void {
+    let paddingAllowed = this.options.blocks;
+
+    if (node.kind === ts.SyntaxKind.ClassDeclaration) {
+      paddingAllowed = this.options.classes;
+    } else if (node.parent && node.parent.kind === ts.SyntaxKind.SwitchStatement) {
+      paddingAllowed = this.options.switches;
+    }
+
     const {openBrace, body, closeBrace} = this.getParts(node);
 
     const firstChild = body.getChildAt(0);
