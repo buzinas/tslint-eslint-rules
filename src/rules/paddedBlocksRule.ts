@@ -6,9 +6,9 @@ import {forEachComment} from 'tsutils';
 const RULE_NAME = 'padded-blocks';
 const OPTION_ALWAYS = 'always';
 interface ITerPaddedBlocksOptions {
-  blocks: boolean;
-  switches: boolean;
-  classes: boolean;
+  blocks?: boolean;
+  switches?: boolean;
+  classes?: boolean;
 }
 
 export class Rule extends Lint.Rules.AbstractRule {
@@ -74,17 +74,19 @@ export class Rule extends Lint.Rules.AbstractRule {
   private formatOptions(ruleArguments: any[]): ITerPaddedBlocksOptions {
     const config = ruleArguments[0] || OPTION_ALWAYS;
 
-    if (config === OPTION_ALWAYS) {
+    if (typeof(config) === 'string') {
+      const always = config === OPTION_ALWAYS;
+
       return {
-        blocks: true,
-        classes: true,
-        switches: true
+        blocks: always,
+        classes: always,
+        switches: always
       };
     } else {
       return {
-        blocks: config['blocks'] === OPTION_ALWAYS,
-        classes: config['classes'] === OPTION_ALWAYS,
-        switches: config['switches'] === OPTION_ALWAYS
+        blocks: config['blocks'] && config['blocks'] === OPTION_ALWAYS,
+        classes: config['classes'] && config['classes'] === OPTION_ALWAYS,
+        switches: config['switches'] && config['switches'] === OPTION_ALWAYS
       };
     }
   }
@@ -139,6 +141,11 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       paddingAllowed = this.options.classes;
     } else if (node.parent && node.parent.kind === ts.SyntaxKind.SwitchStatement) {
       paddingAllowed = this.options.switches;
+    }
+
+    // tslint:disable-next-line triple-equals
+    if (paddingAllowed == undefined) {
+      return;
     }
 
     const {openBrace, body, closeBrace} = this.getParts(node);
