@@ -1,7 +1,7 @@
 import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
-import {forEachComment} from 'tsutils';
+import { forEachComment } from 'tsutils';
 
 const RULE_NAME = 'padded-blocks';
 const OPTION_ALWAYS = 'always';
@@ -14,7 +14,7 @@ interface ITerPaddedBlocksOptions {
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
-    hasFix: true,
+    hasFix: false,
     description: 'enforces consistent empty line padding within blocks',
     rationale: Lint.Utils.dedent`
       Some style guides require block statements to start and end with blank
@@ -117,7 +117,7 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   private getParts(node: ts.Node): { openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node } {
     let openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node;
 
-    node.getChildren().forEach(child => {
+    node.getChildren().forEach((child) => {
       if (child.kind === ts.SyntaxKind.OpenBraceToken) {
         openBrace = child;
       } else if (child.kind === ts.SyntaxKind.SyntaxList) {
@@ -148,24 +148,64 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       return;
     }
 
-    const {openBrace, body, closeBrace} = this.getParts(node);
+    const { openBrace, body, closeBrace } = this.getParts(node);
 
     const firstChild = body.getChildAt(0);
-    const lastChild = body.getChildAt(body.getChildCount() - 1);
-
-    const openPosition = openBrace.getStart();
-    const closePosition = closeBrace.getEnd();
     let firstChildPosition = firstChild && firstChild.getStart();
-    let lastChildPosition = lastChild && lastChild.getEnd();
-    const openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
-    const closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
     let firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChildPosition).line;
+
+    const lastChild = body.getChildAt(body.getChildCount() - 1);
+    let lastChildPosition = lastChild && lastChild.getEnd();
     let lastChildLine = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChildPosition).line;
 
-    const comments: ts.CommentRange[] = [];
+    let openPosition = openBrace.getStart();
+    let openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
+
+    let closePosition = closeBrace.getEnd();
+    let closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
+
+    let comments: ts.CommentRange[] = [];
     forEachComment(node, (_fullText, comment) => {
       comments.push(comment);
     });
+
+    // Ignore comments attached to start
+    let splice: number | undefined;
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
+      const line = this.sourceFile.getLineAndCharacterOfPosition(comment.pos).line;
+
+      if (line === openLine || (line === openLine + 1 && line !== firstChildLine)) {
+        openPosition = comment.pos;
+        openLine = line;
+        splice = i;
+      } else {
+        break;
+      }
+    }
+
+    if (splice !== undefined) {
+      comments = comments.splice(splice + 1);
+    }
+
+    // Ignore comments attached to end
+    splice = undefined;
+    for (let i = comments.length - 1; i >= 0; i--) {
+      const comment = comments[i];
+      const line = this.sourceFile.getLineAndCharacterOfPosition(comment.pos).line;
+
+      if (line === closeLine || (line === closeLine - 1 && line !== lastChildLine)) {
+        closePosition = comment.end;
+        closeLine = line;
+        splice = i;
+      } else {
+        break;
+      }
+    }
+
+    if (splice !== undefined) {
+      comments = comments.slice(0, splice);
+    }
 
     if (comments.length > 0) {
       const firstCommentLine = this.sourceFile.getLineAndCharacterOfPosition(comments[0].pos).line;
@@ -184,6 +224,12 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       }
     }
 
+    // Ignore empty blocks
+    // tslint:disable-next-line triple-equals
+    if (openLine === closeLine && firstChildLine == undefined && lastChildLine == undefined) {
+      return;
+    }
+
     // tslint:disable triple-equals
     const openPadded = openLine !== firstChildLine && (firstChildLine == undefined ? (closeLine - openLine > 1) : (firstChildLine! - 1) !== openLine);
     const closePadded = closeLine !== lastChildLine && (lastChildLine == undefined ? (closeLine - openLine > 1) : (lastChildLine! + 1) !== closeLine);
@@ -198,9 +244,25 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     } else {
       // tslint:disable triple-equals
       if (paddingAllowed ? !openPadded : openPadded) {
-        this.addFailure(openPosition, firstChildPosition != undefined ? firstChildPosition : closePosition, paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+        this.addFailure(
+          openPosition,
+          firstChildPosition != undefined ?
+            firstChildPosition :
+            closePosition,
+          paddingAllowed ?
+            Rule.FAILURE_STRING.always :
+            Rule.FAILURE_STRING.never
+        );
       } else if (paddingAllowed ? !closePadded : closePadded) {
-        this.addFailure(lastChildPosition != undefined ? lastChildPosition : closePosition, closePosition - 1, paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never);
+        this.addFailure(
+          lastChildPosition != undefined ?
+            lastChildPosition :
+            closePosition,
+          closePosition - 1,
+          paddingAllowed ?
+            Rule.FAILURE_STRING.always :
+            Rule.FAILURE_STRING.never
+        );
       }
       // tslint:enable triple-equals
     }
