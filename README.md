@@ -161,7 +161,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:ballot_box_with_check:|[no-unused-expressions](http://eslint.org/docs/rules/no-unused-expressions)|[no-unused-expression](http://palantir.github.io/tslint/rules/no-unused-expression)|disallow Usage of expressions in statement position|
 |:x:|[no-unused-labels](http://eslint.org/docs/rules/no-unused-labels)|no-unused-labels|disallow unused labels|
 |:x:|[no-useless-call](http://eslint.org/docs/rules/no-useless-call)|no-useless-call|disallow unnecessary `.call()` and `.apply()`|
-|:x:|[no-useless-concat](http://eslint.org/docs/rules/no-useless-concat)|no-useless-concat|disallow unnecessary concatenation of literals or template literals|
+|:white_check_mark:|[no-useless-concat](http://eslint.org/docs/rules/no-useless-concat)|[ter-no-useless-concat](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoUselessConcatRule.md)|disallow unnecessary concatenation of strings|
 |:x:|[no-useless-escape](http://eslint.org/docs/rules/no-useless-escape)|no-useless-escape|disallow unnecessary usage of escape character|
 |:x:|[no-void](http://eslint.org/docs/rules/no-void)|no-void|disallow use of the `void` operator|
 |:x:|[no-warning-comments](http://eslint.org/docs/rules/no-warning-comments)|no-warning-comments|disallow Usage of configurable warning terms in comments e.g. `TODO` or `FIXME`|
