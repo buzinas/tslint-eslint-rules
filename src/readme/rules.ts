@@ -1012,9 +1012,9 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-self-compare',
-    tslintRule: 'no-self-compare',
+    tslintRule: 'ter-no-self-compare',
     category: 'Best Practices',
     description: 'disallow comparisons where both sides are exactly the same',
     eslintUrl: 'http://eslint.org/docs/rules/no-self-compare',
