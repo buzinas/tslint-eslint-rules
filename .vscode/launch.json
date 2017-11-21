@@ -16,7 +16,25 @@
         "NODE_ENV": "development"
       },
       "sourceMaps": true,
-      "outDir": "${workspaceRoot}/dist",
+      "outFiles": ["${workspaceRoot}/dist"],
+      "request": "launch"
+    },
+    {
+      "name": "single test",
+      "type": "node",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "stopOnEntry": false,
+      "args": [
+        "dist/test/rules/${fileBasenameNoExtension}.js"
+      ],
+      "cwd": "${workspaceRoot}/.",
+      "runtimeExecutable": null,
+      "preLaunchTask": "build",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/dist"],
       "request": "launch"
     }
   ]
