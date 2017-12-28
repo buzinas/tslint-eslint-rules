@@ -2078,9 +2078,9 @@ const rules: IRule[] = [
     provider: 'native'
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'newline-after-var',
-    tslintRule: 'newline-after-var',
+    tslintRule: 'ter-newline-after-var',
     category: 'Stylistic Issues',
     description: 'require or disallow an empty newline after variable declarations',
     eslintUrl: 'http://eslint.org/docs/rules/newline-after-var',
