@@ -57,7 +57,6 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
   }
 
   private checkLoops = true;
-  private isInConditional = false;
 
   protected visitIfStatement(node: ts.IfStatement) {
     this.validateCondition(node.expression);
@@ -91,13 +90,11 @@ class NoConstantConditionWalker extends Lint.RuleWalker {
   }
 
   private validateCondition(expression: ts.Expression) {
-    this.isInConditional = true;
     if (this.isConstant(expression)) {
       this.addFailure(this.createFailure(expression.getStart(), expression.getWidth(), Rule.FAILURE_STRING));
     }
     // walk the children of the conditional expression for nested conditions
     this.walkChildren(expression);
-    this.isInConditional = false;
   }
 
   private isConstant(node: ts.Node): boolean {
