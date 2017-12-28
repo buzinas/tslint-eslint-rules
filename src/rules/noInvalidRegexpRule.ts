@@ -27,7 +27,8 @@ class NoInvalidRegexpWalker extends Lint.RuleWalker {
         const flags = args.length > 1 && args[1].kind === ts.SyntaxKind.StringLiteral ? (args[1] as ts.StringLiteral).text : undefined;
 
         try {
-          (() => new RegExp(expr, flags))();
+          // tslint:disable-next-line no-unused-expression
+          new RegExp(expr, flags);
         }
         catch (e) {
           this.addFailure(this.createFailure(node.getStart(), node.getWidth(), e.message));
