@@ -250,7 +250,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[max-statements-per-line](http://eslint.org/docs/max-statements-per-line)|max-statements-per-line|specify the maximum number of statements allowed per line|
 |:no_entry_sign:|[new-cap](http://eslint.org/docs/rules/new-cap)|Not applicable|require a capital letter for constructors|
 |:ballot_box_with_check:|[new-parens](http://eslint.org/docs/rules/new-parens)|[new-parens](https://palantir.github.io/tslint/rules/new-parens)|disallow the omission of parentheses when invoking a constructor with no arguments|
-|:x:|[newline-after-var](http://eslint.org/docs/rules/newline-after-var)|newline-after-var|require or disallow an empty newline after variable declarations|
+|:white_check_mark:|[newline-after-var](http://eslint.org/docs/rules/newline-after-var)|[ter-newline-after-var](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNewlineAfterVarRule.md)|require or disallow an empty newline after variable declarations|
 |:x:|[newline-before-return](http://eslint.org/docs/rules/newline-before-return)|newline-before-return|require newline before return statement|
 |:x:|[newline-per-chained-call](http://eslint.org/docs/rules/newline-per-chained-call)|newline-per-chained-call|enforce newline after each call when chaining the calls|
 |:x:|[no-array-constructor](http://eslint.org/docs/rules/no-array-constructor)|no-array-constructor|disallow use of the `Array` constructor|
