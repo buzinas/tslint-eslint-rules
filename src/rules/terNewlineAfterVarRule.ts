@@ -91,23 +91,29 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
   private getTrailingLineBreakPos ({ pos, end }: ts.Node): number {
     const nodeText: string = this.sourceFileText.slice(pos, end);
     const nodeTextLength: number = end - pos;
-    const trailingLineBreakPos: number = this.getTrailingLineBreakPosInText(nodeText, {
+    let trailingLineBreakPos: number = this.getTrailingLineBreakPosInText(nodeText, {
       pos: 0,
       end: nodeTextLength
     });
 
     if (trailingLineBreakPos !== UNKNOWN_POSITION) {
-      return trailingLineBreakPos;
+      return pos + trailingLineBreakPos;
     }
 
     const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(nodeText, 0);
     const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
 
     if (lastLeadingComment) {
-      return this.getTrailingLineBreakPosInText(nodeText, {
-        pos: lastLeadingComment.end,
+      const textStart = lastLeadingComment.end;
+
+      trailingLineBreakPos = this.getTrailingLineBreakPosInText(nodeText, {
+        pos: textStart,
         end: nodeTextLength
       });
+
+      if (trailingLineBreakPos !== UNKNOWN_POSITION) {
+        return pos + trailingLineBreakPos;
+      }
     }
 
     return UNKNOWN_POSITION;
