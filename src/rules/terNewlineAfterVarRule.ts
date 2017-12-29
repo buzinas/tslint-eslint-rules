@@ -67,21 +67,16 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
   private lastVariableStatementNode: ts.Node|undefined;
   private sourceFileText: string;
 
-  private getTrailingLineBreakPos ({ pos, end }: ts.Node): number {
-    const nodeText: string = this.sourceFileText.slice(pos, end);
-    const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(nodeText, 0);
-    const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
-    const contentStart: number = lastLeadingComment && lastLeadingComment.end || 0;
-    const contentEnd: number = end - pos;
+  private getTrailingLineBreakPosInText (text: string, { pos, end }: { pos: number; end: number; }): number {
     let firstLineBreakPos: number = UNKNOWN_POSITION;
     let lineBreaksCount: number = 0;
 
-    for (let i = contentStart; i < contentEnd; i++) {
-      const code: number = nodeText.charCodeAt(i);
+    for (let i = pos; i < end; i++) {
+      const code: number = text.charCodeAt(i);
 
       if (code === 10) {
         if (firstLineBreakPos === UNKNOWN_POSITION) {
-          firstLineBreakPos = pos + i;
+          firstLineBreakPos = i;
         }
 
         lineBreaksCount++;
@@ -91,6 +86,31 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
     }
 
     return lineBreaksCount > 1 ? firstLineBreakPos : UNKNOWN_POSITION;
+  }
+
+  private getTrailingLineBreakPos ({ pos, end }: ts.Node): number {
+    const nodeText: string = this.sourceFileText.slice(pos, end);
+    const nodeTextLength: number = end - pos;
+    const trailingLineBreakPos: number = this.getTrailingLineBreakPosInText(nodeText, {
+      pos: 0,
+      end: nodeTextLength
+    });
+
+    if (trailingLineBreakPos !== UNKNOWN_POSITION) {
+      return trailingLineBreakPos;
+    }
+
+    const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(nodeText, 0);
+    const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
+
+    if (lastLeadingComment) {
+      return this.getTrailingLineBreakPosInText(nodeText, {
+        pos: lastLeadingComment.end,
+        end: nodeTextLength
+      });
+    }
+
+    return UNKNOWN_POSITION;
   }
 
   public walk (sourceFile: ts.SourceFile) {

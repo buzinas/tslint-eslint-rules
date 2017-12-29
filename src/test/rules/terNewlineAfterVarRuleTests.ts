@@ -38,6 +38,11 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
       var name = "world";
       // var name = require("world");
       console.log(greet, name);
+
+      var greet = "hello,";
+
+      // var name = require("world");
+      console.log(greet, name);
       `,
     output: dedent`
       var greet = "hello,",
@@ -59,6 +64,11 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
       var name = "world";
       // var name = require("world");
 
+      console.log(greet, name);
+
+      var greet = "hello,";
+
+      // var name = require("world");
       console.log(greet, name);
       `,
     options: [],
