@@ -1812,11 +1812,12 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'indent',
-    tslintRule: 'ter-indent',
+    tslintRule: 'indent',
     category: 'Stylistic Issues',
-    description: 'enforce consistent indentation',
+    description: 'enforces indentation with tabs or spaces',
     eslintUrl: 'http://eslint.org/docs/rules/indent',
-    provider: 'tslint-eslint-rules'
+    tslintUrl: 'http://palantir.github.io/tslint/rules/indent',
+    provider: 'native'
   },
   {
     available: false,
@@ -2678,13 +2679,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'space-before-function-paren',
     tslintRule: 'space-before-function-paren',
     category: 'Stylistic Issues',
     description: 'require or disallow a space before function opening parenthesis',
     eslintUrl: 'http://eslint.org/docs/rules/space-before-function-paren',
-    provider: 'tslint-eslint-rules',
+    tslintUrl: 'http://palantir.github.io/tslint/rules/space-before-function-paren',
+    provider: 'native',
     usage: `~~~json
     "space-before-function-paren": [
         true,
@@ -2891,21 +2893,14 @@ const rules: IRule[] = [
     usage: ``
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-duplicate-imports',
     tslintRule: 'no-duplicate-imports',
     category: 'ECMAScript 6',
-    description: 'disallow duplicate module imports',
+    description: 'disallows multiple import statements from the same module',
     eslintUrl: 'http://eslint.org/docs/rules/no-duplicate-imports',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "no-duplicate-imports": [
-        true,
-        {
-          includeExports: true
-        }
-      ]
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/no-duplicate-imports',
+    provider: 'native'
   },
   {
     available: false,
@@ -3060,16 +3055,14 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'prefer-template',
     tslintRule: 'prefer-template',
     category: 'ECMAScript 6',
-    description: 'suggest using template literals instead of strings concatenation',
+    description: 'prefer a template expression over string literal concatenation',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-template',
-    provider: 'tslint-eslint-rules',
-    usage: `~~~json
-    "prefer-template": true
-    ~~~`
+    tslintUrl: 'http://palantir.github.io/tslint/rules/prefer-template',
+    provider: 'native'
   },
   {
     available: false,
