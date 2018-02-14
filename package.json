@@ -34,8 +34,8 @@
     "gulp-spawn-mocha": "^2.2.2",
     "gulp-tslint": "^8.0.0",
     "gulp-typescript": "^3.1.6",
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.3",
+    "tslint": "^5.9.1",
+    "typescript": "2.6.2",
     "yargs": "^5.0.0"
   },
   "peerDependencies": {
@@ -43,8 +43,8 @@
     "typescript": "^2.2.0"
   },
   "dependencies": {
-    "doctrine": "^0.7.2",
-    "tslib": "^1.0.0",
-    "tsutils": "^2.4.0"
+    "doctrine": "0.7.2",
+    "tslib": "1.9.0",
+    "tsutils": "2.8.0"
   }
 }
