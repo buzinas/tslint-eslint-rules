@@ -235,7 +235,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[id-blacklist](http://eslint.org/docs/rules/id-blacklist)|id-blacklist|disallow certain identifiers to prevent them being used|
 |:x:|[id-length](http://eslint.org/docs/rules/id-length)|id-length|this option enforces minimum and maximum identifier lengths (variable names, property names etc.)|
 |:x:|[id-match](http://eslint.org/docs/rules/id-match)|id-match|require identifiers to match the provided regular expression|
-|:white_check_mark:|[indent](http://eslint.org/docs/rules/indent)|[ter-indent](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terIndentRule.md)|enforce consistent indentation|
+|:ballot_box_with_check:|[indent](http://eslint.org/docs/rules/indent)|[indent](http://palantir.github.io/tslint/rules/indent)|enforces indentation with tabs or spaces|
 |:x:|[jsx-quotes](http://eslint.org/docs/rules/jsx-quotes)|jsx-quotes|specify whether double or single quotes should be used in JSX attributes|
 |:x:|[key-spacing](http://eslint.org/docs/rules/key-spacing)|key-spacing|enforce spacing between keys and values in object literal properties<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
 |:x:|[keyword-spacing](http://eslint.org/docs/rules/keyword-spacing)|keyword-spacing|enforce spacing before and after keywords<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
@@ -284,7 +284,7 @@ These rules are purely matters of style and are quite subjective.
 |:white_check_mark:|[sort-imports](http://eslint.org/docs/rules/sort-imports)|[sort-imports](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/sortImportsRule.md)|enforce sorting import declarations within module|
 |:x:|[sort-vars](http://eslint.org/docs/rules/sort-vars)|sort-vars|sort variables within the same declaration block|
 |:x:|[space-before-blocks](http://eslint.org/docs/rules/space-before-blocks)|space-before-blocks|require or disallow a space before blocks|
-|:x:|[space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren)|space-before-function-paren|require or disallow a space before function opening parenthesis|
+|:ballot_box_with_check:|[space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren)|[space-before-function-paren](http://palantir.github.io/tslint/rules/space-before-function-paren)|require or disallow a space before function opening parenthesis|
 |:white_check_mark:|[space-in-parens](http://eslint.org/docs/rules/space-in-parens)|[space-in-parens](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/spaceInParensRule.md)|require or disallow spaces inside parentheses|
 |:x:|[space-infix-ops](http://eslint.org/docs/rules/space-infix-ops)|space-infix-ops|require spaces around operators<br>Tslint's [whitespace](https://palantir.github.io/tslint/rules/whitespace/) can partially be used|
 |:x:|[space-unary-ops](http://eslint.org/docs/rules/space-unary-ops)|space-unary-ops|require or disallow spaces before/after unary operators|
@@ -307,7 +307,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[no-confusing-arrow](http://eslint.org/docs/rules/no-confusing-arrow)|no-confusing-arrow|disallow arrow functions where they could be confused with comparisons|
 |:no_entry_sign:|[no-const-assign](http://eslint.org/docs/rules/no-const-assign)|Not applicable|disallow modifying variables that are declared using `const`|
 |:no_entry_sign:|[no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members)|Not applicable|disallow duplicate name in class members|
-|:x:|[no-duplicate-imports](http://eslint.org/docs/rules/no-duplicate-imports)|no-duplicate-imports|disallow duplicate module imports|
+|:ballot_box_with_check:|[no-duplicate-imports](http://eslint.org/docs/rules/no-duplicate-imports)|[no-duplicate-imports](http://palantir.github.io/tslint/rules/no-duplicate-imports)|disallows multiple import statements from the same module|
 |:x:|[no-new-symbol](http://eslint.org/docs/rules/no-new-symbol)|no-new-symbol|disallow use of the `new` operator with the `Symbol` object|
 |:x:|[no-restricted-imports](http://eslint.org/docs/rules/no-restricted-imports)|no-restricted-imports|restrict usage of specified modules when loaded by `import` declaration|
 |:no_entry_sign:|[no-this-before-super](http://eslint.org/docs/rules/no-this-before-super)|Not applicable|disallow use of `this`/`super` before calling `super()` in constructors.|
@@ -320,7 +320,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|
 |:x:|[prefer-spread](http://eslint.org/docs/rules/prefer-spread)|prefer-spread|suggest using the spread operator instead of `.apply()`.|
-|:x:|[prefer-template](http://eslint.org/docs/rules/prefer-template)|prefer-template|suggest using template literals instead of strings concatenation|
+|:ballot_box_with_check:|[prefer-template](http://eslint.org/docs/rules/prefer-template)|[prefer-template](http://palantir.github.io/tslint/rules/prefer-template)|prefer a template expression over string literal concatenation|
 |:x:|[require-yield](http://eslint.org/docs/rules/require-yield)|require-yield|disallow generator functions that do not have `yield`|
 |:x:|[template-curly-spacing](http://eslint.org/docs/rules/template-curly-spacing)|template-curly-spacing|enforce spacing around embedded expressions of template strings|
 |:x:|[yield-star-spacing](http://eslint.org/docs/rules/yield-star-spacing)|yield-star-spacing|enforce spacing around the `*` in `yield*` expressions|

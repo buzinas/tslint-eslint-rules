@@ -13,14 +13,6 @@
       "allowNamedFunctions": true,
       "allowUnboundThis": false
     }],
-    "ter-indent": [true, 2, {
-      "SwitchCase": 1,
-      "outerIIFEBody": 0,
-      "MemberExpression": 1,
-      "FunctionDeclaration": { "body": 1, "parameters": 1 },
-      "FunctionExpression": { "body": 1, "parameters": 1 },
-      "CallExpression": { "arguments": 1 }
-    }],
     "ter-max-len": [true, 180, {
       "ignoreUrls": true
     }],
