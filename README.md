@@ -275,7 +275,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[one-var-declaration-per-line](http://eslint.org/docs/rules/one-var-declaration-per-line)|one-var-declaration-per-line|require or disallow a newline around variable declarations|
 |:x:|[operator-assignment](http://eslint.org/docs/rules/operator-assignment)|operator-assignment|require assignment operator shorthand where possible or prohibit it entirely|
 |:x:|[operator-linebreak](http://eslint.org/docs/rules/operator-linebreak)|operator-linebreak|enforce operators to be placed before or after line breaks|
-|:x:|[padded-blocks](http://eslint.org/docs/rules/padded-blocks)|padded-blocks|enforce padding within blocks|
+|:white_check_mark:|[padded-blocks](http://eslint.org/docs/rules/padded-blocks)|ter-padded-blocks|enforce padding within blocks|
 |:ballot_box_with_check:|[quote-props](http://eslint.org/docs/rules/quote-props)|[object-literal-key-quotes](https://palantir.github.io/tslint/rules/object-literal-key-quotes)|require quotes around object literal property names|
 |:ballot_box_with_check:|[quotes](http://eslint.org/docs/rules/quotes)|[quotemark](http://palantir.github.io/tslint/rules/quotemark/)|specify whether backticks, double or single quotes should be used|
 |:x:|[require-jsdoc](http://eslint.org/docs/rules/require-jsdoc)|require-jsdoc|Require JSDoc comment|
