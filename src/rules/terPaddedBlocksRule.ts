@@ -3,7 +3,7 @@ import * as Lint from 'tslint';
 
 import { forEachComment } from 'tsutils';
 
-const RULE_NAME = 'padded-blocks';
+const RULE_NAME = 'ter-padded-blocks';
 const OPTION_ALWAYS = 'always';
 interface ITerPaddedBlocksOptions {
   blocks?: boolean;

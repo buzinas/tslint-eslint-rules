@@ -17,9 +17,9 @@
 // ESLint Tests: https://github.com/eslint/eslint/blob/master/tests/lib/rules/padded-blocks.js
 
 import { RuleTester, Failure, Position } from './ruleTester';
-import { Rule as PaddedBlocksRule } from '../../rules/paddedBlocksRule';
+import { Rule as PaddedBlocksRule } from '../../rules/terPaddedBlocksRule';
 
-const ruleTester = new RuleTester('padded-blocks');
+const ruleTester = new RuleTester('ter-padded-blocks');
 const FAILURE_STRING = PaddedBlocksRule.FAILURE_STRING;
 
 function expecting(errors: { message: string, line?: number, column?: number }[]): Failure[] {
