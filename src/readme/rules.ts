@@ -2485,20 +2485,20 @@ const rules: IRule[] = [
   {
     available: true,
     eslintRule: 'padded-blocks',
-    tslintRule: 'padded-blocks',
+    tslintRule: 'ter-padded-blocks',
     category: 'Stylistic Issues',
     description: 'enforce padding within blocks',
     eslintUrl: 'http://eslint.org/docs/rules/padded-blocks',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
-    "padded-blocks": [
+    "ter-padded-blocks": [
         true,
         "always"
       ]
     ~~~
 
     ~~~json
-    "padded-blocks": [
+    "ter-padded-blocks": [
         true,
         "never"
       ]
