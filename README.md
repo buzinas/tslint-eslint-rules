@@ -258,7 +258,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-continue](http://eslint.org/docs/rules/no-continue)|no-continue|disallow use of the `continue` statement|
 |:x:|[no-inline-comments](http://eslint.org/docs/rules/no-inline-comments)|no-inline-comments|disallow comments inline after code|
 |:x:|[no-lonely-if](http://eslint.org/docs/rules/no-lonely-if)|no-lonely-if|disallow `if` as the only statement in an `else` block|
-|:ballot_box_with_check:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[indent](http://palantir.github.io/tslint/rules/indent)|disallow mixed spaces and tabs for indentation (recommended)|
+|:white_check_mark:|[no-mixed-spaces-and-tabs](http://eslint.org/docs/rules/no-mixed-spaces-and-tabs)|[ter-no-mixed-spaces-and-tabs](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoMixedSpacesAndTabsRule.md)|disallow mixed spaces and tabs for indentation (recommended)|
 |:ballot_box_with_check:|[no-multiple-empty-lines](http://eslint.org/docs/rules/no-multiple-empty-lines)|[no-consecutive-blank-lines](http://palantir.github.io/tslint/rules/no-consecutive-blank-lines)|disallow multiple empty lines|
 |:x:|[no-negated-condition](http://eslint.org/docs/rules/no-negated-condition)|no-negated-condition|disallow negated conditions|
 |:x:|[no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary)|no-nested-ternary|disallow nested ternary expressions|
