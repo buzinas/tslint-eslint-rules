@@ -1,5 +1,15 @@
 # Change Log
 
+## [v5.0.0] - Feb 14, 2018
+### Upgraded to TSLint 5.9 and Typescript 2.6
+- NOTE: Another release will come soon that uses 2.7
+
+#### Rules Added
+- `ter-no-tabs`
+
+See the differences in [v5.0.0] for more information on the changes.
+
+
 ## [v4.1.1] - May 26, 2017
 #### Fixes
 - valid-jsdoc reported missing return with abstract methods ([3bd2dafb])
@@ -304,6 +314,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v5.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.1...v5.0.0
 [v4.1.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.0...v4.1.1
 [v4.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.0.0...v4.1.0
 [v4.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v3.5.1...v4.0.0
