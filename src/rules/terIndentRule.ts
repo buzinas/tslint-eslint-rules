@@ -1085,7 +1085,8 @@ class IndentWalker extends Lint.RuleWalker {
     } else {
       const nodeIndent = this.getNodeIndent(node).goodChar;
       const varKind = node.getFirstToken().getText();
-      const elementsIndent = nodeIndent + indentSize * (OPTIONS.VariableDeclarator[varKind] || DEFAULT_VARIABLE_INDENT);
+      const declaratorIndent = typeof OPTIONS.VariableDeclarator[varKind] === 'number' ? OPTIONS.VariableDeclarator[varKind] : DEFAULT_VARIABLE_INDENT;
+      const elementsIndent = nodeIndent + indentSize * declaratorIndent;
       this.checkLastNodeLineIndent(node, elementsIndent - indentSize);
     }
   }
