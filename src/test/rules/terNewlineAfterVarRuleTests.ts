@@ -106,6 +106,29 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
       var name = "world";
       `,
     options: ['always']
+  },
+  {
+    code: dedent`
+     try {
+
+         const result = await request.send();
+
+     } catch (err) {
+
+         throw new Error(err);
+
+     }`,
+    output: dedent`
+     try {
+
+         const result = await request.send();
+
+     } catch (err) {
+
+         throw new Error(err);
+
+     }`,
+    options: ['always']
   }
 ]);
 
@@ -132,6 +155,15 @@ ruleTester.addTestGroup('never', 'should disallow empty lines after variable dec
       // var name = require("world");
 
       console.log(greet, name);
+
+      var greet = "hello,";
+      var name = "world";
+
+
+      /* Multiline
+         comment */
+
+      alert(1);
       `,
     output: dedent`
       var greet = "hello,",
@@ -150,13 +182,20 @@ ruleTester.addTestGroup('never', 'should disallow empty lines after variable dec
       var name = "world";
       // var name = require("world");
       console.log(greet, name);
+
+      var greet = "hello,";
+      var name = "world";
+      /* Multiline
+         comment */
+      alert(1);
       `,
     options: ['never'],
     errors: expecting([
       ['unexpectedBlankLine', 1],
       ['unexpectedBlankLine', 6],
       ['unexpectedBlankLine', 12],
-      ['unexpectedBlankLine', 17]
+      ['unexpectedBlankLine', 17],
+      ['unexpectedBlankLine', 23]
     ])
   },
   {
@@ -179,6 +218,31 @@ ruleTester.addTestGroup('never', 'should disallow empty lines after variable dec
       console.log(greet, name);
       `,
     options: ['never']
+  },
+  {
+    code: dedent`
+     try {
+
+         const result = await request.send();
+
+     } catch (err) {
+
+         throw new Error(err);
+
+     }`,
+    output: dedent`
+     try {
+
+         const result = await request.send();
+     } catch (err) {
+
+         throw new Error(err);
+
+     }`,
+    options: ['never'],
+    errors: expecting([
+      ['unexpectedBlankLine', 3]
+    ])
   }
 ]);
 
