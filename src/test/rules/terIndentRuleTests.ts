@@ -707,6 +707,21 @@ ruleTester.addTestGroup('indent-number', 'should force a certain indentation num
         );
       };`,
     options: [2]
+  },
+  {
+    code: dedent`
+      /**
+       * foo
+       * @param bar
+       * @param baz
+       */
+      export const foo = function(bar, baz) {
+        return bar(
+          [{
+          }].concat(baz)
+        );
+      }`,
+    options: [2]
   }
 ]);
 

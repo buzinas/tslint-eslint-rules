@@ -176,4 +176,18 @@ directory. Just make sure to not edit anything in the comment block.
 You may write more information here
 ```
 
+### Releasing to NPM
+
+If you are one of the collaborators that have access to npm you'll need to do the following
+to create a release:
+
+1. Update the the version in `package.json`.
+2. Update `CHANGELOG.md` by looking <https://github.com/buzinas/tslint-eslint-rules/compare/vN.N.N...HEAD>.
+   Make sure to replace `vN.N.N` with the latest version currently in npm. This link will provide you
+   with a list of changes since the last release so that we can update the `CHANGELOG.md` file accordingly.
+3. Once this is ready run `bash ./.bash_scripts/release.sh`. This will run all the tests and ask you to
+   verify if you did steps `1` and `2`. If everything goes well it will ask you to press any key so that
+   the changes can be uploaded to npm.
+4. Create a new release on Github pointing to the correct changelog entry.
+
 [issue]: https://github.com/buzinas/tslint-eslint-rules/issues
