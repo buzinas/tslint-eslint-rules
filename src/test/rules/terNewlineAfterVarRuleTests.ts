@@ -41,7 +41,7 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
 
       var greet = "hello,";
 
-      // var name = require("world");
+      // var name2 = require("world");
       console.log(greet, name);
       `,
     output: dedent`
@@ -68,7 +68,7 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
 
       var greet = "hello,";
 
-      // var name = require("world");
+      // var name2 = require("world");
       console.log(greet, name);
       `,
     options: [],
@@ -129,6 +129,35 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
 
      }`,
     options: ['always']
+  },
+  {
+    code: dedent`
+     class Example {
+
+       constructor() {
+
+         const test = 'abc123';
+         this.runMethod();
+
+       }
+
+     }`,
+    output: dedent`
+     class Example {
+
+       constructor() {
+
+         const test = 'abc123';
+
+         this.runMethod();
+
+       }
+
+     }`,
+    options: ['always'],
+    errors: expecting([
+      ['expectedBlankLine', 5]
+    ])
   }
 ]);
 
@@ -242,6 +271,35 @@ ruleTester.addTestGroup('never', 'should disallow empty lines after variable dec
     options: ['never'],
     errors: expecting([
       ['unexpectedBlankLine', 3]
+    ])
+  },
+  {
+    code: dedent`
+     class Example {
+
+       constructor() {
+
+         const test = 'abc123';
+
+         this.runMethod();
+
+       }
+
+     }`,
+    output: dedent`
+     class Example {
+
+       constructor() {
+
+         const test = 'abc123';
+         this.runMethod();
+
+       }
+
+     }`,
+    options: ['never'],
+    errors: expecting([
+      ['unexpectedBlankLine', 5]
     ])
   }
 ]);

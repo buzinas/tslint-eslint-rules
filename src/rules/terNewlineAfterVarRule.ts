@@ -84,53 +84,53 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
       }
 
       if (lastVariableStatementNode) {
-        const trailingLineFixes: Lint.Replacement[] = [];
+        const unexpectedLineFixes: Lint.Replacement[] = [];
+        const expectedLineFixes: Lint.Replacement[] = [];
         const isNewLineRequired: boolean = this.options.always;
-        const sourceTextStart: number = lastVariableStatementNode.end;
-        const sourceText: string = sourceFileText.slice(sourceTextStart, node.end);
-        const sourceTextLength: number = node.end - sourceTextStart;
+        let expectedLinePos: number = lastVariableStatementNode.end;
         let newLinesCount: number = 0;
-        let lastLeadingComment: ts.CommentRange|undefined;
 
-        for (let i = 0; i < sourceTextLength; i++) {
-          const code: number = sourceText.charCodeAt(i);
+        for (let i = lastVariableStatementNode.end; i < node.end; i++) {
+          const code: number = sourceFileText.charCodeAt(i);
 
           if (code === 10) {
             newLinesCount++;
 
             if (!isNewLineRequired && newLinesCount > 1) {
-              trailingLineFixes.push(Lint.Replacement.deleteText(sourceTextStart + i, 1));
+              unexpectedLineFixes.push(Lint.Replacement.deleteText(i, 1));
             }
           } else if (code !== 9 && code !== 13 && code !== 32) {
-            const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(sourceText, i - 1);
+            const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(sourceFileText, i - 1);
+            const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
 
-            lastLeadingComment = leadingComments && leadingComments.pop();
-
-            if (lastLeadingComment && (!isNewLineRequired || (isNewLineRequired && newLinesCount <= 1))) {
+            if (lastLeadingComment && (!isNewLineRequired || (isNewLineRequired && newLinesCount < 2))) {
               newLinesCount = 0;
-              i = lastLeadingComment.end - 1;
+              expectedLinePos = lastLeadingComment.end;
+              i = expectedLinePos - 1;
             } else {
+              if (isNewLineRequired && newLinesCount < 2) {
+                expectedLineFixes.push(Lint.Replacement.appendText(expectedLinePos, '\n'));
+              }
+
               break;
             }
           }
         }
 
-        if (isNewLineRequired) {
-          if (newLinesCount <= 1) {
-            // add the an empty line after previous node
-            this.addFailureAt(
-              lastLeadingComment ? lastLeadingComment.end : lastVariableStatementNode.getStart(),
-              1,
-              EXPECTED_BLANK_LINE_MESSAGE,
-              Lint.Replacement.appendText(node.getStart(), '\n')
-            );
-          }
-        } else if (trailingLineFixes[0]) {
+        if (isNewLineRequired && expectedLineFixes[0]) {
+          // add the an empty line after previous node
+          this.addFailureAt(
+            lastVariableStatementNode.getStart(),
+            1,
+            EXPECTED_BLANK_LINE_MESSAGE,
+            expectedLineFixes
+          );
+        } else if (unexpectedLineFixes[0]) {
           this.addFailureAt(
             lastVariableStatementNode.getStart(),
             1,
             UNEXPECTED_BLANK_LINE_MESSAGE,
-            trailingLineFixes
+            unexpectedLineFixes
           );
         }
 
