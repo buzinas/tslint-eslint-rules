@@ -1,5 +1,16 @@
 # Change Log
 
+## [v5.1.0] - Feb 24, 2018
+### Rules
+- `ter-padded-blocks`
+
+### Fixes
+- `ter-indent`: failed when missing `VariableDeclarator` options ([bfff0e6])
+- `ter-newline-after-var`: incorrectly fixing code and within try catch block ([d930c6c])
+
+[bfff0e6]: https://github.com/buzinas/tslint-eslint-rules/commit/bfff0e60263ff4fa38280739566e99c523d9fd4d
+[d930c6c]: https://github.com/buzinas/tslint-eslint-rules/commit/d930c6c76de65f9f94d95624a65f5cfd537fe571
+
 ## [v5.0.0] - Feb 14, 2018
 ### Upgraded to TSLint 5.9 and Typescript 2.6
 - NOTE: Another release will come soon that uses 2.7
@@ -314,6 +325,7 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[v5.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.0.0...v5.1.0
 [v5.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.1...v5.0.0
 [v4.1.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.0...v4.1.1
 [v4.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.0.0...v4.1.0
