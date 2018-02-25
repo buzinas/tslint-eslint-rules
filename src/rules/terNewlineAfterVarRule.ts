@@ -9,7 +9,6 @@ interface ITerNewlineAfterVarOptions {
 
 const EXPECTED_BLANK_LINE_MESSAGE: string = 'Expected blank line after variable declarations.';
 const UNEXPECTED_BLANK_LINE_MESSAGE: string = 'Unexpected blank line after variable declarations.';
-const UNKNOWN_POSITION: number = -1;
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
@@ -67,63 +66,11 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
   private lastVariableStatementNode: ts.Node|undefined;
   private sourceFileText: string;
 
-  private getTrailingLineBreakPosInText (text: string, { pos, end }: { pos: number; end: number; }): number {
-    let firstLineBreakPos: number = UNKNOWN_POSITION;
-    let lineBreaksCount: number = 0;
-
-    for (let i = pos; i < end; i++) {
-      const code: number = text.charCodeAt(i);
-
-      if (code === 10) {
-        if (firstLineBreakPos === UNKNOWN_POSITION) {
-          firstLineBreakPos = i;
-        }
-
-        lineBreaksCount++;
-      } else if (code !== 9 && code !== 13 && code !== 32) {
-        break;
-      }
-    }
-
-    return lineBreaksCount > 1 ? firstLineBreakPos : UNKNOWN_POSITION;
-  }
-
-  private getTrailingLineBreakPos ({ pos, end }: ts.Node): number {
-    const nodeText: string = this.sourceFileText.slice(pos, end);
-    const nodeTextLength: number = end - pos;
-    let trailingLineBreakPos: number = this.getTrailingLineBreakPosInText(nodeText, {
-      pos: 0,
-      end: nodeTextLength
-    });
-
-    if (trailingLineBreakPos !== UNKNOWN_POSITION) {
-      return pos + trailingLineBreakPos;
-    }
-
-    const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(nodeText, 0);
-    const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
-
-    if (lastLeadingComment) {
-      const textStart = lastLeadingComment.end;
-
-      trailingLineBreakPos = this.getTrailingLineBreakPosInText(nodeText, {
-        pos: textStart,
-        end: nodeTextLength
-      });
-
-      if (trailingLineBreakPos !== UNKNOWN_POSITION) {
-        return pos + trailingLineBreakPos;
-      }
-    }
-
-    return UNKNOWN_POSITION;
-  }
-
   public walk (sourceFile: ts.SourceFile) {
     this.sourceFileText = sourceFile.getFullText();
 
     const onNode = (node: ts.Node): void => {
-      const { lastVariableStatementNode } = this;
+      const { lastVariableStatementNode, sourceFileText } = this;
 
       // save the variable statement
       if (node.kind === ts.SyntaxKind.VariableStatement) {
@@ -137,27 +84,53 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
       }
 
       if (lastVariableStatementNode) {
-        const trailingLineBreakPos: number = this.getTrailingLineBreakPos(node);
-        const hasTrailingLineBreak: boolean = trailingLineBreakPos !== UNKNOWN_POSITION;
+        const unexpectedLineFixes: Lint.Replacement[] = [];
+        const expectedLineFixes: Lint.Replacement[] = [];
+        const isNewLineRequired: boolean = this.options.always;
+        let expectedLinePos: number = lastVariableStatementNode.end;
+        let newLinesCount: number = 0;
 
-        if (this.options.always) {
-          // check if a blank line is missing
-          if (!hasTrailingLineBreak) {
-            // add the an empty line after previous node
-            this.addFailureAt(
-              lastVariableStatementNode.getStart(),
-              1,
-              EXPECTED_BLANK_LINE_MESSAGE,
-              Lint.Replacement.appendText(node.getStart(), '\n')
-            );
+        for (let i = lastVariableStatementNode.end; i < node.end; i++) {
+          const code: number = sourceFileText.charCodeAt(i);
+
+          if (code === 10) {
+            newLinesCount++;
+
+            if (!isNewLineRequired && newLinesCount > 1) {
+              unexpectedLineFixes.push(Lint.Replacement.deleteText(i, 1));
+            }
+          } else if (code !== 9 && code !== 13 && code !== 32) {
+            const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(sourceFileText, i - 1);
+            const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
+
+            if (lastLeadingComment && (!isNewLineRequired || (isNewLineRequired && newLinesCount < 2))) {
+              newLinesCount = 0;
+              expectedLinePos = lastLeadingComment.end;
+              i = expectedLinePos - 1;
+            } else {
+              if (isNewLineRequired && newLinesCount < 2) {
+                expectedLineFixes.push(Lint.Replacement.appendText(expectedLinePos, '\n'));
+              }
+
+              break;
+            }
           }
-        } else if (hasTrailingLineBreak) {
-          // check if a blank line exists
+        }
+
+        if (isNewLineRequired && expectedLineFixes[0]) {
+          // add the an empty line after previous node
+          this.addFailureAt(
+            lastVariableStatementNode.getStart(),
+            1,
+            EXPECTED_BLANK_LINE_MESSAGE,
+            expectedLineFixes
+          );
+        } else if (unexpectedLineFixes[0]) {
           this.addFailureAt(
             lastVariableStatementNode.getStart(),
             1,
             UNEXPECTED_BLANK_LINE_MESSAGE,
-            Lint.Replacement.deleteText(trailingLineBreakPos, 1)
+            unexpectedLineFixes
           );
         }
 
