@@ -988,15 +988,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-script-url',
-    tslintRule: 'no-script-url',
+    tslintRule: 'ter-no-script-url',
     category: 'Best Practices',
     description: 'disallow use of `javascript:` urls.',
     eslintUrl: 'http://eslint.org/docs/rules/no-script-url',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
-    "no-script-url": true
+    "ter-no-script-url": true
     ~~~`
   },
   {

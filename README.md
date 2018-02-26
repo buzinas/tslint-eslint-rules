@@ -152,7 +152,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:white_check_mark:|[no-proto](http://eslint.org/docs/rules/no-proto)|[ter-no-proto](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoProtoRule.md)|disallow the use of `__proto__` property|
 |:ballot_box_with_check:|[no-redeclare](http://eslint.org/docs/rules/no-redeclare)|[no-duplicate-variable](http://palantir.github.io/tslint/rules/no-duplicate-variable)|disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)|
 |:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|no-return-assign|disallow use of assignment in `return` statement|
-|:x:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|no-script-url|disallow use of `javascript:` urls.|
+|:white_check_mark:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|[ter-no-script-url](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoScriptUrlRule.md)|disallow use of `javascript:` urls.|
 |:x:|[no-self-assign](http://eslint.org/docs/rules/no-self-assign)|no-self-assign|disallow assignments where both sides are exactly the same|
 |:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|no-self-compare|disallow comparisons where both sides are exactly the same|
 |:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|no-sequences|disallow use of the comma operator|
