@@ -1095,11 +1095,11 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-useless-concat',
-    tslintRule: 'no-useless-concat',
+    tslintRule: 'ter-no-useless-concat',
     category: 'Best Practices',
-    description: 'disallow unnecessary concatenation of literals or template literals',
+    description: 'disallow unnecessary concatenation of strings',
     eslintUrl: 'http://eslint.org/docs/rules/no-useless-concat',
     provider: 'tslint-eslint-rules',
     usage: `~~~json

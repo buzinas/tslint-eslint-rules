@@ -9,6 +9,8 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 class NoInvalidRegexpWalker extends Lint.RuleWalker {
+  public regex: RegExp;
+
   protected visitNewExpression(node: ts.NewExpression) {
     this.validateInvalidRegExp(node);
     super.visitNewExpression(node);
