@@ -154,7 +154,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|no-return-assign|disallow use of assignment in `return` statement|
 |:white_check_mark:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|[ter-no-script-url](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoScriptUrlRule.md)|disallow use of `javascript:` urls.|
 |:x:|[no-self-assign](http://eslint.org/docs/rules/no-self-assign)|no-self-assign|disallow assignments where both sides are exactly the same|
-|:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|no-self-compare|disallow comparisons where both sides are exactly the same|
+|:white_check_mark:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|[ter-no-self-compare](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoSelfCompareRule.md)|disallow comparisons where both sides are exactly the same|
 |:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|no-sequences|disallow use of the comma operator|
 |:ballot_box_with_check:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|[no-string-throw](https://palantir.github.io/tslint/rules/no-string-throw)|restrict what can be thrown as an exception|
 |:x:|[no-unmodified-loop-condition](http://eslint.org/docs/rules/no-unmodified-loop-condition)|no-unmodified-loop-condition|disallow unmodified conditions of loops|
