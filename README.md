@@ -149,7 +149,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:no_entry_sign:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
 |:x:|[no-octal-escape](http://eslint.org/docs/rules/no-octal-escape)|no-octal-escape|disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`|
 |:x:|[no-param-reassign](http://eslint.org/docs/rules/no-param-reassign)|no-param-reassign|disallow reassignment of function parameters|
-|:x:|[no-proto](http://eslint.org/docs/rules/no-proto)|no-proto|disallow Usage of `__proto__` property|
+|:white_check_mark:|[no-proto](http://eslint.org/docs/rules/no-proto)|[ter-no-proto](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoProtoRule.md)|disallow the use of `__proto__` property|
 |:ballot_box_with_check:|[no-redeclare](http://eslint.org/docs/rules/no-redeclare)|[no-duplicate-variable](http://palantir.github.io/tslint/rules/no-duplicate-variable)|disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)|
 |:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|no-return-assign|disallow use of assignment in `return` statement|
 |:x:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|no-script-url|disallow use of `javascript:` urls.|

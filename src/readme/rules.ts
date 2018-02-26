@@ -941,15 +941,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-proto',
-    tslintRule: 'no-proto',
+    tslintRule: 'ter-no-proto',
     category: 'Best Practices',
-    description: 'disallow Usage of `__proto__` property',
+    description: 'disallow the use of `__proto__` property',
     eslintUrl: 'http://eslint.org/docs/rules/no-proto',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
-    "no-proto": true
+    "ter-no-proto": true
     ~~~`
   },
   {
