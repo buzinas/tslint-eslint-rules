@@ -9,9 +9,6 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 const RULE_NAME = 'ter-no-tabs';
-interface ITerNoTabsOptions {
-  // Add the options properties
-}
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static FAILURE_STRING = 'Unexpected tab character.';
@@ -24,31 +21,32 @@ export class Rule extends Lint.Rules.AbstractRule {
       `,
     optionsDescription: '',
     options: {},
-    optionExamples: [Lint.Utils.dedent`"${RULE_NAME}": true`],
+    optionExamples: [
+      Lint.Utils.dedent`
+        "${RULE_NAME}": true
+        `
+    ],
     typescriptOnly: false,
     type: 'style'
   };
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-    const walker = new RuleWalker(sourceFile, this.ruleName, {});
-    return this.applyWithWalker(walker);
+    return this.applyWithFunction(sourceFile, walk);
   }
 }
 
-class RuleWalker extends Lint.AbstractWalker<ITerNoTabsOptions> {
-  public walk(sourceFile: ts.SourceFile) {
-    const TAB_REGEX = /\t/;
-    const lines = sourceFile.text.split(/\n/g);
+function walk(ctx: Lint.WalkContext<void>) {
+  const TAB_REGEX = /\t/;
+  const lines = ctx.sourceFile.text.split(/\n/g);
 
-    lines.forEach((line, i) => {
-      const match = TAB_REGEX.exec(line);
-      if (match) {
-        this.addFailureAt(
-          sourceFile.getPositionOfLineAndCharacter(i, match.index),
-          1,
-          Rule.FAILURE_STRING
-        );
-      }
-    });
-  }
+  lines.forEach((line, i) => {
+    const match = TAB_REGEX.exec(line);
+    if (match) {
+      ctx.addFailureAt(
+        ctx.sourceFile.getPositionOfLineAndCharacter(i, match.index),
+        1,
+        Rule.FAILURE_STRING
+      );
+    }
+  });
 }

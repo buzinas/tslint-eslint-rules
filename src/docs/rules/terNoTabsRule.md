@@ -13,7 +13,9 @@ This rule looks for tabs anywhere inside a file: code, comments or anything else
 
 #### Examples
 
-```json"ter-no-tabs": true```
+```json
+"ter-no-tabs": true
+```
 #### Schema
 
 ```json
