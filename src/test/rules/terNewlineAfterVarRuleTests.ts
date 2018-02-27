@@ -158,6 +158,30 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
     errors: expecting([
       ['expectedBlankLine', 5]
     ])
+  },
+  {
+    code: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+
+     value = '';`,
+    output: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+
+     value = '';`,
+    options: ['always']
+  },
+  {
+    code: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+     value = '';`,
+    output: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+
+     value = '';`,
+    options: ['always'],
+    errors: expecting([
+      ['expectedBlankLine', 1]
+    ])
   }
 ]);
 
@@ -300,6 +324,28 @@ ruleTester.addTestGroup('never', 'should disallow empty lines after variable dec
     options: ['never'],
     errors: expecting([
       ['unexpectedBlankLine', 5]
+    ])
+  },
+  {
+    code: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+     value = '';`,
+    output: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+     value = '';`,
+    options: ['never']
+  },
+  {
+    code: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+
+     value = '';`,
+    output: dedent`
+     const dateOfBirth: string = value.slice(1, 9); // yyyymmdd
+     value = '';`,
+    options: ['never'],
+    errors: expecting([
+      ['unexpectedBlankLine', 1]
     ])
   }
 ]);

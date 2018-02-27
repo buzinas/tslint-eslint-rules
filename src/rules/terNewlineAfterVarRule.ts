@@ -100,12 +100,15 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
               unexpectedLineFixes.push(Lint.Replacement.deleteText(i, 1));
             }
           } else if (code !== 9 && code !== 13 && code !== 32) {
-            const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(sourceFileText, i - 1);
+            const leadingComments: ts.CommentRange[]|undefined = ts.getLeadingCommentRanges(
+              `\n${ sourceFileText.slice(i) }`,
+              0
+            );
             const lastLeadingComment: ts.CommentRange|undefined = leadingComments && leadingComments.pop();
 
             if (lastLeadingComment && (!isNewLineRequired || (isNewLineRequired && newLinesCount < 2))) {
               newLinesCount = 0;
-              expectedLinePos = lastLeadingComment.end;
+              expectedLinePos = i - 1 + lastLeadingComment.end;
               i = expectedLinePos - 1;
             } else {
               if (isNewLineRequired && newLinesCount < 2) {
