@@ -941,15 +941,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-proto',
-    tslintRule: 'no-proto',
+    tslintRule: 'ter-no-proto',
     category: 'Best Practices',
-    description: 'disallow Usage of `__proto__` property',
+    description: 'disallow the use of `__proto__` property',
     eslintUrl: 'http://eslint.org/docs/rules/no-proto',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
-    "no-proto": true
+    "ter-no-proto": true
     ~~~`
   },
   {
@@ -988,15 +988,15 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-script-url',
-    tslintRule: 'no-script-url',
+    tslintRule: 'ter-no-script-url',
     category: 'Best Practices',
     description: 'disallow use of `javascript:` urls.',
     eslintUrl: 'http://eslint.org/docs/rules/no-script-url',
     provider: 'tslint-eslint-rules',
     usage: `~~~json
-    "no-script-url": true
+    "ter-no-script-url": true
     ~~~`
   },
   {
@@ -1012,9 +1012,9 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-self-compare',
-    tslintRule: 'no-self-compare',
+    tslintRule: 'ter-no-self-compare',
     category: 'Best Practices',
     description: 'disallow comparisons where both sides are exactly the same',
     eslintUrl: 'http://eslint.org/docs/rules/no-self-compare',

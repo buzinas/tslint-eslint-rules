@@ -149,12 +149,12 @@ These are rules designed to prevent you from making mistakes. They either
 |:no_entry_sign:|[no-octal](http://eslint.org/docs/rules/no-octal)|Not applicable|disallow use of octal literals (recommended)|
 |:x:|[no-octal-escape](http://eslint.org/docs/rules/no-octal-escape)|no-octal-escape|disallow use of octal escape sequences in string literals, such as `var foo = "Copyright \251";`|
 |:x:|[no-param-reassign](http://eslint.org/docs/rules/no-param-reassign)|no-param-reassign|disallow reassignment of function parameters|
-|:x:|[no-proto](http://eslint.org/docs/rules/no-proto)|no-proto|disallow Usage of `__proto__` property|
+|:white_check_mark:|[no-proto](http://eslint.org/docs/rules/no-proto)|[ter-no-proto](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoProtoRule.md)|disallow the use of `__proto__` property|
 |:ballot_box_with_check:|[no-redeclare](http://eslint.org/docs/rules/no-redeclare)|[no-duplicate-variable](http://palantir.github.io/tslint/rules/no-duplicate-variable)|disallow declaring the same variable more than once (http://eslint.org/docs/rules/recommended)|
 |:x:|[no-return-assign](http://eslint.org/docs/rules/no-return-assign)|no-return-assign|disallow use of assignment in `return` statement|
-|:x:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|no-script-url|disallow use of `javascript:` urls.|
+|:white_check_mark:|[no-script-url](http://eslint.org/docs/rules/no-script-url)|[ter-no-script-url](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoScriptUrlRule.md)|disallow use of `javascript:` urls.|
 |:x:|[no-self-assign](http://eslint.org/docs/rules/no-self-assign)|no-self-assign|disallow assignments where both sides are exactly the same|
-|:x:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|no-self-compare|disallow comparisons where both sides are exactly the same|
+|:white_check_mark:|[no-self-compare](http://eslint.org/docs/rules/no-self-compare)|[ter-no-self-compare](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoSelfCompareRule.md)|disallow comparisons where both sides are exactly the same|
 |:x:|[no-sequences](http://eslint.org/docs/rules/no-sequences)|no-sequences|disallow use of the comma operator|
 |:ballot_box_with_check:|[no-throw-literal](http://eslint.org/docs/rules/no-throw-literal)|[no-string-throw](https://palantir.github.io/tslint/rules/no-string-throw)|restrict what can be thrown as an exception|
 |:x:|[no-unmodified-loop-condition](http://eslint.org/docs/rules/no-unmodified-loop-condition)|no-unmodified-loop-condition|disallow unmodified conditions of loops|
