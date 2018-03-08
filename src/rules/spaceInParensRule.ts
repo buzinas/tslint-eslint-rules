@@ -2,7 +2,6 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 const RULE_NAME = 'space-in-parens';
-const ALWAYS = 'always';
 
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
@@ -82,7 +81,7 @@ class SpaceInParensWalker extends Lint.RuleWalker {
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
     const ruleOptions = this.getOptions();
-    this.spaced = this.hasOption(ALWAYS) || (ruleOptions && ruleOptions.length === 0);
+    this.spaced = this.hasOption('always');
 
     if (ruleOptions[1]) {
       this.exceptionsArrayOptions = (ruleOptions.length === 2) ? ruleOptions[1].exceptions : [] ;
