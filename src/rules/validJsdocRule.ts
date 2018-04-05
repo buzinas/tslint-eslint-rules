@@ -372,6 +372,7 @@ class ValidJsdocWalker extends Lint.RuleWalker {
           break;
         case 'override':
         case 'inheritdoc':
+        case 'inheritDoc':
           isOverride = true;
           break;
       }
