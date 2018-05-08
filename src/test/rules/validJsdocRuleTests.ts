@@ -102,9 +102,13 @@ ruleTester.addTestGroup('valid-default', 'should pass when using valid JSDoc com
     * Description
     * @override */
     function foo(arg1, arg2){ return ''; }`,
-  `/**
+    `/**
     * Description
     * @inheritdoc */
+    function foo(arg1, arg2){ return ''; }`,
+    `/**
+    * Description
+    * @inheritDoc */
     function foo(arg1, arg2){ return ''; }`,
   `/**
     * Description
@@ -414,6 +418,16 @@ ruleTester.addTestGroup('invalid', 'should fail when using invalid JSDoc comment
       /**
        * Foo
        * @inheritdoc
+       * @param {string} a desc
+        */
+       function foo(b){}`,
+    errors: expecting(["expected JSDoc for 'b' but found 'a'"])
+  },
+  {
+    code: dedent`
+      /**
+       * Foo
+       * @inheritDoc
        * @param {string} a desc
         */
        function foo(b){}`,
