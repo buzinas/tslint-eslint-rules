@@ -2,7 +2,6 @@ import * as ts from 'typescript';
 import * as Lint from 'tslint';
 
 export class Rule extends Lint.Rules.AbstractRule {
-
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     const walker = new NoMultiSpacesWalker(sourceFile, this.getOptions());
     return this.applyWithWalker(walker);
@@ -33,6 +32,7 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
   };
   private STRING_TYPES = [
     ts.SyntaxKind.NoSubstitutionTemplateLiteral,
+    ts.SyntaxKind.LastTemplateToken,
     ts.SyntaxKind.StringLiteral
   ];
   private exceptions: Object = {};
