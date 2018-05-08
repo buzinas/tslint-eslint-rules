@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased]
+
+## [v5.2.0] - May 08, 2018
+### Rules
+- `ter-no-proto`
+- `ter-no-script-url`
+- `ter-no-self-compare`
+
+### Fixes
+- `ter-newline-after-var` - issue 302
+
+
 ## [v5.1.0] - Feb 24, 2018
 ### Rules
 - `ter-padded-blocks`
@@ -325,6 +337,8 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
+[Unreleased]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.2.0...HEAD
+[v5.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.1.0...v5.2.0
 [v5.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.0.0...v5.1.0
 [v5.0.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.1...v5.0.0
 [v4.1.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v4.1.0...v4.1.1
