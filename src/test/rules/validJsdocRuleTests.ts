@@ -102,11 +102,11 @@ ruleTester.addTestGroup('valid-default', 'should pass when using valid JSDoc com
     * Description
     * @override */
     function foo(arg1, arg2){ return ''; }`,
-    `/**
+  `/**
     * Description
     * @inheritdoc */
     function foo(arg1, arg2){ return ''; }`,
-    `/**
+  `/**
     * Description
     * @inheritDoc */
     function foo(arg1, arg2){ return ''; }`,
