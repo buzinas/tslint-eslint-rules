@@ -29,7 +29,17 @@ ruleTester.addTestGroup('valid-function-calls', 'should pass for valid function 
   { code: 'foo\n( \n  bar \n  )\n', options: ['always'] },
   { code: 'foo\n(\t\nbar\n)', options: ['always'] },
   { code: '\tfoo(\n\t\tbar\n\t)', options: ['always'] },
-  { code: '\tfoo\n(\t\n\t\tbar\t\n\t)', options: ['always'] }
+  { code: '\tfoo\n(\t\n\t\tbar\t\n\t)', options: ['always'] },
+  { code: 'foo()', options: [] },
+  { code: 'foo(bar)', options: ['never'] },
+  { code: 'foo(bar)\n', options: ['never'] },
+  { code: '\tfoo(bar)', options: ['never'] },
+  { code: 'foo(bar)\t', options: ['never'] },
+  { code: 'foo()' },
+  { code: 'foo(bar)' },
+  { code: 'foo(bar)\n' },
+  { code: '\tfoo(bar)' },
+  { code: 'foo(bar)\t' }
 ]);
 ruleTester.addTestGroup('valid-expressions', 'should pass for valid expressions', [
   { code: 'var x = ( 1 + 2 ) * 3', options: ['always'] },
@@ -38,6 +48,7 @@ ruleTester.addTestGroup('valid-expressions', 'should pass for valid expressions'
   { code: 'var foo = `(bar)`;', options: ['always'] },
   { code: 'var foo = `(bar ${baz})`;', options: ['always'] },
   { code: 'var foo = `(bar ${( 1 + 2 )})`;', options: ['always'] },
+  { code: 'new MyClass( somethimg )', options: ['always'] },
   { code: 'bar()', options: ['never'] },
   { code: 'bar(baz)', options: ['never'] },
   { code: 'var x = (4 + 5) * 6', options: ['never'] },
@@ -48,35 +59,56 @@ ruleTester.addTestGroup('valid-expressions', 'should pass for valid expressions'
   { code: 'var foo = `( bar )`;', options: ['never'] },
   { code: 'var foo = `( bar ${baz} )`;', options: ['never'] },
   { code: 'var foo = `(bar ${(1 + 2)})`;', options: ['never'] },
-  { code: 'new MyClass( somethimg )', options: ['always'] }
+  { code: 'new MyClass(somethimg)', options: ['never'] },
+  { code: 'bar()' },
+  { code: 'bar(baz)' },
+  { code: 'var x = (4 + 5) * 6' },
+  { code: 'foo\n(\nbar\n)\n' },
+  { code: 'foo\n(  \nbar\n )\n' },
+  { code: 'foo\n(\n bar  \n)\n' },
+  { code: 'foo\n( \n  bar \n  )\n' },
+  { code: 'var foo = `( bar )`;' },
+  { code: 'var foo = `( bar ${baz} )`;' },
+  { code: 'var foo = `(bar ${(1 + 2)})`;' },
+  { code: 'new MyClass(somethimg)' }
 ]);
 ruleTester.addTestGroup('valid-conditions-and-loops', 'should pass for valid conditions and loops', [
   { code: 'if ( true ) {}', options: ['always'] },
   { code: 'if (true) {}', options: ['never'] },
+  { code: 'if (true) {}' },
   { code: 'while ( true ) {}', options: ['always'] },
   { code: 'while (true) {}', options: ['never'] },
+  { code: 'while (true) {}' },
   { code: 'for ( let i=0; i<100; i++ ) {}', options: ['always'] },
   { code: 'for (let i=0; i<100; i++) {}', options: ['never'] },
+  { code: 'for (let i=0; i<100; i++) {}' },
   { code: 'for ( let i in foo ) {}', options: ['always'] },
   { code: 'for (let i in foo) {}', options: ['never'] },
+  { code: 'for (let i in foo) {}' },
   { code: 'for ( let i of foo ) {}', options: ['always'] },
-  { code: 'for (let i of foo) {}', options: ['never'] }
+  { code: 'for (let i of foo) {}', options: ['never'] },
+  { code: 'for (let i of foo) {}' }
 ]);
 ruleTester.addTestGroup('valid-classes', 'should pass for valid classes', [
   { code: 'class Test { foo( bar:string, asdsd:number, asd:any ) : void {} }', options: ['always'] },
   { code: 'class Test { foo(bar:string, asdsd:number, asd:any) : void {} }', options: ['never'] },
+  { code: 'class Test { foo(bar:string, asdsd:number, asd:any) : void {} }' },
   { code: 'class Test { protected foo( bar:string, asdsd:number, asd:any ) : void {} }', options: ['always'] },
-  { code: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }', options: ['never'] }
+  { code: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }', options: ['never'] },
+  { code: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }' }
 ]);
 ruleTester.addTestGroup('valid-function-declarations', 'should pass for valid function declarations', [
   { code: 'function foo( bar:string, asdsd:number, asd:any ) : void {}', options: ['always'] },
   { code: 'function foo(bar:string, asdsd:number, asd:any) : void {}', options: ['never'] },
+  { code: 'function foo(bar:string, asdsd:number, asd:any) : void {}' },
   { code: 'function ( bar:string, asdsd:number, asd:any ) : void {}', options: ['always'] },
-  { code: 'function (bar:string, asdsd:number, asd:any) : void {}', options: ['never'] }
+  { code: 'function (bar:string, asdsd:number, asd:any) : void {}', options: ['never'] },
+  { code: 'function (bar:string, asdsd:number, asd:any) : void {}' }
 ]);
 ruleTester.addTestGroup('valid-constructors', 'should pass for valid constructors', [
   { code: 'constructor( bar:string, asdsd:number, asd:any ){}', options: ['always'] },
-  { code: 'constructor(bar:string, asdsd:number, asd:any){}', options: ['never'] }
+  { code: 'constructor(bar:string, asdsd:number, asd:any){}', options: ['never'] },
+  { code: 'constructor(bar:string, asdsd:number, asd:any){}' }
 ]);
 ruleTester.addTestGroup('valid-exceptions', 'should pass for valid exceptions', [
   { code: 'foo({ bar: "baz" })', options: ['always', { exceptions: ['{}'] }] },
@@ -137,6 +169,17 @@ ruleTester.addTestGroup('invalid-function-calls', 'should fail when declaring in
     errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 8 }])
   },
   {
+    code: 'foo( bar)',
+    output: 'foo(bar)',
+    options: ['never'],
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 4 }])
+  },
+  {
+    code: 'foo( bar)',
+    output: 'foo(bar)',
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 4 }])
+  },
+  {
     code: 'foo(bar)',
     output: 'foo( bar )',
     options: ['always'],
@@ -146,10 +189,38 @@ ruleTester.addTestGroup('invalid-function-calls', 'should fail when declaring in
     ])
   },
   {
+    code: 'foo( bar )',
+    output: 'foo(bar)',
+    options: ['never'],
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 4 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 9 }
+    ])
+  },
+  {
+    code: 'foo( bar )',
+    output: 'foo(bar)',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 4 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 9 }
+    ])
+  },
+  {
     code: 'var x = ( 1 + 2) * 3',
     output: 'var x = ( 1 + 2 ) * 3',
     options: ['always'],
     errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 15 }])
+  },
+  {
+    code: 'var x = ( 1 + 2) * 3',
+    output: 'var x = (1 + 2) * 3',
+    options: ['never'],
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 9 }])
+  },
+  {
+    code: 'var x = ( 1 + 2) * 3',
+    output: 'var x = (1 + 2) * 3',
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 9 }])
   },
   {
     code: 'var x = (1 + 2 ) * 3',
@@ -158,10 +229,32 @@ ruleTester.addTestGroup('invalid-function-calls', 'should fail when declaring in
     errors: expecting([{ message: MISSING_SPACE_ERROR, line: 0, column: 9 }])
   },
   {
+    code: 'var x = (1 + 2 ) * 3',
+    output: 'var x = (1 + 2) * 3',
+    options: ['never'],
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 15 }])
+  },
+  {
+    code: 'var x = (1 + 2 ) * 3',
+    output: 'var x = (1 + 2) * 3',
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 15 }])
+  },
+  {
     code: 'foo\n(bar\n)\n',
     output: 'foo\n( bar\n)\n',
     options: ['always'],
     errors: expecting([{ message: MISSING_SPACE_ERROR, line: 1, column: 1 }])
+  },
+  {
+    code: 'foo\n( bar\n)\n',
+    output: 'foo\n(bar\n)\n',
+    options: ['never'],
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 1, column: 1 }])
+  },
+  {
+    code: 'foo\n( bar\n)\n',
+    output: 'foo\n(bar\n)\n',
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 1, column: 1 }])
   },
   {
     code: 'bar(baz )',
@@ -170,9 +263,19 @@ ruleTester.addTestGroup('invalid-function-calls', 'should fail when declaring in
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 8 } ])
   },
   {
+    code: 'bar(baz )',
+    output: 'bar(baz)',
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 8 } ])
+  },
+  {
     code: 'bar(baz        )',
     output: 'bar(baz)',
     options: ['never'],
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 15 } ])
+  },
+  {
+    code: 'bar(baz        )',
+    output: 'bar(baz)',
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 15 } ])
   },
   {
@@ -185,12 +288,28 @@ ruleTester.addTestGroup('invalid-function-calls', 'should fail when declaring in
     ])
   },
   {
+    code: 'bar( baz )',
+    output: 'bar(baz)',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 4 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 9 }
+    ])
+  },
+  {
     code: 'bar(     baz         )',
     output: 'bar(baz)',
     options: ['never'],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 4 },
     { message: REJECTED_SPACE_ERROR, line: 0, column: 21 }
+    ])
+  },
+  {
+    code: 'bar(     baz         )',
+    output: 'bar(baz)',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 4 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 21 }
     ])
   }
 ]);
@@ -202,15 +321,30 @@ ruleTester.addTestGroup('invalid-expressions', 'should fail when declaring inval
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 9 } ])
   },
   {
+    code: 'var x = ( 4 + 5) * 6',
+    output: 'var x = (4 + 5) * 6',
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 9 } ])
+  },
+  {
     code: 'var x = (4 + 5    ) * 6',
     output: 'var x = (4 + 5) * 6',
     options: ['never'],
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 18 } ])
   },
   {
+    code: 'var x = (4 + 5    ) * 6',
+    output: 'var x = (4 + 5) * 6',
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 18 } ])
+  },
+  {
     code: 'var x = (4 + 5 ) * 6',
     output: 'var x = (4 + 5) * 6',
     options: ['never'],
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 15 } ])
+  },
+  {
+    code: 'var x = (4 + 5 ) * 6',
+    output: 'var x = (4 + 5) * 6',
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 15 } ])
   }
 ]);
@@ -222,6 +356,14 @@ ruleTester.addTestGroup('invalid-classes', 'should fail when declaring invalid s
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 27 },
     { message: REJECTED_SPACE_ERROR, line: 0, column: 62 }
+    ])
+  },
+  {
+    code: 'class Test { protected foo( bar:string, asdsd:number, asd:any ) : void {} }',
+    output: 'class Test { protected foo(bar:string, asdsd:number, asd:any) : void {} }',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 27 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 62 }
     ])
   },
   {
@@ -246,9 +388,19 @@ ruleTester.addTestGroup('invalid-classes', 'should fail when declaring invalid s
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
   },
   {
+    code: 'new MyClass( hey)',
+    output: 'new MyClass(hey)',
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
+  },
+  {
     code: 'new MyClass(      hey)',
     output: 'new MyClass(hey)',
     options: ['never'],
+    errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
+  },
+  {
+    code: 'new MyClass(      hey)',
+    output: 'new MyClass(hey)',
     errors: expecting([ { message: REJECTED_SPACE_ERROR, line: 0, column: 12 } ])
   }
 ]);
@@ -260,6 +412,14 @@ ruleTester.addTestGroup('invalid-function-declarations', 'should fail when decla
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 13 },
     { message: REJECTED_SPACE_ERROR, line: 0, column: 48 }
+    ])
+  },
+  {
+    code: 'function foo( bar:string, asdsd:number, asd:any ) : void {}',
+    output: 'function foo(bar:string, asdsd:number, asd:any) : void {}',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 13 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 48 }
     ])
   },
   {
@@ -281,6 +441,14 @@ ruleTester.addTestGroup('invalid-function-declarations', 'should fail when decla
     ])
   },
   {
+    code: 'function ( bar:string, asdsd:number, asd:any ) : void {}',
+    output: 'function (bar:string, asdsd:number, asd:any) : void {}',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 10 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 45 }
+    ])
+  },
+  {
     code: 'function (bar:string, asdsd:number, asd:any) : void {}',
     output: 'function ( bar:string, asdsd:number, asd:any ) : void {}',
     options: ['always'],
@@ -296,6 +464,14 @@ ruleTester.addTestGroup('invalid-function-declarations', 'should fail when decla
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 12 },
     { message: REJECTED_SPACE_ERROR, line: 0, column: 47 }
+    ])
+  },
+  {
+    code: 'constructor( bar:string, asdsd:number, asd:any ) : void {}',
+    output: 'constructor(bar:string, asdsd:number, asd:any) : void {}',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 12 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 47 }
     ])
   },
   {
@@ -470,6 +646,16 @@ ruleTester.addTestGroup('invalid-exceptions', 'should fail when declaring invali
   {
     code: '( ( 1 + 2 ) )',
     output: '((1 + 2))',
+    errors: expecting([
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 1 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 3 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 10 },
+      { message: REJECTED_SPACE_ERROR, line: 0, column: 12 }
+    ])
+  },
+  {
+    code: '( ( 1 + 2 ) )',
+    output: '((1 + 2))',
     options: ['never', { exceptions: ['[]'] }],
     errors: expecting([
     { message: REJECTED_SPACE_ERROR, line: 0, column: 1 },
@@ -536,6 +722,16 @@ ruleTester.addTestGroup('invalid-exceptions', 'should fail when declaring invali
     code: 'var foo = `(bar ${(1 + 2 )})`;',
     output: 'var foo = `(bar ${(1 + 2)})`;',
     options: ['never'],
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 25 }])
+  },
+  {
+    code: 'foo\n(\nbar )\n',
+    output: 'foo\n(\nbar)\n',
+    errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 2, column: 4 }])
+  },
+  {
+    code: 'var foo = `(bar ${(1 + 2 )})`;',
+    output: 'var foo = `(bar ${(1 + 2)})`;',
     errors: expecting([{ message: REJECTED_SPACE_ERROR, line: 0, column: 25 }])
   },
   {
