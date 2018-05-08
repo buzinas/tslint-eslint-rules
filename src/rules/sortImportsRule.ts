@@ -140,23 +140,24 @@ class RuleWalker extends Lint.RuleWalker {
   private _validateOrder(node: ts.ImportDeclaration | ts.ImportEqualsDeclaration) {
     const importData = this._determineImportType(node);
     if (importData) {
+      const importName = importData.sortValue.trim();
       // See if the import type is still available
       const index = this.expectedOrder.indexOf(importData.memberSyntaxType, this.currentImportIndex);
       if (index !== -1) {
         if (this.expectedOrder[this.currentImportIndex] !== importData.memberSyntaxType) {
           this.currentImportIndex = index;
           this.currentSortValue = {
-            sortValue: this.caseConverter(importData.sortValue),
-            originalValue: importData.sortValue
+            sortValue: this.caseConverter(importName),
+            originalValue: importName
           };
-        } else if (this.currentSortValue.sortValue > this.caseConverter(importData.sortValue)) {
+        } else if (this.currentSortValue.sortValue > this.caseConverter(importName)) {
           this.addFailureAtNode(
             node,
-            `All imports of the same type must be sorted alphabetically. "${importData.sortValue}" must come before "${this.currentSortValue.originalValue}"`);
+            `All imports of the same type must be sorted alphabetically. "${importName}" must come before "${this.currentSortValue.originalValue}"`);
         } else {
           this.currentSortValue = {
-            sortValue: this.caseConverter(importData.sortValue),
-            originalValue: importData.sortValue
+            sortValue: this.caseConverter(importName),
+            originalValue: importName
           };
         }
       } else {

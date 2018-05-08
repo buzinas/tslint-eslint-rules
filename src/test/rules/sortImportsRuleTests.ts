@@ -34,6 +34,22 @@ ruleTester.addTestGroup('valid', 'should pass ESLint valid tests', [
       import {b, c} from 'foo'`,
     options: [{ 'member-syntax-sort-order': ['single', 'multiple', 'none', 'all', 'alias'] }]
   },
+  {
+    code: dedent`
+      import createTheme from 'spectacle/lib/themes/default'
+      import {hot} from 'react-hot-loader'
+      import React from 'react'
+      `,
+    options: ['ignore-case']
+  },
+  {
+    code: dedent`
+      import createTheme from 'spectacle/lib/themes/default'
+      import { hot } from 'react-hot-loader'
+      import React from 'react'
+      `,
+    options: ['ignore-case']
+  },
   dedent`
     import {a, b} from 'bar';
     import {c, d} from 'foo';`,
