@@ -69,7 +69,10 @@ ruleTester.addTestGroup('valid', 'should pass when avoiding unnecessary spaces',
   'function foo() {\n    return;\n}',
   'function foo() {\n    if (foo) {\n        return;\n    }\n}',
   'var foo = `hello     world`;',
-  '({ a:  b })'
+  '({ a:  b })',
+  "message += type === 'ERROR' ? `${chalk.bgRed('ERROR')}  ` : ''",
+  "message += type === 'ERROR' ? `  ${chalk.bgRed('ERROR')}` : ''",
+  "message += type === 'ERROR' ? `${chalk.bgRed('ERROR')}  and  ${x}` : ''"
 ]);
 
 ruleTester.addTestGroup('invalid', 'should fail when using multiple spaces', [
