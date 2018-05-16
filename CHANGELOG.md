@@ -2,13 +2,20 @@
 
 ## [Unreleased]
 
+## [v5.3.1] - May 15, 2018
+#### Bug fixes
+- `no-multi-spaces` bugfix in string literals.
+
+NOTE: There is no different in Gihub between 5.3.0 and 5.3.1. The NPM Package however
+missed the bugfix due to not syncing the branches locally.
+
+
 ## [v5.3.0] - May 15, 2018
 #### Features
 - `valid-jsdoc` recognizes `@inheritDoc` tag
 
 #### Bug fixes
 - `sort-imports` rule reads imports correctly (Issue #319)
-- `no-multi-spaces` bugfix in string literals.
 - `space-in-parens` bugfix when using default options (Issue #305)
 
 
@@ -347,7 +354,8 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
-[Unreleased]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.3.0...HEAD
+[Unreleased]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.3.1...HEAD
+[v5.3.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.3.0...v5.3.1
 [v5.3.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.2.0...v5.3.0
 [v5.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.1.0...v5.2.0
 [v5.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.0.0...v5.1.0
