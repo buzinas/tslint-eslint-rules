@@ -82,13 +82,13 @@ export class Rule extends Lint.Rules.AbstractRule {
         classes: always,
         switches: always
       };
-    } else {
-      return {
-        blocks: config['blocks'] && config['blocks'] === OPTION_ALWAYS,
-        classes: config['classes'] && config['classes'] === OPTION_ALWAYS,
-        switches: config['switches'] && config['switches'] === OPTION_ALWAYS
-      };
     }
+
+    return {
+      blocks: config['blocks'] && config['blocks'] === OPTION_ALWAYS,
+      classes: config['classes'] && config['classes'] === OPTION_ALWAYS,
+      switches: config['switches'] && config['switches'] === OPTION_ALWAYS
+    };
   }
 
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
@@ -121,13 +121,6 @@ interface IReplace {
 }
 
 class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
-  private sourceText: string;
-
-  constructor(sourceFile: ts.SourceFile, ruleName: string, options: ITerPaddedBlocksOptions) {
-    super(sourceFile, ruleName, options);
-    this.sourceText = sourceFile.getFullText();
-  }
-
   public walk(sourceFile: ts.SourceFile) {
     sourceFile.forEachChild(node => this.processNode(node));
   }
@@ -248,13 +241,8 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     }
 
     // Ignore empty blocks
-    if (!positions.firstChildLine && !positions.lastChildLine) {
-      // There is no content, lets check if it is truly empty
-      const content = this.sourceText.substring(
-        positions.openPosition + 1,
-        positions.closePosition - 1
-      );
-      if (!content.trim()) return;
+    if (positions.firstChildLine === undefined && positions.lastChildLine === undefined) {
+      return;
     }
 
     let openPadded = false;
