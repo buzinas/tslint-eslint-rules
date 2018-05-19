@@ -98,7 +98,31 @@ export class Rule extends Lint.Rules.AbstractRule {
   }
 }
 
+interface IBraceParts {
+  openBrace: ts.Node;
+  body: ts.Node;
+  closeBrace: ts.Node;
+}
+
+interface IPositions {
+  openPosition: number;
+  openLine: number;
+  firstChildPosition?: number;
+  firstChildLine?: number;
+  lastChildPosition?: number;
+  lastChildLine?: number;
+  closePosition: number;
+  closeLine: number;
+}
+
 class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
+  private sourceText: string;
+
+  constructor(sourceFile: ts.SourceFile, ruleName: string, options: ITerPaddedBlocksOptions) {
+    super(sourceFile, ruleName, options);
+    this.sourceText = sourceFile.getFullText();
+  }
+
   public walk(sourceFile: ts.SourceFile) {
     sourceFile.forEachChild(node => this.processNode(node));
   }
@@ -114,7 +138,7 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     node.forEachChild(child => this.processNode(child));
   }
 
-  private getParts(node: ts.Node): { openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node } {
+  private getParts(node: ts.Node): IBraceParts {
     let openBrace: ts.Node, body: ts.Node, closeBrace: ts.Node;
 
     node.getChildren().forEach((child) => {
@@ -134,6 +158,30 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     };
   }
 
+  private getPositions(node: ts.Node): IPositions {
+    const { openBrace, body, closeBrace } = this.getParts(node);
+    const firstChild = body.getChildAt(0);
+    const lastChild = body.getChildAt(body.getChildCount() - 1);
+    const positions: IPositions = {
+      openPosition: openBrace.getStart(this.sourceFile),
+      openLine: this.getLine(openBrace.getStart(this.sourceFile)),
+      closePosition: closeBrace.getEnd(),
+      closeLine: this.getLine(closeBrace.getEnd())
+    };
+
+    if (firstChild) {
+      positions.firstChildPosition = firstChild.getStart(this.sourceFile);
+      positions.firstChildLine = this.getLine(positions.firstChildPosition);
+    }
+
+    if (lastChild) {
+      positions.lastChildPosition = lastChild.getEnd();
+      positions.lastChildLine = this.getLine(positions.lastChildPosition);
+    }
+
+    return positions;
+  }
+
   private checkPadding(node: ts.Node): void {
     let paddingAllowed = this.options.blocks;
 
@@ -143,128 +191,82 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       paddingAllowed = this.options.switches;
     }
 
-    // tslint:disable-next-line triple-equals
-    if (paddingAllowed == undefined) {
+    if (paddingAllowed === undefined) {
       return;
     }
 
-    const { openBrace, body, closeBrace } = this.getParts(node);
+    const positions = this.getPositions(node);
 
-    const firstChild = body.getChildAt(0);
-    let firstChildPosition = firstChild && firstChild.getStart();
-    let firstChildLine = firstChild && this.sourceFile.getLineAndCharacterOfPosition(firstChildPosition).line;
-
-    const lastChild = body.getChildAt(body.getChildCount() - 1);
-    let lastChildPosition = lastChild && lastChild.getEnd();
-    let lastChildLine = lastChild && this.sourceFile.getLineAndCharacterOfPosition(lastChildPosition).line;
-
-    let openPosition = openBrace.getStart();
-    let openLine = this.sourceFile.getLineAndCharacterOfPosition(openPosition).line;
-
-    let closePosition = closeBrace.getEnd();
-    let closeLine = this.sourceFile.getLineAndCharacterOfPosition(closePosition).line;
-
-    let comments: ts.CommentRange[] = [];
+    const comments: ts.CommentRange[] = [];
     forEachComment(node, (_fullText, comment) => {
-      comments.push(comment);
+      // Only using comments that are inside the body
+      if (
+        comment.pos > positions.openPosition &&
+        comment.pos < positions.closePosition &&
+        this.getLine(comment.end) > positions.openLine
+      ) {
+        comments.push(comment);
+      }
     });
 
-    // Ignore comments attached to start
-    let splice: number | undefined;
-    for (let i = 0; i < comments.length; i++) {
-      const comment = comments[i];
-      const line = this.sourceFile.getLineAndCharacterOfPosition(comment.pos).line;
-
-      if (line === openLine || (line === openLine + 1 && line !== firstChildLine)) {
-        openPosition = comment.pos;
-        openLine = line;
-        splice = i;
-      } else {
-        break;
-      }
-    }
-
-    if (splice !== undefined) {
-      comments = comments.splice(splice + 1);
-    }
-
-    // Ignore comments attached to end
-    splice = undefined;
-    for (let i = comments.length - 1; i >= 0; i--) {
-      const comment = comments[i];
-      const line = this.sourceFile.getLineAndCharacterOfPosition(comment.pos).line;
-
-      if (line === closeLine || (line === closeLine - 1 && line !== lastChildLine)) {
-        closePosition = comment.end;
-        closeLine = line;
-        splice = i;
-      } else {
-        break;
-      }
-    }
-
-    if (splice !== undefined) {
-      comments = comments.slice(0, splice);
-    }
-
     if (comments.length > 0) {
-      const firstCommentLine = this.sourceFile.getLineAndCharacterOfPosition(comments[0].pos).line;
-      const lastCommentLine = this.sourceFile.getLineAndCharacterOfPosition(comments[comments.length - 1].end).line;
+      const firstCommentLine = this.getLine(comments[0].pos);
+      const lastCommentLine = this.getLine(comments[comments.length - 1].end);
 
-      // tslint:disable-next-line triple-equals
-      if (firstChildLine == undefined || firstCommentLine < firstChildLine) {
-        firstChildLine = firstCommentLine;
-        firstChildPosition = comments[0].pos;
+      if (!positions.firstChildLine || firstCommentLine < positions.firstChildLine) {
+        positions.firstChildLine = firstCommentLine;
+        positions.firstChildPosition = comments[0].pos;
       }
 
-      // tslint:disable-next-line triple-equals
-      if (lastChildLine == undefined || lastCommentLine > lastChildLine) {
-        lastChildLine = lastCommentLine;
-        lastChildPosition = comments[comments.length - 1].end;
+      if (!positions.lastChildLine || lastCommentLine > positions.lastChildLine) {
+        positions.lastChildLine = lastCommentLine;
+        positions.lastChildPosition = comments[comments.length - 1].end;
       }
     }
 
     // Ignore empty blocks
-    // tslint:disable-next-line triple-equals
-    if (openLine === closeLine && firstChildLine == undefined && lastChildLine == undefined) {
-      return;
+    if (!positions.firstChildLine && !positions.lastChildLine) {
+      // There is no content, lets check if it is truly empty
+      const content = this.sourceText.substring(
+        positions.openPosition + 1,
+        positions.closePosition - 1
+      );
+      if (!content.trim()) return;
     }
 
-    // tslint:disable triple-equals
-    const openPadded = openLine !== firstChildLine && (firstChildLine == undefined ? (closeLine - openLine > 1) : (firstChildLine! - 1) !== openLine);
-    const closePadded = closeLine !== lastChildLine && (lastChildLine == undefined ? (closeLine - openLine > 1) : (lastChildLine! + 1) !== closeLine);
-    // tslint:enable triple-equals
-
-    if (openPadded === closePadded) {
-      if (paddingAllowed && !openPadded) {
-        this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.always);
-      } else if (!paddingAllowed && openPadded) {
-        this.addFailure(openPosition, closePosition, Rule.FAILURE_STRING.never);
-      }
+    let openPadded = false;
+    if (positions.firstChildLine !== undefined) {
+      openPadded = positions.firstChildLine - positions.openLine > 1;
     } else {
-      // tslint:disable triple-equals
-      if (paddingAllowed ? !openPadded : openPadded) {
-        this.addFailure(
-          openPosition,
-          firstChildPosition != undefined ?
-            firstChildPosition :
-            closePosition,
-          paddingAllowed ?
-            Rule.FAILURE_STRING.always :
-            Rule.FAILURE_STRING.never
-        );
-      } else if (paddingAllowed ? !closePadded : closePadded) {
-        this.addFailure(
-          lastChildPosition != undefined ?
-            lastChildPosition :
-            closePosition,
-          closePosition - 1,
-          paddingAllowed ?
-            Rule.FAILURE_STRING.always :
-            Rule.FAILURE_STRING.never
-        );
-      }
-      // tslint:enable triple-equals
+      openPadded = positions.closeLine - positions.openLine > 1;
     }
+
+    let closePadded = false;
+    if (positions.lastChildLine !== undefined) {
+      closePadded = positions.closeLine - positions.lastChildLine > 1;
+    } else {
+      closePadded = positions.closeLine - positions.openLine > 1;
+    }
+
+    // console.log('Padded:', [openPadded, closePadded], 'padding allowed:', paddingAllowed);
+
+    if (paddingAllowed ? !openPadded : openPadded) {
+      this.addFailure(
+        positions.openPosition,
+        positions.openPosition + 1,
+        paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never
+      );
+    }
+    if (paddingAllowed ? !closePadded : closePadded) {
+      this.addFailure(
+        positions.closePosition - 1,
+        positions.closePosition,
+        paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never
+      );
+    }
+  }
+
+  private getLine(pos: number): number {
+    return this.sourceFile.getLineAndCharacterOfPosition(pos).line;
   }
 }
