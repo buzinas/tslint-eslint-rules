@@ -19,7 +19,7 @@
 import { RuleTester, Failure, Position, dedent } from './ruleTester';
 import { Rule as PaddedBlocksRule } from '../../rules/terPaddedBlocksRule';
 
-const ruleTester = new RuleTester('ter-padded-blocks');
+const ruleTester = new RuleTester('ter-padded-blocks', true);
 const FAILURE_STRING = PaddedBlocksRule.FAILURE_STRING;
 
 function expecting(errors: ['always' | 'never', number, number][]): Failure[] {
@@ -182,7 +182,7 @@ ruleTester.addTestGroup('invalid-2', 'should fail invalid code', [
   },
   {
     code: '{\r\na();\r\n}',
-    output: '{\n\r\na();\r\n\n}',
+    output: '{\n\na();\n\n}',
     errors: expecting([
       ['always', 0, 0],
       ['always', 2, 0]
@@ -193,7 +193,7 @@ ruleTester.addTestGroup('invalid-2', 'should fail invalid code', [
 ruleTester.addTestGroup('invalid-3', 'should fail invalid code', [
   {
     code: '{\na();}',
-    output: '{\n\na();\n}',
+    output: '{\n\na();\n\n}',
     errors: expecting([
       ['always', 0, 0],
       ['always', 1, 4]
@@ -201,7 +201,7 @@ ruleTester.addTestGroup('invalid-3', 'should fail invalid code', [
   },
   {
     code: '{a();\n}',
-    output: '{\na();\n\n}',
+    output: '{\n\na();\n\n}',
     errors: expecting([
       ['always', 0, 0],
       ['always', 1, 0]
@@ -209,7 +209,7 @@ ruleTester.addTestGroup('invalid-3', 'should fail invalid code', [
   },
   {
     code: '{a();\n}',
-    output: '{\na();\n\n}',
+    output: '{\n\na();\n\n}',
     options: [{ blocks: 'always' }],
     errors: expecting([
       ['always', 0, 0],
@@ -269,7 +269,7 @@ ruleTester.addTestGroup('invalid-5', 'should fail invalid code', [
   },
   {
     code: '{a();}',
-    output: '{\na();\n}',
+    output: '{\n\na();\n\n}',
     errors: expecting([
       ['always', 0, 0],
       ['always', 0, 5]
@@ -445,25 +445,25 @@ ruleTester.addTestGroup('invalid-9', 'should fail invalid code', [
 ruleTester.addTestGroup('invalid-10', 'should fail invalid code', [
   {
     code: 'function foo() {\n\n  bar;\n/* a\n */}',
-    output: 'function foo() {\n\n  bar;\n\n/* a\n */}',
+    output: 'function foo() {\n\n  bar;\n/* a\n */\n\n}',
     options: ['always'],
     errors: expecting([['always', 4, 3]])
   },
   {
     code: 'function foo() { /* a\n */\n/* b\n */\n  bar;\n}',
-    output: 'function foo() { /* a\n */\n\n/* b\n */\n  bar;\n\n}',
+    output: 'function foo() {\n\n/* a\n */\n/* b\n */\n  bar;\n\n}',
     options: ['always'],
     errors: expecting([['always', 0, 15], ['always', 5, 0]])
   },
   {
     code: 'function foo() { /* a\n */ /* b\n */\n  bar;\n}',
-    output: 'function foo() { /* a\n */ /* b\n */\n\n  bar;\n\n}',
+    output: 'function foo() {\n\n/* a\n */ /* b\n */\n  bar;\n\n}',
     options: ['always'],
     errors: expecting([['always', 0, 15], ['always', 4, 0]])
   },
   {
     code: 'function foo() { /* a\n */ /* b\n */\n  bar;\n/* c\n *//* d\n */}',
-    output: 'function foo() { /* a\n */ /* b\n */\n\n  bar;\n\n/* c\n *//* d\n */}',
+    output: 'function foo() {\n\n/* a\n */ /* b\n */\n  bar;\n/* c\n *//* d\n */\n\n}',
     options: ['always'],
     errors: expecting([['always', 0, 15], ['always', 6, 3]])
   }
@@ -523,6 +523,14 @@ ruleTester.addTestGroupWithConfig('with-never-fail', 'should fail with never', [
 
       }
       `,
+    output: dedent`
+      import * as React from 'react';
+
+      // Some comment on my class
+      export class MyClass extends React.Component {
+        ...
+      }
+      `,
     errors: expecting([
       ['never', 4, 45],
       ['never', 8, 0]
@@ -544,6 +552,18 @@ ruleTester.addTestGroupWithConfig('with-never-fail', 'should fail with never', [
         ...
       }
       `,
+    output: dedent`
+      import * as React from 'react';
+
+      export class FirstClass extends React.Component {
+        ...
+      }
+
+      // tslint:disable-next-line max-classes-per-file
+      export class MyClass extends React.Component {
+        ...
+      }
+      `,
     errors: expecting([
       ['never', 3, 48],
       ['never', 7, 0],
@@ -553,7 +573,7 @@ ruleTester.addTestGroupWithConfig('with-never-fail', 'should fail with never', [
   {
     code: dedent`
       @Injectable()
-      export asbtract class A extends B {
+      export abstract class A extends B {
 
         /**
          * @param a
@@ -563,9 +583,53 @@ ruleTester.addTestGroupWithConfig('with-never-fail', 'should fail with never', [
 
       }
       `,
+    output: dedent`
+      @Injectable()
+      export abstract class A extends B {
+        /**
+         * @param a
+         */
+        method() {
+        }
+      }
+      `,
     errors: expecting([
       ['never', 2, 34],
       ['never', 10, 0]
+    ])
+  },
+  {
+    code: dedent`
+      @Injectable()
+      export abstract class A extends B {
+
+
+
+        /**
+         * @param a
+         */
+        method() {
+
+        }
+
+
+
+      }
+      `,
+    output: dedent`
+      @Injectable()
+      export abstract class A extends B {
+        /**
+         * @param a
+         */
+        method() {
+
+        }
+      }
+      `,
+    errors: expecting([
+      ['never', 2, 34],
+      ['never', 15, 0]
     ])
   }
 ]);

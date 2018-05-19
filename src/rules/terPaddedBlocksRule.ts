@@ -115,6 +115,11 @@ interface IPositions {
   closeLine: number;
 }
 
+interface IReplace {
+  from: number;
+  to: number;
+}
+
 class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
   private sourceText: string;
 
@@ -196,16 +201,25 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
     }
 
     const positions = this.getPositions(node);
+    const openBraceReplacement: IReplace = {
+      from: positions.openPosition + 1,
+      to: positions.firstChildPosition || positions.closePosition
+    };
+    const closeBraceReplacement: IReplace = {
+      from: positions.lastChildPosition || positions.openPosition,
+      to: positions.closePosition - 1
+    };
 
     const comments: ts.CommentRange[] = [];
     forEachComment(node, (_fullText, comment) => {
       // Only using comments that are inside the body
-      if (
-        comment.pos > positions.openPosition &&
-        comment.pos < positions.closePosition &&
-        this.getLine(comment.end) > positions.openLine
-      ) {
-        comments.push(comment);
+      if (comment.pos > positions.openPosition && comment.pos < positions.closePosition) {
+        const commentLineEnd = this.getLine(comment.end);
+        if (commentLineEnd > positions.openLine) {
+          comments.push(comment);
+        } else if (commentLineEnd === positions.openLine) {
+          openBraceReplacement.from = comment.end;
+        }
       }
     });
 
@@ -216,12 +230,21 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       if (!positions.firstChildLine || firstCommentLine < positions.firstChildLine) {
         positions.firstChildLine = firstCommentLine;
         positions.firstChildPosition = comments[0].pos;
+        openBraceReplacement.to = positions.firstChildPosition;
       }
 
-      if (!positions.lastChildLine || lastCommentLine > positions.lastChildLine) {
+      if (!positions.lastChildLine || lastCommentLine >= positions.lastChildLine) {
         positions.lastChildLine = lastCommentLine;
         positions.lastChildPosition = comments[comments.length - 1].end;
+        closeBraceReplacement.from = positions.lastChildPosition;
       }
+    }
+
+    if (this.getLine(openBraceReplacement.from) !== this.getLine(openBraceReplacement.to)) {
+      openBraceReplacement.to = this.getPosition(this.getLine(openBraceReplacement.to));
+    }
+    if (this.getLine(closeBraceReplacement.from) !== this.getLine(closeBraceReplacement.to)) {
+      closeBraceReplacement.to = this.getPosition(this.getLine(closeBraceReplacement.to));
     }
 
     // Ignore empty blocks
@@ -248,25 +271,39 @@ class RuleWalker extends Lint.AbstractWalker<ITerPaddedBlocksOptions> {
       closePadded = positions.closeLine - positions.openLine > 1;
     }
 
-    // console.log('Padded:', [openPadded, closePadded], 'padding allowed:', paddingAllowed);
-
     if (paddingAllowed ? !openPadded : openPadded) {
+      const openFix = Lint.Replacement.replaceFromTo(
+        openBraceReplacement.from,
+        openBraceReplacement.to,
+        paddingAllowed ? '\n\n' : '\n'
+      );
       this.addFailure(
         positions.openPosition,
         positions.openPosition + 1,
-        paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never
+        paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never,
+        openFix
       );
     }
     if (paddingAllowed ? !closePadded : closePadded) {
+      const closeFix = Lint.Replacement.replaceFromTo(
+        closeBraceReplacement.from,
+        closeBraceReplacement.to,
+        paddingAllowed ? '\n\n' : '\n'
+      );
       this.addFailure(
         positions.closePosition - 1,
         positions.closePosition,
-        paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never
+        paddingAllowed ? Rule.FAILURE_STRING.always : Rule.FAILURE_STRING.never,
+        closeFix
       );
     }
   }
 
   private getLine(pos: number): number {
     return this.sourceFile.getLineAndCharacterOfPosition(pos).line;
+  }
+
+  private getPosition(line: number): number {
+    return this.sourceFile.getPositionOfLineAndCharacter(line, 0);
   }
 }
