@@ -423,7 +423,7 @@ const rules: IRule[] = [
   {
     available: false,
     eslintRule: 'block-scoped-var',
-    tslintRule: 'accessor-pairs',
+    tslintRule: 'block-scoped-var',
     category: 'Best Practices',
     description: 'treat `var` statements as if they were block scoped',
     eslintUrl: 'http://eslint.org/docs/rules/block-scoped-var',
