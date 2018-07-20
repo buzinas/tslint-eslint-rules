@@ -56,27 +56,21 @@ ruleTester.addTestGroup('empty-object', 'always with empty object', [
   { code: 'var foo = {};', options: ['always'] }
 ]);
 
-/* Disabled: objectsInObjects option is not yet supported
 ruleTester.addTestGroup('obj-obj', 'always with objects in objects', [
   { code: "var obj = { 'foo': { 'bar': 1, 'baz': 2 }};", options: ['always', { objectsInObjects: false }] },
   { code: 'var a = { noop: function () {} };', options: ['always', { objectsInObjects: false }] },
   { code: 'var { y: { z }} = x', options: ['always', { objectsInObjects: false }] }
 ]);
-*/
 
-/* Disabled: arraysInObjects option is not yet supported
 ruleTester.addTestGroup('arr-obj', 'always with arrays in objects', [
   { code: "var obj = { 'foo': [ 1, 2 ]};", options: ['always', { arraysInObjects: false }] },
   { code: 'var a = { thingInList: list[0] };', options: ['always', { arraysInObjects: false }] }
 ]);
-*/
 
-/* Disabled: arraysInObjects option is not yet supported
 ruleTester.addTestGroup('arr-obj-obj', '', [
   { code: "var obj = { 'qux': [ 1, 2 ], 'foo': { 'bar': 1, 'baz': 2 }};", options: ['always', { arraysInObjects: false, objectsInObjects: false }] },
   { code: "var obj = { 'foo': { 'bar': 1, 'baz': 2 }, 'qux': [ 1, 2 ]};", options: ['always', { arraysInObjects: false, objectsInObjects: false }] }
 ]);
-*/
 
 ruleTester.addTestGroup('never-obj', 'never with object literals', [
   { code: 'var obj = {foo: bar,\nbaz: qux\n};', options: ['never'] },
@@ -126,17 +120,15 @@ ruleTester.addTestGroup('empty-object-never', 'never with empty object', [
   { code: 'var foo = {};', options: ['never'] }
 ]);
 
-/* Disabled: objectsInObjects option is not yet supported
 ruleTester.addTestGroup('never-obj-obj', 'never with objects in objects', [
-  { code: "var obj = {'foo': {'bar': 1, 'baz': 2} };", options: ["never", { objectsInObjects: true }] },
+  { code: "var obj = {'foo': {'bar': 1, 'baz': 2} };", options: ['never', { objectsInObjects: true }] }
 ]);
- */
 
 ruleTester.addTestGroup('empty-cases', 'empty cases: https://github.com/eslint/eslint/issues/3658', [
   { code: 'var {} = foo;' },
   { code: 'var [] = foo;' },
-  // { code: 'var {a: {}} = foo;' },
-  // { code: 'var {a: []} = foo;' },
+  { code: 'var { a: {} } = foo;' },
+  { code: 'var { a: [] } = foo;' },
   { code: "import {} from 'foo';" },
   { code: "export {} from 'foo';" },
   { code: 'export {};' },
@@ -251,22 +243,25 @@ ruleTester.addTestGroup('invalid', 'should fail with invalid code', [
   }
 ]);
 
-/* Disabled objectsInObjects option is not yet supported
 ruleTester.addTestGroup('invalid-always-arr-obj', 'invalid always - arrays in objects', [
   {
     code: "var obj = { 'foo': [ 1, 2 ] };",
     output: "var obj = { 'foo': [ 1, 2 ]};",
-    options: ['always', { arraysInObjects: false }]
+    options: ['always', { arraysInObjects: false }],
+    errors: expecting([
+      [0, 28, '}', false]
+    ])
   },
   {
     code: "var obj = { 'foo': [ 1, 2 ] , 'bar': [ 'baz', 'qux' ] };",
     output: "var obj = { 'foo': [ 1, 2 ] , 'bar': [ 'baz', 'qux' ]};",
-    options: ['always', { arraysInObjects: false }]
+    options: ['always', { arraysInObjects: false }],
+    errors: expecting([
+      [0, 54, '}', false]
+    ])
   }
 ]);
-*/
 
-/* Disabled objectsInObjects option is not yet supported
 ruleTester.addTestGroup('invalid-obj-obj', 'invalid always - objects in objects', [
   {
     code: "var obj = { 'foo': { 'bar': 1, 'baz': 2 } };",
@@ -285,7 +280,6 @@ ruleTester.addTestGroup('invalid-obj-obj', 'invalid always - objects in objects'
     ])
   }
 ]);
-*/
 
 ruleTester.addTestGroup('invalid-always-dest', 'invalid always - destructuring trailing comma', [
   {
@@ -323,7 +317,6 @@ ruleTester.addTestGroup('invalid-always-dest', 'invalid always - destructuring t
   }
 ]);
 
-/* Disabled objectsInObjects option is not yet supported
 ruleTester.addTestGroup('invalid-never-obj-obj', 'invalid never - objects in objects', [
   {
     code: "var obj = {'foo': {'bar': 1, 'baz': 2}};",
@@ -342,22 +335,25 @@ ruleTester.addTestGroup('invalid-never-obj-obj', 'invalid never - objects in obj
     ])
   }
 ]);
-*/
 
-/* Disabled objectsInObjects option is not yet supported
 ruleTester.addTestGroup('invalid-never-arr-obj', 'invalid never - arrays in objects', [
   {
     code: "var obj = {'foo': [1, 2]};",
     output: "var obj = {'foo': [1, 2] };",
-    options: ['never', { arraysInObjects: true }]
+    options: ['never', { arraysInObjects: true }],
+    errors: expecting([
+      [0, 24, '}', true]
+    ])
   },
   {
     code: "var obj = {'foo': [1, 2] , 'bar': ['baz', 'qux']};",
     output: "var obj = {'foo': [1, 2] , 'bar': ['baz', 'qux'] };",
-    options: ['never', { arraysInObjects: true }]
+    options: ['never', { arraysInObjects: true }],
+    errors: expecting([
+      [0, 48, '}', true]
+    ])
   }
 ]);
-*/
 
 ruleTester.addTestGroup('invalid-always-never', 'invalid always/never', [
   {
