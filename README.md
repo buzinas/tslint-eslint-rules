@@ -23,6 +23,12 @@ Now you can combine both worlds by using this TSLint plugin!
 npm install --save-dev tslint-eslint-rules
 ```
 
+### Or install from Yarn to your Dev Dependencies
+
+```console
+yarn add tslint-eslint-rules --dev
+```
+
 ### Configure TSLint to use `tslint-eslint-rules`:
 
 In your `tslint.json` file, extend this package, e.g:
