@@ -38,7 +38,7 @@ started on a new rule or fix/improve some existing rule you can follow the instr
   working on the `no-tabs` rule, then the rule name will be `ter-no-tabs`. This is to avoid future
   name collision with native rules provided by `TSLint`.
 - Create a branch with the rule name, e.g. `ter-indent`.
-- If you haven't, run `npm install` to download the project dependencies.
+- If you haven't, run `yarn install` to download the project dependencies.
 - Create your rule tests at `./src/test/rules` and your rule in `./src/rules` with the convention:
   - Name: rule-name (hyphenated, e.g: `ter-no-if-usage`)
   - Rule File: ruleNameRule.ts (camelCased and with the `Rule` suffix, e.g: `terNoIfUsageRule.ts`)
