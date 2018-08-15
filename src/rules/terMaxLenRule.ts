@@ -366,7 +366,7 @@ class MaxLenWalker extends Lint.RuleWalker {
 
     for (let i = 0; i < totalLines; ++i) {
       const from = lineStarts[i];
-      const to = lineStarts[i + 1];
+      const to = lineStarts[i + 1] || source.length;
       let line = source.substring(from, i === totalLines - 1 ? to : to - 1);
       let lineIsComment = false;
 

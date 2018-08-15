@@ -46,6 +46,7 @@ function isOneOf(node: ts.Node, kinds: string[]) {
   return kinds.some(kind => node.kind === ts.SyntaxKind[kind]);
 }
 
+// TODO: Look for `.getFirstToken()!` and try to remove the `!`.
 export class Rule extends Lint.Rules.AbstractRule {
   public static metadata: Lint.IRuleMetadata = {
     ruleName: RULE_NAME,
@@ -338,7 +339,8 @@ class IndentWalker extends Lint.RuleWalker {
    */
   private isNodeFirstInLine(node: ts.Node, byEndLocation: boolean = false) {
     const token = byEndLocation ? node.getLastToken() : node.getFirstToken();
-    let pos = token.getStart() - 1;
+    // TODO: How can there be no token?
+    let pos = token!.getStart() - 1;
     while ([' ', '\t'].indexOf(this.srcText.charAt(pos)) !== -1) {
       pos -= 1;
     }
@@ -585,7 +587,7 @@ class IndentWalker extends Lint.RuleWalker {
    * Check last line of the node has the correct level of indentation.
    */
   private checkLastNodeLineIndent(node: ts.Node, lastLineIndent: number): void {
-    const lastToken = node.getLastToken();
+    const lastToken = node.getLastToken()!;
     const endIndent = this.getNodeIndent(lastToken);
     const firstInLine = endIndent.firstInLine;
     if (firstInLine && (endIndent.goodChar !== lastLineIndent || endIndent.badChar !== 0)) {
@@ -692,7 +694,7 @@ class IndentWalker extends Lint.RuleWalker {
     const parentVarNode = this.getVariableDeclaratorNode(node);
 
     if (parentVarNode && this.isNodeInVarOnTop(node, parentVarNode) && parentVarNode.parent) {
-      const varKind = parentVarNode.parent.getFirstToken().getText();
+      const varKind = parentVarNode.parent.getFirstToken()!.getText();
       indent += indentSize * OPTIONS.VariableDeclarator[varKind];
     }
 
@@ -748,7 +750,7 @@ class IndentWalker extends Lint.RuleWalker {
       if (typeof varIndent === 'undefined') {
         varIndent = this.getNodeIndent(varNode).goodChar;
       }
-      const varKind = varNode.getFirstToken().getText();
+      const varKind = varNode.getFirstToken()!.getText();
       indent = varIndent + (indentSize * OPTIONS.VariableDeclarator[varKind]);
       this.varIndentStore[line] = indent;
       return indent;
@@ -823,7 +825,7 @@ class IndentWalker extends Lint.RuleWalker {
           const parentVarLine = this.getLine(parentVarNode);
           const parentLine = this.getLine(parent);
           if (isKind(parent, 'VariableDeclaration') && parentVarLine === parentLine && parentVarNode.parent) {
-            varKind = parentVarNode.parent.getFirstToken().getText();
+            varKind = parentVarNode.parent.getFirstToken()!.getText();
             nodeIndent = nodeIndent + (indentSize * OPTIONS.VariableDeclarator[varKind]);
           } else if (
             isOneOf(parent, [
@@ -861,7 +863,7 @@ class IndentWalker extends Lint.RuleWalker {
      * make sure indentation takes that into account.
      */
     if (parentVarNode && this.isNodeInVarOnTop(node, parentVarNode) && parentVarNode.parent) {
-      varKind = parentVarNode.parent.getFirstToken().getText();
+      varKind = parentVarNode.parent.getFirstToken()!.getText();
       elementsIndent += indentSize * OPTIONS.VariableDeclarator[varKind];
     }
 
@@ -945,7 +947,7 @@ class IndentWalker extends Lint.RuleWalker {
       return;
     }
 
-    const lastToken = node.expression.getLastToken();
+    const lastToken = node.expression.getLastToken()!;
 
     const endIndex = lastToken.getStart();
     let pos = endIndex - 1;
@@ -1069,7 +1071,8 @@ class IndentWalker extends Lint.RuleWalker {
       return;
     }
     const lastElement = list.getChildAt(len - 1);
-    const lastToken = node.getLastToken();
+    // TODO: Remove `!`
+    const lastToken = node.getLastToken()!;
     const lastTokenLine = this.getLine(lastToken, true);
     const lastElementLine = this.getLine(lastElement, true);
 
@@ -1084,7 +1087,7 @@ class IndentWalker extends Lint.RuleWalker {
       this.checkLastNodeLineIndent(node, this.getNodeIndent(tokenBeforeLastElement).goodChar);
     } else {
       const nodeIndent = this.getNodeIndent(node).goodChar;
-      const varKind = node.getFirstToken().getText();
+      const varKind = node.getFirstToken()!.getText();
       const declaratorIndent = typeof OPTIONS.VariableDeclarator[varKind] === 'number' ? OPTIONS.VariableDeclarator[varKind] : DEFAULT_VARIABLE_INDENT;
       const elementsIndent = nodeIndent + indentSize * declaratorIndent;
       this.checkLastNodeLineIndent(node, elementsIndent - indentSize);
