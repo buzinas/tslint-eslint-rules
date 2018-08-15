@@ -5,7 +5,7 @@ import { RuleTester, Failure, Position, dedent, readFixture } from './ruleTester
 type NumStr = number | string;
 const ruleTester = new RuleTester('ter-indent', true);
 
-function expecting(errors: [[number, NumStr, NumStr]], indentType: string = 'space'): Failure[] {
+function expecting(errors: Array<[number, NumStr, NumStr]>, indentType: string = 'space'): Failure[] {
   return errors.map((err) => {
     let message;
 

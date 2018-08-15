@@ -81,7 +81,8 @@ export class Rule extends Lint.Rules.AbstractRule {
 }
 
 function checkMetaProperty(node: ts.PropertyAccessExpression, name: string, prop: string) {
-  return node.parent && node.parent.getFirstToken().getText() === name && node.name.text === prop;
+  // TODO: I hate cheating the compiler, help me remove the `!`
+  return node.parent && node.parent.getFirstToken()!.getText() === name && node.name.text === prop;
 }
 
 interface ICallbackInfo {

@@ -59,7 +59,8 @@ class NoMultiSpacesWalker extends Lint.RuleWalker {
       this.targets.push(pattern.lastIndex);
       this.targetNode[pattern.lastIndex] = sourceFile;
     }
-    this.lastNode = sourceFile.getLastToken();
+    // TODO: How do we know that we do have the last token?
+    this.lastNode = sourceFile.getLastToken()!;
   }
 
   private inRange(x: number, range: [number, number]): boolean {

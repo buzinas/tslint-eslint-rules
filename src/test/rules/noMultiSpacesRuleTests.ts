@@ -3,7 +3,7 @@ import { RuleTester, Failure, Position } from './ruleTester';
 
 const ruleTester = new RuleTester('no-multi-spaces');
 
-function expecting(errors: [string]): Failure[] {
+function expecting(errors: string[]): Failure[] {
   return errors.map((token) => {
     return {
       failure: `Multiple spaces found before '${token}'.`,

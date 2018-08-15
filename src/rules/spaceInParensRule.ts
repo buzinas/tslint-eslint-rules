@@ -206,12 +206,12 @@ class SpaceInParensWalker extends Lint.RuleWalker {
     return !this.isCloserException(left.getLastToken());
   }
 
-  protected isOpenerException(token: ts.Node) {
+  protected isOpenerException(token: ts.Node | undefined) {
     if (!token) return false;
     return this.getExceptions().openers.indexOf(token.kind) >= 0;
   }
 
-  protected isCloserException(token: ts.Node) {
+  protected isCloserException(token: ts.Node | undefined) {
     if (!token) return false;
     return this.getExceptions().closers.indexOf(token.kind) >= 0;
   }
