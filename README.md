@@ -175,7 +175,7 @@ These are rules designed to prevent you from making mistakes. They either
 |:ballot_box_with_check:|[radix](http://eslint.org/docs/rules/radix)|[radix](http://palantir.github.io/tslint/rules/radix)|require use of the second argument for `parseInt()`|
 |:x:|[vars-on-top](http://eslint.org/docs/rules/vars-on-top)|vars-on-top|require declaration of all vars at the top of their containing scope|
 |:x:|[wrap-iife](http://eslint.org/docs/rules/wrap-iife)|wrap-iife|require immediate function invocation to be wrapped in parentheses|
-|:x:|[yoda](http://eslint.org/docs/rules/yoda)|yoda|require or disallow Yoda conditions|
+|:ballot_box_with_check:|[yoda](http://eslint.org/docs/rules/yoda)|[binary-expression-operand-order](https://palantir.github.io/tslint/rules/binary-expression-operand-order/)|require or disallow Yoda conditions|
 
 ### Strict Mode
 
