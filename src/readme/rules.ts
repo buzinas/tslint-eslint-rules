@@ -1215,25 +1215,16 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'yoda',
-    tslintRule: 'yoda',
+    tslintRule: 'binary-expression-operand-order',
     category: 'Best Practices',
-    description: 'require or disallow Yoda conditions',
+    description: 'disallow Yoda conditions',
     eslintUrl: 'http://eslint.org/docs/rules/yoda',
-    provider: 'tslint-eslint-rules',
+    tslintUrl: 'https://palantir.github.io/tslint/rules/binary-expression-operand-order',
+    provider: 'native',
     usage: `~~~json
-    "yoda": [
-        true,
-        "never"
-      ]
-    ~~~
-
-    ~~~json
-    "yoda": [
-        true,
-        "always"
-      ]
+    "binary-expression-operand-order": true
     ~~~`
   },
   {
