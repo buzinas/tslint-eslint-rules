@@ -31,20 +31,20 @@ yarn add tslint-eslint-rules --dev
 
 ### Configure TSLint to use `tslint-eslint-rules`:
 
-In your `tslint.json` file, extend this package, e.g:
+In your `tslint.json` file, source the rules from this package, e.g:
 
 ```json
 {
-  "extends": [
-    "tslint-eslint-rules"
-  ],
   "rules": {
     "no-constant-condition": true
-  }
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
 }
 ```
 
-You can also extend other tslint config packages to combine this plugin with other community custom rules.
+You can also add other tslint config packages to combine these rules with other custom community rules.
 
 
 ### Configure your rules
