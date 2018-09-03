@@ -25,7 +25,9 @@ class NoInnerDeclarationsWalker extends Lint.RuleWalker {
   }
 
   protected visitVariableStatement(node: ts.VariableStatement) {
-    if (this.hasOption('both') && node.declarationList.getFirstToken().kind === ts.SyntaxKind.VarKeyword) {
+    // TODO: Find out how to get rid of `!`, this has been working on all the test, shutting down
+    // so that we can release with tsc >= 3.0
+    if (this.hasOption('both') && node.declarationList.getFirstToken()!.kind === ts.SyntaxKind.VarKeyword) {
       this.validateInnerDeclaration(node);
     }
     super.visitVariableStatement(node);

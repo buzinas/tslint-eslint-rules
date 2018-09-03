@@ -3,7 +3,7 @@ import { RuleTester, Failure, Position, dedent } from './ruleTester';
 
 const ruleTester = new RuleTester('ter-max-len');
 
-function expecting(errors: [[number, number] | [number, number, boolean]]): Failure[] {
+function expecting(errors: Array<[number, number] | [number, number, boolean]>): Failure[] {
   return errors.map((err) => {
     let message = `Line ${err[0] + 1} exceeds the maximum line length of ${err[1]}.`;
     if (err[2]) {

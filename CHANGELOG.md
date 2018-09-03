@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [v5.4.0] - August 14, 2018
+*Rules*
+- `ter-padded-blocks`
+
+*Updates*
+- `object-curly-spacing`: supports `arraysInObjects/objectsInObjects` options.
+- Support for typescript 3.0
+
 
 ## [v5.3.1] - May 15, 2018
 #### Features
@@ -351,7 +359,8 @@ Note that the npm release `v3.2.1` only contains this hotfix [cb01358].
 - Added and made lots of improvements in README.md
 
 
-[Unreleased]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.3.1...HEAD
+[Unreleased]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.4.0...HEAD
+[v5.4.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.3.1...v5.4.0
 [v5.3.1]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.2.0...v5.3.1
 [v5.2.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.1.0...v5.2.0
 [v5.1.0]: https://github.com/buzinas/tslint-eslint-rules/compare/v5.0.0...v5.1.0
