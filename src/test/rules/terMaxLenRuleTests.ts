@@ -355,6 +355,15 @@ ruleTester.addTestGroup('template-literals', 'should ignore template literals', 
         and here is another
          and another!\`;`,
     options: [29, 4, { ignoreTemplateLiterals: true }]
+  },
+  {
+    code: dedent`
+        var foo = veryLongIdentifier;
+        var bar = \`this is a very long string
+        and this is another line that is very long
+        and here is another with replacement \${x}
+         and another!\`;`,
+    options: [29, 4, { ignoreTemplateLiterals: true }]
   }
 ]);
 

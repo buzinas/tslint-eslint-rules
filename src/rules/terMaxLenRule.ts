@@ -284,6 +284,10 @@ class MaxLenWalker extends Lint.RuleWalker {
     super.visitRegularExpressionLiteral(node);
   }
 
+  protected visitTemplateExpression(node: ts.Node): void {
+    this.templates.push(this.getINode(node.kind, node.getText(), node.getStart()));
+  }
+
   public getINode(kind: number, text: string, startPos: number): INode {
     const width = text.length;
     const src = this.getSourceFile();
