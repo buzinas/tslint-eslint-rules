@@ -3,7 +3,6 @@
 .idea
 .vs
 dist/test
-dist/readme
 dist/tools
 node_modules
 src
