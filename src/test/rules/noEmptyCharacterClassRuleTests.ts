@@ -13,7 +13,8 @@ const scripts = {
     'var foo = /[[]/;',
     'var foo = /[\\[a-z[]]/;',
     'var foo = /[\\-\\[\\]\\/\\{\\}\\(\\)\\*\\+\\?\\.\\\\^\\$\\|]/g;',
-    'var foo = /\\s*:\\s*/gim;'
+    'var foo = /\\s*:\\s*/gim;',
+    'var foo = /\u{1F4A9}/u;'
   ],
   invalid: [
     'var foo = /^abc[]/;',
