@@ -2265,9 +2265,9 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'no-ternary',
-    tslintRule: 'no-ternary',
+    tslintRule: 'ter-no-ternary',
     category: 'Stylistic Issues',
     description: 'disallow the use of ternary operators',
     eslintUrl: 'http://eslint.org/docs/rules/no-ternary',
