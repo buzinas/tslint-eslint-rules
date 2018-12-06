@@ -238,7 +238,7 @@ class RuleWalker extends Lint.RuleWalker {
           // Warning: we have seen this one already - skip
         } else {
           usedOptions[t] = t;
-          if (memberSyntaxTypeMap[t]) {
+          if (memberSyntaxTypeMap[t] !== undefined) {
             order.push(memberSyntaxTypeMap[t]);
           }
         }
