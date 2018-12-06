@@ -36,6 +36,13 @@ ruleTester.addTestGroup('valid', 'should pass ESLint valid tests', [
   },
   {
     code: dedent`
+      import './index.css';
+      import A from 'bar';
+      import {b, c} from 'foo'`,
+    options: [{ 'member-syntax-sort-order': ['none', 'all', 'single', 'multiple', 'alias'] }]
+  },
+  {
+    code: dedent`
       import createTheme from 'spectacle/lib/themes/default'
       import {hot} from 'react-hot-loader'
       import React from 'react'
