@@ -102,7 +102,6 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
 
       console.log(greet, name);
       var greet = "hello,";
-
       var name = "world";
       `,
     options: ['always']
@@ -182,6 +181,48 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
     errors: expecting([
       ['expectedBlankLine', 1]
     ])
+  },
+  {
+    code: dedent`
+     const myFunc = () => {
+      const x = 2;
+      const y = 3;
+      return x + y;
+     }`,
+    output: dedent`
+     const myFunc = () => {
+      const x = 2;
+      const y = 3;
+
+      return x + y;
+     }`,
+    options: ['always'],
+    errors: expecting([
+      ['expectedBlankLine', 3]
+    ])
+  },
+  {
+    code: dedent`
+     let pendingStatus: string[] = []; // contains all pending checks from travis as multiple are sent
+
+     /**
+      * @param  {string} s The commit hash string
+      * @return {string}   Returns formatted commit hash string
+      */
+     function fmt_url(s: string): string {
+       return \`\x0302\x1F\${s}\x0F\`;
+     }`,
+    output: dedent`
+     let pendingStatus: string[] = []; // contains all pending checks from travis as multiple are sent
+
+     /**
+      * @param  {string} s The commit hash string
+      * @return {string}   Returns formatted commit hash string
+      */
+     function fmt_url(s: string): string {
+       return \`\x0302\x1F\${s}\x0F\`;
+     }`,
+    options: ['always']
   }
 ]);
 
