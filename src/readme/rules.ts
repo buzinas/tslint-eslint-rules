@@ -3028,9 +3028,9 @@ const rules: IRule[] = [
     ~~~`
   },
   {
-    available: false,
+    available: true,
     eslintRule: 'prefer-spread',
-    tslintRule: 'prefer-spread',
+    tslintRule: 'ter-prefer-spread',
     category: 'ECMAScript 6',
     description: 'suggest using the spread operator instead of `.apply()`.',
     eslintUrl: 'http://eslint.org/docs/rules/prefer-spread',
