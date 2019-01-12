@@ -93,8 +93,12 @@ class RuleWalker extends Lint.AbstractWalker<ITerNewlineAfterVarOptions> {
         const nextSibling: ts.Node|void = getNextSiblingNode(node);
         const nextSiblingKind: number|void = nextSibling && nextSibling.kind;
 
-        // prevent a conflict with "eofline" rule
-        if (!nextSibling || nextSiblingKind !== ts.SyntaxKind.EndOfFileToken) {
+        if (
+          !(isNewLineAlwaysRequired && nextSiblingKind === ts.SyntaxKind.VariableStatement) &&
+
+          // prevent a conflict with "eofline" rule
+          !(nextSibling && nextSiblingKind === ts.SyntaxKind.EndOfFileToken)
+        ) {
           const isNewLineRequired: boolean = isNewLineAlwaysRequired && nextSiblingKind !== ts.SyntaxKind.VariableStatement;
           const unexpectedLineFixes: Lint.Replacement[] = [];
           const expectedLineFixes: Lint.Replacement[] = [];

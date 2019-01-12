@@ -22,6 +22,29 @@ function expecting (errors: ['expectedBlankLine' | 'unexpectedBlankLine', number
 ruleTester.addTestGroup('always', 'should always require an empty line after variable declarations ', [
   {
     code: dedent`
+      const foo1 = 1;
+
+      const bar1 = 2; // Inline comment
+
+      const foo2 = 3; /* Multiline
+      comment */
+
+      const bar2 = 4;
+      `,
+    output: dedent`
+      const foo1 = 1;
+
+      const bar1 = 2; // Inline comment
+
+      const foo2 = 3; /* Multiline
+      comment */
+
+      const bar2 = 4;
+      `,
+    options: []
+  },
+  {
+    code: dedent`
       var greet = "hello,",
           name = "world";
       console.log(greet, name);
@@ -227,6 +250,31 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
 ]);
 
 ruleTester.addTestGroup('never', 'should disallow empty lines after variable declarations ', [
+  {
+    code: dedent`
+      const foo1 = 1;
+
+      const bar1 = 2; // Inline comment
+
+      const foo2 = 3; /* Multiline
+      comment */
+
+      const bar2 = 4;
+      `,
+    output: dedent`
+      const foo1 = 1;
+      const bar1 = 2; // Inline comment
+      const foo2 = 3; /* Multiline
+      comment */
+      const bar2 = 4;
+      `,
+    options: ['never'],
+    errors: expecting([
+      ['unexpectedBlankLine', 1],
+      ['unexpectedBlankLine', 3],
+      ['unexpectedBlankLine', 5]
+    ])
+  },
   {
     code: dedent`
       var greet = "hello,",
