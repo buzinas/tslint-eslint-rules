@@ -24,11 +24,11 @@ The rule takes in one option, which defines to require or forbid whitespace.
 
 ```json
 "ter-computed-property-spacing": [true, "always"]
-      ```
+```
 
 ```json
 "ter-computed-property-spacing": [true, "never"]
-      ```
+```
 #### Schema
 
 ```json
