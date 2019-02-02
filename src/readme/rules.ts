@@ -2486,6 +2486,22 @@ const rules: IRule[] = [
   },
   {
     available: true,
+    eslintRule: 'padding-line-between-statements',
+    tslintRule: 'ter-padding-line-between-statements',
+    category: 'Stylistic Issues',
+    description: 'Require or disallow padding lines between statements ',
+    eslintUrl: 'https://eslint.org/docs/rules/padding-line-between-statements',
+    provider: 'tslint-eslint-rules',
+    usage: `~~~json
+    "ter-padding-line-between-statements": [
+        true,
+        { "blankLine": "always", "prev": ["interface", "enum"], "next": "*" },
+        { "blankLine": "always", "prev": "*", "next": ["interface", "enum"] }
+      ]
+    ~~~`
+  },
+  {
+    available: true,
     eslintRule: 'quote-props',
     tslintRule: 'object-literal-key-quotes',
     category: 'Stylistic Issues',
