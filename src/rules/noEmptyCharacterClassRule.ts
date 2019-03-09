@@ -17,7 +17,7 @@ class NoEmptyCharacterClassWalker extends Lint.RuleWalker {
   }
 
   private validateEmptyCharacterClass(node: ts.LiteralExpression) {
-    if (!(/^\/([^\\[]|\\.|\[([^\\\]]|\\.)+\])*\/[gim]*$/.test(node.text))) {
+    if (!(/^\/([^\\[]|\\.|\[([^\\\]]|\\.)+\])*\/[gimus]*$/.test(node.text))) {
       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
     }
   }
