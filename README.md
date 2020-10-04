@@ -59,7 +59,7 @@ Please refer to the following icons as they provide the status of the rule.
 
 | Icon                    | Description |
 | :---                    | :--         |
-| :no_entry_sign:         | The rule is not applicable to Typescript. |
+| :no_entry_sign:         | The rule is not applicable to [Typescript](https://www.typescriptlang.org/docs). |
 | :ballot_box_with_check: | The rule is provided natively by [TSLint](http://palantir.github.io/tslint/rules/). |
 | :white_check_mark:      | The rule is available via tslint-eslint-rules. |
 | :x:                     | The rule is currently unavailable. |
