@@ -6,6 +6,10 @@
 [![License](https://img.shields.io/npm/l/tslint-eslint-rules.svg)](LICENSE)
 
 
+# DEPRECATED
+
+I originally created this project because it was impossible to run ESLint on a TypeScript codebase. Today you can use https://github.com/typescript-eslint/typescript-eslint for that purpose, so this project is unmaintained and deprecated.
+
 # ESLint rules for TSLint
 
 ## Improve your TSLint with the missing ESLint Rules
