@@ -4,7 +4,7 @@ const ruleTester = new RuleTester('ter-no-self-compare');
 
 // Change this function to better test the rule. In some cases the message never changes so we
 // can avoid passing it in. See other rule tests for examples.
-function expecting(errors: [number, number, number][]): Failure[] {
+function expecting(errors: [number, number, number, number?][]): Failure[] {
   return errors.map((err) => {
     return {
       failure: 'Comparing to itself is potentially pointless.',

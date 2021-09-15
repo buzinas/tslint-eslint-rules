@@ -22,6 +22,29 @@ function expecting (errors: ['expectedBlankLine' | 'unexpectedBlankLine', number
 ruleTester.addTestGroup('always', 'should always require an empty line after variable declarations ', [
   {
     code: dedent`
+      const foo1 = 1;
+
+      const bar1 = 2; // Inline comment
+
+      const foo2 = 3; /* Multiline
+      comment */
+
+      const bar2 = 4;
+      `,
+    output: dedent`
+      const foo1 = 1;
+
+      const bar1 = 2; // Inline comment
+
+      const foo2 = 3; /* Multiline
+      comment */
+
+      const bar2 = 4;
+      `,
+    options: []
+  },
+  {
+    code: dedent`
       var greet = "hello,",
           name = "world";
       console.log(greet, name);
@@ -102,7 +125,6 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
 
       console.log(greet, name);
       var greet = "hello,";
-
       var name = "world";
       `,
     options: ['always']
@@ -182,10 +204,77 @@ ruleTester.addTestGroup('always', 'should always require an empty line after var
     errors: expecting([
       ['expectedBlankLine', 1]
     ])
+  },
+  {
+    code: dedent`
+     const myFunc = () => {
+      const x = 2;
+      const y = 3;
+      return x + y;
+     }`,
+    output: dedent`
+     const myFunc = () => {
+      const x = 2;
+      const y = 3;
+
+      return x + y;
+     }`,
+    options: ['always'],
+    errors: expecting([
+      ['expectedBlankLine', 3]
+    ])
+  },
+  {
+    code: dedent`
+     let pendingStatus: string[] = []; // contains all pending checks from travis as multiple are sent
+
+     /**
+      * @param  {string} s The commit hash string
+      * @return {string}   Returns formatted commit hash string
+      */
+     function fmt_url(s: string): string {
+       return \`\x0302\x1F\${s}\x0F\`;
+     }`,
+    output: dedent`
+     let pendingStatus: string[] = []; // contains all pending checks from travis as multiple are sent
+
+     /**
+      * @param  {string} s The commit hash string
+      * @return {string}   Returns formatted commit hash string
+      */
+     function fmt_url(s: string): string {
+       return \`\x0302\x1F\${s}\x0F\`;
+     }`,
+    options: ['always']
   }
 ]);
 
 ruleTester.addTestGroup('never', 'should disallow empty lines after variable declarations ', [
+  {
+    code: dedent`
+      const foo1 = 1;
+
+      const bar1 = 2; // Inline comment
+
+      const foo2 = 3; /* Multiline
+      comment */
+
+      const bar2 = 4;
+      `,
+    output: dedent`
+      const foo1 = 1;
+      const bar1 = 2; // Inline comment
+      const foo2 = 3; /* Multiline
+      comment */
+      const bar2 = 4;
+      `,
+    options: ['never'],
+    errors: expecting([
+      ['unexpectedBlankLine', 1],
+      ['unexpectedBlankLine', 3],
+      ['unexpectedBlankLine', 5]
+    ])
+  },
   {
     code: dedent`
       var greet = "hello,",
