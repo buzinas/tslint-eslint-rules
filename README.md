@@ -275,7 +275,7 @@ These rules are purely matters of style and are quite subjective.
 |:x:|[no-new-object](http://eslint.org/docs/rules/no-new-object)|no-new-object|disallow the use of the `Object` constructor|
 |:x:|[no-restricted-syntax](http://eslint.org/docs/rules/no-restricted-syntax)|no-restricted-syntax|disallow use of certain syntax in code|
 |:x:|[no-spaced-func](http://eslint.org/docs/rules/no-spaced-func)|no-spaced-func|disallow space between function identifier and application|
-|:x:|[no-ternary](http://eslint.org/docs/rules/no-ternary)|no-ternary|disallow the use of ternary operators|
+|:white_check_mark:|[no-ternary](http://eslint.org/docs/rules/no-ternary)|[ter-no-ternary](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terNoTernaryRule.md)|disallow the use of ternary operators|
 |:ballot_box_with_check:|[no-trailing-spaces](http://eslint.org/docs/rules/no-trailing-spaces)|[no-trailing-whitespace](http://palantir.github.io/tslint/rules/no-trailing-whitespace)|disallow trailing whitespace at the end of lines|
 |:x:|[no-underscore-dangle](http://eslint.org/docs/rules/no-underscore-dangle)|no-underscore-dangle|disallow dangling underscores in identifiers|
 |:x:|[no-unneeded-ternary](http://eslint.org/docs/rules/no-unneeded-ternary)|no-unneeded-ternary|disallow the use of ternary operators when a simpler alternative exists|
