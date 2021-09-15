@@ -329,7 +329,7 @@ These rules are only relevant to ES6 environments.
 |:x:|[prefer-destructuring](http://eslint.org/docs/rules/prefer-destructuring)|prefer-destructuring|require using destructuring when assigning to variables from arrays and objects|
 |:x:|[prefer-reflect](http://eslint.org/docs/rules/prefer-reflect)|prefer-reflect|suggest using Reflect methods where applicable|
 |:x:|[prefer-rest-params](http://eslint.org/docs/rules/prefer-rest-params)|prefer-rest-params|suggest using the rest parameters instead of `arguments`|
-|:x:|[prefer-spread](http://eslint.org/docs/rules/prefer-spread)|prefer-spread|suggest using the spread operator instead of `.apply()`.|
+|:white_check_mark:|[prefer-spread](http://eslint.org/docs/rules/prefer-spread)|[ter-prefer-spread](https://github.com/buzinas/tslint-eslint-rules/blob/master/src/docs/rules/terPreferSpreadRule.md)|suggest using the spread operator instead of `.apply()`.|
 |:x:|[prefer-template](http://eslint.org/docs/rules/prefer-template)|prefer-template|suggest using template literals instead of strings concatenation|
 |:x:|[require-yield](http://eslint.org/docs/rules/require-yield)|require-yield|disallow generator functions that do not have `yield`|
 |:x:|[template-curly-spacing](http://eslint.org/docs/rules/template-curly-spacing)|template-curly-spacing|enforce spacing around embedded expressions of template strings|
